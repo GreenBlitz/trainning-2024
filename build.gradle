@@ -181,3 +181,5 @@ tasks.register('checkAkitInstall', JavaExec) {
 
 
 compileJava.finalizedBy('checkAkitInstall')
+discoverroborio.finalizedBy('setReachableIP')
+setReachableIP.finalizedBy('setVisualVMHost')
