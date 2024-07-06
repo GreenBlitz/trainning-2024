@@ -1,4 +1,4 @@
-package frc.utils.logger;
+package utils.logger;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

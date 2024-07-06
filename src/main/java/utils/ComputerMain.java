@@ -1,11 +1,11 @@
-package frc.utils;
+package utils;
 
 import java.nio.file.Path;
 
 /**
  *  Unless you know what you are doing, do not rename this file because it's being used elsewhere.
  */
-public class ComputerMain {
+class ComputerMain {
 
     public static void main(String... args) {
         startComputerPrograms(args);

@@ -1,4 +1,4 @@
-package frc.utils.logging;
+package utils.logging;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;

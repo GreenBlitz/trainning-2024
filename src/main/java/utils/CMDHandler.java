@@ -1,13 +1,13 @@
-package frc.utils;
+package utils;
 
-import frc.utils.constants.DirectoryPathsConstants;
-import frc.utils.logging.ComputerLogFile;
+import utils.constants.DirectoryPathsConstants;
+import utils.logging.ComputerLogFile;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CMDHandler {
+class CMDHandler {
 
     private static final ComputerLogFile CMD_COMPUTER_LOG_FILE = new ComputerLogFile("CMDHandler");
     private static final List<String> WINDOWS_SHELL = List.of("cmd.exe","/c");

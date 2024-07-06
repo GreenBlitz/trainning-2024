@@ -1,6 +1,6 @@
-package frc.utils.logging;
+package utils.logging;
 
-import frc.utils.constants.DirectoryPathsConstants;
+import utils.constants.DirectoryPathsConstants;
 
 import java.awt.*;
 import java.nio.file.Files;

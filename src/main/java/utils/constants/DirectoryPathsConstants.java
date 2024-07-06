@@ -1,4 +1,4 @@
-package frc.utils.constants;
+package utils.constants;
 
 import java.nio.file.Path;
 

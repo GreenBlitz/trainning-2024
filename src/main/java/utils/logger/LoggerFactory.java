@@ -1,11 +1,9 @@
-package frc.utils.logger;
+package utils.logger;
 
 import com.ctre.phoenix6.SignalLogger;
-import frc.robot.RobotManager;
-import org.littletonrobotics.junction.LogFileUtil;
+import training.TrainingRobotManager;
 import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
-import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
 import java.nio.file.Path;
@@ -13,10 +11,10 @@ import java.nio.file.Path;
 public class LoggerFactory {
 
     public static void initializeLogger() {
-        if (RobotManager.isSimulation()){
+        if (TrainingRobotManager.isSimulation()){
             startSimulationLogger();
         }
-        else if (RobotManager.isReal()){
+        else if (TrainingRobotManager.isReal()){
             startRealLogger();
         }
     }
