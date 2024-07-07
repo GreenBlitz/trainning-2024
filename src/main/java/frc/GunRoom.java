@@ -10,7 +10,6 @@ public class GunRoom extends Room{
     public String encrypt(String message){
         message = "this-message-is-encrypted";
         return message;
-
     }
 
 }
