@@ -1,7 +1,13 @@
-public class restroom {
+public class restroom extends room {
 	public restroom(int width, int height, int length) {
-		super();
+		super(width, height, length);
 	}
-	public String isempty(){
+	public String isEmpty(){
+		if(super.getInside() == false){
+			return "no";
+		}
+		else{
+			return "in use";
+		}
 	}
 }
