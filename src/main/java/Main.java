@@ -3,11 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 
-/**
- * Do NOT add any static variables to this class, or any initialization at all. Unless you know what
- * you are doing, do not modify this file except to change the parameter class to the startRobot
- * call.
- */
 public final class Main {
 
     private Main() {}
