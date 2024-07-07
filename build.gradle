@@ -11,7 +11,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-def ROBOT_MAIN_CLASS = "Main"
+def ROBOT_MAIN_CLASS = "frc.Main"
 def ROUTER_IP = "10.45.90.2"
 def USB_B_IP = "172.22.11.2"
 def IPS = [ROUTER_IP, USB_B_IP]
