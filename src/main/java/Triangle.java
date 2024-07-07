@@ -16,7 +16,6 @@ public class Triangle {
     public void setA(Point2D a) {
         this.a = a;
     }
-
     public void setB(Point2D b) {
         this.b = b;
     }

@@ -21,4 +21,17 @@ public final class Main {
 
     }
 
+    public static Bank findOptimalBankToRobber() {
+        Bank output;
+        output = Bank.HAPOALIM;
+        Bank[] banks = {Bank.MIZRAHITEFAHOT, Bank.DISCOUNT, Bank.MIZRAHITEFAHOT};
+
+        for (Bank bank: banks) {
+            if (output.danger_level <= bank.danger_level) {
+                output = bank;
+            }
+        }
+
+        return output;
+    }
 }
