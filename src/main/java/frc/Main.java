@@ -5,7 +5,7 @@ public final class Main {
 
     public static void checkBank(Bank[] banks){
 
-        int min = 0;
+        int min = 11;
         int place = 0;
 
         for (int i = 0; i < banks.length; i++) {
