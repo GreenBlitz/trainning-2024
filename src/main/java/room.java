@@ -4,10 +4,10 @@
  * call.
  */
 public class room {
-	private int width;
-	private int height;
-	private int length;
-	private boolean inside;
+	protected int width;
+	protected int height;
+	protected int length;
+	protected boolean inside;
 	
 	public room(int width, int height, int length) {
 		this.width = width;
@@ -43,14 +43,11 @@ public class room {
 	public void setInside(boolean inside) {
 		this.inside = inside;
 	}
-	
+	public boolean getInside() {
+		return this.inside;
+	}
 	public String intercom() {
-		return "room{" +
-				"width=" + width +
-				", height=" + height +
-				", length=" + length +
-				", inside=" + inside +
-				'}';
+		return "room{" + "width=" + width + ", height=" + height + ", length=" + length + ", inside=" + inside + '}';
 	}
 	
 	
