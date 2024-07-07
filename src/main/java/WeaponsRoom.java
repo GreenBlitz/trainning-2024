@@ -1,4 +1,5 @@
 import java.util.Base64;
+import java.util.function.Consumer;
 
 public class WeaponsRoom extends Room {
     public WeaponsRoom(double w, double l, double h) {
@@ -16,4 +17,22 @@ public class WeaponsRoom extends Room {
         }
         System.out.println(sb);
     }
+
+    Consumer<String> intercom = msg -> Intercom(msg);
+
+    public interface DDSupplier {
+        double get(double num);
+    }
+
+            DDSupplier dd = num -> num+5;
+
 }
+
+
+
+
+
+
+
+
+
