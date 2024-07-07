@@ -1,4 +1,4 @@
-package java.frc;
+package frc;
 
 public class GunRoom extends Room{
 

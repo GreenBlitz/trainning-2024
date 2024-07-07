@@ -1,10 +1,10 @@
-package java.frc;
+package frc;
 
 import java.util.Scanner;
 
 public class Bathroom extends Room{
 
-    Scanner reader = new Scanner(System.in);
+    private final Scanner reader = new Scanner(System.in);
 
     public Bathroom(int length, int width, int height, boolean isInside) {
         super(length, width, height, isInside);
