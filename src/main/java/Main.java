@@ -18,7 +18,25 @@ public final class Main {
      * <p>If you change your main robot class, change the parameter type.
      */
     public static void main(String... args) {
-
+        Bank[] arr1 = {
+                Bank.Ratio, Bank.Ratio, Bank.Plus
+        };
+        Bank[] arr2 = {
+                Bank.Ratio, Bank.Ratio, Bank.Ratio
+        };
+        System.out.println(lowestRisk(Bank.values()));
+        System.out.println(lowestRisk(arr1));
+        System.out.println(lowestRisk(arr2));
     }
-
+    public static Bank lowestRisk(Bank[] arr) {
+        int minRisk = 11;
+        Bank minRiskBank = arr[0];
+        for (Bank bank : arr) {
+            if (bank.risk < minRisk) {
+                minRiskBank = bank;
+                minRisk = bank.risk;
+            }
+        }
+        return minRiskBank;
+    }
 }

@@ -11,4 +11,5 @@ public class Toilet extends Room {
             isInside = true;
         }
     }
+
 }
