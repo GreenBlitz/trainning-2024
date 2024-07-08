@@ -7,6 +7,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
     private Robot robot;
     private CommandOfDOOM moveModule;
+    private MoveJoystick moveJoystick;
     private SmartJoystick joystick;
 
     @Override
@@ -15,6 +16,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
         moveModule = new CommandOfDOOM(robot);
         joystick = new SmartJoystick(0);
         joystick.A.whileTrue(moveModule);
+        moveJoystick = new MoveJoystick(robot, joystick);
+        robot.getModule().setDefaultCommand(moveJoystick);
     }
 
     @Override
