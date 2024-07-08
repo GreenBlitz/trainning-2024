@@ -22,8 +22,8 @@ public class MoveJoystick extends Command {
 
     @Override
     public void execute() {
-        module.moveVertical(joystick.getAxisValue(SmartJoystick.Axis.LEFT_Y) * 0.6);
-        module.moveHorizontal(joystick.getAxisValue(SmartJoystick.Axis.RIGHT_X) * 0.6);
+        module.moveVertical(joystick.getAxisValue(SmartJoystick.Axis.LEFT_Y) * RobotConstants.SLOWING_DOWN_MULTIPLIER);
+        module.moveHorizontal(joystick.getAxisValue(SmartJoystick.Axis.RIGHT_X) * RobotConstants.SLOWING_DOWN_MULTIPLIER);
     }
 
     @Override

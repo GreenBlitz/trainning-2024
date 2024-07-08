@@ -1,6 +1,7 @@
 package training.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
+import training.RobotConstants;
 import utils.GBSubsystem;
 
 public class SubsystemOfDOOM extends GBSubsystem {
@@ -19,8 +20,8 @@ public class SubsystemOfDOOM extends GBSubsystem {
     }
 
     public SubsystemOfDOOM() {
-        verticalMotor = new TalonFX(0);
-        horizontalMotor = new TalonFX(1);
+        verticalMotor = new TalonFX(RobotConstants.ID_OF_VERTICAL_MOTOR);
+        horizontalMotor = new TalonFX(RobotConstants.ID_OF_HORIZONTAL_MOTOR);
     }
 
     public void moveVertical(double power) {

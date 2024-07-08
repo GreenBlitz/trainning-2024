@@ -14,7 +14,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
     public void trainingInit() {
         robot = new Robot();
         moveModule = new CommandOfDOOM(robot);
-        joystick = new SmartJoystick(0);
+        joystick = new SmartJoystick(RobotConstants.ID_OF_FIRST_JOYSTICK);
         joystick.A.whileTrue(moveModule);
         moveJoystick = new MoveJoystick(robot, joystick);
         robot.getModule().setDefaultCommand(moveJoystick);
