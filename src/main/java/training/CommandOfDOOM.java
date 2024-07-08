@@ -16,10 +16,8 @@ public class CommandOfDOOM extends Command {
 
     @Override
     public void initialize() {
-        timer1.restart();
-        module.moveVertical(0.9);
-        module.moveHorizontal(0.9);
-
+        module.moveBoth(0.5);
+        timer1.start();
     }
 
     @Override
@@ -29,7 +27,7 @@ public class CommandOfDOOM extends Command {
 
     @Override
     public boolean isFinished() {
-        if (timer1.hasElapsed(2)){
+        if (timer1.hasElapsed(5)){
             return true;
         }
         return false;
@@ -38,5 +36,6 @@ public class CommandOfDOOM extends Command {
     @Override
     public void end(boolean interrupted) {
         module.stopBoth();
+        timer1.restart();
     }
 }
