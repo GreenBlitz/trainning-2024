@@ -7,12 +7,10 @@ import utils.DefaultRobotManager;
 public class TrainingRobotManager extends DefaultRobotManager {
 
     private Robot robot;
-    private TalonFX motor;
 
     @Override
     public void trainingInit() {
         this.robot = new Robot();
-        motor = new TalonFX(0);
     }
 
     @Override
@@ -23,14 +21,13 @@ public class TrainingRobotManager extends DefaultRobotManager {
     @Override
     public void teleopInit() {
         // schedule your command...
-        motor.set(0.5);
+
     }
 
 
     @Override
     public void teleopExit() {
         // cancel your command...
-        motor.set(0);
     }
 
 }
