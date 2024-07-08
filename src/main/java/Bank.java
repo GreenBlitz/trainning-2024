@@ -9,5 +9,3 @@ public enum Bank {
         danger_level = dangerLevel;
     }
 }
-
-

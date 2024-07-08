@@ -12,22 +12,16 @@ public final class Main {
 
     private Main() {}
 
-    /**
-     * Main initialization function. Do not perform any initialization here.
-     *
-     * <p>If you change your main robot class, change the parameter type.
-     */
     public static void main(String... args) {
-
+        System.out.println(findOptimalBankToRobber());
     }
 
     public static Bank findOptimalBankToRobber() {
         Bank output;
         output = Bank.HAPOALIM;
-        Bank[] banks = {Bank.MIZRAHITEFAHOT, Bank.DISCOUNT, Bank.MIZRAHITEFAHOT};
 
-        for (Bank bank: banks) {
-            if (output.danger_level <= bank.danger_level) {
+        for (Bank bank: Bank.values()) {
+            if (output.danger_level >= bank.danger_level) {
                 output = bank;
             }
         }
