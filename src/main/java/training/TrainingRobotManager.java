@@ -1,22 +1,20 @@
 package training;
 
-import com.ctre.phoenix.motorcontrol.IMotorController;
-import com.ctre.phoenix6.hardware.TalonFX;
-import edu.wpi.first.wpilibj2.command.Command;
 import utils.DefaultRobotManager;
 import utils.joysticks.SmartJoystick;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
     private Robot robot;
-    private CommandOfDOOM com;
+    private CommandOfDOOM moveModule;
+    private SmartJoystick joystick;
 
     @Override
     public void trainingInit() {
-        this.robot = new Robot();
-        com = new CommandOfDOOM(robot);
-        SmartJoystick joystick = new SmartJoystick(0);
-        joystick.A.whileTrue(com);
+        robot = new Robot();
+        moveModule = new CommandOfDOOM(robot);
+        joystick = new SmartJoystick(0);
+        joystick.A.whileTrue(moveModule);
     }
 
     @Override

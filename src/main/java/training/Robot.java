@@ -6,7 +6,7 @@ public class Robot {
 
     private SubsystemOfDOOM module;
 
-    public Robot(){
+    public Robot() {
         // Boot your subsystems...
         module = new SubsystemOfDOOM();
     }

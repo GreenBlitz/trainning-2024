@@ -18,34 +18,34 @@ public class SubsystemOfDOOM extends GBSubsystem {
 
     }
 
-    public SubsystemOfDOOM(){
+    public SubsystemOfDOOM() {
         verticalMotor = new TalonFX(0);
         horizontalMotor = new TalonFX(1);
     }
 
-    public void moveVertical(double power){
+    public void moveVertical(double power) {
         verticalMotor.set(power);
     }
 
-    public void moveHorizontal(double power){
+    public void moveHorizontal(double power) {
         horizontalMotor.set(power);
     }
 
-    public void moveBoth(double power){
+    public void moveBoth(double power) {
         horizontalMotor.set(power);
         verticalMotor.set(power);
     }
 
 
-    public void stopVertical(){
+    public void stopVertical() {
         verticalMotor.set(0);
     }
 
-    public void stopHorizontal(){
+    public void stopHorizontal() {
         horizontalMotor.set(0);
     }
 
-    public void stopBoth(){
+    public void stopBoth() {
         horizontalMotor.set(0);
         verticalMotor.set(0);
     }

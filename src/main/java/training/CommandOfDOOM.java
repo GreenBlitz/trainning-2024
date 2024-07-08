@@ -9,9 +9,11 @@ public class CommandOfDOOM extends Command {
 
     private SubsystemOfDOOM module;
     private Timer timer1;
-    public CommandOfDOOM(Robot robot){
+
+    public CommandOfDOOM(Robot robot) {
         module = robot.getModule();
         timer1 = new Timer();
+        addRequirements(module);
     }
 
     @Override
@@ -27,7 +29,7 @@ public class CommandOfDOOM extends Command {
 
     @Override
     public boolean isFinished() {
-        if (timer1.hasElapsed(5)){
+        if (timer1.hasElapsed(5)) {
             return true;
         }
         return false;
