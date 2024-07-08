@@ -4,7 +4,7 @@ import training.subsystems.SubsystemOfDOOM;
 
 public class Robot {
 
-    private SubsystemOfDOOM module;
+    private final SubsystemOfDOOM module;
 
     public Robot() {
         // Boot your subsystems...

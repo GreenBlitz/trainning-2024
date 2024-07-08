@@ -5,8 +5,8 @@ import utils.GBSubsystem;
 
 public class SubsystemOfDOOM extends GBSubsystem {
 
-    private TalonFX verticalMotor;
-    private TalonFX horizontalMotor;
+    private final TalonFX verticalMotor;
+    private final TalonFX horizontalMotor;
 
     @Override
     protected String getLogPath() {

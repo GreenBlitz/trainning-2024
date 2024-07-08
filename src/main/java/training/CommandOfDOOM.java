@@ -7,8 +7,8 @@ import training.subsystems.SubsystemOfDOOM;
 
 public class CommandOfDOOM extends Command {
 
-    private SubsystemOfDOOM module;
-    private Timer timer1;
+    private final SubsystemOfDOOM module;
+    private final Timer timer1;
 
     public CommandOfDOOM(Robot robot) {
         module = robot.getModule();
@@ -29,10 +29,7 @@ public class CommandOfDOOM extends Command {
 
     @Override
     public boolean isFinished() {
-        if (timer1.hasElapsed(5)) {
-            return true;
-        }
-        return false;
+        return timer1.hasElapsed(5);
     }
 
     @Override
