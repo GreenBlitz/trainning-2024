@@ -1,16 +1,16 @@
 package training;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.SubsystemOfDOOM;
+import training.subsystems.SwerveModule;
 import utils.joysticks.SmartJoystick;
 
-public class MoveJoystick extends Command {
+public class MoveMotorWithJoystick extends Command {
 
-    private final SubsystemOfDOOM module;
+    private final SwerveModule module;
     private SmartJoystick joystick;
 
 
-    public MoveJoystick(Robot robot, SmartJoystick joystick) {
+    public MoveMotorWithJoystick(Robot robot, SmartJoystick joystick) {
         module = robot.getModule();
         addRequirements(module);
         this.joystick = joystick;

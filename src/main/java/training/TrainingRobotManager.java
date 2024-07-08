@@ -6,18 +6,18 @@ import utils.joysticks.SmartJoystick;
 public class TrainingRobotManager extends DefaultRobotManager {
 
     private Robot robot;
-    private CommandOfDOOM moveModule;
-    private MoveJoystick moveJoystick;
+    private MoveModuleMotor moveModule;
+    private MoveMotorWithJoystick moveMotorWithJoystick;
     private SmartJoystick joystick;
 
     @Override
     public void trainingInit() {
         robot = new Robot();
-        moveModule = new CommandOfDOOM(robot);
+        moveModule = new MoveModuleMotor(robot);
         joystick = new SmartJoystick(RobotConstants.ID_OF_FIRST_JOYSTICK);
         joystick.A.whileTrue(moveModule);
-        moveJoystick = new MoveJoystick(robot, joystick);
-        robot.getModule().setDefaultCommand(moveJoystick);
+        moveMotorWithJoystick = new MoveMotorWithJoystick(robot, joystick);
+        robot.getModule().setDefaultCommand(moveMotorWithJoystick);
     }
 
     @Override

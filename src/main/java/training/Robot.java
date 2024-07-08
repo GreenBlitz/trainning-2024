@@ -1,20 +1,20 @@
 package training;
 
-import training.subsystems.SubsystemOfDOOM;
+import training.subsystems.SwerveModule;
 
 public class Robot {
 
-    private final SubsystemOfDOOM module;
+    private final SwerveModule module;
 
     public Robot() {
         // Boot your subsystems...
-        module = new SubsystemOfDOOM();
+        module = new SwerveModule();
     }
 
     // Add your subsystems getters...
 
 
-    public SubsystemOfDOOM getModule() {
+    public SwerveModule getModule() {
         return module;
     }
 }

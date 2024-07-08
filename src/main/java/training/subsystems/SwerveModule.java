@@ -4,7 +4,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import training.RobotConstants;
 import utils.GBSubsystem;
 
-public class SubsystemOfDOOM extends GBSubsystem {
+public class SwerveModule extends GBSubsystem {
 
     private final TalonFX verticalMotor;
     private final TalonFX horizontalMotor;
@@ -19,7 +19,7 @@ public class SubsystemOfDOOM extends GBSubsystem {
 
     }
 
-    public SubsystemOfDOOM() {
+    public SwerveModule() {
         verticalMotor = new TalonFX(RobotConstants.ID_OF_VERTICAL_MOTOR);
         horizontalMotor = new TalonFX(RobotConstants.ID_OF_HORIZONTAL_MOTOR);
     }

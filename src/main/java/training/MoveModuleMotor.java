@@ -2,15 +2,15 @@ package training;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.SubsystemOfDOOM;
+import training.subsystems.SwerveModule;
 
 
-public class CommandOfDOOM extends Command {
+public class MoveModuleMotor extends Command {
 
-    private final SubsystemOfDOOM module;
+    private final SwerveModule module;
     private final Timer timer1;
 
-    public CommandOfDOOM(Robot robot) {
+    public MoveModuleMotor(Robot robot) {
         module = robot.getModule();
         timer1 = new Timer();
         addRequirements(module);
