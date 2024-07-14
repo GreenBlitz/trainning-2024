@@ -5,11 +5,10 @@ import training.subsystems.movement.ModuleSubsystem;
 public class Robot {
 
     // Enter your subsystems...
-    private static ModuleSubsystem moduleSubsystem;
+    private static final ModuleSubsystem moduleSubsystem = new ModuleSubsystem(0, 1);
 
     public Robot() {
         // Boot your subsystems...
-        moduleSubsystem = new ModuleSubsystem(0, 1);
     }
 
     // Add your subsystems getters...

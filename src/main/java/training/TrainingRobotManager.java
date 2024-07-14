@@ -11,9 +11,11 @@ public class TrainingRobotManager extends DefaultRobotManager {
     private TalonFX motor;
     private KeyboardController keyboardController;
     private final double PI = Math.PI;
+    private Robot robot;
 
     @Override
     public void trainingInit() {
+        this.robot = new Robot();
         this.keyboardController = new KeyboardController();
         keyboardController.R.onTrue(new SetAngle(0.5*PI));
     }
