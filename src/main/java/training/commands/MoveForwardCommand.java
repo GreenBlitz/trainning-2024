@@ -22,6 +22,6 @@ public class MoveForwardCommand extends Command {
 
     @Override
     public void end(boolean interrupted) {
-        subsystem.stopMotor();
+        subsystem.stopMotors();
     }
 }

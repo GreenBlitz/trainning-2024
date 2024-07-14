@@ -21,14 +21,23 @@ public class ModuleSubsystem extends GBSubsystem {
 
     public void setAngularSpeed(double speed) {
         if (Math.abs(speed) <= Constants.MAX_ALLOWED_SPEED) {
-            angularMotor.set(speed);
+            angularMotor.set(spangleeed);
         }
     }
 
-    public void stopMotor(){
+    public void stopMotors() {
         setLinearSpeed(0);
         setAngularSpeed(0);
     }
+
+    public double getRadAngle() {
+        return 2 * Math.PI * (angularMotor.getPosition().getValue() % 1);
+    }
+
+    public boolean isAtAngle(double angle, double epsilon) {
+        return Math.abs(getRadAngle() - angle) <= epsilon;
+    }
+
 
     @Override
     protected String getLogPath() {
