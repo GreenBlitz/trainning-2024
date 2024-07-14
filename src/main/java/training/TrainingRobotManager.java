@@ -7,14 +7,13 @@ import utils.KeyboardController;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
-    private Robot robot;
+
     private TalonFX motor;
     private KeyboardController keyboardController;
-    private double PI = Math.PI;
+    private final double PI = Math.PI;
 
     @Override
     public void trainingInit() {
-        this.robot = new Robot();
         this.keyboardController = new KeyboardController();
         keyboardController.R.onTrue(new SetAngle(0.5*PI));
     }

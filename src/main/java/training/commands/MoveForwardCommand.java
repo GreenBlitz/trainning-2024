@@ -5,8 +5,8 @@ import training.Robot;
 import training.subsystems.movement.ModuleSubsystem;
 
 public class MoveForwardCommand extends Command {
-    private double speed;
-    private ModuleSubsystem subsystem;
+    private final double speed;
+    private final ModuleSubsystem subsystem;
 
     public MoveForwardCommand(double speed) {
         this.speed = speed;
