@@ -18,7 +18,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
     @Override
     public void trainingInit() {
         robot = new Robot();
-        moveModule = new MoveModuleMotor(robot);
+        moveModule = new MoveModuleMotor(robot.getModule());
         joystick = new SmartJoystick(RobotConstants.ID_OF_FIRST_JOYSTICK);
         joystick.A.whileTrue(moveModule);
         moveMotorWithJoystick = new MoveMotorWithJoystick(robot, joystick);

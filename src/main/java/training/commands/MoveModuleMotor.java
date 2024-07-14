@@ -11,8 +11,8 @@ public class MoveModuleMotor extends Command {
     private final SwerveModule module;
     private final Timer timer1;
 
-    public MoveModuleMotor(Robot robot) {
-        module = robot.getModule();
+    public MoveModuleMotor(SwerveModule module) {
+        this.module = module;
         timer1 = new Timer();
         addRequirements(module);
     }

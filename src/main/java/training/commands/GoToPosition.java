@@ -52,8 +52,6 @@ public class GoToPosition extends Command {
     @Override
     public void end(boolean interrupted) {
         module.stopBoth();
-
     }
-
 
 }
