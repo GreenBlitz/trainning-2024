@@ -3,6 +3,7 @@ package training;// Copyright (c) FIRST and other WPILib contributors.
 // the WPILib BSD license file in the root directory of this project.
 
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.RobotBase;
 
 /**
@@ -20,7 +21,9 @@ public final class Main {
      * <p>If you change your main robot class, change the parameter type.
      */
     public static void main(String... args) {
-        RobotBase.startRobot(TrainingRobotManager::new);
-    }
-
+       RobotBase.startRobot(TrainingRobotManager::new);
+       
+        }
 }
+
+

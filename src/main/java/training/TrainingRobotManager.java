@@ -15,14 +15,16 @@ public class TrainingRobotManager extends DefaultRobotManager {
         this.robot = new Robot();
         this.keyboardController = new KeyboardController();
         
-        keyboardController.A.onTrue(ModuleCommands.pointWheel(Rotation2d.fromDegrees(150)));
-        keyboardController.B.onTrue(ModuleCommands.pointWheel(Rotation2d.fromDegrees(60)));
+        keyboardController.A.onTrue(ModuleCommands.pointWheel(Rotation2d.fromDegrees(0)));
+        keyboardController.W.onTrue(ModuleCommands.pointWheel(Rotation2d.fromDegrees(324)));
         keyboardController.D.onTrue(ModuleCommands.pointWheel(Rotation2d.fromDegrees(20)));
+        keyboardController.S.onTrue(ModuleCommands.pointWheel(Rotation2d.fromDegrees(80)));
     }
 
     @Override
     public void trainingPeriodic() {
         // add stuff...
+        
     }
 
     @Override
