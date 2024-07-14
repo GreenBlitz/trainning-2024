@@ -21,7 +21,7 @@ public class ModuleSubsystem extends GBSubsystem {
 
     public void setAngularSpeed(double speed) {
         if (Math.abs(speed) <= Constants.MAX_ALLOWED_SPEED) {
-            angularMotor.set(spangleeed);
+            angularMotor.set(speed);
         }
     }
 
