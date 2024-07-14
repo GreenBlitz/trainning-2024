@@ -25,7 +25,7 @@ public class GoToPosition extends Command {
     @Override
     public void execute() {
         if (module.getHorizontalPosition().getDegrees() < position.getDegrees()) {
-            if (module.searchPosition(module.getHorizontalPosition(), position, 5)){
+            if (module.searchPosition(position, 5)){
                 module.moveHorizontal(0.03);
             }
             else {
@@ -33,7 +33,7 @@ public class GoToPosition extends Command {
             }
         }
         else {
-            if (module.searchPosition(module.getHorizontalPosition(), position, 5)){
+            if (module.searchPosition(position, 5)){
                 module.moveHorizontal(-0.03);
             }
             else {
@@ -46,7 +46,7 @@ public class GoToPosition extends Command {
 
     @Override
     public boolean isFinished() {
-        return module.searchPosition(module.getHorizontalPosition(), position, 1);
+        return module.searchPosition(position, 1);
     }
 
     @Override

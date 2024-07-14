@@ -72,7 +72,7 @@ public class SwerveModule extends GBSubsystem {
         return verticalMotor.getVelocity().getValue();
     }
 
-    public boolean searchPosition(Rotation2d position1, Rotation2d position2, double tolerance){
-        return position1.getDegrees() <= position2.getDegrees() + tolerance && position1.getDegrees() >= position2.getDegrees() - tolerance;
+    public boolean searchPosition(Rotation2d position2, double tolerance){
+        return getHorizontalPosition().getDegrees() <= position2.getDegrees() + tolerance && getHorizontalPosition().getDegrees() >= position2.getDegrees() - tolerance;
     }
 }
