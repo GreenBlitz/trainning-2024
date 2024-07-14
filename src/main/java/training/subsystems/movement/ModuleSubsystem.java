@@ -31,6 +31,7 @@ public class ModuleSubsystem extends GBSubsystem {
     }
 
     public double getRadAngle() {
+        System.out.println(angularMotor.getPosition().getValue()); // DEBUG
         return 2 * Math.PI * (angularMotor.getPosition().getValue() % 1);
     }
 
