@@ -23,8 +23,8 @@ public class SwerveModule extends GBSubsystem {
     }
 
     public SwerveModule() {
-        verticalMotor = new TalonFX(RobotConstants.ID_OF_VERTICAL_MOTOR);
-        horizontalMotor = new TalonFX(RobotConstants.ID_OF_HORIZONTAL_MOTOR);
+        this.verticalMotor = new TalonFX(RobotConstants.ID_OF_VERTICAL_MOTOR);
+        this.horizontalMotor = new TalonFX(RobotConstants.ID_OF_HORIZONTAL_MOTOR);
         horizontalMotor.getConfigurator().apply(new FeedbackConfigs().withSensorToMechanismRatio(150/7));
         horizontalMotor.setPosition(0);
     }
@@ -72,7 +72,7 @@ public class SwerveModule extends GBSubsystem {
         return verticalMotor.getVelocity().getValue();
     }
 
-    public boolean searchPosition(Rotation2d position2, double tolerance){
-        return getHorizontalPosition().getDegrees() <= position2.getDegrees() + tolerance && getHorizontalPosition().getDegrees() >= position2.getDegrees() - tolerance;
+    public boolean searchPosition(Rotation2d target, double tolerance) {
+        return Math.abs(getHorizontalPosition().getDegrees() - target.getDegrees()) <= tolerance;
     }
 }
