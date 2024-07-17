@@ -29,13 +29,13 @@ public class SetAngle extends Command {
         int changeDirection;
         double aim = angle - currentAngle;
 
-        if (aim % (0.5 * Math.PI) != aim) {
+        if (aim % Math.PI != aim) {
             changeDirection = 1;
         } else {
             changeDirection = 0;
         }
 
-        return (aim % (0.5 * Math.PI)) * Math.pow((-1), changeDirection);
+        return (aim % Math.PI) * Math.pow((-1), changeDirection);
     }
 
 
