@@ -28,10 +28,11 @@ public class GotoAngle extends Command {
         double currentAngle = subsystem.getRadAngle();
         int changeDirection;
         double aim = angle - currentAngle;
-
         if (aim % (2 * Math.PI) != aim) {
+            System.out.println(-1);
             return -1;
         } else {
+            System.out.println(1);
             return 1;
         }
     }

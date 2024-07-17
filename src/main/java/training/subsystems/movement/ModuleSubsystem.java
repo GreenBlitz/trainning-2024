@@ -31,7 +31,8 @@ public class ModuleSubsystem extends GBSubsystem {
     }
 
     public double getRadAngle() {
-        return 2 * Math.PI * (angularMotor.getPosition().getValue() % 1);
+        return Constants.RAD_FULL_CIRCLE_ANGLE *
+                     (angularMotor.getPosition().getValue() % Constants.TALONFX_MOTOR_FULL_CIRCLE);
     }
 
     public boolean isAtAngle(double angle, double epsilon) {
