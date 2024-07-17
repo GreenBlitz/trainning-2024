@@ -31,11 +31,11 @@ public class ModuleSubsystem extends GBSubsystem {
     }
 
     public double getRadAngle() {
-        System.out.println(angularMotor.getPosition().getValue()); // DEBUG
         return 2 * Math.PI * (angularMotor.getPosition().getValue() % 1);
     }
 
     public boolean isAtAngle(double angle, double epsilon) {
+//        System.out.println("desired: "+angle+", current: "+getRadAngle()+", diff: "+getRadAngle()+", epsilon: "+epsilon);
         return Math.abs(getRadAngle() - angle) <= epsilon;
     }
 
