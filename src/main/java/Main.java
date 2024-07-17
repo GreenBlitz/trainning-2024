@@ -32,12 +32,11 @@ public final class Main {
      * <p>If you change your main robot class, change the parameter type.
      */
     public static void main(String... args) {
-        Bank[] banks = {Bank.BANK1,Bank.BANK2,Bank.BANK3};
-        Consumer<Bank[]> functionConsumer = (Bank[] banks1)->checkingBanks(banks1);
-        Supplier<Double> example = () -> Math.random() * 100;
-        functionConsumer.accept(banks);
-        System.out.println(example.get());
-        Exception e = new Exception("hi");
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.push(2);
+        System.out.println(stack.pop());
+        System.out.println(stack.head());
     }
 
 }
