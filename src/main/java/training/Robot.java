@@ -6,9 +6,8 @@ public class Robot {
 
     // Enter your subsystems...
     private static final ModuleSubsystem moduleSubsystem = new ModuleSubsystem(0, 1);
-
     public Robot() {
-        // Boot your subsystems...
+    
     }
 
     // Add your subsystems getters...

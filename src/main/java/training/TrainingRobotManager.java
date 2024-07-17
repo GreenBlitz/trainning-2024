@@ -1,23 +1,24 @@
 package training;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-import training.commands.SetAngle;
+import edu.greenblitz.utils.hid.SmartJoystick;
+import training.commands.GotoAngle;
 import utils.DefaultRobotManager;
-import utils.KeyboardController;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
 
     private TalonFX motor;
-    private KeyboardController keyboardController;
+    private SmartJoystick joystick;
     private final double PI = Math.PI;
     private Robot robot;
 
     @Override
     public void trainingInit() {
         this.robot = new Robot();
-        this.keyboardController = new KeyboardController();
-        keyboardController.R.onTrue(new SetAngle(0.5*PI));
+        this.joystick = new SmartJoystick(0);
+        joystick.A.onTrue(new GotoAngle(0.5 * Math.PI));
+        joystick.B.onTrue(new GotoAngle(1.2 * Math.PI));
     }
 
     @Override
@@ -29,7 +30,6 @@ public class TrainingRobotManager extends DefaultRobotManager {
     public void teleopInit() {
         // schedule your command...
         this.motor = new TalonFX(0);
-        motor.set(0.9);
     }
 
 
