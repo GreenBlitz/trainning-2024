@@ -1,13 +1,19 @@
 package training;
 
-public class Robot {
+import training.subsystems.Module;
 
-    // Enter your subsystems...
+public class Robot {
+    
+    private Module module;
 
     public Robot(){
-        // Boot your subsystems...
+        this.module = new Module();
     }
 
     // Add your subsystems getters...
-
+    
+    
+    public Module getModule() {
+        return module;
+    }
 }
