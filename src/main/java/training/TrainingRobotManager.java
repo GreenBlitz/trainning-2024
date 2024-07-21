@@ -1,5 +1,6 @@
 package training;
 
+import training.commands.MoveAngularByPosition;
 import training.commands.MoveLinearMotor;
 import training.subsystems.Module;
 import utils.DefaultRobotManager;
@@ -15,6 +16,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
         this.robot = new Robot();
         joystick = new SmartJoystick(JoystickPorts.MAIN);
         joystick.A.whileTrue(new MoveLinearMotor(robot,joystick));
+        joystick.B.whileTrue(new MoveAngularByPosition(robot, joystick, 2));
+        joystick.X.whileTrue(new MoveAngularByPosition(robot, joystick, 1.5));
     }
 
     @Override
