@@ -1,8 +1,7 @@
-
 package training;
-
 import com.ctre.phoenix6.hardware.TalonFX;
-import edu.utils.hid.SmartJoystick;
+import utils.SmartJoystick;
+
 import training.commands.GotoAngle;
 import utils.DefaultRobotManager;
 

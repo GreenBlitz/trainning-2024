@@ -1,7 +1,6 @@
-package subsystem;
+package training.subsystems.movement;
 
 import com.ctre.phoenix6.hardware.TalonFX;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import utils.GBSubsystem;
 
 
@@ -33,7 +32,7 @@ public class ModuleSubsystem extends GBSubsystem {
 
     public double getRadAngle() {
         return Constants.RAD_FULL_CIRCLE_ANGLE *
-                (angularMotor.getPosition().getValue() % Constants.TALONFX_MOTOR_FULL_CIRCLE);
+                     (angularMotor.getPosition().getValue() % Constants.TALONFX_MOTOR_FULL_CIRCLE);
     }
 
     public boolean isAtAngle(double angle, double epsilon) {
@@ -42,12 +41,12 @@ public class ModuleSubsystem extends GBSubsystem {
     }
 
 
-
+    @Override
     protected String getLogPath() {
         return "";
     }
 
-
+    @Override
     protected void subsystemPeriodic() {
 
     }
