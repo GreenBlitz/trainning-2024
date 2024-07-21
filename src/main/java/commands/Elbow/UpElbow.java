@@ -18,6 +18,6 @@ public class UpElbow extends Command {
 
     @Override
     public void initialize() {
-        elbowSubsystem.subtractFromAngle(Rotation2d.fromDegrees(Constants.DEFAULT_LIFT_DEG));
+        elbowSubsystem.subtractFromAngle(addedAngle);
     }
 }

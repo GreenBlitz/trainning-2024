@@ -12,6 +12,4 @@ public class LiftElbow extends SequentialCommandGroup {
     public LiftElbow(Rotation2d angle) {
         addCommands(new UpElbow(angle), new WaitCommand(0.1), new DownElbow(angle));
     }
-
-
 }

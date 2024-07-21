@@ -6,7 +6,7 @@ import subsystems.Elbow;
 
 public class DownElbow extends Command {
     private final Elbow elbowSubsystem = new Elbow();
-    private Rotation2d subtractedAngle;
+    private final Rotation2d subtractedAngle;
 
     public DownElbow(Rotation2d angle) {
         subtractedAngle = angle;
@@ -18,6 +18,6 @@ public class DownElbow extends Command {
 
     @Override
     public void initialize() {
-        elbowSubsystem.subtractFromAngle(Rotation2d.fromDegrees(Constants.DEFAULT_LIFT_DEG));
+        elbowSubsystem.subtractFromAngle(subtractedAngle);
     }
 }
