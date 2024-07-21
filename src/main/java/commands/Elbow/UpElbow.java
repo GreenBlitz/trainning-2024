@@ -6,7 +6,7 @@ import subsystems.Elbow;
 
 public class UpElbow extends Command {
     private final Elbow elbowSubsystem = new Elbow();
-    private Rotation2d addedAngle;
+    private final Rotation2d addedAngle;
 
     public UpElbow(Rotation2d angle) {
         addedAngle = angle;
