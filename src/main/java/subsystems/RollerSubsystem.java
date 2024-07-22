@@ -7,7 +7,6 @@ import com.revrobotics.SparkPIDController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static subsystems.Constants.*;
-import static subsystems.Constants.ROLLER_D;
 
 public class RollerSubsystem extends SubsystemBase {
     private final CANSparkMax motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushed);
@@ -19,14 +18,18 @@ public class RollerSubsystem extends SubsystemBase {
         motorPID.setP(ROLLER_P);
         motorPID.setI(ROLLER_I);
         motorPID.setD(ROLLER_D);
-    }
-
-    public void setVelocity(double velocity) {
-        this.velocity = velocity;
+        this.velocity = ROLLER_DEFAULT_VELOCITY;
     }
 
     public double getVelocity() {
         return velocity;
+    }
+
+    /**
+     * overwriting the default velocity
+     */
+    public void setVelocity(double velocity) {
+        this.velocity = velocity;
     }
 
     public void run() {
@@ -39,6 +42,10 @@ public class RollerSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        motorPID.setReference(velocity, CANSparkBase.ControlType.kVelocity); // Should be calibrated
+        if (velocity <= VELOCITY_LIMIT_ROLLER) {
+            motorPID.setReference(velocity, CANSparkBase.ControlType.kVelocity); // Should be calibrated
+        } else {
+            throw new RuntimeException("maximum roller safety velocity exceeded. Change subsystem.Constants to remove this message");
+        }
     }
 }

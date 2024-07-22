@@ -9,10 +9,12 @@ public class UpElbow extends Command {
     private final Rotation2d addedAngle;
 
     public UpElbow(Rotation2d angle) {
+        addRequirements(elbowSubsystem);
         addedAngle = angle;
     }
 
     public UpElbow() {
+        addRequirements(elbowSubsystem);
         addedAngle = Rotation2d.fromDegrees(Constants.DEFAULT_LIFT_DEG);
     }
 

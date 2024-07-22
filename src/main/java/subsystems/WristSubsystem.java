@@ -21,7 +21,7 @@ public class WristSubsystem extends SubsystemBase {
      */
     @Deprecated // using rotate() and changing manually the constants in the calibration process is advised
     public void setPower(double power) {
-        if (Math.abs(power) <= MAX_POWER_WRIST) {
+        if (Math.abs(power) <= POWER_LIMIT_WRIST) {
             motor.set(TalonSRXControlMode.PercentOutput, power);
         } else {
             throw new RuntimeException("motor is trying to spin in power above MAX_POWER_CIM limit");

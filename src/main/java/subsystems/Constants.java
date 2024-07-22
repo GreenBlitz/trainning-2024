@@ -10,17 +10,18 @@ public class Constants {
     static final int ROLLER_ID = 0;
     static final int WRIST_ID = 0;
 
-    static final double MAX_POWER_WRIST = 0.9; // limit both min and max
+    static final double POWER_LIMIT_WRIST = 0.9; // limit both min and max
     static final int PEAK_DURATION_WRIST_MS = 10; //! CHECK THIS BEFORE RUNNING. Better slow than sorry (killing the motor/battery)
     static final int CONTINUES_MAX_CURRENT_AMP = 0;
     static final int PEAK_MAX_CURRENT_AMP = 0;
-    static final double WRIST_TRAVEL_TIME = 0;
 
     static final Rotation2d DEFAULT_POSITION_ELBOW = new Rotation2d(1, 1);
     static final double ELBOW_P = 0;
     static final double ELBOW_I = 0;
     static final double ELBOW_D = 0;
 
+    static final double ROLLER_DEFAULT_VELOCITY = 0;
+    static final double VELOCITY_LIMIT_ROLLER = 0.8;
     static final double ROLLER_P = 0;
     static final double ROLLER_I = 0;
     static final double ROLLER_D = 0;

@@ -9,10 +9,12 @@ public class DownElbow extends Command {
     private final Rotation2d subtractedAngle;
 
     public DownElbow(Rotation2d angle) {
+        addRequirements(elbowSubsystem);
         subtractedAngle = angle;
     }
 
     public DownElbow() {
+        addRequirements(elbowSubsystem);
         subtractedAngle = Rotation2d.fromDegrees(Constants.DEFAULT_LIFT_DEG);
     }
 
