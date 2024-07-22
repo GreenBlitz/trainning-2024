@@ -3,18 +3,22 @@ package subsystems;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static subsystems.Constants.DEFAULT_POSITION;
-import static subsystems.Constants.ELBOW_ID;
+import static subsystems.Constants.*;
 
-public class Elbow extends SubsystemBase {
+public class ElbowSubsystem extends SubsystemBase {
+    private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushed);
+    private final SparkPIDController motorPID = motor.getPIDController();
+    private Rotation2d angle = DEFAULT_POSITION_ELBOW;
 
-    private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-    private Rotation2d angle = DEFAULT_POSITION;
-    private boolean run;
+    public ElbowSubsystem() {
+        motorPID.setP(ELBOW_P);
+        motorPID.setI(ELBOW_I);
+        motorPID.setD(ELBOW_D);
+    }
 
     public double getMotorAngle() {
         return motor.getEncoder().getPosition();
@@ -36,16 +40,8 @@ public class Elbow extends SubsystemBase {
         this.angle = this.angle.minus(angle);
     }
 
-    public void stop() {
-        SmartDashboard.putNumber("emergency stop at value (deg) ", angle.getDegrees());
-
-    }
-
     @Override
     public void periodic() {
-        if (run) {
-            motor.getPIDController().setReference(angle.getRotations(), CANSparkBase.ControlType.kPosition); // Should be calibrated
-        }
-
+        motorPID.setReference(angle.getRotations(), CANSparkBase.ControlType.kPosition); // Should be calibrated
     }
 }

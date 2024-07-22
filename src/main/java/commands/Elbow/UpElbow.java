@@ -2,10 +2,10 @@ package commands.Elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import subsystems.Elbow;
+import subsystems.ElbowSubsystem;
 
 public class UpElbow extends Command {
-    private final Elbow elbowSubsystem = new Elbow();
+    private final ElbowSubsystem elbowSubsystem = new ElbowSubsystem();
     private final Rotation2d addedAngle;
 
     public UpElbow(Rotation2d angle) {
@@ -18,6 +18,6 @@ public class UpElbow extends Command {
 
     @Override
     public void initialize() {
-        elbowSubsystem.subtractFromAngle(addedAngle);
+        elbowSubsystem.addToAngle(addedAngle);
     }
 }
