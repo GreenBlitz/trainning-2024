@@ -20,7 +20,7 @@ public class moveWrist {
     }
 
     public boolean isFinished() {
-        return wrist.isAtTarget(targetPosition, Arm_constants.ELBOW_TOLERANCE);
+        return wrist.isAtTarget(targetPosition, Arm_constants.WRIST_TOLERANCE);
     }
 
     public void end(boolean interrupted) {
