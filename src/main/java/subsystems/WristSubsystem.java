@@ -43,9 +43,9 @@ public class WristSubsystem extends SubsystemBase {
      */
     public void rotate() {
         if (PEAK_MAX_CURRENT_AMP < CONTINUES_MAX_CURRENT_AMP) {
-            throw new RuntimeException("peak current shall be higher than continues current. pls check your constants");
+            throw new RuntimeException("Peak Current shall be higher than continues current. pls check your constants");
         } else if (Math.max(PEAK_MAX_CURRENT_AMP, CONTINUES_MAX_CURRENT_AMP) >= 30) {
-            throw new IllegalStateException("Current may be too high. Remove this exception if you SURE your constants and callibration of the wrist is correct");
+            throw new IllegalStateException("Current may be too high. Remove this exception if you SURE your constants and wrist's calibration is correct");
         }
         //* PID should control these settings though currently I'm having troubles with it. Also it can't get info from the motor so idk how PID should operate.
         motorConfiguration.peakCurrentDuration = PEAK_DURATION_WRIST_MS;
