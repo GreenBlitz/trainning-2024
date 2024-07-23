@@ -13,11 +13,11 @@ public class WristSubsystem extends SubsystemBase {
     private final TalonSRX motor = new TalonSRX(WRIST_ID);
     private boolean run;
     private BaseTalonConfiguration configuration;
-    private TalonSRXConfiguration motorConfiguration = new TalonSRXConfiguration();
+    private final TalonSRXConfiguration motorConfiguration = new TalonSRXConfiguration();
 
     /**
-     * @deprecated use rotate() instead
      * @param power = the power applied to the motor (-1 to 1)
+     * @deprecated use rotate() instead
      */
     @Deprecated // using rotate() and changing manually the constants in the calibration process is advised
     public void setPower(double power) {
