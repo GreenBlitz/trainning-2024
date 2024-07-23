@@ -1,29 +1,29 @@
 package training.commands.ArmCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.ArmSubsystems.Arm_constants;
 import training.subsystems.ArmSubsystems.Elbow;
+import training.subsystems.ArmSubsystems.Wrist;
 
-public class moveElbow extends Command {
-
-    private Elbow elbow;
+public class moveWrist {
+    private Wrist wrist;
     private Rotation2d targetPosition;
 
-    public moveElbow(Elbow elbow, Rotation2d targetPosition){
-        this.elbow=elbow;
+    public moveWrist(Wrist wrist, Rotation2d targetPosition){
+        this.wrist=wrist;
         this.targetPosition=targetPosition;
     }
 
+
     public void initialize() {
-        elbow.moveElbow(0.3);
+        wrist.moveWrist(0.3);
     }
 
     public boolean isFinished() {
-        return elbow.isAtTarget(targetPosition, Arm_constants.ELBOW_TOLERANCE);
+        return wrist.isAtTarget(targetPosition, Arm_constants.ELBOW_TOLERANCE);
     }
 
     public void end(boolean interrupted) {
-        elbow.stopElbow();
+        wrist.stopElbow();
     }
 }

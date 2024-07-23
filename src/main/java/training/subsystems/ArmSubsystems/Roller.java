@@ -22,8 +22,12 @@ public class Roller extends GBSubsystem {
         this.motor =new CANSparkMax(Arm_constants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
     }
 
-    public void moveRoller(double power){
-        motor.set(power);
+    public void moveRoller(){
+        motor.set(0.3);
+    }
+
+    public void reversRoller(){
+        motor.set(-0.3);
     }
 
     public void stopRoller(){
