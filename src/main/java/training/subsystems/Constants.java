@@ -1,4 +1,4 @@
-package robot.subsystems;
+package training.subsystems;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 

@@ -34,8 +34,8 @@
 #         * functions;
 #         * expansions «$var», «${var}», «${var:-default}», «${var+SET}»,
 #           «${var#prefix}», «${var%suffix}», and «$( cmd )»;
-#         * compound robot.commands having a testable exit status, especially «case»;
-#         * various built-in robot.commands including «command», «set», and «ulimit».
+#         * compound training.commands having a testable exit status, especially «case»;
+#         * various built-in training.commands including «command», «set», and «ulimit».
 #
 #   Important for patching:
 #

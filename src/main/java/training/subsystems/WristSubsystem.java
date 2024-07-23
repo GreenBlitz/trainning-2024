@@ -1,14 +1,13 @@
-package robot.subsystems;
+package training.subsystems;
 
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import utils.GBSubsystem;
 import utils.WristDirection;
 
-import static robot.subsystems.Constants.*;
+import static training.subsystems.Constants.*;
 
 public class WristSubsystem extends GBSubsystem {
 
@@ -41,7 +40,7 @@ public class WristSubsystem extends GBSubsystem {
     }
 
     /**
-     * rotates the wrist using presets defined in robot.subsystems.Constants until is being stopped
+     * rotates the wrist using presets defined in training.subsystems.Constants until is being stopped
      */
     public void rotate(WristDirection direction) {
         if (PEAK_MAX_CURRENT_AMP < CONTINUES_MAX_CURRENT_AMP) {

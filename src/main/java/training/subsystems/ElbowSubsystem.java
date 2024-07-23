@@ -1,14 +1,13 @@
-package robot.subsystems;
+package training.subsystems;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import utils.GBSubsystem;
 
-import static robot.subsystems.Constants.*;
+import static training.subsystems.Constants.*;
 
 public class ElbowSubsystem extends GBSubsystem {
     private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushed);

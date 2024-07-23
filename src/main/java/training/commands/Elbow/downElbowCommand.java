@@ -1,8 +1,8 @@
-package robot.commands.Elbow;
+package training.commands.Elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import robot.subsystems.ElbowSubsystem;
+import training.subsystems.ElbowSubsystem;
 
 public class downElbowCommand extends Command {
     private final ElbowSubsystem elbowSubsystem = new ElbowSubsystem();
