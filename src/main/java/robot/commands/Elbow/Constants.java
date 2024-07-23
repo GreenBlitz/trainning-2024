@@ -1,4 +1,4 @@
-package commands.Elbow;
+package robot.commands.Elbow;
 
 public class Constants {
     static final double DEFAULT_LIFT_DEG = 30;

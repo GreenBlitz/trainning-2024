@@ -1,4 +1,4 @@
-package subsystems;
+package robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
@@ -6,7 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static subsystems.Constants.*;
+import static robot.subsystems.Constants.*;
 
 public class WristSubsystem extends SubsystemBase {
 
@@ -39,9 +39,9 @@ public class WristSubsystem extends SubsystemBase {
     }
 
     /**
-     * rotates the wrist using presets defined in subsystems.Constants until is being stopped
+     * rotates the wrist using presets defined in robot.subsystems.Constants until is being stopped
      */
-    public void rotate() {
+    public void rotate(utils.Direction direction) {
         if (PEAK_MAX_CURRENT_AMP < CONTINUES_MAX_CURRENT_AMP) {
             throw new RuntimeException("Peak Current shall be higher than continues current. pls check your constants");
         } else if (Math.max(PEAK_MAX_CURRENT_AMP, CONTINUES_MAX_CURRENT_AMP) >= 30) {

@@ -1,18 +1,18 @@
-package commands.Roller;
+package robot.commands.Roller;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import subsystems.RollerSubsystem;
+import robot.subsystems.RollerSubsystem;
 
-public class runRoller extends Command {
+public class stopRollerCommand extends Command {
     private final RollerSubsystem roller = new RollerSubsystem();
 
-    public runRoller() {
+    public stopRollerCommand() {
         addRequirements(roller);
     }
 
     @Override
     public void execute() {
         addRequirements(roller);
-        roller.run();
+        roller.stop();
     }
 }
