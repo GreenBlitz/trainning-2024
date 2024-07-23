@@ -1,5 +1,5 @@
 package utils;
 
-public enum Direction {
+public enum WristDirection {
     kUp, kDown
 }

@@ -5,6 +5,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 public class Constants {
     //* This constants are temp and shall be replaced with calibrated constants that aren't 0
 
+    static final String LOGPATH = "";
+
     static final double MAX_ANGLE = 0.5 * Math.PI;
     static final int ELBOW_ID = 0;
     static final int ROLLER_ID = 0;

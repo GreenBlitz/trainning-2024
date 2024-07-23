@@ -5,10 +5,12 @@ import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import utils.GBSubsystem;
+import utils.WristDirection;
 
 import static robot.subsystems.Constants.*;
 
-public class WristSubsystem extends SubsystemBase {
+public class WristSubsystem extends GBSubsystem {
 
     private final TalonSRX motor = new TalonSRX(WRIST_ID);
     private boolean run;
@@ -41,7 +43,7 @@ public class WristSubsystem extends SubsystemBase {
     /**
      * rotates the wrist using presets defined in robot.subsystems.Constants until is being stopped
      */
-    public void rotate(utils.Direction direction) {
+    public void rotate(WristDirection direction) {
         if (PEAK_MAX_CURRENT_AMP < CONTINUES_MAX_CURRENT_AMP) {
             throw new RuntimeException("Peak Current shall be higher than continues current. pls check your constants");
         } else if (Math.max(PEAK_MAX_CURRENT_AMP, CONTINUES_MAX_CURRENT_AMP) >= 30) {
@@ -54,9 +56,14 @@ public class WristSubsystem extends SubsystemBase {
     }
 
     @Override
-    public void periodic() {
+    public void subsystemPeriodic() {
         //? no useful docs for the TalonSRXPIDSetConfiguration class are available. pls help
 //        motorConfiguration.primaryPID.selectedFeedbackSensor = TalonSRXFeedbackDevice.QuadEncoder.toFeedbackDevice();
         motor.configAllSettings(motorConfiguration);
+    }
+
+    @Override
+    protected String getLogPath() {
+        return LOGPATH;
     }
 }

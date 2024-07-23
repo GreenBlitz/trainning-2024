@@ -6,10 +6,11 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import utils.GBSubsystem;
 
 import static robot.subsystems.Constants.*;
 
-public class ElbowSubsystem extends SubsystemBase {
+public class ElbowSubsystem extends GBSubsystem {
     private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushed);
     private final SparkPIDController motorPIDF = motor.getPIDController();
     private Rotation2d angle = DEFAULT_POSITION_ELBOW;
@@ -56,7 +57,12 @@ public class ElbowSubsystem extends SubsystemBase {
     }
 
     @Override
-    public void periodic() {
+    protected String getLogPath() {
+        return LOGPATH;
+    }
+
+    @Override
+    public void subsystemPeriodic() {
         motorPIDF.setReference(angle.getRotations() % 1, CANSparkBase.ControlType.kPosition); //! I'm now sure about the correct format for the angle
     }
 }
