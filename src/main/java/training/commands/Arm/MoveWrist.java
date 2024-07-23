@@ -3,29 +3,29 @@ package training.commands.Arm;
 import com.fasterxml.jackson.databind.cfg.MutableConfigOverride;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.Arm.ElbowSubsystem;
+import training.subsystems.Arm.WristSubsystem;
 
-public class MoveElbow extends Command {
-    private ElbowSubsystem elbow;
+public class MoveWrist extends Command {
+    private WristSubsystem wrist;
     private Rotation2d targetPosition;
 
-    public MoveElbow(ElbowSubsystem elbow, Rotation2d targetPosition){
-        this.elbow = elbow;
+    public MoveWrist(WristSubsystem wrist, Rotation2d targetPosition){
+        this.wrist = wrist;
         this.targetPosition = targetPosition;
     }
 
     @Override
     public void initialize() {
-        elbow.setSpeed(0.3);
+        wrist.setSpeed(0.3);
     }
 
     @Override
     public boolean isFinished() {
-        return elbow.isAtPosition(targetPosition, Constants.ELBOW_TOLERANCE);
+        return wrist.isAtPosition(targetPosition, Constants.WRIST_TOLERANCE);
     }
 
     @Override
     public void end(boolean interrupted) {
-        elbow.stop();
+        wrist.stop();
     }
 }

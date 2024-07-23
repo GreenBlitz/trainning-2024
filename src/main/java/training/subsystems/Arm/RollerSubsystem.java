@@ -34,4 +34,7 @@ public class RollerSubsystem extends GBSubsystem {
         return motor.getEncoder().getVelocity();
     }
 
+    public void reverseRoller(){
+        setSpeed(-0.3);
+    }
 }
