@@ -6,6 +6,10 @@ import subsystems.RollerSubsystem;
 public class runRoller extends Command {
     private final RollerSubsystem roller = new RollerSubsystem();
 
+    public runRoller() {
+        addRequirements(roller);
+    }
+
     @Override
     public void execute() {
         addRequirements(roller);

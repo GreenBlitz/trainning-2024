@@ -7,6 +7,6 @@ import static commands.Roller.Constants.ROLLER_ROLLING_TIME_SEC;
 
 public class diskOut extends SequentialCommandGroup {
     public diskOut() {
-        addCommands(new runRoller(), new WaitCommand(ROLLER_ROLLING_TIME_SEC), new diskOut());
+        addCommands(new runRoller().withTimeout(ROLLER_ROLLING_TIME_SEC), new stopRoller());
     }
 }

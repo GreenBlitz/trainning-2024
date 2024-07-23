@@ -22,6 +22,7 @@ public class Constants {
     static final double ELBOW_FEEDFORWARD = 0;
     static final double ELBOW_INTEGRAL_EFFECT_ZONE = 0;
     static final double POWER_LIMIT_ELBOW = 0.9; //! overwrites PID
+    static final double ELBOW_TOLERANCE = 0;
 
     static final double ROLLER_DEFAULT_VELOCITY = 0;
     static final double VELOCITY_LIMIT_ROLLER = 0.8;

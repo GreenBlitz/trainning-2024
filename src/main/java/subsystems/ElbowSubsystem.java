@@ -30,8 +30,8 @@ public class ElbowSubsystem extends SubsystemBase {
         }
     }
 
-    public double getMotorAngle() {
-        return motor.getEncoder().getPosition();
+    public Rotation2d getMotorAngle() {
+        return Rotation2d.fromRotations(motor.getEncoder().getPosition());
     }
 
     public Rotation2d getDesiredAngle() {
@@ -50,10 +50,13 @@ public class ElbowSubsystem extends SubsystemBase {
         this.angle = this.angle.minus(angle);
     }
 
-    @Override
-    public void periodic() {
-        motorPIDF.setReference(angle.getRotations(), CANSparkBase.ControlType.kPosition); //! I'm now sure about the correct format for the angle
+    public boolean isAtAngle(Rotation2d angle) {
+        double anglesDelta = (this.angle.getDegrees() % 1) - (angle.getRadians() % 1);
+        return Math.abs(anglesDelta) <= ELBOW_TOLERANCE;
     }
 
-
+    @Override
+    public void periodic() {
+        motorPIDF.setReference(angle.getRotations() % 1, CANSparkBase.ControlType.kPosition); //! I'm now sure about the correct format for the angle
+    }
 }
