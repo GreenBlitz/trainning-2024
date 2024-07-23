@@ -11,7 +11,7 @@ public class Constants {
     static final int WRIST_ID = 0;
 
     static final double POWER_LIMIT_WRIST = 0.9; // limit both min and max
-    static final int PEAK_DURATION_WRIST_MS = 10; //! CHECK THIS BEFORE RUNNING. Better slow than sorry (killing the motor/battery)
+    static final int PEAK_DURATION_WRIST_MS = 10; // time for PEAK_MAX_CURRENT_AMP to take effect before using the continues val
     static final int CONTINUES_MAX_CURRENT_AMP = 0;
     static final int PEAK_MAX_CURRENT_AMP = 0;
 
@@ -19,12 +19,16 @@ public class Constants {
     static final double ELBOW_P = 0;
     static final double ELBOW_I = 0;
     static final double ELBOW_D = 0;
+    static final double ELBOW_FEEDFORWARD = 0;
+    static final double ELBOW_INTEGRAL_EFFECT_ZONE = 0;
+    static final double POWER_LIMIT_ELBOW = 0.9; //! overwrites PID
 
     static final double ROLLER_DEFAULT_VELOCITY = 0;
     static final double VELOCITY_LIMIT_ROLLER = 0.8;
     static final double ROLLER_P = 0;
     static final double ROLLER_I = 0;
     static final double ROLLER_D = 0;
+    static final double POWER_LIMIT_ROLLER = 0.9; //! overwrites PID
 
     //TODO: implement feetforward
 

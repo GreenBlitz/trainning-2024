@@ -1,9 +1,6 @@
 package subsystems;
 
-import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkLowLevel;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkPIDController;
+import com.revrobotics.*;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -11,13 +8,23 @@ import static subsystems.Constants.*;
 
 public class ElbowSubsystem extends SubsystemBase {
     private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushed);
-    private final SparkPIDController motorPID = motor.getPIDController();
+    private final SparkPIDController motorPIDF = motor.getPIDController();
     private Rotation2d angle = DEFAULT_POSITION_ELBOW;
 
     public ElbowSubsystem() {
-        motorPID.setP(ELBOW_P);
-        motorPID.setI(ELBOW_I);
-        motorPID.setD(ELBOW_D);
+        motorPIDF.setP(ELBOW_P);
+        motorPIDF.setI(ELBOW_I);
+        motorPIDF.setD(ELBOW_D);
+        motorPIDF.setFF(ELBOW_FEEDFORWARD);
+        motorPIDF.setIZone(ELBOW_INTEGRAL_EFFECT_ZONE);
+        motorPIDF.setOutputRange(0, POWER_LIMIT_ELBOW);
+        motor.burnFlash(); // applies some of the changes above
+    }
+
+    public void moveWritst(double power) {
+        if (Math.abs(power) < POWER_LIMIT_WRIST) {
+            motor.set(power);
+        }
     }
 
     public double getMotorAngle() {
@@ -42,7 +49,7 @@ public class ElbowSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        motorPID.setReference(angle.getRotations(), CANSparkBase.ControlType.kPosition); // Should be calibrated
+        motorPIDF.setReference(angle.getRotations(), CANSparkBase.ControlType.kPosition); //! I'm now sure about the correct format for the angle
     }
 
 

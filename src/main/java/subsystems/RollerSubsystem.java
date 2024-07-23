@@ -18,6 +18,9 @@ public class RollerSubsystem extends SubsystemBase {
         motorPID.setP(ROLLER_P);
         motorPID.setI(ROLLER_I);
         motorPID.setD(ROLLER_D);
+        motorPID.setOutputRange(0, POWER_LIMIT_ROLLER);
+        motor.burnFlash(); // applies some of the changes above
+
         this.velocity = ROLLER_DEFAULT_VELOCITY;
     }
 
