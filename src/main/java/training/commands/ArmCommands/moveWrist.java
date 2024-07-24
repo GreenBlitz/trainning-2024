@@ -2,7 +2,6 @@ package training.commands.ArmCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.subsystems.ArmSubsystems.Arm_constants;
-import training.subsystems.ArmSubsystems.Elbow;
 import training.subsystems.ArmSubsystems.Wrist;
 
 public class moveWrist {
