@@ -1,5 +1,8 @@
 package training.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import edu.wpi.first.math.controller.ElevatorFeedforward;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 
 public class Constants {
@@ -33,7 +36,8 @@ public class Constants {
     static final double ROLLER_D = 0;
     static final double POWER_LIMIT_ROLLER = 0.9; //! overwrites PID
 
-
+    static final PIDController ElbowPIDController = new PIDController(0, 0, 0);
+    static final ElevatorFeedforward ElbowFeddforward = new ElevatorFeedforward(0, 0, 0, 0);
     //TODO: implement feetforward
 
 }
