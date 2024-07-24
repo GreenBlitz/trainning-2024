@@ -1,4 +1,4 @@
-package training.subsystems;
+package training.subsystems.Roller;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
 import utils.GBSubsystem;
 
-import static training.subsystems.Constants.*;
+import static training.subsystems.Roller.Constants.*;
 
 public class RollerSubsystem extends GBSubsystem {
     private static RollerSubsystem instance;
@@ -62,6 +62,6 @@ public class RollerSubsystem extends GBSubsystem {
 
     @Override
     protected String getLogPath() {
-        return LOGPATH;
+        return ROLLER_LOGPATH;
     }
 }

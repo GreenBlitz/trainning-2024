@@ -1,4 +1,4 @@
-package training.subsystems;
+package training.subsystems.Elbow;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
@@ -7,7 +7,7 @@ import com.revrobotics.SparkPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-import static training.subsystems.Constants.*;
+import static training.subsystems.Elbow.Constants.*;
 
 public class ElbowSubsystem extends GBSubsystem {
     private static ElbowSubsystem instance;
@@ -30,7 +30,7 @@ public class ElbowSubsystem extends GBSubsystem {
     }
 
     public void moveWritst(double power) {
-        if (Math.abs(power) < POWER_LIMIT_WRIST) {
+        if (Math.abs(power) < POWER_LIMIT_ELBOW) {
             motor.set(power);
         }
     }
@@ -62,16 +62,15 @@ public class ElbowSubsystem extends GBSubsystem {
 
     @Override
     protected String getLogPath() {
-        return LOGPATH;
+        return ELBOW_LOGPATH;
     }
 
     @Override
     public void subsystemPeriodic() {
         motorPIDF.setReference(
-                angle.getRotations()/ELBOW_GEAR_RATIO % 1,
-                CANSparkBase.ControlType.kPosition,
-                0,
+                angle.getRotations() / ELBOW_GEAR_RATIO % 1,
+                CANSparkBase.ControlType.kPosition, 0,
                 ELBOW_FEEDFORWARD.calculate(0, 0)
-        );
+                );
     }
 }

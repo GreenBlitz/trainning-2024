@@ -1,4 +1,4 @@
-package training.subsystems;
+package training.subsystems.Wrist;
 
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
@@ -7,7 +7,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import utils.GBSubsystem;
 import utils.WristDirection;
 
-import static training.subsystems.Constants.*;
+import static training.subsystems.Roller.Constants.*;
+import static training.subsystems.Wrist.Constants.*;
 
 public class WristSubsystem extends GBSubsystem {
     private static WristSubsystem instance;
@@ -51,18 +52,18 @@ public class WristSubsystem extends GBSubsystem {
     }
 
     /**
-     * rotates the wrist using presets defined in training.subsystems.Constants until is being stopped
+     * rotates the wrist using presets defined in training.subsystems.Roller.Constants until is being stopped
      */
     public void rotate(WristDirection direction) {
-        if (PEAK_MAX_CURRENT_AMP < CONTINUES_MAX_CURRENT_AMP) {
+        if (PEAK_MAX_CURRENT_WRIST_AMP < CONTINUES_MAX_CURRENT_WRIST_AMP) {
             throw new RuntimeException("Peak Current shall be higher than continues current. pls check your constants");
-        } else if (Math.max(PEAK_MAX_CURRENT_AMP, CONTINUES_MAX_CURRENT_AMP) >= 30) {
+        } else if (Math.max(PEAK_MAX_CURRENT_WRIST_AMP, CONTINUES_MAX_CURRENT_WRIST_AMP) >= 30) {
             throw new IllegalStateException("Current may be too high. Remove this exception if you SURE your constants and wrist's calibration is correct");
         }
         //* PID should control these settings though currently I'm having troubles with it. Also it can't get info from the motor so idk how PID should operate.
         motorConfiguration.peakCurrentDuration = PEAK_DURATION_WRIST_MS;
-        motorConfiguration.continuousCurrentLimit = CONTINUES_MAX_CURRENT_AMP;
-        motorConfiguration.peakCurrentLimit = PEAK_MAX_CURRENT_AMP;
+        motorConfiguration.continuousCurrentLimit = CONTINUES_MAX_CURRENT_WRIST_AMP;
+        motorConfiguration.peakCurrentLimit = PEAK_MAX_CURRENT_WRIST_AMP;
     }
 
     @Override
@@ -74,6 +75,6 @@ public class WristSubsystem extends GBSubsystem {
 
     @Override
     protected String getLogPath() {
-        return LOGPATH;
+        return WRIST_LOGPATH;
     }
 }

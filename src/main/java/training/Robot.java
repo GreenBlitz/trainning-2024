@@ -1,8 +1,8 @@
 package training;
 
-import training.subsystems.ElbowSubsystem;
-import training.subsystems.RollerSubsystem;
-import training.subsystems.WristSubsystem;
+import training.subsystems.Elbow.ElbowSubsystem;
+import training.subsystems.Roller.RollerSubsystem;
+import training.subsystems.Wrist.WristSubsystem;
 
 public class Robot {
 
