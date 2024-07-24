@@ -39,6 +39,17 @@ public class ModuleSubsystem extends GBSubsystem {
 //        System.out.println("desired: "+angle+", current: "+getRadAngle()+", diff: "+getRadAngle()+", epsilon: "+epsilon);
         return Math.abs(getRadAngle() - angle) <= epsilon;
     }
+    public void goToPosition(double position){
+        angularMotor.setControl(
+                positionVoltage
+                        .withPosition(position)
+                        .withSlot(FalconPivotConstants.PID_SLOT)
+                        .withLimitForwardMotion(true)
+                        .withLimitReverseMotion(true)
+                        .withEnableFOC(false)
+                        .withOverrideBrakeDurNeutral(false)
+        );
+    }
 
 
     @Override
