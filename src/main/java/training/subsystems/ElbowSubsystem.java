@@ -10,11 +10,13 @@ import utils.GBSubsystem;
 import static training.subsystems.Constants.*;
 
 public class ElbowSubsystem extends GBSubsystem {
-    private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushed);
+    private static ElbowSubsystem instance;
+
+    private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
     private final SparkPIDController motorPIDF = motor.getPIDController();
     private Rotation2d angle = DEFAULT_POSITION_ELBOW;
 
-    public ElbowSubsystem() {
+    private ElbowSubsystem() {
         motorPIDF.setP(ELBOW_P);
         motorPIDF.setI(ELBOW_I);
         motorPIDF.setD(ELBOW_D);
@@ -22,6 +24,13 @@ public class ElbowSubsystem extends GBSubsystem {
         motorPIDF.setIZone(ELBOW_INTEGRAL_EFFECT_ZONE);
         motorPIDF.setOutputRange(0, POWER_LIMIT_ELBOW);
         motor.burnFlash(); // applies some of the changes above
+    }
+
+    public static ElbowSubsystem getInstance() {
+        if (instance == null) {
+            instance = new ElbowSubsystem();
+        }
+        return instance;
     }
 
     public void moveWritst(double power) {

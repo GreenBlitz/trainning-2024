@@ -10,11 +10,22 @@ import utils.WristDirection;
 import static training.subsystems.Constants.*;
 
 public class WristSubsystem extends GBSubsystem {
-
+    private static WristSubsystem instance;
     private final TalonSRX motor = new TalonSRX(WRIST_ID);
+    private final TalonSRXConfiguration motorConfiguration = new TalonSRXConfiguration();
     private boolean run;
     private BaseTalonConfiguration configuration;
-    private final TalonSRXConfiguration motorConfiguration = new TalonSRXConfiguration();
+
+    private WristSubsystem() {
+    }
+
+    public static WristSubsystem getInstance() {
+        if (instance == null) {
+            instance = new WristSubsystem();
+        }
+        return instance;
+    }
+
 
     /**
      * @param power = the power applied to the motor (-1 to 1)

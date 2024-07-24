@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.ElbowSubsystem;
 
 public class upElbowCommand extends Command {
-    private final ElbowSubsystem elbowSubsystem = new ElbowSubsystem();
+    private final ElbowSubsystem elbowSubsystem = ElbowSubsystem.getInstance();
     private final Rotation2d addedAngle;
     private final Rotation2d originalAngle;
 

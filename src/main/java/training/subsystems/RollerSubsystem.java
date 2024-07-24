@@ -9,12 +9,13 @@ import utils.GBSubsystem;
 import static training.subsystems.Constants.*;
 
 public class RollerSubsystem extends GBSubsystem {
-    private final CANSparkMax motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushed);
+    private static RollerSubsystem instance;
+    private final CANSparkMax motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
     private final SparkPIDController motorPID = motor.getPIDController();
     private double velocity;
     private boolean run;
 
-    public RollerSubsystem() {
+    private RollerSubsystem() {
         motorPID.setP(ROLLER_P);
         motorPID.setI(ROLLER_I);
         motorPID.setD(ROLLER_D);
@@ -22,6 +23,13 @@ public class RollerSubsystem extends GBSubsystem {
         motor.burnFlash(); // applies some of the changes above
 
         this.velocity = ROLLER_DEFAULT_VELOCITY;
+    }
+
+    public static RollerSubsystem getInstance() {
+        if (instance == null) {
+            instance = new RollerSubsystem();
+        }
+        return instance;
     }
 
     public double getVelocity() {
