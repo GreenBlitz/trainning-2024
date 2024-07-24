@@ -1,8 +1,10 @@
 package training.subsystems.Arm;
 
+import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel;
+import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
@@ -29,7 +31,14 @@ public class ElbowSubsystem  extends GBSubsystem {
     }
 
     public void setSpeed(double power){
-        motor.set(power);
+        new ArmFeedforward(Constants.ELBOW_KS,Constants.ELBOW_KG,Constants.ELBOW_KV, Constants.ELBOW_KA);
+            motor.getPIDController().setReference(
+                    power,
+                    CANSparkBase.ControlType.kPosition,
+                    0,
+                    new ArmFeedforward(Constants.ELBOW_KS, Constants.ELBOW_KG, Constants.ELBOW_KV, Constants.ELBOW_KA).calculate(power,0)
+            );
+
     }
 
     public void stop(){
