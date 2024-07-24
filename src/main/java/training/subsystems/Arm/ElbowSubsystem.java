@@ -23,6 +23,9 @@ public class ElbowSubsystem  extends GBSubsystem {
     public ElbowSubsystem(){
         this.motor = new CANSparkMax(Constants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
         this.targetPosition = Constants.ELBOW_START_POSITION;
+        motor.getPIDController().setP(Constants.ELBOW_P);
+        motor.getPIDController().setI(Constants.ELBOW_I);
+        motor.getPIDController().setD(Constants.ELBOW_D);
     }
 
     public void setSpeed(double power){

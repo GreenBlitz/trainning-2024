@@ -12,4 +12,8 @@ public class Constants {
 
     protected static final Rotation2d WRIST_START_POSITION = Rotation2d.fromDegrees(6);
     protected static final Rotation2d WRIST_CLIMBING_POSITION = Rotation2d.fromDegrees(153);
+
+    protected static final double ELBOW_P = 89;
+    protected static final double ELBOW_I = 76;
+    protected static final double ELBOW_D = 45;
 }
