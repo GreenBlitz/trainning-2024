@@ -16,7 +16,7 @@ public class MoveElbow extends Command {
 
     @Override
     public void initialize() {
-        elbow.setSpeed(0.3);
+        elbow.setSpeed(Constants.DEFAULT_SPEED);
     }
 
     @Override

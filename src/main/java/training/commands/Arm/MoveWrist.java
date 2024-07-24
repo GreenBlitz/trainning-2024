@@ -16,7 +16,7 @@ public class MoveWrist extends Command {
 
     @Override
     public void initialize() {
-        wrist.setSpeed(0.3);
+        wrist.setSpeed(Constants.DEFAULT_SPEED);
     }
 
     @Override
