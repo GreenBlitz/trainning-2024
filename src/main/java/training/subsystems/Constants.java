@@ -1,6 +1,5 @@
 package training.subsystems;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -15,19 +14,14 @@ public class Constants {
     static final int ROLLER_ID = 0;
     static final int WRIST_ID = 0;
 
+
+
     static final double POWER_LIMIT_WRIST = 0.9; // limit both min and max
     static final int PEAK_DURATION_WRIST_MS = 10; // time for PEAK_MAX_CURRENT_AMP to take effect before using the continues val
     static final int CONTINUES_MAX_CURRENT_AMP = 0;
     static final int PEAK_MAX_CURRENT_AMP = 0;
 
     static final Rotation2d DEFAULT_POSITION_ELBOW = new Rotation2d(1, 1);
-    static final double ELBOW_P = 0;
-    static final double ELBOW_I = 0;
-    static final double ELBOW_D = 0;
-    static final double ELBOW_FEEDFORWARD = 0;
-    static final double ELBOW_INTEGRAL_EFFECT_ZONE = 0;
-    static final double POWER_LIMIT_ELBOW = 0.9; //! overwrites PID
-    static final double ELBOW_TOLERANCE = 0;
 
     static final double ROLLER_DEFAULT_VELOCITY = 0;
     static final double VELOCITY_LIMIT_ROLLER = 0.8;
@@ -36,8 +30,10 @@ public class Constants {
     static final double ROLLER_D = 0;
     static final double POWER_LIMIT_ROLLER = 0.9; //! overwrites PID
 
-    static final PIDController ElbowPIDController = new PIDController(0, 0, 0);
-    static final ElevatorFeedforward ElbowFeddforward = new ElevatorFeedforward(0, 0, 0, 0);
-    //TODO: implement feetforward
+    static final PIDController ELBOW_PID_CONTROLLER = new PIDController(0, 0, 0);
+    static final ElevatorFeedforward ELBOW_FEEDFORWARD = new ElevatorFeedforward(0, 0, 0, 0);
+    static final double ELBOW_TOLERANCE = 0;
+    static final double ELBOW_GEAR_RATIO = 250/7;
+    //TODO: implement feedforward
 
 }

@@ -17,13 +17,9 @@ public class ElbowSubsystem extends GBSubsystem {
     private Rotation2d angle = DEFAULT_POSITION_ELBOW;
 
     private ElbowSubsystem() {
-        motorPIDF.setP(ELBOW_P);
-        motorPIDF.setI(ELBOW_I);
-        motorPIDF.setD(ELBOW_D);
-        motorPIDF.setFF(ELBOW_FEEDFORWARD);
-        motorPIDF.setIZone(ELBOW_INTEGRAL_EFFECT_ZONE);
-        motorPIDF.setOutputRange(0, POWER_LIMIT_ELBOW);
-        motor.burnFlash(); // applies some of the changes above
+        motorPIDF.setP(ELBOW_PID_CONTROLLER.getP());
+        motorPIDF.setD(ELBOW_PID_CONTROLLER.getD());
+        motorPIDF.setI(ELBOW_PID_CONTROLLER.getI());
     }
 
     public static ElbowSubsystem getInstance() {
@@ -71,6 +67,11 @@ public class ElbowSubsystem extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
-        motorPIDF.setReference(angle.getRotations() % 1, CANSparkBase.ControlType.kPosition); //! I'm now sure about the correct format for the angle
+        motorPIDF.setReference(
+                angle.getRotations()/ELBOW_GEAR_RATIO % 1,
+                CANSparkBase.ControlType.kPosition,
+                0,
+                ELBOW_FEEDFORWARD.calculate(0, 0)
+        );
     }
 }
