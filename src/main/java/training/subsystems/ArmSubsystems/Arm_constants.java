@@ -14,5 +14,14 @@ public class Arm_constants {
     public static final Rotation2d ELBOW_TOLERANCE = Rotation2d.fromDegrees(5);
     public static final Rotation2d WRIST_TOLERANCE = Rotation2d.fromDegrees(5);
 
+    protected static final double ELBOW_P_VALUE = 5;
+    protected static final double ELBOW_I_VALUE = 5;
+    protected static final double ELBOW_D_VALUE = 5;
+
+    protected static final double WRIST_P_VALUE = 5;
+    protected static final double WRIST_I_VALUE = 5;
+    protected static final double WRIST_D_VALUE = 5;
+
+
 
 }

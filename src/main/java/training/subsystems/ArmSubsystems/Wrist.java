@@ -23,6 +23,7 @@ public class Wrist extends GBSubsystem {
     public Wrist(){
         this.motor=new TalonSRX(Arm_constants.WRIST_ID);
         this.targetPosition=Arm_constants.WRIST_STARTING_POSITION;
+
     }
 
     public void moveWrist(double power){
