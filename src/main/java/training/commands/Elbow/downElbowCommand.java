@@ -2,10 +2,10 @@ package training.commands.Elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.Elbow.ElbowSubsystem;
+import training.subsystems.Elbow.Elbow;
 
 public class downElbowCommand extends Command {
-    private final ElbowSubsystem elbowSubsystem = ElbowSubsystem.getInstance();
+    private final Elbow elbowSubsystem = Elbow.getInstance();
     private final Rotation2d subtractedAngle;
 
     public downElbowCommand(Rotation2d angle) {

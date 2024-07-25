@@ -8,14 +8,14 @@ import utils.GBSubsystem;
 
 import static training.subsystems.Roller.RollerConstants.*;
 
-public class RollerSubsystem extends GBSubsystem {
-    private static RollerSubsystem instance;
+public class Roller extends GBSubsystem {
+    private static Roller instance;
     private final CANSparkMax motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
     private final SparkPIDController motorPID = motor.getPIDController();
     private double targetVelocity;
     private boolean run;
 
-    private RollerSubsystem() {
+    private Roller() {
         motorPID.setP(ROLLER_P);
         motorPID.setI(ROLLER_I);
         motorPID.setD(ROLLER_D);
@@ -25,9 +25,9 @@ public class RollerSubsystem extends GBSubsystem {
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
     }
 
-    public static RollerSubsystem getInstance() {
+    public static Roller getInstance() {
         if (instance == null) {
-            instance = new RollerSubsystem();
+            instance = new Roller();
         }
         return instance;
     }

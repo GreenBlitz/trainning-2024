@@ -9,18 +9,18 @@ import utils.WristDirection;
 
 import static training.subsystems.Wrist.WristConstants.*;
 
-public class WristSubsystem extends GBSubsystem {
-    private static WristSubsystem instance;
+public class Wrist extends GBSubsystem {
+    private static Wrist instance;
     private final TalonSRX motor = new TalonSRX(WRIST_ID);
     private final TalonSRXConfiguration motorConfiguration = new TalonSRXConfiguration();
     private BaseTalonConfiguration configuration;
 
-    private WristSubsystem() {
+    private Wrist() {
     }
 
-    public static WristSubsystem getInstance() {
+    public static Wrist getInstance() {
         if (instance == null) {
-            instance = new WristSubsystem();
+            instance = new Wrist();
         }
         return instance;
     }

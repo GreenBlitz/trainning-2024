@@ -1,17 +1,17 @@
 package training;
 
-import training.subsystems.Elbow.ElbowSubsystem;
-import training.subsystems.Roller.RollerSubsystem;
-import training.subsystems.Wrist.WristSubsystem;
+import training.subsystems.Elbow.Elbow;
+import training.subsystems.Roller.Roller;
+import training.subsystems.Wrist.Wrist;
 
 public class Robot {
 
     // Enter your subsystems...
 
     public Robot() {
-        WristSubsystem.getInstance();
-        ElbowSubsystem.getInstance();
-        RollerSubsystem.getInstance();
+        Wrist.getInstance();
+        Elbow.getInstance();
+        Roller.getInstance();
     }
 
     // Add your subsystems getters...

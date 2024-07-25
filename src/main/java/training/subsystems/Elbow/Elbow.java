@@ -9,22 +9,22 @@ import utils.GBSubsystem;
 
 import static training.subsystems.Elbow.ElbowConstants.*;
 
-public class ElbowSubsystem extends GBSubsystem {
-    private static ElbowSubsystem instance;
+public class Elbow extends GBSubsystem {
+    private static Elbow instance;
 
     private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
     private final SparkPIDController motorPIDF = motor.getPIDController();
     private Rotation2d targetAngle = DEFAULT_POSITION_ELBOW;
 
-    private ElbowSubsystem() {
+    private Elbow() {
         motorPIDF.setP(ELBOW_PID_CONTROLLER.getP());
         motorPIDF.setD(ELBOW_PID_CONTROLLER.getD());
         motorPIDF.setI(ELBOW_PID_CONTROLLER.getI());
     }
 
-    public static ElbowSubsystem getInstance() {
+    public static Elbow getInstance() {
         if (instance == null) {
-            instance = new ElbowSubsystem();
+            instance = new Elbow();
         }
         return instance;
     }
