@@ -1,6 +1,6 @@
 package training.subsystems.Roller;
 
-public class Constants {
+public class RollerConstants {
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
 
     static final String ROLLER_LOGPATH = "";

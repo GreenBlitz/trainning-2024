@@ -1,6 +1,6 @@
 package training.subsystems.Wrist;
 
-public class Constants {
+public class WristConstants {
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
     static final String WRIST_LOGPATH = "";
     static final int WRIST_ID = 0;

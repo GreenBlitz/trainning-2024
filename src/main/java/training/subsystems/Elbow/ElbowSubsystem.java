@@ -7,7 +7,7 @@ import com.revrobotics.SparkPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-import static training.subsystems.Elbow.Constants.*;
+import static training.subsystems.Elbow.ElbowConstants.*;
 
 public class ElbowSubsystem extends GBSubsystem {
     private static ElbowSubsystem instance;

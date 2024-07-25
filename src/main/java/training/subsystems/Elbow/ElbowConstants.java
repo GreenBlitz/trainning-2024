@@ -4,7 +4,7 @@ import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 
-public class Constants {
+public class ElbowConstants {
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
     static final String ELBOW_LOGPATH = "";
     static final Rotation2d DEFAULT_POSITION_ELBOW = new Rotation2d(1, 1);

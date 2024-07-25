@@ -7,8 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import utils.GBSubsystem;
 import utils.WristDirection;
 
-import static training.subsystems.Roller.Constants.*;
-import static training.subsystems.Wrist.Constants.*;
+import static training.subsystems.Wrist.WristConstants.*;
 
 public class WristSubsystem extends GBSubsystem {
     private static WristSubsystem instance;

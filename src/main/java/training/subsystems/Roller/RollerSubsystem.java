@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
 import utils.GBSubsystem;
 
-import static training.subsystems.Roller.Constants.*;
+import static training.subsystems.Roller.RollerConstants.*;
 
 public class RollerSubsystem extends GBSubsystem {
     private static RollerSubsystem instance;
