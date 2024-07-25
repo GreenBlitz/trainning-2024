@@ -14,7 +14,7 @@ public class ElbowSubsystem extends GBSubsystem {
 
     private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
     private final SparkPIDController motorPIDF = motor.getPIDController();
-    private Rotation2d angle = DEFAULT_POSITION_ELBOW;
+    private Rotation2d targetAngle = DEFAULT_POSITION_ELBOW;
 
     private ElbowSubsystem() {
         motorPIDF.setP(ELBOW_PID_CONTROLLER.getP());
@@ -40,23 +40,23 @@ public class ElbowSubsystem extends GBSubsystem {
     }
 
     public Rotation2d getDesiredAngle() {
-        return angle;
+        return targetAngle;
     }
 
-    public void setAngle(Rotation2d angle) {
-        this.angle = angle;
+    public void setTargetAngle(Rotation2d targetAngle) {
+        this.targetAngle = targetAngle;
     }
 
     public void addToAngle(Rotation2d angle) {
-        this.angle = this.angle.plus(angle);
+        this.targetAngle = this.targetAngle.plus(angle);
     }
 
     public void subtractFromAngle(Rotation2d angle) {
-        this.angle = this.angle.minus(angle);
+        this.targetAngle = this.targetAngle.minus(angle);
     }
 
     public boolean isAtAngle(Rotation2d angle) {
-        double anglesDelta = (this.angle.getDegrees() % 1) - (angle.getRadians() % 1);
+        double anglesDelta = (this.targetAngle.getDegrees() % 1) - (angle.getRadians() % 1);
         return Math.abs(anglesDelta) <= ELBOW_TOLERANCE;
     }
 
@@ -68,7 +68,7 @@ public class ElbowSubsystem extends GBSubsystem {
     @Override
     public void subsystemPeriodic() {
         motorPIDF.setReference(
-                angle.getRotations() / ELBOW_GEAR_RATIO % 1,
+                (targetAngle.getRotations() % 1) / ELBOW_GEAR_RATIO,
                 CANSparkBase.ControlType.kPosition, 0,
                 ELBOW_FEEDFORWARD.calculate(0, 0)
                 );

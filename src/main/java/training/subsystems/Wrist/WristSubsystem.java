@@ -13,7 +13,6 @@ public class WristSubsystem extends GBSubsystem {
     private static WristSubsystem instance;
     private final TalonSRX motor = new TalonSRX(WRIST_ID);
     private final TalonSRXConfiguration motorConfiguration = new TalonSRXConfiguration();
-    private boolean run;
     private BaseTalonConfiguration configuration;
 
     private WristSubsystem() {

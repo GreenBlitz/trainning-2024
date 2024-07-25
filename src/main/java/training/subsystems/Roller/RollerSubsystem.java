@@ -12,7 +12,7 @@ public class RollerSubsystem extends GBSubsystem {
     private static RollerSubsystem instance;
     private final CANSparkMax motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
     private final SparkPIDController motorPID = motor.getPIDController();
-    private double velocity;
+    private double targetVelocity;
     private boolean run;
 
     private RollerSubsystem() {
@@ -22,7 +22,7 @@ public class RollerSubsystem extends GBSubsystem {
         motorPID.setOutputRange(0, POWER_LIMIT_ROLLER);
         motor.burnFlash(); // applies some of the changes above
 
-        this.velocity = ROLLER_DEFAULT_VELOCITY;
+        this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
     }
 
     public static RollerSubsystem getInstance() {
@@ -32,15 +32,15 @@ public class RollerSubsystem extends GBSubsystem {
         return instance;
     }
 
-    public double getVelocity() {
-        return velocity;
+    public double getTargetVelocity() {
+        return targetVelocity;
     }
 
     /**
      * overwriting the default velocity
      */
-    public void setVelocity(double velocity) {
-        this.velocity = velocity;
+    public void setTargetVelocity(double targetVelocity) {
+        this.targetVelocity = targetVelocity;
     }
 
     public void run() {
@@ -53,8 +53,8 @@ public class RollerSubsystem extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
-        if (velocity <= VELOCITY_LIMIT_ROLLER) {
-            motorPID.setReference(velocity, CANSparkBase.ControlType.kVelocity); // Should be calibrated
+        if (targetVelocity <= VELOCITY_LIMIT_ROLLER) {
+            motorPID.setReference(targetVelocity, CANSparkBase.ControlType.kVelocity); // Should be calibrated
         } else {
             throw new RuntimeException("maximum roller safety velocity exceeded. Change subsystem.Constants to remove this message");
         }
