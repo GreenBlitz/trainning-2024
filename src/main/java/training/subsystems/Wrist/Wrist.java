@@ -59,9 +59,9 @@ public class Wrist extends GBSubsystem {
             throw new IllegalStateException("Current may be too high. Remove this exception if you SURE your constants and wrist's calibration is correct");
         }
         //* PID should control these settings though currently I'm having troubles with it. Also it can't get info from the motor so idk how PID should operate.
-        motorConfiguration.peakCurrentDuration = PEAK_DURATION_WRIST_MS;
-        motorConfiguration.continuousCurrentLimit = CONTINUES_MAX_CURRENT_WRIST_AMP;
-        motorConfiguration.peakCurrentLimit = PEAK_MAX_CURRENT_WRIST_AMP;
+        motorConfiguration.peakCurrentDuration = direction.toInt() * PEAK_DURATION_WRIST_MS;
+        motorConfiguration.continuousCurrentLimit = direction.toInt() * CONTINUES_MAX_CURRENT_WRIST_AMP;
+        motorConfiguration.peakCurrentLimit = direction.toInt() * PEAK_MAX_CURRENT_WRIST_AMP;
     }
 
     @Override

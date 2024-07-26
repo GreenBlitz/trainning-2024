@@ -14,9 +14,11 @@ public class Elbow extends GBSubsystem {
 
     private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
     private final SparkPIDController motorPIDF = motor.getPIDController();
-    private Rotation2d targetAngle = DEFAULT_POSITION_ELBOW;
+    private Rotation2d targetAngle;
 
     private Elbow() {
+        targetAngle = DEFAULT_POSITION_ELBOW;
+
         motorPIDF.setP(ELBOW_PID_CONTROLLER.getP());
         motorPIDF.setD(ELBOW_PID_CONTROLLER.getD());
         motorPIDF.setI(ELBOW_PID_CONTROLLER.getI());
@@ -29,7 +31,7 @@ public class Elbow extends GBSubsystem {
         return instance;
     }
 
-    public void moveWritst(double power) {
+    public void moveElbow(double power) {
         if (Math.abs(power) < POWER_LIMIT_ELBOW) {
             motor.set(power);
         }
