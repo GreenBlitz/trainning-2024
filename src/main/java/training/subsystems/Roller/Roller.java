@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import utils.GBSubsystem;
 
 import static training.subsystems.Roller.RollerConstants.*;
@@ -53,10 +54,9 @@ public class Roller extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
-        if (targetVelocity <= VELOCITY_LIMIT_ROLLER) {
-            motorPID.setReference(targetVelocity, CANSparkBase.ControlType.kVelocity); // Should be calibrated
-        } else {
-            throw new RuntimeException("maximum roller safety velocity exceeded. Change subsystem.Constants to remove this message");
+        motorPID.setReference(targetVelocity, CANSparkBase.ControlType.kVelocity); // Should be calibrated
+        if (targetVelocity > VELOCITY_LIMIT_ROLLER) {
+            SmartDashboard.putString("maximum roller safety velocity exceeded. Change subsystem.Constants to remove this message", "");
         }
     }
 
