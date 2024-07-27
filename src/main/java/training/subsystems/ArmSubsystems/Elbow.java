@@ -25,7 +25,6 @@ public class Elbow extends GBSubsystem {
         motor.getPIDController().setP(Arm_constants.ELBOW_P_VALUE);
         motor.getPIDController().setI(Arm_constants.ELBOW_I_VALUE);
         motor.getPIDController().setD(Arm_constants.ELBOW_D_VALUE);
-
     }
 
     public void moveElbow(double power){
