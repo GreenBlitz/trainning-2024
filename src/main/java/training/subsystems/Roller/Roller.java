@@ -63,6 +63,6 @@ public class Roller extends GBSubsystem {
 
     @Override
     protected String getLogPath() {
-        return ROLLER_LOGPATH;
+        return ROLLER_LOG_PATH;
     }
 }

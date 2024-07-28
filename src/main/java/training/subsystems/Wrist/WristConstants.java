@@ -2,7 +2,7 @@ package training.subsystems.Wrist;
 
 public class WristConstants {
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
-    static final String WRIST_LOGPATH = "";
+    static final String WRIST_LOG_PATH = "";
     static final int WRIST_ID = 0;
 
     static final double POWER_LIMIT_WRIST = 0.9; // limit both min and max

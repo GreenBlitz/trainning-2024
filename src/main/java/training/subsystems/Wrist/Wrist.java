@@ -66,6 +66,6 @@ public class Wrist extends GBSubsystem {
 
     @Override
     protected String getLogPath() {
-        return WRIST_LOGPATH;
+        return WRIST_LOG_PATH;
     }
 }

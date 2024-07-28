@@ -3,7 +3,7 @@ package training.subsystems.Roller;
 public class RollerConstants {
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
 
-    static final String ROLLER_LOGPATH = "";
+    static final String ROLLER_LOG_PATH = "";
     static final int ROLLER_ID = 0;
 
     static final double ROLLER_DEFAULT_VELOCITY_RPM = 0;

@@ -6,7 +6,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public class ElbowConstants {
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
-    static final String ELBOW_LOGPATH = "";
+    static final String ELBOW_LOG_PATH = "";
     static final Rotation2d DEFAULT_POSITION_ELBOW = new Rotation2d(1, 1);
 
     static final PIDController ELBOW_PID_CONTROLLER = new PIDController(0, 0, 0);

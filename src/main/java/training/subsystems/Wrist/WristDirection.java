@@ -1,7 +1,7 @@
 package training.subsystems.Wrist;
 
 public enum WristDirection {
-    kUp(1), kDown(-1);
+    kLeft(1), kRight(-1);
 
     private int val;
 

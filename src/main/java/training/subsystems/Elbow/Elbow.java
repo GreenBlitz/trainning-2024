@@ -67,7 +67,7 @@ public class Elbow extends GBSubsystem {
 
     @Override
     protected String getLogPath() {
-        return ELBOW_LOGPATH;
+        return ELBOW_LOG_PATH;
     }
 
     @Override

@@ -8,9 +8,9 @@ import training.subsystems.Wrist.WristDirection;
 public class WristCommands {
     private final static Wrist wristSubsystem = Wrist.getInstance();
     public Command MoveUpWristCommand() {
-        return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kUp), wristSubsystem);
+        return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kLeft), wristSubsystem);
     }
     public Command MoveDownWristCommand() {
-        return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kDown), wristSubsystem);
+        return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kRight), wristSubsystem);
     }
 }
