@@ -16,7 +16,7 @@ public class ElbowConstants {
     protected static final int ELBOW_ID = 0;
     protected static final double POWER_LIMIT_ELBOW = 0.9;
 
-    protected static final double DEFAULT_LIFT_DEG = 30;
+    protected static final Rotation2d DEFAULT_LIFT_DEG = Rotation2d.fromDegrees(30);
 
     protected static final Rotation2d SCORE_POSITION = new Rotation2d(0, 0);
     protected static final Rotation2d PICKUP_POSITION = new Rotation2d(0, 0);

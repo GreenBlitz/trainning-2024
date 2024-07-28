@@ -5,8 +5,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
-import static training.Elbow.ElbowConstants.PICKUP_POSITION;
-import static training.Elbow.ElbowConstants.SCORE_POSITION;
+import static training.Elbow.ElbowConstants.*;
 
 public class ElbowCommandBuilder {
     private final Elbow elbowSubsystem;
@@ -16,7 +15,7 @@ public class ElbowCommandBuilder {
     }
 
     public Command LiftElbowCommand() {
-        return new SequentialCommandGroup(new UpElbowCommand(), new WaitCommand(0.1), new DownElbowCommand());
+        return new SequentialCommandGroup(UpElbowCommand(), new WaitCommand(0.1), DownElbowCommand());
     }
 
     public Command GoToPickUpPositionCommand() {
@@ -29,5 +28,13 @@ public class ElbowCommandBuilder {
 
     public Command LockElbowInPlaceCommand() {
         return new InstantCommand(elbowSubsystem::LockElbowInPlace);
+    }
+
+    public Command UpElbowCommand() {
+        return new InstantCommand(() -> new SetElbowCommand(DEFAULT_LIFT_DEG));
+    }
+
+    public Command DownElbowCommand() {
+        return new InstantCommand(() -> new SetElbowCommand(DEFAULT_LIFT_DEG.times(-1)));
     }
 }
