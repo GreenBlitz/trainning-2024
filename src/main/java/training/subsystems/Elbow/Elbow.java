@@ -38,12 +38,6 @@ public class Elbow extends GBSubsystem {
         motor.burnFlash();
     }
 
-    public void moveElbow(double power) {
-        if (Math.abs(power) < POWER_LIMIT_ELBOW) {
-            motor.set(power);
-        }
-    }
-
     public Rotation2d getMotorAngle() {
         return Rotation2d.fromRotations(motor.getEncoder().getPosition());
     }
@@ -75,7 +69,11 @@ public class Elbow extends GBSubsystem {
     }
 
     public Rotation2d getCurrentAngle() {
-        return Rotation2d.fromRotations(motor.getEncoder().getPosition())
+        return Rotation2d.fromRotations(motor.getEncoder().getPosition());
+    }
+
+    public void LockElbowInPlace() {
+        targetAngle = getCurrentAngle();
     }
 
     @Override
