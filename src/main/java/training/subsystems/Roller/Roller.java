@@ -55,10 +55,7 @@ public class Roller extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
-        motorPID.setReference(targetVelocity, CANSparkBase.ControlType.kVelocity); // Should be calibrated
-        if (targetVelocity > VELOCITY_LIMIT_ROLLER) {
-            SmartDashboard.putString("maximum roller safety velocity exceeded. Change subsystem.Constants to remove this message", "");
-        }
+        motorPID.setReference(targetVelocity, CANSparkBase.ControlType.kVelocity);
     }
 
     @Override
