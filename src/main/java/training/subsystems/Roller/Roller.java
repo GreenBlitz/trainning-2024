@@ -21,19 +21,17 @@ public class Roller extends GBSubsystem {
     }
 
     private final CANSparkMax motor;
-    private final SparkPIDController sparkPIDController;
     private double targetVelocity;
     private boolean run;
     private RollerDirection direction;
 
     private Roller() {
         this.motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
-        this.sparkPIDController = motor.getPIDController();
 
-        sparkPIDController.setP(ROLLER_P);
-        sparkPIDController.setI(ROLLER_I);
-        sparkPIDController.setD(ROLLER_D);
-        sparkPIDController.setOutputRange(0, POWER_LIMIT_ROLLER);
+        motor.getPIDController().setP(ROLLER_P);
+        motor.getPIDController().setI(ROLLER_I);
+        motor.getPIDController().setD(ROLLER_D);
+        motor.getPIDController().setOutputRange(0, POWER_LIMIT_ROLLER);
         motor.burnFlash(); // applies some of the changes above
 
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
@@ -63,7 +61,7 @@ public class Roller extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
-        sparkPIDController.setReference(targetVelocity * direction.toInt(), CANSparkBase.ControlType.kVelocity);
+        motor.getPIDController().setReference(targetVelocity * direction.toInt(), CANSparkBase.ControlType.kVelocity);
     }
 
     @Override
