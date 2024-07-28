@@ -4,10 +4,11 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import utils.GBSubsystem;
 
 import static training.subsystems.Roller.RollerConstants.*;
+import static training.subsystems.Roller.RollerDirection.kBackward;
+import static training.subsystems.Roller.RollerDirection.kForward;
 
 public class Roller extends GBSubsystem {
     private static Roller instance;
@@ -15,6 +16,7 @@ public class Roller extends GBSubsystem {
     private final SparkPIDController motorPID;
     private double targetVelocity;
     private boolean run;
+    private RollerDirection direction;
 
     private Roller() {
         motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
@@ -45,8 +47,14 @@ public class Roller extends GBSubsystem {
         this.targetVelocity = targetVelocity;
     }
 
-    public void run() {
+    public void runForward() {
         run = true;
+        direction = kForward;
+    }
+
+    public void runBackward() {
+        run = true;
+        direction = kBackward;
     }
 
     public void stop() {
@@ -55,7 +63,7 @@ public class Roller extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
-        motorPID.setReference(targetVelocity, CANSparkBase.ControlType.kVelocity);
+        motorPID.setReference(targetVelocity * direction.toInt(), CANSparkBase.ControlType.kVelocity);
     }
 
     @Override

@@ -6,6 +6,6 @@ import static training.commands.Roller.Constants.ROLLER_ROLLING_TIME_SEC;
 
 public class NoteOutCommand extends SequentialCommandGroup {
     public NoteOutCommand() {
-        addCommands(new RunRollerCommand().withTimeout(ROLLER_ROLLING_TIME_SEC), new StopRollerCommand());
+        addCommands(new RunRollerForwardCommand().withTimeout(ROLLER_ROLLING_TIME_SEC), new StopRollerCommand());
     }
 }

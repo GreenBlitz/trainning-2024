@@ -17,6 +17,7 @@ public class UpElbowCommand extends Command {
     }
 
     public UpElbowCommand() {
+        super();
         elbowSubsystem = Elbow.getInstance();
         addRequirements(elbowSubsystem);
         addedAngle = Rotation2d.fromDegrees(Constants.DEFAULT_LIFT_DEG);

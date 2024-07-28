@@ -46,7 +46,7 @@ public class Elbow extends GBSubsystem {
         return Rotation2d.fromRotations(motor.getEncoder().getPosition());
     }
 
-    public Rotation2d getDesiredAngle() {
+    public Rotation2d getTargetAngle() {
         return targetAngle;
     }
 
