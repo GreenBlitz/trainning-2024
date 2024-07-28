@@ -3,10 +3,10 @@ package training.commands.Roller;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.Roller.Roller;
 
-public class runRollerCommand extends Command {
+public class RunRollerCommand extends Command {
     private final Roller roller;
 
-    public runRollerCommand() {
+    public RunRollerCommand() {
         roller = Roller.getInstance();
         addRequirements(roller);
     }
