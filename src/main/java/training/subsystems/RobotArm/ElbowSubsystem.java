@@ -1,29 +1,31 @@
 package training.subsystems.RobotArm;
 
-import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import org.littletonrobotics.junction.Logger;
-import training.ModuleConstants;
-import training.Robot;
+import training.subsystems.Module;
 import utils.GBSubsystem;
-import utils.joysticks.SmartJoystick;
 
-public class RobotArm extends GBSubsystem {
+public class ElbowSubsystem extends GBSubsystem {
 
     private CANSparkMax motor;
     private Rotation2d position;
 
-    public RobotArm(){
+
+    public ElbowSubsystem(){
         this.motor = new CANSparkMax(0, CANSparkLowLevel.MotorType.kBrushless);
         this.position = new Rotation2d();
     }
 
-    public void setPosition(Rotation2d position){
-        motor.getPIDController().setReference(position.getRotations(), CANSparkBase.ControlType.kPosition);
-    }
+//    public void setPosition(Rotation2d position){
+//        motor.getPIDController().setReference(position.getRotations(), CANSparkBase.ControlType.kPosition);
+//
+//    }
+
+
+
+
 
 
 
@@ -41,7 +43,7 @@ public class RobotArm extends GBSubsystem {
 
 
 
-    @Override
+
     protected String getLogPath() {
         return "";
     }

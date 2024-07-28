@@ -3,7 +3,6 @@ package training;
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.commands.MoveAngularByPosition;
 import training.commands.MoveLinearMotor;
-import training.subsystems.Module;
 import utils.DefaultRobotManager;
 import utils.joysticks.JoystickPorts;
 import utils.joysticks.SmartJoystick;
@@ -25,6 +24,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
         joystick.A.whileTrue(new MoveLinearMotor(robot, joystick));
         joystick.B.whileTrue(new MoveAngularByPosition(robot, Rotation2d.fromRotations(2)));
         joystick.X.whileTrue(new MoveAngularByPosition(robot, Rotation2d.fromRotations(1.5)));
+        joystick.Y.whileTrue(new MoveAngularByPosition(robot, ) )
     }
 
     @Override
