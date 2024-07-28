@@ -3,9 +3,7 @@ package training.subsystems.Elbow;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.Roller.Roller;
 import utils.GBSubsystem;
 
 import static training.subsystems.Elbow.ElbowConstants.*;

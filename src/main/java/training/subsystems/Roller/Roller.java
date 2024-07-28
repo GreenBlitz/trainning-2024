@@ -3,10 +3,8 @@ package training.subsystems.Roller;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkPIDController;
 import utils.GBSubsystem;
 
-import static training.subsystems.Elbow.ElbowConstants.ELBOW_GEAR_RATIO;
 import static training.subsystems.Roller.RollerConstants.*;
 import static training.subsystems.Roller.RollerDirection.kBackward;
 import static training.subsystems.Roller.RollerDirection.kForward;
