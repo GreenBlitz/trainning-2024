@@ -6,7 +6,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import utils.GBSubsystem;
-import utils.WristDirection;
 
 import static training.subsystems.Wrist.WristConstants.*;
 

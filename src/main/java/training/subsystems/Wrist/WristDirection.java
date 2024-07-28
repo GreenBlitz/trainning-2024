@@ -1,4 +1,4 @@
-package utils;
+package training.subsystems.Wrist;
 
 public enum WristDirection {
     kUp(1), kDown(-1);

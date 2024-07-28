@@ -10,15 +10,20 @@ import utils.KeyboardController;
 public class TrainingRobotManager extends DefaultRobotManager {
 
     private Robot robot;
-    private KeyboardController keyboardController = new KeyboardController();
-    private Joystick joystick = new Joystick(0);
+    private final KeyboardController keyboardController;
+    private Joystick joystick;
+
+    public TrainingRobotManager(KeyboardController keyboardController) {
+        this.keyboardController = keyboardController;
+        joystick = new Joystick(0);
+    }
 
     @Override
     public void trainingInit() {
         this.robot = new Robot();
         keyboardController.A.onTrue(new diskOutCommand());
         keyboardController.B.onTrue(new liftElbowCommand());
-        keyboardController.C.onTrue(new WristCommands().MoveUpWristCommand);
+        keyboardController.C.onTrue(new WristCommands().MoveUpWristCommand());
     }
 
     @Override
