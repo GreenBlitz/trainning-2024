@@ -13,7 +13,6 @@ public class RunRollerBackwardsCommand extends Command {
 
     @Override
     public void execute() {
-        addRequirements(roller);
         roller.runForward();
     }
 }
