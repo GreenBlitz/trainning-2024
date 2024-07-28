@@ -6,7 +6,15 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-import static training.Elbow.ElbowConstants.*;
+import static training.Elbow.ElbowConstants.ELBOW_GEAR_RATIO;
+import static training.Elbow.ElbowConstants.ELBOW_LOG_PATH;
+import static training.Elbow.ElbowConstants.ELBOW_PID_CONTROLLER;
+import static training.Elbow.ElbowConstants.ELBOW_ID;
+import static training.Elbow.ElbowConstants.DEFAULT_POSITION_ELBOW;
+import static training.Elbow.ElbowConstants.POWER_LIMIT_ELBOW;
+import static training.Elbow.ElbowConstants.ELBOW_TOLERANCE;
+import static training.Elbow.ElbowConstants.ELBOW_FEEDFORWARD;
+import static training.Elbow.ElbowConstants.PID_SLOT;
 
 public class Elbow extends GBSubsystem {
     private static Elbow instance;
@@ -57,7 +65,7 @@ public class Elbow extends GBSubsystem {
 
     public boolean isAtAngle(Rotation2d angle) {
         double anglesDelta = (this.targetAngle.getDegrees() % 360) - (angle.getDegrees() % 360);
-        return Math.abs(anglesDelta) <= ELBOW_TOLERANCE.getRadians();
+        return Math.abs(anglesDelta) <= ELBOW_TOLERANCE.getDegrees();
     }
 
     @Override
@@ -80,7 +88,8 @@ public class Elbow extends GBSubsystem {
 
         motor.getPIDController().setReference(
                 target,
-                CANSparkBase.ControlType.kPosition, 0,
+                CANSparkBase.ControlType.kPosition,
+                PID_SLOT,
                 FFValue
                 );
     }

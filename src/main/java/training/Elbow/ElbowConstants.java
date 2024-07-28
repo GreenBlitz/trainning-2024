@@ -20,4 +20,6 @@ public class ElbowConstants {
 
     protected static final Rotation2d SCORE_POSITION = new Rotation2d(0, 0);
     protected static final Rotation2d PICKUP_POSITION = new Rotation2d(0, 0);
+
+    protected static final int PID_SLOT = 0;
 }
