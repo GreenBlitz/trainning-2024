@@ -63,7 +63,7 @@ public class Roller extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
-        sparkPIDController.setReference(targetVelocity * direction.toInt(), CANSparkBase.ControlType.kVelocity);
+        sparkPIDController.setReference(targetVelocity * direction.getValue(), CANSparkBase.ControlType.kVelocity);
     }
 
     @Override

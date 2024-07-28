@@ -9,7 +9,7 @@ public enum WristDirection {
         this.val = val;
     }
 
-    public int toInt() {
+    public int getValue() {
         return this.val;
     }
 }

@@ -50,9 +50,9 @@ public class Wrist extends GBSubsystem {
             SmartDashboard.putString("Current may be too high. Remove this exception if you SURE your constants and wrist's calibration is correct", "");
         }
         //* PID should control these settings though currently I'm having troubles with it. Also it can't get info from the motor so idk how PID should operate.
-        motorConfiguration.peakCurrentDuration = direction.toInt() * PEAK_DURATION_WRIST_MILISECONDS;
-        motorConfiguration.continuousCurrentLimit = direction.toInt() * CONTINUES_MAX_CURRENT_WRIST_AMP;
-        motorConfiguration.peakCurrentLimit = direction.toInt() * PEAK_MAX_CURRENT_WRIST_AMP;
+        motorConfiguration.peakCurrentDuration = direction.getValue() * PEAK_DURATION_WRIST_MILISECONDS;
+        motorConfiguration.continuousCurrentLimit = direction.getValue() * CONTINUES_MAX_CURRENT_WRIST_AMP;
+        motorConfiguration.peakCurrentLimit = direction.getValue() * PEAK_MAX_CURRENT_WRIST_AMP;
     }
 
     @Override
