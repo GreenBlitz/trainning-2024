@@ -32,6 +32,6 @@ public class Elbow extends SubsystemBase {
     }
 
     public void getToPosition(Rotation2d position){
-        motor.getPIDController().setReference(position.getRadians(), Constants.ELBOW_CONTORL_TYPE,Constants.WRIST_PID_SLOT ,calculateFitForward());
+        motor.getPIDController().setReference(position.getRadians(), Constants.ELBOW_CONTROL_TYPE,Constants.WRIST_PID_SLOT ,calculateFitForward());
     }
 }
