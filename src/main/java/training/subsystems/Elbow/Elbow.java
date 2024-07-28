@@ -80,10 +80,13 @@ public class Elbow extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
+        double target = BaseRotations.getRotations() + (targetAngle.getRotations() % 1) / ELBOW_GEAR_RATIO;
+        double FFValue = ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
+
         sparkPIDController.setReference(
-                BaseRotations.getRotations() + (targetAngle.getRotations() % 1) / ELBOW_GEAR_RATIO,
+                target,
                 CANSparkBase.ControlType.kPosition, 0,
-                ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity())
+                FFValue
                 );
     }
 }
