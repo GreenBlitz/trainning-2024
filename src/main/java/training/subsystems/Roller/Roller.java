@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
 import utils.GBSubsystem;
 
+import static training.subsystems.Elbow.ElbowConstants.ELBOW_GEAR_RATIO;
 import static training.subsystems.Roller.RollerConstants.*;
 import static training.subsystems.Roller.RollerDirection.kBackward;
 import static training.subsystems.Roller.RollerDirection.kForward;
@@ -28,6 +29,7 @@ public class Roller extends GBSubsystem {
     private Roller() {
         this.motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
 
+        motor.getEncoder().setPositionConversionFactor(ROLLER_GEAR_RATIO);
         motor.getPIDController().setP(ROLLER_P);
         motor.getPIDController().setI(ROLLER_I);
         motor.getPIDController().setD(ROLLER_D);

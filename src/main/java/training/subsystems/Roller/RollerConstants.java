@@ -6,6 +6,7 @@ public class RollerConstants {
     static final String ROLLER_LOG_PATH = "";
     static final int ROLLER_ID = 0;
 
+    static final double ROLLER_GEAR_RATIO = 1;
     static final double ROLLER_DEFAULT_VELOCITY_RPM = 0;
     static final double VELOCITY_LIMIT_ROLLER = 0.8;
     static final double ROLLER_P = 0;
