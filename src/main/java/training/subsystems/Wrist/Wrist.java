@@ -24,8 +24,8 @@ public class Wrist extends GBSubsystem {
     private BaseTalonConfiguration configuration;
 
     private Wrist() {
-        motor = new TalonSRX(WRIST_ID);
-        motorConfiguration = new TalonSRXConfiguration();
+        this.motor = new TalonSRX(WRIST_ID);
+        this.motorConfiguration = new TalonSRXConfiguration();
     }
 
     @Deprecated // using rotate() and changing manually the constants in the calibration process is advised

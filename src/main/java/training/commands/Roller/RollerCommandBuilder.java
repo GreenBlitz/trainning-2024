@@ -9,7 +9,7 @@ public class RollerCommandBuilder extends Command {
     private final Roller roller;
 
     public RollerCommandBuilder() {
-        roller = Roller.getInstance();
+        this.roller = Roller.getInstance();
         addRequirements(roller);
     }
 

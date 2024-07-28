@@ -7,7 +7,7 @@ public class RunRollerForwardCommand extends Command {
     private final Roller roller;
 
     public RunRollerForwardCommand() {
-        roller = Roller.getInstance();
+        this.roller = Roller.getInstance();
         addRequirements(roller);
     }
 

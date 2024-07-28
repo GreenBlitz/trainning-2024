@@ -7,7 +7,7 @@ public class RunRollerBackwardsCommand extends Command {
     private final Roller roller;
 
     public RunRollerBackwardsCommand() {
-        roller = Roller.getInstance();
+        this.roller = Roller.getInstance();
         addRequirements(roller);
     }
 

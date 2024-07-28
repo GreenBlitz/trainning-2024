@@ -9,9 +9,9 @@ public class DownElbowCommand extends Command {
     private final Rotation2d subtractedAngle;
 
     public DownElbowCommand(Rotation2d angle) {
-        elbowSubsystem = Elbow.getInstance();
+        this.elbowSubsystem = Elbow.getInstance();
+        this.subtractedAngle = angle;
         addRequirements(elbowSubsystem);
-        subtractedAngle = angle;
     }
 
     public DownElbowCommand() {

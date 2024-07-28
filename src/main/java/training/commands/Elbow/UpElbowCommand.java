@@ -10,10 +10,10 @@ public class UpElbowCommand extends Command {
     private final Rotation2d originalAngle;
 
     public UpElbowCommand(Rotation2d angle) {
-        elbowSubsystem = Elbow.getInstance();
+        this.elbowSubsystem = Elbow.getInstance();
+        this.addedAngle = angle;
+        this.originalAngle = elbowSubsystem.getMotorAngle();
         addRequirements(elbowSubsystem);
-        addedAngle = angle;
-        originalAngle = elbowSubsystem.getMotorAngle();
     }
 
     public UpElbowCommand() {

@@ -24,10 +24,9 @@ public class Elbow extends GBSubsystem {
     private Rotation2d targetAngle;
 
     private Elbow() {
-        targetAngle = DEFAULT_POSITION_ELBOW;
-
-        motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-        sparkPIDController = motor.getPIDController();
+        this.targetAngle = DEFAULT_POSITION_ELBOW;
+        this.motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
+        this.sparkPIDController = motor.getPIDController();
 
         sparkPIDController.setP(ELBOW_PID_CONTROLLER.getP());
         sparkPIDController.setD(ELBOW_PID_CONTROLLER.getD());

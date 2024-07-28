@@ -27,8 +27,8 @@ public class Roller extends GBSubsystem {
     private RollerDirection direction;
 
     private Roller() {
-        motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
-        sparkPIDController = motor.getPIDController();
+        this.motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
+        this.sparkPIDController = motor.getPIDController();
 
         sparkPIDController.setP(ROLLER_P);
         sparkPIDController.setI(ROLLER_I);
