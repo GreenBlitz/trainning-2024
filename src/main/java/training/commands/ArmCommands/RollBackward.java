@@ -2,15 +2,16 @@ package training.commands.ArmCommands;
 
 import training.subsystems.ArmSubsystems.Roller;
 
-public class rollersForward {
-    Roller roller;
+public class RollBackward {
 
-    public rollersForward(Roller roller){
+    private final Roller roller;
+
+    public RollBackward(Roller roller){
         this.roller=roller;
     }
 
     public void initialize() {
-        roller.moveRoller();
+        roller.rollBackward();
     }
 
 

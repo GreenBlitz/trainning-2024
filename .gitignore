@@ -4,10 +4,10 @@
 ### C++ ###
 # Prerequisites
 *.d
-
+*.py
 # Compiled Object files
 *.slo
-*.lo
+*/.pyc
 *.o
 *.obj
 

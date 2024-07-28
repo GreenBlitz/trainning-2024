@@ -6,7 +6,7 @@ import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
 
-    private CANSparkMax motor;
+    private final CANSparkMax motor;
 
     @Override
     protected String getLogPath() {
@@ -19,15 +19,15 @@ public class Roller extends GBSubsystem {
     }
 
     public Roller() {
-        this.motor =new CANSparkMax(Arm_constants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
+        this.motor =new CANSparkMax(RollerConstants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
     }
 
-    public void moveRoller(){
-        motor.set(0.3);
+    public void rollForward(){
+        motor.set(RollerConstants.DEFAULT_ROLLER_POWER);
     }
 
-    public void reversRoller(){
-        motor.set(-0.3);
+    public void rollBackward(){
+        motor.set(-RollerConstants.DEFAULT_ROLLER_POWER);
     }
 
     public void stopRoller(){
@@ -35,7 +35,7 @@ public class Roller extends GBSubsystem {
     }
 
 
-    public double getElbowVelocity(){
+    public double getRollerVelocity(){
         return motor.getEncoder().getVelocity();
     }
 

@@ -1,14 +1,14 @@
 package training.commands.ArmCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.ArmSubsystems.Arm_constants;
 import training.subsystems.ArmSubsystems.Wrist;
+import training.subsystems.ArmSubsystems.WristConstants;
 
-public class moveWrist {
-    private Wrist wrist;
-    private Rotation2d targetPosition;
+public class MoveWrist {
+    private final Wrist wrist;
+    private final Rotation2d targetPosition;
 
-    public moveWrist(Wrist wrist, Rotation2d targetPosition){
+    public MoveWrist(Wrist wrist, Rotation2d targetPosition){
         this.wrist=wrist;
         this.targetPosition=targetPosition;
     }
@@ -19,7 +19,7 @@ public class moveWrist {
     }
 
     public boolean isFinished() {
-        return wrist.isAtTarget(targetPosition, Arm_constants.WRIST_TOLERANCE);
+        return wrist.isAtTarget(targetPosition, WristConstants.WRIST_TOLERANCE);
     }
 
     public void end(boolean interrupted) {

@@ -1,16 +1,18 @@
 package training.subsystems.ArmSubsystems;
 
+import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
+import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-    private CANSparkMax motor;
-    private Rotation2d targetPosition;
+    private final CANSparkMax motor;
+    private final Rotation2d targetPosition;
     @Override
-    protected String getLogPath() {
+    protected String getLogPath( ) {
         return null;
     }
 
@@ -20,19 +22,25 @@ public class Elbow extends GBSubsystem {
     }
 
     public Elbow() {
-        this.motor =new CANSparkMax(Arm_constants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-        this.targetPosition=Arm_constants.ELBOW_STARTING_POSITION;
-        motor.getPIDController().setP(Arm_constants.ELBOW_P_VALUE);
-        motor.getPIDController().setI(Arm_constants.ELBOW_I_VALUE);
-        motor.getPIDController().setD(Arm_constants.ELBOW_D_VALUE);
+        this.motor =new CANSparkMax(ElbowConstants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
+        this.targetPosition= ElbowConstants.ELBOW_STARTING_POSITION;
+        motor.getPIDController().setP(ElbowConstants.ELBOW_P_VALUE);
+        motor.getPIDController().setI(ElbowConstants.ELBOW_I_VALUE);
+        motor.getPIDController().setD(ElbowConstants.ELBOW_D_VALUE);
     }
 
-    public void moveElbow(double power){
-        motor.set(power);
+    public void moveElbow(Rotation2d position) {
+//        motor.set(power);
+        motor.getPIDController().setReference(
+                position.getDegrees(),
+                CANSparkBase.ControlType.kPosition,
+                0,
+                new ArmFeedforward(WristConstants.WRIST_KS_VALUE, WristConstants.WRIST_KG_VALUE, WristConstants.WRIST_KV_VALUE, WristConstants.WRIST_KA_VALUE).calculate(getElbowPosition().getRadians(),getElbowVelocity())
+        );
     }
 
-    public void stopElbow(){
-        motor.set(0);
+    public void stayAtPosition(){
+        moveElbow(getElbowPosition());
     }
 
     public Rotation2d getElbowPosition(){
