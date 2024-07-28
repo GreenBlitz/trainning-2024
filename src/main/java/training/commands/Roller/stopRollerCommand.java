@@ -5,9 +5,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.Roller.Roller;
 
 public class stopRollerCommand extends Command {
-    private final Roller roller = Roller.getInstance();
+    private final Roller roller;
 
     public stopRollerCommand() {
+        roller = Roller.getInstance();
         addRequirements(roller);
     }
 

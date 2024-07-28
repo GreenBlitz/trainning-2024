@@ -11,12 +11,15 @@ import static training.subsystems.Roller.RollerConstants.*;
 
 public class Roller extends GBSubsystem {
     private static Roller instance;
-    private final CANSparkMax motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
-    private final SparkPIDController motorPID = motor.getPIDController();
+    private final CANSparkMax motor;
+    private final SparkPIDController motorPID;
     private double targetVelocity;
     private boolean run;
 
     private Roller() {
+        motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
+        motorPID = motor.getPIDController();
+
         motorPID.setP(ROLLER_P);
         motorPID.setI(ROLLER_I);
         motorPID.setD(ROLLER_D);

@@ -12,11 +12,13 @@ import static training.subsystems.Wrist.WristConstants.*;
 
 public class Wrist extends GBSubsystem {
     private static Wrist instance;
-    private final TalonSRX motor = new TalonSRX(WRIST_ID);
-    private final TalonSRXConfiguration motorConfiguration = new TalonSRXConfiguration();
+    private final TalonSRX motor;
+    private final TalonSRXConfiguration motorConfiguration;
     private BaseTalonConfiguration configuration;
 
     private Wrist() {
+        motor = new TalonSRX(WRIST_ID);
+        motorConfiguration = new TalonSRXConfiguration();
     }
 
     public static Wrist getInstance() {

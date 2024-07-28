@@ -12,12 +12,15 @@ import static training.subsystems.Elbow.ElbowConstants.*;
 public class Elbow extends GBSubsystem {
     private static Elbow instance;
 
-    private final CANSparkMax motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-    private final SparkPIDController motorPIDF = motor.getPIDController();
+    private final CANSparkMax motor;
+    private final SparkPIDController motorPIDF;
     private Rotation2d targetAngle;
 
     private Elbow() {
         targetAngle = DEFAULT_POSITION_ELBOW;
+
+        motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
+        motorPIDF = motor.getPIDController();
 
         motorPIDF.setP(ELBOW_PID_CONTROLLER.getP());
         motorPIDF.setD(ELBOW_PID_CONTROLLER.getD());

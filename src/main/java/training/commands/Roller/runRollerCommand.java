@@ -4,9 +4,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.Roller.Roller;
 
 public class runRollerCommand extends Command {
-    private final Roller roller = Roller.getInstance();
+    private final Roller roller;
 
     public runRollerCommand() {
+        roller = Roller.getInstance();
         addRequirements(roller);
     }
 
