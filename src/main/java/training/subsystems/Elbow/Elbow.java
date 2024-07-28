@@ -5,13 +5,14 @@ import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
+import training.subsystems.Roller.Roller;
 import utils.GBSubsystem;
 
 import static training.subsystems.Elbow.ElbowConstants.*;
 
 public class Elbow extends GBSubsystem {
     private static Elbow instance;
-    private static Rotation2d position;
+    private static Rotation2d BaseRotations;
 
     public static Elbow getInstance() {
         if (instance == null) {
@@ -28,6 +29,7 @@ public class Elbow extends GBSubsystem {
         this.targetAngle = DEFAULT_POSITION_ELBOW;
         this.motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
         this.sparkPIDController = motor.getPIDController();
+        this.BaseRotations = Rotation2d.fromRotations(motor.getEncoder().getPosition());
 
         sparkPIDController.setP(ELBOW_PID_CONTROLLER.getP());
         sparkPIDController.setD(ELBOW_PID_CONTROLLER.getD());
@@ -72,14 +74,16 @@ public class Elbow extends GBSubsystem {
         return ELBOW_LOG_PATH;
     }
 
+    public Rotation2d getCurrentAngle() {
+        return Rotation2d.fromRotations(motor.getEncoder().getPosition())
+    }
+
     @Override
     public void subsystemPeriodic() {
-        position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
-
         sparkPIDController.setReference(
-                (targetAngle.getRotations() % 1) / ELBOW_GEAR_RATIO,
+                BaseRotations.getRotations() + (targetAngle.getRotations() % 1) / ELBOW_GEAR_RATIO,
                 CANSparkBase.ControlType.kPosition, 0,
-                ELBOW_FEEDFORWARD.calculate(position.getRadians(), motor.getEncoder().getVelocity())
+                ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity())
                 );
     }
 }
