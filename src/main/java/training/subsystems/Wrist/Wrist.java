@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import utils.GBSubsystem;
 
@@ -11,6 +12,7 @@ import static training.subsystems.Wrist.WristConstants.*;
 
 public class Wrist extends GBSubsystem {
     private static Wrist instance;
+    private static Rotation2d targetAngle;
 
     public static Wrist getInstance() {
         if (instance == null) {
@@ -26,6 +28,7 @@ public class Wrist extends GBSubsystem {
     private Wrist() {
         this.motor = new TalonSRX(WRIST_ID);
         this.motorConfiguration = new TalonSRXConfiguration();
+        motor.configAllSettings(motorConfiguration);
     }
 
     @Deprecated // using rotate() and changing manually the constants in the calibration process is advised
@@ -44,22 +47,12 @@ public class Wrist extends GBSubsystem {
     }
 
     public void rotate(WristDirection direction) {
-        if (PEAK_MAX_CURRENT_WRIST_AMP < CONTINUES_MAX_CURRENT_WRIST_AMP) {
-            SmartDashboard.putString("Peak Current shall be higher than continues current. pls check your constants", "");
-        } else if (Math.max(PEAK_MAX_CURRENT_WRIST_AMP, CONTINUES_MAX_CURRENT_WRIST_AMP) >= 30) {
-            SmartDashboard.putString("Current may be too high. Remove this exception if you SURE your constants and wrist's calibration is correct", "");
-        }
-        //* PID should control these settings though currently I'm having troubles with it. Also it can't get info from the motor so idk how PID should operate.
-        motorConfiguration.peakCurrentDuration = direction.getValue() * PEAK_DURATION_WRIST_MILISECONDS;
-        motorConfiguration.continuousCurrentLimit = direction.getValue() * CONTINUES_MAX_CURRENT_WRIST_AMP;
-        motorConfiguration.peakCurrentLimit = direction.getValue() * PEAK_MAX_CURRENT_WRIST_AMP;
+        targetAngle = direction.getValue() == 1 ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
     }
 
     @Override
     public void subsystemPeriodic() {
-        //? no useful docs for the TalonSRXPIDSetConfiguration class are available. pls help
-//        motorConfiguration.primaryPID.selectedFeedbackSensor = TalonSRXFeedbackDevice.QuadEncoder.toFeedbackDevice();
-        motor.configAllSettings(motorConfiguration);
+        motor.setSelectedSensorPosition(targetAngle.getRotations());
     }
 
     @Override
