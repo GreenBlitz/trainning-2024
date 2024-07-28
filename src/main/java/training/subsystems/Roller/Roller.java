@@ -31,7 +31,7 @@ public class Roller extends GBSubsystem {
         motor.getPIDController().setP(ROLLER_P);
         motor.getPIDController().setI(ROLLER_I);
         motor.getPIDController().setD(ROLLER_D);
-        motor.getPIDController().setOutputRange(0, POWER_LIMIT_ROLLER);
+        motor.getPIDController().setOutputRange(-POWER_LIMIT_ROLLER, POWER_LIMIT_ROLLER);
         motor.burnFlash(); // applies some of the changes above
 
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;

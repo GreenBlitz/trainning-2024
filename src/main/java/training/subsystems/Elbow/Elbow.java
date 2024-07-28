@@ -32,7 +32,7 @@ public class Elbow extends GBSubsystem {
         motor.getPIDController().setP(ELBOW_PID_CONTROLLER.getP());
         motor.getPIDController().setD(ELBOW_PID_CONTROLLER.getD());
         motor.getPIDController().setI(ELBOW_PID_CONTROLLER.getI());
-        motor.getPIDController().setOutputRange(0, POWER_LIMIT_ELBOW);
+        motor.getPIDController().setOutputRange(-POWER_LIMIT_ELBOW, POWER_LIMIT_ELBOW);
         motor.burnFlash();
     }
 
