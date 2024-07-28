@@ -3,16 +3,16 @@ package training.commands.Arm;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.Arm.RollerSubsystem;
 
-public class rollerBackwards extends Command {
-    private RollerSubsystem roller;
+public class RollerReverse extends Command {
+    private final RollerSubsystem roller;
 
-    public rollerBackwards(RollerSubsystem roller){
+    public RollerReverse(RollerSubsystem roller){
         this.roller = roller;
     }
 
     @Override
     public void initialize() {
-        roller.setSpeed(-Constants.DEFAULT_SPEED);
+        roller.setSpeed(-ArmConstants.DEFAULT_SPEED);
     }
 
     @Override

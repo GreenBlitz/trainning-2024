@@ -2,11 +2,10 @@ package training.subsystems.Arm;
 
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class RollerSubsystem extends GBSubsystem {
-    private CANSparkMax motor;
+    private final CANSparkMax motor;
 
     @Override
     protected String getLogPath() {
@@ -19,7 +18,7 @@ public class RollerSubsystem extends GBSubsystem {
     }
 
     public RollerSubsystem(){
-        this.motor = new CANSparkMax(Constants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
+        this.motor = new CANSparkMax(ArmConstants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
     }
 
     public void setSpeed(double power){

@@ -6,8 +6,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class WristSubsystem extends GBSubsystem {
-    private TalonSRX motor;
-    private Rotation2d targetPosition;
+    private final TalonSRX motor;
+    private final Rotation2d targetPosition;
 
     @Override
     protected String getLogPath() {
@@ -20,8 +20,8 @@ public class WristSubsystem extends GBSubsystem {
     }
 
     public WristSubsystem(){
-        this.motor = new TalonSRX(Constants.WRIST_ID);
-        this.targetPosition = Constants.WRIST_START_POSITION;
+        this.motor = new TalonSRX(ArmConstants.WRIST_ID);
+        this.targetPosition = ArmConstants.WRIST_START_POSITION;
     }
 
     public void setSpeed(double power){

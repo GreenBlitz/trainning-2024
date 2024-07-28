@@ -2,7 +2,7 @@ package training.subsystems.Arm;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 
-public class Constants {
+public class ArmConstants {
     protected static final int ELBOW_ID = 0;
     protected static final int WRIST_ID = 0;
     protected static final int ROLLER_ID = 0;

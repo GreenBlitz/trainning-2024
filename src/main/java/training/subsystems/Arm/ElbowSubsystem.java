@@ -3,14 +3,13 @@ package training.subsystems.Arm;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkLowLevel;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class ElbowSubsystem  extends GBSubsystem {
-    private CANSparkMax motor;
-    private Rotation2d targetPosition;
+    private final CANSparkMax motor;
+    private final Rotation2d targetPosition;
 
     @Override
     protected String getLogPath() {
@@ -23,26 +22,26 @@ public class ElbowSubsystem  extends GBSubsystem {
     }
 
     public ElbowSubsystem(){
-        this.motor = new CANSparkMax(Constants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-        this.targetPosition = Constants.ELBOW_START_POSITION;
-        motor.getPIDController().setP(Constants.ELBOW_P);
-        motor.getPIDController().setI(Constants.ELBOW_I);
-        motor.getPIDController().setD(Constants.ELBOW_D);
+        this.motor = new CANSparkMax(ArmConstants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
+        this.targetPosition = ArmConstants.ELBOW_START_POSITION;
+        motor.getPIDController().setP(ArmConstants.ELBOW_P);
+        motor.getPIDController().setI(ArmConstants.ELBOW_I);
+        motor.getPIDController().setD(ArmConstants.ELBOW_D);
     }
 
-    public void setSpeed(double power){
-        new ArmFeedforward(Constants.ELBOW_KS,Constants.ELBOW_KG,Constants.ELBOW_KV, Constants.ELBOW_KA);
+    public void moveElbow(Rotation2d position){
+        new ArmFeedforward(ArmConstants.ELBOW_KS, ArmConstants.ELBOW_KG, ArmConstants.ELBOW_KV, ArmConstants.ELBOW_KA);
             motor.getPIDController().setReference(
-                    power,
+                    position.getDegrees(),
                     CANSparkBase.ControlType.kPosition,
                     0,
-                    new ArmFeedforward(Constants.ELBOW_KS, Constants.ELBOW_KG, Constants.ELBOW_KV, Constants.ELBOW_KA).calculate(power,0)
+                    new ArmFeedforward(ArmConstants.ELBOW_KS, ArmConstants.ELBOW_KG, ArmConstants.ELBOW_KV, ArmConstants.ELBOW_KA).calculate(position.getRadians(),getSpeed())
             );
 
     }
 
-    public void stop(){
-        motor.set(0);
+    public void stayAtPosition(){
+        moveElbow();
     }
 
     public Rotation2d getPosition(){
@@ -56,4 +55,5 @@ public class ElbowSubsystem  extends GBSubsystem {
     public boolean isAtPosition(Rotation2d target, double tolerance){
         return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= tolerance;
     }
+
 }

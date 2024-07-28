@@ -1,8 +1,8 @@
 package training.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import subsystem.ModuleSubsystem;
 import training.Robot;
+import training.subsystems.movement.ModuleSubsystem;
 
 public class MoveForwardCommand extends Command {
     private final double speed;
@@ -10,7 +10,7 @@ public class MoveForwardCommand extends Command {
 
     public MoveForwardCommand(double speed) {
         this.speed = speed;
-        this.subsystem = Robot.getModuleSubsystem();
+        this.subsystem = Robot.get();
         this.addRequirements(subsystem);
     }
 
