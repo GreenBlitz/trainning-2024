@@ -9,7 +9,7 @@ public enum RollerDirection {
         this.val = val;
     }
 
-    public int getValue() {
+    public int toInt() {
         return this.val;
     }
 }
