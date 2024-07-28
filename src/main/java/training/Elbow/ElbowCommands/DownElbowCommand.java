@@ -4,6 +4,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.Elbow.Elbow;
 
+import static training.Elbow.ElbowConstants.DEFAULT_LIFT_DEG;
+
 public class DownElbowCommand extends Command {
     private final Elbow elbowSubsystem;
     private final Rotation2d subtractedAngle;
@@ -16,7 +18,7 @@ public class DownElbowCommand extends Command {
 
     public DownElbowCommand() {
         this.elbowSubsystem = Elbow.getInstance();
-        this.subtractedAngle = Rotation2d.fromDegrees(Constants.DEFAULT_LIFT_DEG);
+        this.subtractedAngle = Rotation2d.fromDegrees(DEFAULT_LIFT_DEG);
         addRequirements(elbowSubsystem);
     }
 

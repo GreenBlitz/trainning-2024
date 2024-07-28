@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import training.Elbow.Elbow;
 
-import static training.Elbow.ElbowCommands.Constants.PICKUP_POSITION;
-import static training.Elbow.ElbowCommands.Constants.SCORE_POSITION;
+import static training.Elbow.ElbowConstants.PICKUP_POSITION;
+import static training.Elbow.ElbowConstants.SCORE_POSITION;
 
 public class ElbowCommandBuilder {
     private final Elbow elbowSubsystem;
