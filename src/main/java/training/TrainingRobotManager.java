@@ -1,6 +1,7 @@
 package training;
 
 import edu.wpi.first.wpilibj.Joystick;
+import training.Elbow.ElbowCommandBuilder;
 import training.Roller.RollerCommandBuilder;
 import training.Wrist.WristCommandBuilder;
 import utils.DefaultRobotManager;
@@ -21,7 +22,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
     public void trainingInit() {
         this.robot = new Robot();
         keyboardController.A.onTrue(new RollerCommandBuilder().NoteOutCommand());
-        keyboardController.B.onTrue(new LiftElbowCommand());
+        keyboardController.B.onTrue(new ElbowCommandBuilder().LiftElbowCommand());
         keyboardController.C.onTrue(new WristCommandBuilder().MoveUpWristCommand());
     }
 
