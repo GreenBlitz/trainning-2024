@@ -12,6 +12,13 @@ import static training.subsystems.Elbow.ElbowConstants.*;
 public class Elbow extends GBSubsystem {
     private static Elbow instance;
 
+    public static Elbow getInstance() {
+        if (instance == null) {
+            instance = new Elbow();
+        }
+        return instance;
+    }
+
     private final CANSparkMax motor;
     private final SparkPIDController motorPIDF;
     private Rotation2d targetAngle;
@@ -27,13 +34,6 @@ public class Elbow extends GBSubsystem {
         motorPIDF.setI(ELBOW_PID_CONTROLLER.getI());
         motorPIDF.setOutputRange(0, POWER_LIMIT_ELBOW);
         motor.burnFlash();
-    }
-
-    public static Elbow getInstance() {
-        if (instance == null) {
-            instance = new Elbow();
-        }
-        return instance;
     }
 
     public void moveElbow(double power) {

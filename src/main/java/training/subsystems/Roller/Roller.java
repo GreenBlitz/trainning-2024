@@ -12,6 +12,14 @@ import static training.subsystems.Roller.RollerDirection.kForward;
 
 public class Roller extends GBSubsystem {
     private static Roller instance;
+
+    public static Roller getInstance() {
+        if (instance == null) {
+            instance = new Roller();
+        }
+        return instance;
+    }
+
     private final CANSparkMax motor;
     private final SparkPIDController motorPID;
     private double targetVelocity;
@@ -31,17 +39,9 @@ public class Roller extends GBSubsystem {
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
     }
 
-    public static Roller getInstance() {
-        if (instance == null) {
-            instance = new Roller();
-        }
-        return instance;
-    }
-
     public double getTargetVelocity() {
         return targetVelocity;
     }
-
 
     public void setTargetVelocity(double targetVelocity) {
         this.targetVelocity = targetVelocity;

@@ -11,6 +11,14 @@ import static training.subsystems.Wrist.WristConstants.*;
 
 public class Wrist extends GBSubsystem {
     private static Wrist instance;
+
+    public static Wrist getInstance() {
+        if (instance == null) {
+            instance = new Wrist();
+        }
+        return instance;
+    }
+
     private final TalonSRX motor;
     private final TalonSRXConfiguration motorConfiguration;
     private BaseTalonConfiguration configuration;
@@ -20,14 +28,6 @@ public class Wrist extends GBSubsystem {
         motorConfiguration = new TalonSRXConfiguration();
     }
 
-    public static Wrist getInstance() {
-        if (instance == null) {
-            instance = new Wrist();
-        }
-        return instance;
-    }
-
-
     @Deprecated // using rotate() and changing manually the constants in the calibration process is advised
     public void setPower(double power) {
         motor.set(TalonSRXControlMode.PercentOutput, power);
@@ -36,14 +36,12 @@ public class Wrist extends GBSubsystem {
         }
     }
 
-
     public void stop() {
         motor.set(TalonSRXControlMode.PercentOutput, 0);
         motorConfiguration.peakCurrentDuration = 0;
         motorConfiguration.continuousCurrentLimit = 0;
         motorConfiguration.peakCurrentLimit = 0;
     }
-
 
     public void rotate(WristDirection direction) {
         if (PEAK_MAX_CURRENT_WRIST_AMP < CONTINUES_MAX_CURRENT_WRIST_AMP) {
