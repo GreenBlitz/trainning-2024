@@ -77,7 +77,7 @@ public class Elbow extends GBSubsystem {
         motorPIDF.setReference(
                 (targetAngle.getRotations() % 1) / ELBOW_GEAR_RATIO,
                 CANSparkBase.ControlType.kPosition, 0,
-                ELBOW_FEEDFORWARD.calculate(0, 0)
+                ELBOW_FEEDFORWARD.calculate(motor.getEncoder().getVelocity(), 0)
                 );
     }
 }

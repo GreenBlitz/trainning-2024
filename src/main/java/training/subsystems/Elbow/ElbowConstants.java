@@ -10,7 +10,7 @@ public class ElbowConstants {
     static final Rotation2d DEFAULT_POSITION_ELBOW = new Rotation2d(1, 1);
 
     static final PIDController ELBOW_PID_CONTROLLER = new PIDController(0, 0, 0);
-    static final ElevatorFeedforward ELBOW_FEEDFORWARD = new ElevatorFeedforward(0, 0, 0, 0);
+    static final ElevatorFeedforward ELBOW_FEEDFORWARD = new ElevatorFeedforward(0, 0, 0, 0); // Keep kV and kA 0
     static final double ELBOW_TOLERANCE = 0;
     static final double ELBOW_GEAR_RATIO = 250/7;
     static final int ELBOW_ID = 0;
