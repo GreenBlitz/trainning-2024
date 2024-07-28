@@ -37,9 +37,7 @@ public class Roller extends GBSubsystem {
         return targetVelocity;
     }
 
-    /**
-     * overwriting the default velocity
-     */
+
     public void setTargetVelocity(double targetVelocity) {
         this.targetVelocity = targetVelocity;
     }

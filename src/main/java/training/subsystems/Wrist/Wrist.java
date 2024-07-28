@@ -27,22 +27,15 @@ public class Wrist extends GBSubsystem {
     }
 
 
-    /**
-     * @param power = the power applied to the motor (-1 to 1)
-     * @deprecated use rotate() instead
-     */
     @Deprecated // using rotate() and changing manually the constants in the calibration process is advised
     public void setPower(double power) {
-        if (Math.abs(power) <= POWER_LIMIT_WRIST) {
-            motor.set(TalonSRXControlMode.PercentOutput, power);
-        } else {
-            throw new RuntimeException("motor is trying to spin in power above MAX_POWER_CIM limit");
+        motor.set(TalonSRXControlMode.PercentOutput, power);
+        if (Math.abs(power) >= POWER_LIMIT_WRIST) {
+            SmartDashboard.putString("motor is trying to spin in power above MAX_POWER_CIM limit", "");
         }
     }
 
-    /**
-     * stops the wrist from spinning
-     */
+
     public void stop() {
         motor.set(TalonSRXControlMode.PercentOutput, 0);
         motorConfiguration.peakCurrentDuration = 0;
@@ -50,9 +43,7 @@ public class Wrist extends GBSubsystem {
         motorConfiguration.peakCurrentLimit = 0;
     }
 
-    /**
-     * rotates the wrist using presets defined in training.subsystems.Roller.Constants until is being stopped
-     */
+
     public void rotate(WristDirection direction) {
         if (PEAK_MAX_CURRENT_WRIST_AMP < CONTINUES_MAX_CURRENT_WRIST_AMP) {
             SmartDashboard.putString("Peak Current shall be higher than continues current. pls check your constants", "");
