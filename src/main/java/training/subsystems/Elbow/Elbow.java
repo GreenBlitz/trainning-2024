@@ -20,19 +20,19 @@ public class Elbow extends GBSubsystem {
     }
 
     private final CANSparkMax motor;
-    private final SparkPIDController motorPIDF;
+    private final SparkPIDController sparkPIDController;
     private Rotation2d targetAngle;
 
     private Elbow() {
         targetAngle = DEFAULT_POSITION_ELBOW;
 
         motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-        motorPIDF = motor.getPIDController();
+        sparkPIDController = motor.getPIDController();
 
-        motorPIDF.setP(ELBOW_PID_CONTROLLER.getP());
-        motorPIDF.setD(ELBOW_PID_CONTROLLER.getD());
-        motorPIDF.setI(ELBOW_PID_CONTROLLER.getI());
-        motorPIDF.setOutputRange(0, POWER_LIMIT_ELBOW);
+        sparkPIDController.setP(ELBOW_PID_CONTROLLER.getP());
+        sparkPIDController.setD(ELBOW_PID_CONTROLLER.getD());
+        sparkPIDController.setI(ELBOW_PID_CONTROLLER.getI());
+        sparkPIDController.setOutputRange(0, POWER_LIMIT_ELBOW);
         motor.burnFlash();
     }
 
@@ -74,7 +74,7 @@ public class Elbow extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
-        motorPIDF.setReference(
+        sparkPIDController.setReference(
                 (targetAngle.getRotations() % 1) / ELBOW_GEAR_RATIO,
                 CANSparkBase.ControlType.kPosition, 0,
                 ELBOW_FEEDFORWARD.calculate(motor.getEncoder().getVelocity(), 0)
