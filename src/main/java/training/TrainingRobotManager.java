@@ -3,7 +3,7 @@ package training;
 import edu.wpi.first.wpilibj.Joystick;
 import training.commands.Elbow.LiftElbowCommand;
 import training.commands.Roller.NoteOutCommand;
-import training.commands.WristCommands;
+import training.commands.WristCommandBuilder;
 import utils.DefaultRobotManager;
 import utils.KeyboardController;
 
@@ -23,7 +23,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
         this.robot = new Robot();
         keyboardController.A.onTrue(new NoteOutCommand());
         keyboardController.B.onTrue(new LiftElbowCommand());
-        keyboardController.C.onTrue(new WristCommands().MoveUpWristCommand());
+        keyboardController.C.onTrue(new WristCommandBuilder().MoveUpWristCommand());
     }
 
     @Override
