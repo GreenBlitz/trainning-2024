@@ -17,4 +17,9 @@ public class SetElbowCommand extends Command {
     public void execute() {
         elbowSubsystem.setTargetAngle(targetAngle);
     }
+
+    @Override
+    public boolean isFinished() {
+        return elbowSubsystem.isAtAngle(targetAngle);
+    }
 }
