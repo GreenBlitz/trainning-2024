@@ -11,6 +11,7 @@ import static training.subsystems.Elbow.ElbowConstants.*;
 
 public class Elbow extends GBSubsystem {
     private static Elbow instance;
+    private static Rotation2d position;
 
     public static Elbow getInstance() {
         if (instance == null) {
@@ -73,10 +74,11 @@ public class Elbow extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
+        position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
         sparkPIDController.setReference(
                 (targetAngle.getRotations() % 1) / ELBOW_GEAR_RATIO,
                 CANSparkBase.ControlType.kPosition, 0,
-                ELBOW_FEEDFORWARD.calculate(motor.getEncoder().getVelocity(), 0)
+                ELBOW_FEEDFORWARD.calculate(position.getRadians(), motor.getEncoder().getVelocity())
                 );
     }
 }
