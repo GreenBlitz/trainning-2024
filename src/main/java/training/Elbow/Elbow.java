@@ -1,4 +1,4 @@
-package training.subsystems.Elbow;
+package training.Elbow;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-import static training.subsystems.Elbow.ElbowConstants.*;
+import static training.Elbow.ElbowConstants.*;
 
 public class Elbow extends GBSubsystem {
     private static Elbow instance;

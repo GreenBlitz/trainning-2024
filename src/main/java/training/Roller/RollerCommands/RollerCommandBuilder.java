@@ -1,8 +1,8 @@
-package training.commands.Roller;
+package training.Roller.RollerCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import training.subsystems.Roller.Roller;
+import training.Roller.Roller;
 
 public class RollerCommandBuilder extends Command {
     private final Roller roller;

@@ -1,4 +1,4 @@
-package training.subsystems.Wrist;
+package training.Wrist;
 
 public enum WristDirection {
     kLeft(1), kRight(-1);

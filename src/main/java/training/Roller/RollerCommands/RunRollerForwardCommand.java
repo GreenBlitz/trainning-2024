@@ -1,7 +1,7 @@
-package training.commands.Roller;
+package training.Roller.RollerCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.Roller.Roller;
+import training.Roller.Roller;
 
 public class RunRollerForwardCommand extends Command {
     private final Roller roller;

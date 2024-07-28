@@ -1,8 +1,8 @@
-package training.commands.Roller;
+package training.Roller.RollerCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-import static training.commands.Roller.Constants.ROLLER_ROLLING_TIME_SEC;
+import static training.Roller.RollerCommands.Constants.ROLLER_ROLLING_TIME_SEC;
 
 public class NoteOutCommand extends SequentialCommandGroup {
     public NoteOutCommand() {

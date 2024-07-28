@@ -1,4 +1,4 @@
-package training.subsystems.Wrist;
+package training.Wrist;
 
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
@@ -8,7 +8,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import utils.GBSubsystem;
 
-import static training.subsystems.Wrist.WristConstants.*;
+import static training.Wrist.WristConstants.*;
 
 public class Wrist extends GBSubsystem {
     private static Wrist instance;

@@ -1,9 +1,9 @@
 package training;
 
 import edu.wpi.first.wpilibj.Joystick;
-import training.commands.Elbow.LiftElbowCommand;
-import training.commands.Roller.NoteOutCommand;
-import training.commands.WristCommandBuilder;
+import training.Elbow.ElbowCommands.LiftElbowCommand;
+import training.Roller.RollerCommands.NoteOutCommand;
+import training.Wrist.WristCommandBuilder;
 import utils.DefaultRobotManager;
 import utils.KeyboardController;
 
@@ -13,8 +13,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
     private final KeyboardController keyboardController;
     private Joystick joystick;
 
-    public TrainingRobotManager(KeyboardController keyboardController) {
-        this.keyboardController = keyboardController;
+    public TrainingRobotManager() {
+        this.keyboardController = new KeyboardController();
         joystick = new Joystick(0);
     }
 

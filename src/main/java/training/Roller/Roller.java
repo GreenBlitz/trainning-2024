@@ -1,13 +1,13 @@
-package training.subsystems.Roller;
+package training.Roller;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import utils.GBSubsystem;
 
-import static training.subsystems.Roller.RollerConstants.*;
-import static training.subsystems.Roller.RollerDirection.kBackward;
-import static training.subsystems.Roller.RollerDirection.kForward;
+import static training.Roller.RollerConstants.*;
+import static training.Roller.RollerDirection.kBackward;
+import static training.Roller.RollerDirection.kForward;
 
 public class Roller extends GBSubsystem {
     private static Roller instance;

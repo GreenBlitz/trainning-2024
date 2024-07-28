@@ -1,9 +1,7 @@
-package training.commands;
+package training.Wrist;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import training.subsystems.Wrist.Wrist;
-import training.subsystems.Wrist.WristDirection;
 
 public class WristCommandBuilder {
     private final Wrist wristSubsystem;

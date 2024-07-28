@@ -1,4 +1,4 @@
-package training.subsystems.Wrist;
+package training.Wrist;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import edu.wpi.first.math.geometry.Rotation2d;
