@@ -9,7 +9,7 @@ public class WristCommandBuilder {
     private final Wrist wristSubsystem;
 
     public WristCommandBuilder() {
-        wristSubsystem = Wrist.getInstance();
+        this.wristSubsystem = Wrist.getInstance();
     }
 
     public Command MoveUpWristCommand() {
