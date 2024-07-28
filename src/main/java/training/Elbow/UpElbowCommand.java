@@ -1,8 +1,7 @@
-package training.Elbow.ElbowCommands;
+package training.Elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import training.Elbow.Elbow;
 
 import static training.Elbow.ElbowConstants.DEFAULT_LIFT_DEG;
 
