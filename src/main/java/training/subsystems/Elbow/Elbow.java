@@ -75,6 +75,7 @@ public class Elbow extends GBSubsystem {
     @Override
     public void subsystemPeriodic() {
         position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
+
         sparkPIDController.setReference(
                 (targetAngle.getRotations() % 1) / ELBOW_GEAR_RATIO,
                 CANSparkBase.ControlType.kPosition, 0,
