@@ -6,7 +6,12 @@ import training.subsystems.Wrist.Wrist;
 import training.subsystems.Wrist.WristDirection;
 
 public class WristCommandBuilder {
-    private final static Wrist wristSubsystem = Wrist.getInstance();
+    private final Wrist wristSubsystem;
+
+    public WristCommandBuilder() {
+        wristSubsystem = Wrist.getInstance();
+    }
+
     public Command MoveUpWristCommand() {
         return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kLeft), wristSubsystem);
     }
