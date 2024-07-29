@@ -15,8 +15,10 @@ public class ElbowCommandBuilder {
     public Command MoveElbowToAngle(Rotation2d targetAngle) {
         return new FunctionalCommand(
                 () -> {},
-                () -> elbowSubsystem.setTargetAngle(targetAngle), (interrupted) -> {},
-                () -> elbowSubsystem.isAtAngle(targetAngle)
+                () -> elbowSubsystem.setTargetAngle(targetAngle),
+                (interrupted) -> {},
+                () -> elbowSubsystem.isAtAngle(targetAngle),
+                elbowSubsystem
         );
     }
 
