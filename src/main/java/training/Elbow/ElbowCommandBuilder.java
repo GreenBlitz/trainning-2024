@@ -21,11 +21,11 @@ public class ElbowCommandBuilder {
     }
 
     public Command GoToPickUpPosition() {
-        return new InstantCommand(() -> new MoveElbowToAngle(PICKUP_POSITION), elbowSubsystem);
+        return new InstantCommand(() -> new MoveElbowToAngle(PICKUP_POSITION_ELBOW), elbowSubsystem);
     }
 
     public Command GoToScorePosition() {
-        return new InstantCommand(() -> new MoveElbowToAngle(SCORE_POSITION), elbowSubsystem);
+        return new InstantCommand(() -> new MoveElbowToAngle(SCORE_POSITION_ELBOW), elbowSubsystem);
     }
 
     public Command LockElbowInPlaceCommand() {

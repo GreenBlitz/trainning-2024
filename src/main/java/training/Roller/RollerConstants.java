@@ -9,6 +9,7 @@ public class RollerConstants {
 
     protected static final double ROLLER_GEAR_RATIO = 1;
     protected static final double ROLLER_DEFAULT_VELOCITY_RPM = 0;
+
     protected static final double VELOCITY_LIMIT_ROLLER = 0.8;
     protected static final double ROLLER_P = 0;
     protected static final double ROLLER_I = 0;
