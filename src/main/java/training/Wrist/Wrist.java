@@ -8,7 +8,11 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import utils.GBSubsystem;
 
-import static training.Wrist.WristConstants.*;
+import static training.Wrist.WristConstants.POWER_LIMIT_WRIST;
+import static training.Wrist.WristConstants.WRIST_ID;
+import static training.Wrist.WristConstants.WRIST_UPPER_POSITION;
+import static training.Wrist.WristConstants.WRIST_LOWER_POSITION;
+import static training.Wrist.WristConstants.WRIST_LOG_PATH;
 
 public class Wrist extends GBSubsystem {
     private static Wrist instance;
