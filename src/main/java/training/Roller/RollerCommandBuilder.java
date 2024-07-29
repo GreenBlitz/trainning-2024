@@ -3,7 +3,7 @@ package training.Roller;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
-import static training.Roller.RollerConstants.ROLLER_ROLLING_TIME_SEC;
+import static training.Roller.RollerConstants.ROLLER_ROLLING_TIME_SECONDS;
 
 public class RollerCommandBuilder {
     private final Roller rollerSubsystem;
@@ -17,7 +17,7 @@ public class RollerCommandBuilder {
     }
 
     public Command NoteOutCommand() {
-        return new InstantCommand(() -> RunRollerForwardCommand().withTimeout(ROLLER_ROLLING_TIME_SEC), rollerSubsystem);
+        return new InstantCommand(() -> RunRollerForwardCommand().withTimeout(ROLLER_ROLLING_TIME_SECONDS), rollerSubsystem);
     }
 
     public Command RunRollerBackwardCommand() {

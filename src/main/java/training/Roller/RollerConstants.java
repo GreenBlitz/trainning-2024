@@ -2,7 +2,7 @@ package training.Roller;
 
 public class RollerConstants {
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
-    protected static final double ROLLER_ROLLING_TIME_SEC = 0.5;
+    protected static final double ROLLER_ROLLING_TIME_SECONDS = 0.5;
 
     protected static final String ROLLER_LOG_PATH = "";
     protected static final int ROLLER_ID = 0;

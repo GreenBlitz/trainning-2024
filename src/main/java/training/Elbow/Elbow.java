@@ -27,13 +27,13 @@ public class Elbow extends GBSubsystem {
     }
 
     private final CANSparkMax motor;
-    private final Rotation2d BaseRotations;
+    private final Rotation2d flooredStartRotations;
     private Rotation2d targetAngle;
 
     private Elbow() {
         this.targetAngle = DEFAULT_POSITION_ELBOW;
         this.motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-        this.BaseRotations = Rotation2d.fromRotations(Math.floor(motor.getEncoder().getPosition()));
+        this.flooredStartRotations = Rotation2d.fromRotations(Math.floor(motor.getEncoder().getPosition()));
 
         motor.getEncoder().setPositionConversionFactor(ELBOW_GEAR_RATIO);
         motor.getPIDController().setP(ELBOW_PID_CONTROLLER.getP());
@@ -83,7 +83,7 @@ public class Elbow extends GBSubsystem {
 
     @Override
     public void subsystemPeriodic() {
-        double target = BaseRotations.getRotations() + (targetAngle.getRotations() % 1);
+        double target = flooredStartRotations.getRotations() + (targetAngle.getRotations() % 1);
         double FFValue = ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
 
         motor.getPIDController().setReference(
