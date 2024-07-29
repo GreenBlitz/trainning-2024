@@ -21,7 +21,6 @@ public class Roller extends GBSubsystem {
 
     private final CANSparkMax motor;
     private double targetVelocity;
-    private boolean run;
     private RollerDirection direction;
 
     private Roller() {

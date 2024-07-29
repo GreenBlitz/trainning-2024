@@ -35,14 +35,6 @@ public class Wrist extends GBSubsystem {
         motor.configAllSettings(motorConfiguration);
     }
 
-    @Deprecated // using rotate() and changing manually the constants in the calibration process is advised
-    public void setPower(double power) {
-        motor.set(TalonSRXControlMode.PercentOutput, power);
-        if (Math.abs(power) >= POWER_LIMIT_WRIST) {
-            SmartDashboard.putString("motor is trying to spin in power above MAX_POWER_CIM limit", "");
-        }
-    }
-
     public void stop() {
         targetAngle = new Rotation2d(0);
         motor.set(TalonSRXControlMode.PercentOutput, 0);

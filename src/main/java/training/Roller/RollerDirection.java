@@ -1,15 +1,16 @@
 package training.Roller;
 
 public enum RollerDirection {
-    kForward(1), kBackward(-1);
+    kForward(1),
+    kBackward(-1);
 
-    private int val;
+    private final int value;
 
     RollerDirection(int val) {
-        this.val = val;
+        this.value = val;
     }
 
     public int toInt() {
-        return this.val;
+        return this.value;
     }
 }
