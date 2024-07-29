@@ -1,7 +1,6 @@
 package training.Elbow;
 
 import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
@@ -10,6 +9,7 @@ import static training.Elbow.ElbowConstants.ELBOW_GEAR_RATIO;
 import static training.Elbow.ElbowConstants.ELBOW_LOG_PATH;
 import static training.Elbow.ElbowConstants.ELBOW_PID_CONTROLLER;
 import static training.Elbow.ElbowConstants.ELBOW_ID;
+import static training.Elbow.ElbowConstants.ELBOW_MOTOR_TYPE;
 import static training.Elbow.ElbowConstants.DEFAULT_POSITION_ELBOW;
 import static training.Elbow.ElbowConstants.POWER_LIMIT_ELBOW;
 import static training.Elbow.ElbowConstants.ELBOW_TOLERANCE;
@@ -32,7 +32,7 @@ public class Elbow extends GBSubsystem {
 
     private Elbow() {
         this.targetAngle = DEFAULT_POSITION_ELBOW;
-        this.motor = new CANSparkMax(ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
+        this.motor = new CANSparkMax(ELBOW_ID, ELBOW_MOTOR_TYPE);
         this.flooredStartRotations = Rotation2d.fromRotations(Math.floor(motor.getEncoder().getPosition()));
 
         motor.getEncoder().setPositionConversionFactor(ELBOW_GEAR_RATIO);

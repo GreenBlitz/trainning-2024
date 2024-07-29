@@ -1,11 +1,19 @@
 package training.Roller;
 
 import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import utils.GBSubsystem;
 
-import static training.Roller.RollerConstants.*;
+import static training.Roller.RollerConstants.ROLLER_ID;
+import static training.Roller.RollerConstants.ROLLER_MOTOR_TYPE;
+import static training.Roller.RollerConstants.ROLLER_GEAR_RATIO;
+import static training.Roller.RollerConstants.ROLLER_P;
+import static training.Roller.RollerConstants.ROLLER_I;
+import static training.Roller.RollerConstants.ROLLER_D;
+import static training.Roller.RollerConstants.POWER_LIMIT_ROLLER;
+import static training.Roller.RollerConstants.ROLLER_DEFAULT_VELOCITY_RPM;
+import static training.Roller.RollerConstants.ROLLER_LOG_PATH;
+
 import static training.Roller.RollerDirection.kBackward;
 import static training.Roller.RollerDirection.kForward;
 
@@ -24,7 +32,7 @@ public class Roller extends GBSubsystem {
     private RollerDirection direction;
 
     private Roller() {
-        this.motor = new CANSparkMax(ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
+        this.motor = new CANSparkMax(ROLLER_ID, ROLLER_MOTOR_TYPE);
 
         motor.getEncoder().setPositionConversionFactor(ROLLER_GEAR_RATIO);
         motor.getPIDController().setP(ROLLER_P);
