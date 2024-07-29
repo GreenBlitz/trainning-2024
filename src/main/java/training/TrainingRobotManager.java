@@ -8,7 +8,6 @@ import utils.DefaultRobotManager;
 import utils.KeyboardController;
 
 public class TrainingRobotManager extends DefaultRobotManager {
-
     private Robot robot;
     private final KeyboardController keyboardController;
     private Joystick joystick;

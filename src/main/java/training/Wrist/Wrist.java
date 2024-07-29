@@ -12,7 +12,6 @@ import static training.Wrist.WristConstants.*;
 
 public class Wrist extends GBSubsystem {
     private static Wrist instance;
-    private static Rotation2d targetAngle;
 
     public static Wrist getInstance() {
         if (instance == null) {
@@ -24,6 +23,7 @@ public class Wrist extends GBSubsystem {
     private final TalonSRX motor;
     private final TalonSRXConfiguration motorConfiguration;
     private BaseTalonConfiguration configuration;
+    private Rotation2d targetAngle;
 
     private Wrist() {
         this.motor = new TalonSRX(WRIST_ID);

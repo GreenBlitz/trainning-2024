@@ -18,7 +18,6 @@ import static training.Elbow.ElbowConstants.PID_SLOT;
 
 public class Elbow extends GBSubsystem {
     private static Elbow instance;
-    private static Rotation2d BaseRotations;
 
     public static Elbow getInstance() {
         if (instance == null) {
@@ -28,6 +27,7 @@ public class Elbow extends GBSubsystem {
     }
 
     private final CANSparkMax motor;
+    private final Rotation2d BaseRotations;
     private Rotation2d targetAngle;
 
     private Elbow() {
