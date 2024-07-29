@@ -3,11 +3,11 @@ package training.Elbow;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class MoveToAngleCommand extends Command {
+public class MoveElbowToAngle extends Command {
     private final Elbow elbowSubsystem;
     private final Rotation2d targetAngle;
 
-    public MoveToAngleCommand(Rotation2d angle) {
+    public MoveElbowToAngle(Rotation2d angle) {
         this.targetAngle = angle;
         this.elbowSubsystem = Elbow.getInstance();
     }

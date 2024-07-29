@@ -12,19 +12,19 @@ public class RollerCommandBuilder {
         this.rollerSubsystem = Roller.getInstance();
     }
 
-    public Command RollerStopCommand() {
+    public Command RollerStop() {
         return new InstantCommand(rollerSubsystem::stop, rollerSubsystem);
     }
 
-    public Command NoteOutCommand() {
-        return new InstantCommand(() -> RunRollerForwardCommand().withTimeout(ROLLER_ROLLING_TIME_SECONDS), rollerSubsystem);
+    public Command NoteOut() {
+        return new InstantCommand(() -> RunRollerForward().withTimeout(ROLLER_ROLLING_TIME_SECONDS), rollerSubsystem);
     }
 
-    public Command RunRollerBackwardCommand() {
+    public Command RunRollerBackward() {
         return new InstantCommand(rollerSubsystem::runBackward, rollerSubsystem);
     }
 
-    public Command RunRollerForwardCommand() {
+    public Command RunRollerForward() {
         return new InstantCommand(rollerSubsystem::runForward, rollerSubsystem);
     }
 }

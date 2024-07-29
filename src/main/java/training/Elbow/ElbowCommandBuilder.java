@@ -14,29 +14,29 @@ public class ElbowCommandBuilder {
         this.elbowSubsystem = Elbow.getInstance();
     }
 
-    public Command LiftElbowCommand() {
-        Command output = new SequentialCommandGroup(UpElbowCommand(), new WaitCommand(DEFAULT_TIME_IN_AIR_ELBOW_SECONDS), DownElbowCommand());
+    public Command LiftElbow() {
+        Command output = new SequentialCommandGroup(UpElbow(), new WaitCommand(DEFAULT_TIME_IN_AIR_ELBOW_SECONDS), DownElbow());
         output.addRequirements(elbowSubsystem);
         return output;
     }
 
-    public Command GoToPickUpPositionCommand() {
-        return new InstantCommand(() -> new MoveToAngleCommand(PICKUP_POSITION), elbowSubsystem);
+    public Command GoToPickUpPosition() {
+        return new InstantCommand(() -> new MoveElbowToAngle(PICKUP_POSITION), elbowSubsystem);
     }
 
-    public Command GoToScorePositionCommand() {
-        return new InstantCommand(() -> new MoveToAngleCommand(SCORE_POSITION), elbowSubsystem);
+    public Command GoToScorePosition() {
+        return new InstantCommand(() -> new MoveElbowToAngle(SCORE_POSITION), elbowSubsystem);
     }
 
     public Command LockElbowInPlaceCommand() {
         return new InstantCommand(elbowSubsystem::LockElbowInPlace, elbowSubsystem);
     }
 
-    public Command UpElbowCommand() {
-        return new InstantCommand(() -> new MoveToAngleCommand(DEFAULT_LIFT_DEGREES), elbowSubsystem);
+    public Command UpElbow() {
+        return new InstantCommand(() -> new MoveElbowToAngle(DEFAULT_LIFT_DEGREES), elbowSubsystem);
     }
 
-    public Command DownElbowCommand() {
-        return new InstantCommand(() -> new MoveToAngleCommand(DEFAULT_LIFT_DEGREES.times(-1)), elbowSubsystem);
+    public Command DownElbow() {
+        return new InstantCommand(() -> new MoveElbowToAngle(DEFAULT_LIFT_DEGREES.times(-1)), elbowSubsystem);
     }
 }
