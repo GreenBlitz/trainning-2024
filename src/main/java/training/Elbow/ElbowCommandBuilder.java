@@ -36,14 +36,6 @@ public class ElbowCommandBuilder {
         return output;
     }
 
-    public Command GoToPickUpPosition() {
-        return new InstantCommand(() -> MoveElbowToAngle(PICKUP_POSITION_ELBOW), elbowSubsystem);
-    }
-
-    public Command GoToScorePosition() {
-        return new InstantCommand(() -> MoveElbowToAngle(SCORE_POSITION_ELBOW), elbowSubsystem);
-    }
-
     public Command LockElbowInPlaceCommand() {
         return new InstantCommand(elbowSubsystem::LockElbowInPlace, elbowSubsystem);
     }
