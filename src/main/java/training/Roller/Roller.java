@@ -45,17 +45,18 @@ public class Roller extends GBSubsystem {
     }
 
     public void runForward() {
-        run = true;
+        this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
         direction = kForward;
     }
 
     public void runBackward() {
-        run = true;
+        this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
         direction = kBackward;
     }
 
     public void stop() {
-        run = false;
+        targetVelocity = 0;
+        motor.set(0);
     }
 
     @Override
