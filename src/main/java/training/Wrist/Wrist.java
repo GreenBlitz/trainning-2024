@@ -3,7 +3,6 @@ package training.Wrist;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import utils.GBSubsystem;
@@ -28,9 +27,11 @@ public class Wrist extends GBSubsystem {
     private final TalonSRX motor;
     private BaseTalonConfiguration configuration;
     private Rotation2d targetAngle;
+    private boolean inTestingMode;
 
     private Wrist() {
         this.motor = new TalonSRX(WRIST_ID);
+        this.inTestingMode = false;
         motor.configAllSettings(WRIST_PID_CONFIG);
     }
 
@@ -43,9 +44,23 @@ public class Wrist extends GBSubsystem {
         targetAngle = direction.getValue() == 1 ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
     }
 
+
+    /** Don't use this in production code. It's here only for debugging etc.
+     */
+    @Deprecated
+    public void setPowerTestingOnly(double power) {
+        inTestingMode = true;
+        if (Math.abs(power) >= POWER_LIMIT_WRIST) {
+            SmartDashboard.putString("motor is trying to spin in power above MAX_POWER_CIM limit", "");
+        }
+        motor.set(TalonSRXControlMode.PercentOutput, power);
+    }
+
     @Override
     public void subsystemPeriodic() {
-        motor.setSelectedSensorPosition(targetAngle.getRotations());
+        if (!inTestingMode) {
+            motor.setSelectedSensorPosition(targetAngle.getRotations());
+        }
     }
 
     @Override
