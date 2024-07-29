@@ -13,6 +13,7 @@ import static training.Wrist.WristConstants.WRIST_ID;
 import static training.Wrist.WristConstants.WRIST_UPPER_POSITION;
 import static training.Wrist.WristConstants.WRIST_LOWER_POSITION;
 import static training.Wrist.WristConstants.WRIST_LOG_PATH;
+import static training.Wrist.WristConstants.WRIST_PID_CONFIG;
 
 public class Wrist extends GBSubsystem {
     private static Wrist instance;
@@ -25,14 +26,12 @@ public class Wrist extends GBSubsystem {
     }
 
     private final TalonSRX motor;
-    private final TalonSRXConfiguration motorConfiguration;
     private BaseTalonConfiguration configuration;
     private Rotation2d targetAngle;
 
     private Wrist() {
         this.motor = new TalonSRX(WRIST_ID);
-        this.motorConfiguration = new TalonSRXConfiguration();
-        motor.configAllSettings(motorConfiguration);
+        motor.configAllSettings(WRIST_PID_CONFIG);
     }
 
     public void stop() {

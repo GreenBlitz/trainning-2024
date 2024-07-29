@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 import static training.Elbow.ElbowConstants.DEFAULT_TIME_IN_AIR_ELBOW_SECONDS;
 import static training.Elbow.ElbowConstants.PICKUP_POSITION_ELBOW;
 import static training.Elbow.ElbowConstants.SCORE_POSITION_ELBOW;
-import static training.Elbow.ElbowConstants.DEFAULT_LIFT_DEGREES;
+import static training.Elbow.ElbowConstants.LIFTING_POSITION_DEGREES;
 
 
 public class ElbowCommandBuilder {
@@ -49,10 +49,10 @@ public class ElbowCommandBuilder {
     }
 
     public Command UpElbow() {
-        return new InstantCommand(() -> MoveElbowToAngle(DEFAULT_LIFT_DEGREES), elbowSubsystem);
+        return new InstantCommand(() -> MoveElbowToAngle(LIFTING_POSITION_DEGREES), elbowSubsystem);
     }
 
     public Command DownElbow() {
-        return new InstantCommand(() -> MoveElbowToAngle(DEFAULT_LIFT_DEGREES.times(-1)), elbowSubsystem);
+        return new InstantCommand(() -> MoveElbowToAngle(LIFTING_POSITION_DEGREES.times(-1)), elbowSubsystem);
     }
 }
