@@ -6,27 +6,26 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 import static training.Roller.RollerConstants.ROLLER_ROLLING_TIME_SEC;
 
-public class RollerCommandBuilder extends Command {
-    private final Roller roller;
+public class RollerCommandBuilder {
+    private final Roller rollerSubsystem;
 
     public RollerCommandBuilder() {
-        this.roller = Roller.getInstance();
-        addRequirements(roller);
+        this.rollerSubsystem = Roller.getInstance();
     }
 
     public Command RollerStopCommand() {
-        return new InstantCommand(roller::stop);
+        return new InstantCommand(rollerSubsystem::stop, rollerSubsystem);
     }
 
     public Command NoteOutCommand() {
-        return new SequentialCommandGroup(new RunRollerForwardCommand().withTimeout(ROLLER_ROLLING_TIME_SEC), new RollerCommandBuilder());
+        return new InstantCommand(() -> RunRollerForwardCommand().withTimeout(ROLLER_ROLLING_TIME_SEC), rollerSubsystem);
     }
 
     public Command RunRollerBackwardCommand() {
-        return new InstantCommand(roller::runBackward);
+        return new InstantCommand(rollerSubsystem::runBackward, rollerSubsystem);
     }
 
     public Command RunRollerForwardCommand() {
-        return new InstantCommand(roller::runForward);
+        return new InstantCommand(rollerSubsystem::runForward, rollerSubsystem);
     }
 }

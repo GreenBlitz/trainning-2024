@@ -15,26 +15,28 @@ public class ElbowCommandBuilder {
     }
 
     public Command LiftElbowCommand() {
-        return new SequentialCommandGroup(UpElbowCommand(), new WaitCommand(0.1), DownElbowCommand());
+        Command out = new SequentialCommandGroup(UpElbowCommand(), new WaitCommand(0.1), DownElbowCommand());
+        out.addRequirements(elbowSubsystem);
+        return out;
     }
 
     public Command GoToPickUpPositionCommand() {
-        return new InstantCommand(() -> new SetElbowCommand(PICKUP_POSITION));
+        return new InstantCommand(() -> new SetElbowCommand(PICKUP_POSITION), elbowSubsystem);
     }
 
     public Command GoToScorePositionCommand() {
-        return new InstantCommand(() -> new SetElbowCommand(SCORE_POSITION));
+        return new InstantCommand(() -> new SetElbowCommand(SCORE_POSITION), elbowSubsystem);
     }
 
     public Command LockElbowInPlaceCommand() {
-        return new InstantCommand(elbowSubsystem::LockElbowInPlace);
+        return new InstantCommand(elbowSubsystem::LockElbowInPlace, elbowSubsystem);
     }
 
     public Command UpElbowCommand() {
-        return new InstantCommand(() -> new SetElbowCommand(DEFAULT_LIFT_DEG));
+        return new InstantCommand(() -> new SetElbowCommand(DEFAULT_LIFT_DEG), elbowSubsystem);
     }
 
     public Command DownElbowCommand() {
-        return new InstantCommand(() -> new SetElbowCommand(DEFAULT_LIFT_DEG.times(-1)));
+        return new InstantCommand(() -> new SetElbowCommand(DEFAULT_LIFT_DEG.times(-1)), elbowSubsystem);
     }
 }
