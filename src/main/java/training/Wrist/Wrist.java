@@ -44,10 +44,8 @@ public class Wrist extends GBSubsystem {
     }
 
     public void stop() {
+        targetAngle = new Rotation2d(0);
         motor.set(TalonSRXControlMode.PercentOutput, 0);
-        motorConfiguration.peakCurrentDuration = 0;
-        motorConfiguration.continuousCurrentLimit = 0;
-        motorConfiguration.peakCurrentLimit = 0;
     }
 
     public void rotate(WristDirection direction) {
