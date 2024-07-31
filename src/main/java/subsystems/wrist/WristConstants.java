@@ -2,7 +2,7 @@ package subsystems.wrist;
 
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 
-public class Constants {
+public class WristConstants {
 
     static final int WRIST_MOTOR_ID = 0; // TODO replace with actual value
     static final TalonSRXControlMode WRIST_PID_CONTROL_MOD =TalonSRXControlMode.Position;
