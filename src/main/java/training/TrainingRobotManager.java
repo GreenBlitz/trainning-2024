@@ -1,5 +1,6 @@
 package training;
 
+import training.commands.MoveLinearMotorByVoltage;
 import utils.DefaultRobotManager;
 import utils.joysticks.SmartJoystick;
 
@@ -17,6 +18,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
     @Override
     public void trainingPeriodic() {
         // add stuff...
+        joystick.A.whileTrue(new MoveLinearMotorByVoltage(1));
     }
 
     @Override
