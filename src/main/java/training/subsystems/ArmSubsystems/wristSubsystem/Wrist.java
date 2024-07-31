@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
@@ -17,7 +18,11 @@ public class Wrist extends GBSubsystem {
         this.motor = new TalonSRX(WristConstants.WRIST_ID);
         this.targetPosition = WristConstants.WRIST_STARTING_POSITION;
         motor.configAllSettings(WristConstants.TALON_SRX_CONFIG);
-        motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        motor.configSelectedFeedbackSensor(
+                FeedbackDevice.CTRE_MagEncoder_Relative,
+                WristConstants.PID_SLOT,
+                WristConstants.TIMEOUT_FOR_CONFIG_SET
+        );
     }
 
     @Override
@@ -27,7 +32,7 @@ public class Wrist extends GBSubsystem {
 
     @Override
     protected void subsystemPeriodic() {
-        SmartDashboard.putNumber("position",5);
+        Logger.recordOutput("hfhf", getPosition());
     }
     
 
