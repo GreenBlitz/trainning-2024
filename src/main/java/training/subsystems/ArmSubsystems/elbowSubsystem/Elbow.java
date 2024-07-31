@@ -63,5 +63,4 @@ public class Elbow extends GBSubsystem {
         return (Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees());
     }
 
-
 }

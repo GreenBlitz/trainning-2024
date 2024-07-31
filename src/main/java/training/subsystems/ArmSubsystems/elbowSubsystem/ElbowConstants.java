@@ -25,5 +25,6 @@ public class ElbowConstants {
             ElbowConstants.ELBOW_KS_VALUE,
             ElbowConstants.ELBOW_KG_VALUE,
             ElbowConstants.ELBOW_KV_VALUE,
-            ElbowConstants.ELBOW_KA_VALUE);
+            ElbowConstants.ELBOW_KA_VALUE
+    );
 }

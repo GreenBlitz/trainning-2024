@@ -17,8 +17,7 @@ public class ElbowDefultCommand extends Command {
 
     @Override
     public void end(boolean interrupted) {
-        super.end(true);
+        super.end(interrupted);
     }
-
 
 }

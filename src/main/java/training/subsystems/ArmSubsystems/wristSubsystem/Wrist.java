@@ -14,7 +14,7 @@ public class Wrist extends GBSubsystem {
     private Wrist() {
         this.motor = new TalonSRX(WristConstants.WRIST_ID);
         this.targetPosition = WristConstants.WRIST_STARTING_POSITION;
-        motor.configAllSettings(WristConstants.SRX_CONFIG);
+        motor.configAllSettings(WristConstants.TALON_SRX_CONFIG);
     }
 
     @Override

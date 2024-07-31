@@ -24,8 +24,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
     @Override
     public void trainingInit() {
-        Robot robot = new Robot();
-        SmartJoystick smartJoystick = new SmartJoystick(RobotConstants.ID_OF_SMART_JOYSTICK);
+        this.robot = new Robot();
+        this.smartJoystick = new SmartJoystick(RobotConstants.ID_OF_SMART_JOYSTICK);
 
         smartJoystick.B.onTrue(new MoveElbow(ElbowConstants.ELBOW_CLIMBING_POSITION));
         smartJoystick.A.onTrue(new MoveElbow(ElbowConstants.ELBOW_CLIMBING_POSITION));
@@ -36,13 +36,15 @@ public class TrainingRobotManager extends DefaultRobotManager {
         smartJoystick.R1.onTrue(new RollClockwise());
         smartJoystick.R2.onTrue(new RollCounterClockwise());
 
+        Elbow.getInstance().setDefaultCommand(new ElbowDefultCommand());
+        Wrist.getInstance().setDefaultCommand(new WristDefultCommand());
+
     }
 
     @Override
     public void trainingPeriodic() {
         // add stuff...
-        Elbow.getInstance().setDefaultCommand(new ElbowDefultCommand());
-        Wrist.getInstance().setDefaultCommand(new WristDefultCommand());
+
 
     }
 

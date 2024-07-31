@@ -21,12 +21,12 @@ public class WristConstants {
     protected static final double WRIST_KV_VALUE = 0;
     protected static final double WRIST_KA_VALUE = 0;
 
-    protected static final TalonSRXConfiguration SRX_CONFIG = new TalonSRXConfiguration();
+    protected static final TalonSRXConfiguration TALON_SRX_CONFIG = new TalonSRXConfiguration();
 
     static {
-        SRX_CONFIG.slot0.kP = WRIST_P_VALUE;
-        SRX_CONFIG.slot0.kI = WRIST_I_VALUE;
-        SRX_CONFIG.slot0.kD = WRIST_D_VALUE;
+        TALON_SRX_CONFIG.slot0.kP = WRIST_P_VALUE;
+        TALON_SRX_CONFIG.slot0.kI = WRIST_I_VALUE;
+        TALON_SRX_CONFIG.slot0.kD = WRIST_D_VALUE;
     }
 
 }

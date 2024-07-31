@@ -22,7 +22,4 @@ public class MoveWrist extends Command {
         return wrist.isAtTargetAngle(targetPosition, WristConstants.WRIST_TOLERANCE_DEGREES);
     }
 
-    public void end(boolean interrupted) {
-        wrist.stayAtPosition();
-    }
 }

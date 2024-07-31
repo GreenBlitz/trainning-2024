@@ -23,7 +23,4 @@ public class MoveElbow extends Command {
         return elbow.isAtTargetAngle(targetPosition, ElbowConstants.ELBOW_TOLERANCE_DEGREES);
     }
 
-    public void end(boolean interrupted) {
-        elbow.stayAtPosition();
-    }
 }
