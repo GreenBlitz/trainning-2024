@@ -11,15 +11,12 @@ import utils.GBSubsystem;
 public class WristSubsystem extends GBSubsystem {
     private TalonSRX motor;
     private Rotation2d position;
-    private Module module;
-
-    public WristSubsystem(){
-        this.motor = new TalonSRX(0);
+    private static WristSubsystem instance;
+    private WristSubsystem() {
+        this.motor = new TalonSRX(WristConstans.MOTOR_ID);
         this.position = new Rotation2d();
-        this.module = new Module();
+        motor.configAllSettings(WristConstans.TALON_SRX_CONFIGURATION);
     }
-
-
     @Override
     protected String getLogPath() {
         return "";

@@ -24,7 +24,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
         joystick.A.whileTrue(new MoveLinearMotor(robot, joystick));
         joystick.B.whileTrue(new MoveAngularByPosition(robot, Rotation2d.fromRotations(2)));
         joystick.X.whileTrue(new MoveAngularByPosition(robot, Rotation2d.fromRotations(1.5)));
-        joystick.Y.whileTrue(new MoveAngularByPosition(robot, ) )
+
     }
 
     @Override

@@ -1,5 +1,6 @@
 package training.commands;
 
+import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -11,28 +12,20 @@ import utils.joysticks.Axis;
 import utils.joysticks.SmartJoystick;
 
 public class MoveAngularByPosition extends Command {
-    private Module module;
+    private TalonFX motor;
     private Rotation2d position;
 
     public MoveAngularByPosition(Robot robot, Rotation2d position) {
-        this.module = robot.getModule();
+        this.motor = robot.getMotor();
         this.position = position;
-        addRequirements(module);
     }
 
     @Override
     public void execute() {
-        module.setAngularMotorByPosition(position);
+        motor.setPosition(position.getRotations());
     }
 
-    @Override
-    public boolean isFinished() {
-        return Math.abs(module.getAngularPosition().getDegrees() - position.getDegrees()) <= ModuleConstants.ANGULAR_TOLERANCE.getDegrees();
-    }
-
-    @Override
     public void end(boolean interrupted) {
-        module.stopAngularMotor();
-        Logger.recordOutput("Angular position of module",module.getAngularPosition());
+        motor.stopMotor();
     }
 }

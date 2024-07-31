@@ -1,19 +1,21 @@
 package training.commands;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.Robot;
 import training.subsystems.Module;
+import training.subsystems.RobotArm.ElbowSubsystem;
 import utils.joysticks.Axis;
 import utils.joysticks.SmartJoystick;
 
-public class MoveAngularMotor extends Command{
-    private Module module;
+public class MoveAngularMotor extends Command {
+    private TalonFX motor;
     private SmartJoystick joystick;
-    public MoveAngularMotor(Robot robot, SmartJoystick joystick) {
-        this.module = robot.getModule();
-        addRequirements(module);
-        this.joystick = joystick;
 
+    public MoveAngularMotor(TalonFX motor, SmartJoystick joystick) {
+        this.motor = motor;
+        this.joystick = joystick;
     }
 
     @Override
@@ -23,7 +25,7 @@ public class MoveAngularMotor extends Command{
 
     @Override
     public void execute() {
-        module.moveAngularMotor(joystick.getAxisValue(Axis.LEFT_Y) * 0.8);
+        motor.set(joystick.getAxisValue(Axis.LEFT_Y) * 0.8);
     }
 
     @Override
@@ -33,7 +35,7 @@ public class MoveAngularMotor extends Command{
 
     @Override
     public void end(boolean interrupted) {
-        module.stopAngularMotor();
+        motor.stopMotor();
 
     }
 

@@ -1,17 +1,18 @@
 package training;
 
+import com.ctre.phoenix6.hardware.TalonFX;
 import training.subsystems.Module;
 
 public class Robot {
 
-    private Module module;
+    private TalonFX motor;
 
     public Robot() {
-        this.module = new Module();
+        this.motor = new TalonFX(0);
     }
 
     // Add your subsystems getters...
-    public Module getModule() {
-        return module;
+    public TalonFX getMotor() {
+        return motor;
     }
 }
