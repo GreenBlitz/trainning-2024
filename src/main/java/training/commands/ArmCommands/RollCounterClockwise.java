@@ -1,21 +1,20 @@
 package training.commands.ArmCommands;
 
-import training.subsystems.ArmSubsystems.Roller;
+import training.subsystems.ArmSubsystems.RollerPackage.Roller;
 
-public class RollBackward {
+public class RollCounterClockwise {
 
     private final Roller roller;
 
-    public RollBackward(Roller roller){
-        this.roller=roller;
+    public RollCounterClockwise() {
+        this.roller = Roller.getInstance();
     }
 
     public void initialize() {
         roller.rollBackward();
     }
 
-
     public void end(boolean interrupted) {
-        roller.stopRoller();
+        roller.stop();
     }
 }

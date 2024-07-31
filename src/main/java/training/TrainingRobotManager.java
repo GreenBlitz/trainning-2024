@@ -8,7 +8,6 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
     private Robot robot;
 
-
     @Override
     public void trainingInit() {
         robot = new Robot();
