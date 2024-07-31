@@ -1,5 +1,4 @@
 package training.subsystems.Arm.Elbow;
-
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
@@ -10,7 +9,7 @@ import utils.GBSubsystem;
 public class ElbowSubsystem  extends GBSubsystem {
     private final CANSparkMax motor;
     private final Rotation2d targetPosition;
-    protected static final double tolerance = 5;
+
 
     @Override
     protected String getLogPath() {
@@ -53,11 +52,11 @@ public class ElbowSubsystem  extends GBSubsystem {
     }
 
     public double tolerance(){
-        return tolerance;
+        return ElbowConstants.TOLERANCE;
     }
 
-    public boolean isAtPosition(Rotation2d target, double tolerance){
-        return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= tolerance;
+    public boolean isAtPosition(Rotation2d target){
+        return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE;
     }
 
 }

@@ -8,7 +8,7 @@ import utils.GBSubsystem;
 public class WristSubsystem extends GBSubsystem {
     private final TalonSRX motor;
     private final Rotation2d targetPosition;
-    protected static final double tolerance = 5;
+
 
     @Override
     protected String getLogPath() {
@@ -42,10 +42,10 @@ public class WristSubsystem extends GBSubsystem {
     }
 
     public double tolerance(){
-        return tolerance;
+        return WristConstants.TOLERANCE;
     }
 
-    public boolean isAtPosition(Rotation2d target, double tolerance){
-        return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= tolerance;
+    public boolean isAtPosition(Rotation2d target){
+        return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= WristConstants.TOLERANCE;
     }
 }

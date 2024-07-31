@@ -1,5 +1,4 @@
 package training.commands.Arm.Elbow;
-
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.Arm.Elbow.ElbowSubsystem;
@@ -20,7 +19,7 @@ public class MoveElbow extends Command {
 
     @Override
     public boolean isFinished() {
-        return elbow.isAtPosition(targetPosition, elbow.tolerance());
+        return elbow.isAtPosition(targetPosition);
     }
 
     @Override

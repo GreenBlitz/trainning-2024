@@ -1,10 +1,11 @@
 package training.subsystems.Arm.Elbow;
-
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 
 public class ElbowConstants {
     protected static final int ELBOW_ID = 0;
+
+    protected static final double TOLERANCE = 5;
 
     protected static final Rotation2d ELBOW_START_POSITION = Rotation2d.fromDegrees(0);
     protected static final Rotation2d ELBOW_CLIMBING_POSITION = Rotation2d.fromDegrees(180);

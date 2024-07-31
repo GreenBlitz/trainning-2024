@@ -1,5 +1,4 @@
 package training.subsystems.Arm.Roller;
-
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import utils.GBSubsystem;
@@ -34,6 +33,6 @@ public class RollerSubsystem extends GBSubsystem {
     }
 
     public void reverseRoller(){
-        setPower(-RollerConstants.DEFAULT_SPEED);
+        setPower(-RollerConstants.DEFAULT_SPEED_BACKWARDS);
     }
 }

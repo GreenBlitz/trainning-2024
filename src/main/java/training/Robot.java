@@ -1,7 +1,4 @@
 package training;
-
-
-
 public class Robot {
 
     // Enter your subsystems...

@@ -1,14 +1,12 @@
 package training;
-import utils.SmartJoystick;
 
+import utils.SmartJoystick;
 import utils.DefaultRobotManager;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
-
-
     private SmartJoystick joystick;
-    
+
     private Robot robot;
 
     @Override
@@ -28,11 +26,9 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
     }
 
-
     @Override
     public void teleopExit() {
 
         // cancel your command...
     }
-
 }
