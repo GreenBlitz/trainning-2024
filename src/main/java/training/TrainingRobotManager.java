@@ -1,14 +1,12 @@
 package training;
-import com.ctre.phoenix6.hardware.TalonFX;
 import utils.SmartJoystick;
 
-import training.commands.GoTo;
 import utils.DefaultRobotManager;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
 
-    private TalonFX motor;
+
     private SmartJoystick joystick;
     private final double PI = Math.PI;
     private Robot robot;
@@ -17,8 +15,6 @@ public class TrainingRobotManager extends DefaultRobotManager {
     public void trainingInit() {
         this.robot = new Robot();
         this.joystick = new SmartJoystick(0);
-        joystick.A.onTrue(new GoTo(0.5 * Math.PI));
-        joystick.B.onTrue(new GoTo(1.2 * Math.PI));
     }
 
     @Override
@@ -29,13 +25,13 @@ public class TrainingRobotManager extends DefaultRobotManager {
     @Override
     public void teleopInit() {
         // schedule your command...
-        this.motor = new TalonFX(0);
+
     }
 
 
     @Override
     public void teleopExit() {
-        motor.set(0);
+
         // cancel your command...
     }
 
