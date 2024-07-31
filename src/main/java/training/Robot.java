@@ -6,6 +6,8 @@ import training.subsystems.ArmSubsystems.WristPackage.Wrist;
 
 public class Robot {
 
+    // Enter your subsystems...
+
     private final Elbow elbow;
     private final Wrist wrist;
     private final Roller roller;

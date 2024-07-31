@@ -10,7 +10,7 @@ public class RollClockwise {
     }
 
     public void initialize() {
-        roller.rollForward();
+        roller.rollClockwise();
     }
 
     public void end(boolean interrupted) {

@@ -22,9 +22,9 @@ public class ElbowConstants {
     protected static final double ELBOW_KV_VALUE = 0;
     protected static final double ELBOW_KA_VALUE = 0;
 
-    protected static final ArmFeedforward armFeedforward =new ArmFeedforward(
-            WristConstants.WRIST_KS_VALUE,
-            WristConstants.WRIST_KG_VALUE,
-            WristConstants.WRIST_KV_VALUE,
-            WristConstants.WRIST_KA_VALUE);
+    protected static final ArmFeedforward armFeedforward = new ArmFeedforward(
+            ElbowConstants.ELBOW_KS_VALUE,
+            ElbowConstants.ELBOW_KG_VALUE,
+            ElbowConstants.ELBOW_KV_VALUE,
+            ElbowConstants.ELBOW_KA_VALUE);
 }

@@ -29,9 +29,9 @@ public class Elbow extends GBSubsystem {
 
     }
 
-    public static Elbow getInstance(){
-        if(instance==null){
-            instance=new Elbow();
+    public static Elbow getInstance() {
+        if (instance == null) {
+            instance = new Elbow();
         }
         return instance;
     }
@@ -41,7 +41,8 @@ public class Elbow extends GBSubsystem {
                 position.getDegrees(),
                 CANSparkBase.ControlType.kPosition,
                 0,
-                ElbowConstants.armFeedforward.calculate(getPosition().getRadians(), getVelocity()));
+                ElbowConstants.armFeedforward.calculate(getPosition().getRadians(), getVelocity())
+        );
     }
 
     public void stayAtPosition() {

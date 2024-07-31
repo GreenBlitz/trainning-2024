@@ -11,7 +11,7 @@ public class RollCounterClockwise {
     }
 
     public void initialize() {
-        roller.rollBackward();
+        roller.rollBCounterClockwise();
     }
 
     public void end(boolean interrupted) {
