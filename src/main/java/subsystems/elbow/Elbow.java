@@ -9,7 +9,7 @@ public class Elbow extends GBSubsystem {
     private static CANSparkMax motor;
 
     private Elbow() {
-        motor = new CANSparkMax(ElbowConstants.ELBOW_MOTOR_ID, ElbowConstants.ELBOW_MOTOR_TYPE);
+        motor = new CANSparkMax(ElbowConstants.ELBOW_MOTOR_ID, ElbowConstants.ELBOW_MOTOR_BRUSHLESS_TYPE);
     }
 
     public static Elbow getInstance() {

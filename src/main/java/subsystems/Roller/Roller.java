@@ -9,7 +9,7 @@ public class Roller extends GBSubsystem {
     private static CANSparkMax motor;
 
     private Roller() {
-        motor = new CANSparkMax(RollerConstants.ROLLER_MOTOR_ID, RollerConstants.ROLLER_MOTOR_TYPE);
+        motor = new CANSparkMax(RollerConstants.ROLLER_MOTOR_ID, RollerConstants.ROLLER_MOTOR_BRUSHLESS_TYPE);
     }
 
     public static Roller getInstance() {
