@@ -1,6 +1,7 @@
 package training.subsystems.ArmSubsystems.wristSubsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,6 +17,7 @@ public class Wrist extends GBSubsystem {
         this.motor = new TalonSRX(WristConstants.WRIST_ID);
         this.targetPosition = WristConstants.WRIST_STARTING_POSITION;
         motor.configAllSettings(WristConstants.TALON_SRX_CONFIG);
+        motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class Wrist extends GBSubsystem {
     }
 
     public Rotation2d getPosition() {
-        return Rotation2d.fromRotations(4);
+        return Rotation2d.fromRotations(motor.getSelectedSensorPosition());
     }
 
     public double getVelocity() {
