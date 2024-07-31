@@ -27,12 +27,12 @@ public class Elbow extends GBSubsystem {
         return motor.getEncoder().getVelocity();
     }
 
-    private double calculateFitForward() {
-        return ElbowConstants.ELBOW_FIT_FORWARD.calculate(getAngle().getRadians(), getRPMVelocity());
+    private double calculateFeedForward() {
+        return ElbowConstants.ELBOW_FEED_FORWARD.calculate(getAngle().getRadians(), getRPMVelocity());
     }
 
     public void GoToPosition(Rotation2d position) {
-        motor.getPIDController().setReference(position.getRadians(), ElbowConstants.ELBOW_CONTROL_TYPE, ElbowConstants.WRIST_PID_SLOT, calculateFitForward());
+        motor.getPIDController().setReference(position.getRadians(), ElbowConstants.ELBOW_CONTROL_TYPE, ElbowConstants.WRIST_PID_SLOT, calculateFeedForward());
     }
 
     @Override
