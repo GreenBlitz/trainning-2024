@@ -12,7 +12,7 @@ public class ElbowConstants {
 
     static final int SINGLE_ROTATION=1;
 
-    static final ArmFeedforward ELBOW_FIT_ARM = new ArmFeedforward(0,0,0); // TODO replace with useful FF values
+    static final ArmFeedforward ELBOW_FIT_FORWARD = new ArmFeedforward(0,0,0); // TODO replace with useful FF values
     static final int WRIST_PID_SLOT =0;
 
 

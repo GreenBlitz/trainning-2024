@@ -28,7 +28,7 @@ public class Elbow extends GBSubsystem {
     }
 
     private double calculateFitForward(){
-        return ElbowConstants.ELBOW_FIT_ARM.calculate(getAngle().getRadians(),getRPMVelocity());
+        return ElbowConstants.ELBOW_FIT_FORWARD.calculate(getAngle().getRadians(),getRPMVelocity());
     }
 
     public void GoToPosition(Rotation2d position){
