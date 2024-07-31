@@ -8,7 +8,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 
     private SmartJoystick joystick;
-    private final double PI = Math.PI;
+    
     private Robot robot;
 
     @Override

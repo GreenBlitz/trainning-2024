@@ -21,7 +21,7 @@ public class RollerSubsystem extends GBSubsystem {
         this.motor = new CANSparkMax(RollerConstants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
     }
 
-    public void setSpeed(double power){
+    public void setPower(double power){
         motor.set(power);
     }
 
@@ -29,11 +29,11 @@ public class RollerSubsystem extends GBSubsystem {
         motor.set(0);
     }
 
-    public double getSpeed(){
+    public double getVelocity(){
         return motor.getEncoder().getVelocity();
     }
 
     public void reverseRoller(){
-        setSpeed(-RollerConstants.DEFAULT_SPEED);
+        setPower(-RollerConstants.DEFAULT_SPEED);
     }
 }

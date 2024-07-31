@@ -12,7 +12,7 @@ public class RollerReverse extends Command {
 
     @Override
     public void initialize() {
-        roller.setSpeed(-RollerConstants.DEFAULT_SPEED);
+        roller.setPower(-RollerConstants.DEFAULT_SPEED);
     }
 
     @Override

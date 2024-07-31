@@ -31,12 +31,11 @@ public class ElbowSubsystem  extends GBSubsystem {
     }
 
     public void moveElbow(Rotation2d position){
-        new ArmFeedforward(ElbowConstants.ELBOW_KS, ElbowConstants.ELBOW_KG, ElbowConstants.ELBOW_KV, ElbowConstants.ELBOW_KA);
             motor.getPIDController().setReference(
                     position.getDegrees(),
                     CANSparkBase.ControlType.kPosition,
                     0,
-                    ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getSpeed())
+                    ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity())
             );
 
     }
@@ -49,7 +48,7 @@ public class ElbowSubsystem  extends GBSubsystem {
         return Rotation2d.fromRotations(motor.getEncoder().getPosition());
     }
 
-    public double getSpeed(){
+    public double getVelocity(){
         return motor.getEncoder().getVelocity();
     }
 
