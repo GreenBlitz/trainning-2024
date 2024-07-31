@@ -8,22 +8,22 @@ public class Roller extends GBSubsystem {
     private static Roller instance;
     private static CANSparkMax motor;
 
-    private Roller(){
-        motor=new CANSparkMax(RollerConstants.ROLLER_MOTOR_ID, RollerConstants.ROLLER_MOTOR_TYPE);
+    private Roller() {
+        motor = new CANSparkMax(RollerConstants.ROLLER_MOTOR_ID, RollerConstants.ROLLER_MOTOR_TYPE);
     }
 
     public static Roller getInstance() {
-        if (instance==null){
-            instance=new Roller();
+        if (instance == null) {
+            instance = new Roller();
         }
         return instance;
     }
 
-    public void setRotationalSpeed(double rotationalSpeed){
+    public void setRotationalSpeed(double rotationalSpeed) {
         motor.getPIDController().setReference(rotationalSpeed, RollerConstants.ROLLER_CONTROL_TYPE);
     }
 
-    public void stop(){
+    public void stop() {
         motor.set(0);
     }
 
