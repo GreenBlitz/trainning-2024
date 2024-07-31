@@ -1,4 +1,4 @@
-package training.subsystems.ArmSubsystems.WristPackage;
+package training.subsystems.ArmSubsystems.wristSubsystem;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -7,7 +7,7 @@ public class WristConstants {
 
     protected static final int WRIST_ID = 0;
 
-    protected static final Rotation2d WRIST_STARTING_POSITION = Rotation2d.fromDegrees(8);
+    public static final Rotation2d WRIST_STARTING_POSITION = Rotation2d.fromDegrees(8);
     public static final Rotation2d WRIST_CLIMBING_POSITION = Rotation2d.fromDegrees(93);
 
     public static final Rotation2d WRIST_TOLERANCE_DEGREES = Rotation2d.fromDegrees(5);

@@ -1,10 +1,11 @@
-package training.commands.ArmCommands;
+package training.commands.ArmCommands.wristCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.ArmSubsystems.WristPackage.Wrist;
-import training.subsystems.ArmSubsystems.WristPackage.WristConstants;
+import edu.wpi.first.wpilibj2.command.Command;
+import training.subsystems.ArmSubsystems.wristSubsystem.Wrist;
+import training.subsystems.ArmSubsystems.wristSubsystem.WristConstants;
 
-public class MoveWrist {
+public class MoveWrist extends Command {
     private final Wrist wrist;
     private final Rotation2d targetPosition;
 
@@ -14,7 +15,7 @@ public class MoveWrist {
     }
 
     public void initialize() {
-        wrist.move(targetPosition);
+        wrist.goToPosition(targetPosition);
     }
 
     public boolean isFinished() {
@@ -22,6 +23,6 @@ public class MoveWrist {
     }
 
     public void end(boolean interrupted) {
-        wrist.stop();
+        wrist.stayAtPosition();
     }
 }

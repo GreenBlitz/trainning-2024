@@ -1,4 +1,4 @@
-package training.subsystems.ArmSubsystems.WristPackage;
+package training.subsystems.ArmSubsystems.wristSubsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -34,12 +34,12 @@ public class Wrist extends GBSubsystem {
         return instance;
     }
 
-    public void move(Rotation2d targetPosition) {
+    public void goToPosition(Rotation2d targetPosition) {
         motor.set(ControlMode.Position, targetPosition.getRotations());
     }
 
-    public void stop() {
-        motor.set(ControlMode.PercentOutput, 0);
+    public void stayAtPosition() {
+        goToPosition(getPosition());
     }
 
     public Rotation2d getPosition() {

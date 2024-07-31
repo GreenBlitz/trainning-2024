@@ -1,8 +1,9 @@
-package training.commands.ArmCommands;
+package training.commands.ArmCommands.rollerCommands;
 
-import training.subsystems.ArmSubsystems.RollerPackage.Roller;
+import edu.wpi.first.wpilibj2.command.Command;
+import training.subsystems.ArmSubsystems.rollerSubsystem.Roller;
 
-public class RollClockwise {
+public class RollClockwise extends Command {
     private final Roller roller;
 
     public RollClockwise() {

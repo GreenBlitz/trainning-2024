@@ -1,4 +1,4 @@
-package training.subsystems.ArmSubsystems.RollerPackage;
+package training.subsystems.ArmSubsystems.rollerSubsystem;
 
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
@@ -23,9 +23,9 @@ public class Roller extends GBSubsystem {
 
     }
 
-    public static Roller getInstance(){
-        if(instance==null){
-            instance=new Roller();
+    public static Roller getInstance() {
+        if (instance == null) {
+            instance = new Roller();
         }
         return instance;
     }

@@ -1,9 +1,10 @@
-package training.subsystems.ArmSubsystems.ElbowPackage;
+package training.subsystems.ArmSubsystems.elbowSubsystem;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
+import training.commands.ArmCommands.elbowCommands.ElbowDefultCommand;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
@@ -17,6 +18,7 @@ public class Elbow extends GBSubsystem {
         motor.getPIDController().setP(ElbowConstants.ELBOW_P_VALUE);
         motor.getPIDController().setI(ElbowConstants.ELBOW_I_VALUE);
         motor.getPIDController().setD(ElbowConstants.ELBOW_D_VALUE);
+
     }
 
     @Override
@@ -41,7 +43,7 @@ public class Elbow extends GBSubsystem {
                 position.getDegrees(),
                 CANSparkBase.ControlType.kPosition,
                 0,
-                ElbowConstants.armFeedforward.calculate(getPosition().getRadians(), getVelocity())
+                ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity())
         );
     }
 
@@ -60,4 +62,6 @@ public class Elbow extends GBSubsystem {
     public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d tolerance) {
         return (Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees());
     }
+
+
 }
