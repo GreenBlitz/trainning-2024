@@ -17,7 +17,7 @@ public class MoveElbowToAngle extends Command {
 
     @Override
     public void execute() {
-        elbow.GoToPosition(angle);
+        elbow.goToPosition(angle);
     }
 
 }
