@@ -17,6 +17,6 @@ public class MoveWristToAngle extends Command {
 
     @Override
     public void execute() {
-        wrist.getToPosition(angle);
+        wrist.GoToPosition(angle);
     }
 }
