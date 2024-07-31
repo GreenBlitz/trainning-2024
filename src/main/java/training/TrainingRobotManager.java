@@ -1,11 +1,13 @@
 package training;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import training.commands.ArmCommands.elbowCommands.ElbowDefultCommand;
 import training.commands.ArmCommands.elbowCommands.MoveElbow;
 import training.commands.ArmCommands.wristCommands.MoveWrist;
 import training.commands.ArmCommands.rollerCommands.RollClockwise;
 import training.commands.ArmCommands.rollerCommands.RollCounterClockwise;
 import training.commands.ArmCommands.wristCommands.WristDefultCommand;
+import training.commands.ArmCommands.wristCommands.qiul;
 import training.subsystems.ArmSubsystems.elbowSubsystem.Elbow;
 import training.subsystems.ArmSubsystems.elbowSubsystem.ElbowConstants;
 import training.subsystems.ArmSubsystems.wristSubsystem.Wrist;
@@ -33,8 +35,10 @@ public class TrainingRobotManager extends DefaultRobotManager {
         smartJoystick.Y.onTrue(new MoveWrist(WristConstants.WRIST_CLIMBING_POSITION));
         smartJoystick.X.onTrue(new MoveWrist(WristConstants.WRIST_STARTING_POSITION));
 
-        smartJoystick.R1.onTrue(new RollClockwise());
-        smartJoystick.R2.onTrue(new RollCounterClockwise());
+        smartJoystick.R1.whileTrue(new RollClockwise());
+        smartJoystick.R2.whileTrue(new RollCounterClockwise());
+
+        smartJoystick.POV_DOWN.whileTrue(new qiul(Rotation2d.fromDegrees(60)));
 
         Elbow.getInstance().setDefaultCommand(new ElbowDefultCommand());
         Wrist.getInstance().setDefaultCommand(new WristDefultCommand());
