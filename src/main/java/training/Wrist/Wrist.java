@@ -51,9 +51,9 @@ public class Wrist extends GBSubsystem {
     public void setPowerTestingOnly(double power) {
         inTestingMode = true;
         if (Math.abs(power) >= POWER_LIMIT_WRIST) {
-            SmartDashboard.putString("motor is trying to spin in power above MAX_POWER_CIM limit", "");
+            SmartDashboard.putString("motor is trying to spin in power above MAX_POWER_CIM limit. Reverting to 0.9", "");
         }
-        motor.set(TalonSRXControlMode.PercentOutput, power);
+        motor.set(TalonSRXControlMode.PercentOutput, Math.min(power, 0.9));
     }
 
     @Override
