@@ -6,22 +6,22 @@ import training.subsystems.movement.ModuleSubsystem;
 
 public class MoveForwardCommand extends Command {
     private final double speed;
-    private final ModuleSubsystem subsystem;
+    private final ModuleSubsystem module;
 
     public MoveForwardCommand(double speed) {
         this.speed = speed;
-        this.subsystem = Robot.get();
-        this.addRequirements(subsystem);
+        this.module = Robot.get();
+        this.addRequirements(module);
     }
 
     @Override
     public void initialize() {
-        subsystem.setAngularSpeed(0);
-        subsystem.setLinearSpeed(speed);
+        module.setAngularSpeed(0);
+        module.setLinearSpeed(speed);
     }
 
     @Override
     public void end(boolean interrupted) {
-        subsystem.stopMotors();
+        module.stopMotors();
     }
 }

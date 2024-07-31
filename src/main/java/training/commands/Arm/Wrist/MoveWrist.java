@@ -1,8 +1,8 @@
-package training.commands.Arm;
+package training.commands.Arm.Wrist;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.Arm.WristSubsystem;
+import training.subsystems.Arm.Wrist.WristSubsystem;
 
 public class MoveWrist extends Command {
     private final WristSubsystem wrist;
@@ -15,12 +15,12 @@ public class MoveWrist extends Command {
 
     @Override
     public void initialize() {
-        wrist.setSpeed(ArmConstants.DEFAULT_SPEED);
+        wrist.setSpeed(WristConstants.DEFAULT_SPEED);
     }
 
     @Override
     public boolean isFinished() {
-        return wrist.isAtPosition(targetPosition, ArmConstants.WRIST_TOLERANCE);
+        return wrist.isAtPosition(targetPosition, wrist.tolerance());
     }
 
     @Override

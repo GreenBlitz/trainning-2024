@@ -2,7 +2,7 @@ package training;
 import com.ctre.phoenix6.hardware.TalonFX;
 import utils.SmartJoystick;
 
-import training.commands.GotoAngle;
+import training.commands.GoTo;
 import utils.DefaultRobotManager;
 
 public class TrainingRobotManager extends DefaultRobotManager {
@@ -17,8 +17,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
     public void trainingInit() {
         this.robot = new Robot();
         this.joystick = new SmartJoystick(0);
-        joystick.A.onTrue(new GotoAngle(0.5 * Math.PI));
-        joystick.B.onTrue(new GotoAngle(1.2 * Math.PI));
+        joystick.A.onTrue(new GoTo(0.5 * Math.PI));
+        joystick.B.onTrue(new GoTo(1.2 * Math.PI));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package training.subsystems.movement;
 
 import com.ctre.phoenix6.hardware.TalonFX;
+import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 
@@ -31,8 +32,7 @@ public class ModuleSubsystem extends GBSubsystem {
     }
 
     public double getRadAngle() {
-        return Constants.RAD_FULL_CIRCLE_ANGLE *
-                     (angularMotor.getPosition().getValue() % Constants.TALONFX_MOTOR_FULL_CIRCLE);
+        return (angularMotor.getPosition().getValue() % 1);
     }
 
     public boolean isAtAngle(double angle, double epsilon) {

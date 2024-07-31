@@ -1,9 +1,8 @@
-package training.commands.Arm;
+package training.commands.Arm.Elbow;
 
-import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.Arm.ElbowSubsystem;
+import training.subsystems.Arm.Elbow.ElbowSubsystem;
 
 public class MoveElbow extends Command {
     private final ElbowSubsystem elbow;
@@ -16,17 +15,17 @@ public class MoveElbow extends Command {
 
     @Override
     public void initialize() {
-        elbow.setSpeed(ArmConstants.DEFAULT_SPEED);
+        elbow.moveElbow(targetPosition);
     }
 
     @Override
     public boolean isFinished() {
-        return elbow.isAtPosition(targetPosition, ArmConstants.ELBOW_TOLERANCE);
+        return elbow.isAtPosition(targetPosition, elbow.tolerance());
     }
 
     @Override
     public void end(boolean interrupted) {
-        elbow.stop();
+        elbow.stayAtPosition();
 
     }
 }

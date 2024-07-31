@@ -1,7 +1,9 @@
 package training.subsystems.movement;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+
 public class Constants {
     protected static final double MAX_ALLOWED_SPEED=0.9;
-    protected static final double RAD_FULL_CIRCLE_ANGLE=2*Math.PI;
-    protected static final double TALONFX_MOTOR_FULL_CIRCLE = 1;
+    protected static final Rotation2d RAD_FULL_CIRCLE_ANGLE= Rotation2d.fromRotations(1);
+
 }

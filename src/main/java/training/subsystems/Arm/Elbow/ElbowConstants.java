@@ -1,17 +1,21 @@
-package training.subsystems.Arm;
+package training.subsystems.Arm.Elbow;
 
+import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 
-public class ArmConstants {
+public class ElbowConstants {
     protected static final int ELBOW_ID = 0;
-    protected static final int WRIST_ID = 0;
-    protected static final int ROLLER_ID = 0;
 
     protected static final Rotation2d ELBOW_START_POSITION = Rotation2d.fromDegrees(0);
     protected static final Rotation2d ELBOW_CLIMBING_POSITION = Rotation2d.fromDegrees(180);
 
-    protected static final Rotation2d WRIST_START_POSITION = Rotation2d.fromDegrees(6);
-    protected static final Rotation2d WRIST_CLIMBING_POSITION = Rotation2d.fromDegrees(153);
+    protected static final ArmFeedforward ARM_FEEDFORWARD = new ArmFeedforward(
+            ElbowConstants.ELBOW_KS,
+            ElbowConstants.ELBOW_KG,
+            ElbowConstants.ELBOW_KV,
+            ElbowConstants.ELBOW_KA
+    );
+
 
     protected static final double ELBOW_P = 89;
     protected static final double ELBOW_I = 76;
@@ -20,4 +24,6 @@ public class ArmConstants {
     protected static final double ELBOW_KG = 0.12;
     protected static final double ELBOW_KV = 0;
     protected static final double ELBOW_KA = 0;
+
+
 }

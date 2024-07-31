@@ -1,4 +1,4 @@
-package training.subsystems.Arm;
+package training.subsystems.Arm.Wrist;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -8,6 +8,7 @@ import utils.GBSubsystem;
 public class WristSubsystem extends GBSubsystem {
     private final TalonSRX motor;
     private final Rotation2d targetPosition;
+    protected static final double tolerance = 5;
 
     @Override
     protected String getLogPath() {
@@ -20,8 +21,8 @@ public class WristSubsystem extends GBSubsystem {
     }
 
     public WristSubsystem(){
-        this.motor = new TalonSRX(ArmConstants.WRIST_ID);
-        this.targetPosition = ArmConstants.WRIST_START_POSITION;
+        this.motor = new TalonSRX(WristConstants.WRIST_ID);
+        this.targetPosition =  WristConstants.WRIST_START_POSITION;
     }
 
     public void setSpeed(double power){
@@ -38,6 +39,10 @@ public class WristSubsystem extends GBSubsystem {
 
     public double getSpeed(){
         return motor.getSelectedSensorVelocity();
+    }
+
+    public double tolerance(){
+        return tolerance;
     }
 
     public boolean isAtPosition(Rotation2d target, double tolerance){
