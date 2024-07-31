@@ -2,8 +2,9 @@ package subsystems.Roller;
 
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import utils.GBSubsystem;
 
-public class Roller extends SubsystemBase {
+public class Roller extends GBSubsystem {
 
     private static Roller instance;
     private static CANSparkMax motor;
@@ -27,4 +28,13 @@ public class Roller extends SubsystemBase {
         motor.set(0);
     }
 
+    @Override
+    protected String getLogPath() {
+        return "";
+    }
+
+    @Override
+    protected void subsystemPeriodic() {
+
+    }
 }

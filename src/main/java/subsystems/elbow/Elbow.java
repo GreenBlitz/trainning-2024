@@ -3,8 +3,9 @@ package subsystems.elbow;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import utils.GBSubsystem;
 
-public class Elbow extends SubsystemBase {
+public class Elbow extends GBSubsystem {
     private static Elbow instance;
     private static CANSparkMax motor;
 
@@ -33,5 +34,15 @@ public class Elbow extends SubsystemBase {
 
     public void getToPosition(Rotation2d position){
         motor.getPIDController().setReference(position.getRadians(), Constants.ELBOW_CONTROL_TYPE,Constants.WRIST_PID_SLOT ,calculateFitForward());
+    }
+
+    @Override
+    protected String getLogPath() {
+        return "";
+    }
+
+    @Override
+    protected void subsystemPeriodic() {
+
     }
 }
