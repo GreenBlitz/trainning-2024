@@ -9,11 +9,12 @@ public class WristDefultCommand extends Command {
 
     public WristDefultCommand() {
         wrist = Wrist.getInstance();
+        addRequirements(wrist);
     }
 
     @Override
     public void initialize() {
-        wrist.stayAtPosition();
+        wrist.stopMotor();
     }
 
     @Override

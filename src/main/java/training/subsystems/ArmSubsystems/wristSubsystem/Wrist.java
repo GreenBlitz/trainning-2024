@@ -3,6 +3,7 @@ package training.subsystems.ArmSubsystems.wristSubsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
@@ -24,8 +25,9 @@ public class Wrist extends GBSubsystem {
 
     @Override
     protected void subsystemPeriodic() {
-
+        SmartDashboard.putNumber("position",5);
     }
+    
 
     public static Wrist getInstance() {
         if (instance == null) {
@@ -35,15 +37,20 @@ public class Wrist extends GBSubsystem {
     }
 
     public void goToPosition(Rotation2d targetPosition) {
-        motor.set(ControlMode.Position, targetPosition.getRotations());
+        motor.selectProfileSlot(WristConstants.PID_SLOT,0);
+        motor.set(ControlMode.Position, targetPosition.getRotations()*WristConstants.MAG_ENCODER_CONVERSION_FACTOR);
+    }
+    
+    public void setPower(double powerMotor){
+        motor.set(ControlMode.PercentOutput,powerMotor);
     }
 
-    public void stayAtPosition() {
-        goToPosition(getPosition());
+    public void stopMotor() {
+        this.setPower(0);
     }
 
     public Rotation2d getPosition() {
-        return Rotation2d.fromRotations(motor.getSelectedSensorPosition());
+        return Rotation2d.fromRotations(4);
     }
 
     public double getVelocity() {
