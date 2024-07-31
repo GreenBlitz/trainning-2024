@@ -5,10 +5,10 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public class WristConstants {
 
-    protected static final int WRIST_ID = 0;
+    protected static final int WRIST_ID = 11;
 
-    public static final Rotation2d WRIST_STARTING_POSITION = Rotation2d.fromDegrees(8);
-    public static final Rotation2d WRIST_CLIMBING_POSITION = Rotation2d.fromDegrees(93);
+    public static final Rotation2d WRIST_STARTING_POSITION = Rotation2d.fromDegrees(90);
+    public static final Rotation2d WRIST_CLIMBING_POSITION = Rotation2d.fromDegrees(390);
 
     public static final Rotation2d WRIST_TOLERANCE_DEGREES = Rotation2d.fromDegrees(5);
 

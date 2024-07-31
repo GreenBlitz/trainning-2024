@@ -8,7 +8,7 @@ public class ElbowConstants {
     protected static final int ELBOW_ID = 0;
 
     public static final Rotation2d ELBOW_STARTING_POSITION = Rotation2d.fromDegrees(0);
-    public static final Rotation2d ELBOW_CLIMBING_POSITION = Rotation2d.fromDegrees(180);
+    public static final Rotation2d ELBOW_CLIMBING_POSITION = Rotation2d.fromDegrees(55);
 
     public static final Rotation2d ELBOW_TOLERANCE_DEGREES = Rotation2d.fromDegrees(5);
 
