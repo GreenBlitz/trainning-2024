@@ -29,9 +29,7 @@ public class ElbowCommandBuilder {
     }
 
     public Command LiftElbow() {
-        Command output = new SequentialCommandGroup(UpElbow(), new WaitCommand(DEFAULT_TIME_IN_AIR_ELBOW_SECONDS), DownElbow());
-        output.addRequirements(elbowSubsystem);
-        return output;
+        return new SequentialCommandGroup(UpElbow(), new WaitCommand(DEFAULT_TIME_IN_AIR_ELBOW_SECONDS), DownElbow());
     }
 
     public Command LockElbowInPlaceCommand() {
@@ -39,10 +37,10 @@ public class ElbowCommandBuilder {
     }
 
     public Command UpElbow() {
-        return new InstantCommand(() -> MoveElbowToAngle(LIFTING_POSITION_DEGREES), elbowSubsystem);
+        return MoveElbowToAngle(LIFTING_POSITION_DEGREES);
     }
 
     public Command DownElbow() {
-        return new InstantCommand(() -> MoveElbowToAngle(LIFTING_POSITION_DEGREES.times(-1)), elbowSubsystem);
+        return MoveElbowToAngle(LIFTING_POSITION_DEGREES.times(-1));
     }
 }

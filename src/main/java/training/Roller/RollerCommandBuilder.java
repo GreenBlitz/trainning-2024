@@ -17,7 +17,7 @@ public class RollerCommandBuilder {
     }
 
     public Command NoteOut() {
-        return new InstantCommand(() -> RunRollerForward().withTimeout(ROLLER_ROLLING_TIME_SECONDS), rollerSubsystem);
+        return RunRollerForward().withTimeout(ROLLER_ROLLING_TIME_SECONDS);
     }
 
     public Command RunRollerBackward() {
