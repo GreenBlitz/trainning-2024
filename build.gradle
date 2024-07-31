@@ -11,7 +11,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-def ROBOT_MAIN_CLASS = "Main"
+def ROBOT_MAIN_CLASS = "training.Main"
 def ROUTER_IP = "10.45.90.2"
 def USB_B_IP = "172.22.11.2"
 def IPS = [ROUTER_IP, USB_B_IP]
@@ -177,6 +177,28 @@ tasks.register('checkAkitInstall', JavaExec) {
     dependsOn('classes')
     mainClass = "org.littletonrobotics.junction.CheckInstall"
     classpath = sourceSets.main.runtimeClasspath
+}
+
+tasks.register('runComputerPrograms', JavaExec) {
+    group = 'execution'
+    dependsOn("setReachableIP")
+    description = "Run the main class in ComputerMain"
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = "utils.ComputerMain"
+    doFirst {
+        if (reachableIP == null || reachableIP.isEmpty()) {
+            throw new GradleException("reachableIP is null or empty. Please set a valid IP address.")
+        }
+        args = ["${reachableIP}"]
+        println("Using reachable IP: ${reachableIP}")
+    }
+}
+
+tasks.register('deployWithComputerPrograms') {
+    group = 'deployutils'
+    dependsOn("deploy")
+    dependsOn("runComputerPrograms")
+    tasks.findByName("runComputerPrograms").mustRunAfter("deploy")
 }
 
 
