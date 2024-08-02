@@ -26,7 +26,7 @@ public class WristConstants {
     protected static final double WRIST_KV_VALUE = 0;
     protected static final double WRIST_KA_VALUE = 0;
 
-    protected static final int TIMEOUT_FOR_CONFIG_SET = 0;
+    protected static final int TIMEOUT_FOR_CONFIG_SET = 1;
 
 
     protected static final TalonSRXConfiguration TALON_SRX_CONFIG = new TalonSRXConfiguration();
