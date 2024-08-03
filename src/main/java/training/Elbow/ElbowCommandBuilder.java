@@ -12,7 +12,7 @@ import static training.Elbow.ElbowConstants.LIFTING_POSITION_DEGREES;
 
 
 public class ElbowCommandBuilder {
-    private final Elbow elbowSubsystem;
+    private final NeoElbow elbowSubsystem;
 
     public Command MoveElbowToAngle(Rotation2d targetAngle) {
         return new FunctionalCommand(
@@ -25,7 +25,7 @@ public class ElbowCommandBuilder {
     }
 
     public ElbowCommandBuilder() {
-        this.elbowSubsystem = Elbow.getInstance();
+        this.elbowSubsystem = NeoElbow.getInstance();
     }
 
     public Command LiftElbow() {

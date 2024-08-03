@@ -5,23 +5,14 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-import static training.Elbow.ElbowConstants.ELBOW_GEAR_RATIO;
-import static training.Elbow.ElbowConstants.ELBOW_LOG_PATH;
-import static training.Elbow.ElbowConstants.ELBOW_PID_CONTROLLER;
-import static training.Elbow.ElbowConstants.ELBOW_ID;
-import static training.Elbow.ElbowConstants.ELBOW_MOTOR_TYPE;
-import static training.Elbow.ElbowConstants.DEFAULT_POSITION_ELBOW;
-import static training.Elbow.ElbowConstants.POWER_LIMIT_ELBOW;
-import static training.Elbow.ElbowConstants.ELBOW_TOLERANCE;
-import static training.Elbow.ElbowConstants.ELBOW_FEEDFORWARD;
-import static training.Elbow.ElbowConstants.PID_SLOT;
+import static training.Elbow.ElbowConstants.*;
 
-public class Elbow extends GBSubsystem implements IElbow {
-    private static Elbow instance;
+public class SimulationElbow extends GBSubsystem implements IElbow {
+    private static SimulationElbow instance;
 
-    public static Elbow getInstance() {
+    public static SimulationElbow getInstance() {
         if (instance == null) {
-            instance = new Elbow();
+            instance = new SimulationElbow();
         }
         return instance;
     }
@@ -30,7 +21,7 @@ public class Elbow extends GBSubsystem implements IElbow {
     private final Rotation2d flooredStartRotations;
     private Rotation2d targetAngle;
 
-    private Elbow() {
+    private SimulationElbow() {
         this.targetAngle = DEFAULT_POSITION_ELBOW;
         this.motor = new CANSparkMax(ELBOW_ID, ELBOW_MOTOR_TYPE);
         this.flooredStartRotations = Rotation2d.fromRotations(Math.floor(motor.getEncoder().getPosition()));

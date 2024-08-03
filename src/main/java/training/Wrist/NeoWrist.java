@@ -14,12 +14,12 @@ import static training.Wrist.WristConstants.WRIST_LOWER_POSITION;
 import static training.Wrist.WristConstants.WRIST_LOG_PATH;
 import static training.Wrist.WristConstants.WRIST_PID_CONFIG;
 
-public class Wrist extends GBSubsystem implements IWrist {
-    private static Wrist instance;
+public class NeoWrist extends GBSubsystem implements IWrist {
+    private static NeoWrist instance;
 
-    public static Wrist getInstance() {
+    public static NeoWrist getInstance() {
         if (instance == null) {
-            instance = new Wrist();
+            instance = new NeoWrist();
         }
         return instance;
     }
@@ -29,7 +29,7 @@ public class Wrist extends GBSubsystem implements IWrist {
     private Rotation2d targetAngle;
     private boolean inTestingMode;
 
-    private Wrist() {
+    private NeoWrist() {
         this.motor = new TalonSRX(WRIST_ID);
         this.inTestingMode = false;
         motor.configAllSettings(WRIST_PID_CONFIG);

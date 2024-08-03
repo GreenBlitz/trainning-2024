@@ -17,12 +17,12 @@ import static training.Roller.RollerConstants.ROLLER_LOG_PATH;
 import static training.Roller.RollerDirection.kBackward;
 import static training.Roller.RollerDirection.kForward;
 
-public class Roller extends GBSubsystem implements IRoller {
-    private static Roller instance;
+public class NeoRoller extends GBSubsystem implements IRoller {
+    private static NeoRoller instance;
 
-    public static Roller getInstance() {
+    public static NeoRoller getInstance() {
         if (instance == null) {
-            instance = new Roller();
+            instance = new NeoRoller();
         }
         return instance;
     }
@@ -31,7 +31,7 @@ public class Roller extends GBSubsystem implements IRoller {
     private double targetVelocity;
     private RollerDirection direction;
 
-    private Roller() {
+    private NeoRoller() {
         this.motor = new CANSparkMax(ROLLER_ID, ROLLER_MOTOR_TYPE);
 
         motor.getEncoder().setPositionConversionFactor(ROLLER_GEAR_RATIO);

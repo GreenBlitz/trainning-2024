@@ -1,17 +1,21 @@
 package training;
 
-import training.Elbow.Elbow;
-import training.Roller.Roller;
-import training.Wrist.Wrist;
+import training.Elbow.NeoElbow;
+import training.Roller.NeoRoller;
+import training.Wrist.NeoWrist;
 
 public class Robot {
 
     // Enter your subsystems...
 
     public Robot() {
-        Wrist.getInstance();
-        Elbow.getInstance();
-        Roller.getInstance();
+        NeoWrist.getInstance();
+        NeoElbow.getInstance();
+        NeoRoller.getInstance();
+    }
+
+    public static RobotType getRobotType() {
+        return RobotType.Simulation;
     }
 
     // Add your subsystems getters...

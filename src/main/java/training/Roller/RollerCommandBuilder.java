@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import static training.Roller.RollerConstants.ROLLER_ROLLING_TIME_SECONDS;
 
 public class RollerCommandBuilder {
-    private final Roller rollerSubsystem;
+    private final NeoRoller rollerSubsystem;
 
     public RollerCommandBuilder() {
-        this.rollerSubsystem = Roller.getInstance();
+        this.rollerSubsystem = NeoRoller.getInstance();
     }
 
     public Command RollerStop() {
