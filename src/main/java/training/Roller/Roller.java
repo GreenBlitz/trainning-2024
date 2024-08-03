@@ -17,7 +17,7 @@ import static training.Roller.RollerConstants.ROLLER_LOG_PATH;
 import static training.Roller.RollerDirection.kBackward;
 import static training.Roller.RollerDirection.kForward;
 
-public class Roller extends GBSubsystem {
+public class Roller extends GBSubsystem implements IRoller {
     private static Roller instance;
 
     public static Roller getInstance() {
@@ -44,24 +44,29 @@ public class Roller extends GBSubsystem {
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
     }
 
+    @Override
     public double getTargetVelocity() {
         return targetVelocity;
     }
 
+    @Override
     public void setTargetVelocity(double targetVelocity) {
         this.targetVelocity = targetVelocity;
     }
 
+    @Override
     public void runForward() {
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
         direction = kForward;
     }
 
+    @Override
     public void runBackward() {
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
         direction = kBackward;
     }
 
+    @Override
     public void stop() {
         targetVelocity = 0;
         motor.set(0);

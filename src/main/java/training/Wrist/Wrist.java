@@ -14,7 +14,7 @@ import static training.Wrist.WristConstants.WRIST_LOWER_POSITION;
 import static training.Wrist.WristConstants.WRIST_LOG_PATH;
 import static training.Wrist.WristConstants.WRIST_PID_CONFIG;
 
-public class Wrist extends GBSubsystem {
+public class Wrist extends GBSubsystem implements IWrist {
     private static Wrist instance;
 
     public static Wrist getInstance() {
@@ -35,11 +35,13 @@ public class Wrist extends GBSubsystem {
         motor.configAllSettings(WRIST_PID_CONFIG);
     }
 
+    @Override
     public void stop() {
         targetAngle = new Rotation2d(0);
         motor.set(TalonSRXControlMode.PercentOutput, 0);
     }
 
+    @Override
     public void rotate(WristDirection direction) {
         targetAngle = direction.getValue() == 1 ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
     }

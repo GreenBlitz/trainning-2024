@@ -16,7 +16,7 @@ import static training.Elbow.ElbowConstants.ELBOW_TOLERANCE;
 import static training.Elbow.ElbowConstants.ELBOW_FEEDFORWARD;
 import static training.Elbow.ElbowConstants.PID_SLOT;
 
-public class Elbow extends GBSubsystem {
+public class Elbow extends GBSubsystem implements IElbow {
     private static Elbow instance;
 
     public static Elbow getInstance() {
@@ -43,26 +43,32 @@ public class Elbow extends GBSubsystem {
         motor.burnFlash();
     }
 
+    @Override
     public Rotation2d getMotorAngle() {
         return Rotation2d.fromRotations(motor.getEncoder().getPosition());
     }
 
+    @Override
     public Rotation2d getTargetAngle() {
         return targetAngle;
     }
 
+    @Override
     public void setTargetAngle(Rotation2d targetAngle) {
         this.targetAngle = targetAngle;
     }
 
+    @Override
     public void addToAngle(Rotation2d angle) {
         this.targetAngle = this.targetAngle.plus(angle);
     }
 
+    @Override
     public void subtractFromAngle(Rotation2d angle) {
         this.targetAngle = this.targetAngle.minus(angle);
     }
 
+    @Override
     public boolean isAtAngle(Rotation2d angle) {
         double anglesDelta = (this.targetAngle.getDegrees() % 360) - (angle.getDegrees() % 360);
         return Math.abs(anglesDelta) <= ELBOW_TOLERANCE.getDegrees();
@@ -73,10 +79,12 @@ public class Elbow extends GBSubsystem {
         return ELBOW_LOG_PATH;
     }
 
+    @Override
     public Rotation2d getCurrentAngle() {
         return Rotation2d.fromRotations(motor.getEncoder().getPosition());
     }
 
+    @Override
     public void LockElbowInPlace() {
         targetAngle = getCurrentAngle();
     }
