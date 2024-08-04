@@ -26,8 +26,8 @@ public class SwerveModule extends GBSubsystem {
     }
 
     private SwerveModule(){
-        linearMotor = new TalonFX(4);
-        angularMotor = new TalonFX(5);
+        linearMotor = new TalonFX(0);
+        angularMotor = new TalonFX(1);
     }
 
     public static void init(){

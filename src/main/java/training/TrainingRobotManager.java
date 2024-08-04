@@ -1,5 +1,7 @@
 package training;
 
+import org.littletonrobotics.junction.AutoLog;
+import training.commands.MoveAngularMotorByVoltage;
 import training.commands.MoveLinearMotorByVoltage;
 import utils.DefaultRobotManager;
 import utils.joysticks.SmartJoystick;
@@ -18,7 +20,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
     @Override
     public void trainingPeriodic() {
         // add stuff...
-        joystick.A.whileTrue(new MoveLinearMotorByVoltage(1));
+        joystick.A.whileTrue(new MoveAngularMotorByVoltage(1));
     }
 
     @Override
