@@ -6,13 +6,15 @@ import utils.DefaultRobotManager;
 public class TrainingRobotManager extends DefaultRobotManager {
 
     private SmartJoystick joystick;
-
     private Robot robot;
+
+    public TrainingRobotManager(){
+        this.joystick = new SmartJoystick(0);
+    }
 
     @Override
     public void trainingInit() {
         this.robot = new Robot();
-        this.joystick = new SmartJoystick(0);
     }
 
     @Override
@@ -23,12 +25,10 @@ public class TrainingRobotManager extends DefaultRobotManager {
     @Override
     public void teleopInit() {
         // schedule your command...
-
     }
 
     @Override
     public void teleopExit() {
-
         // cancel your command...
     }
 }

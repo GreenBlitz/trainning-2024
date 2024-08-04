@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.Arm.Elbow.ElbowSubsystem;
 
 public class MoveElbow extends Command {
+
     private final ElbowSubsystem elbow;
+
     private final Rotation2d targetPosition;
 
     public MoveElbow(ElbowSubsystem elbow, Rotation2d targetPosition){
@@ -25,6 +27,5 @@ public class MoveElbow extends Command {
     @Override
     public void end(boolean interrupted) {
         elbow.stayAtPosition();
-
     }
 }

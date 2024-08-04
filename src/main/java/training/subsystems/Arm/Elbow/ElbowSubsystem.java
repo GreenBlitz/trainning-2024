@@ -7,11 +7,10 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class ElbowSubsystem  extends GBSubsystem {
+
     private final CANSparkMax motor;
 
-
     private static ElbowSubsystem instance;
-
 
     @Override
     protected String getLogPath() {
@@ -20,7 +19,6 @@ public class ElbowSubsystem  extends GBSubsystem {
 
     @Override
     protected void subsystemPeriodic() {
-
     }
 
     public ElbowSubsystem(){
@@ -61,12 +59,8 @@ public class ElbowSubsystem  extends GBSubsystem {
         return motor.getEncoder().getVelocity();
     }
 
-    public double tolerance(){
-        return ElbowConstants.TOLERANCE;
-    }
 
     public boolean isAtPosition(Rotation2d target){
         return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE;
     }
-
 }

@@ -5,7 +5,9 @@ import training.subsystems.Arm.Wrist.WristConstants;
 import training.subsystems.Arm.Wrist.WristSubsystem;
 
 public class MoveWrist extends Command {
+
     private final WristSubsystem wrist;
+
     private final Rotation2d targetPosition;
 
     public MoveWrist(WristSubsystem wrist, Rotation2d targetPosition){

@@ -1,4 +1,5 @@
 package training.subsystems.Arm.Roller;
+
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import utils.GBSubsystem;
@@ -17,7 +18,7 @@ public class RollerSubsystem extends GBSubsystem {
 
     }
 
-    public RollerSubsystem(){
+    public RollerSubsystem() {
         this.motor = new CANSparkMax(RollerConstants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
     }
 
@@ -28,19 +29,19 @@ public class RollerSubsystem extends GBSubsystem {
         return instance;
     }
 
-    public void clockwise(){
+    public void clockwise() {
         motor.set(RollerConstants.DEFAULT_VELOCITY_CLOCKWISE);
     }
 
-    public void counterClockwise(){
+    public void counterClockwise() {
         motor.set(RollerConstants.DEFAULT_VELOCITY_COUNTERCLOCKWISE);
     }
 
-    public void stop(){
+    public void stop() {
         motor.set(0);
     }
 
-    public double getVelocity(){
+    public double getVelocity() {
         return motor.getEncoder().getVelocity();
     }
 
