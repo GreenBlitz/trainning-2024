@@ -1,7 +1,10 @@
 package training.subsystems;
 
+import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
+import edu.wpi.first.math.geometry.Rotation2d;
 import training.ElbowConstants;
 import utils.GBSubsystem;
 
@@ -27,5 +30,13 @@ public class Elbow extends GBSubsystem {
         motor.getPIDController().setD(ElbowConstants.KD_VALUE);
     }
 
-
+    public void setMotorByPosition(Rotation2d position) {
+        motor.getPIDController().setReference(position.getRotations(), CANSparkBase.ControlType.kPosition);
+    }
+    public Rotation2d getPosition() {
+        return Rotation2d.fromRotations(motor.getEncoder().getPosition());
+    }
+    public void stopMotor() {
+        motor.stopMotor();
+    }
 }

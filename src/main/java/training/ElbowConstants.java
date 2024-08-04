@@ -12,4 +12,5 @@ public class ElbowConstants {
     public static final double KP_VALUE = 45;
     public static final double KI_VALUE = 0;
     public static final double KD_VALUE = 0;
+    public static final Rotation2d ANGULAR_TOLERANCE = Rotation2d.fromDegrees(1.8);
 }
