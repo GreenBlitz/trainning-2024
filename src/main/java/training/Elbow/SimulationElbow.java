@@ -3,7 +3,9 @@ package training.Elbow;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import utils.GBSubsystem;
+import utils.simulation.SingleJointedArmSimulation;
 
 import static training.Elbow.ElbowConstants.*;
 
@@ -17,26 +19,12 @@ public class SimulationElbow extends GBSubsystem implements IElbow {
         return instance;
     }
 
-    private final CANSparkMax motor;
-    private final Rotation2d flooredStartRotations;
+    private final SingleJointedArmSimulation arm;
     private Rotation2d targetAngle;
 
     private SimulationElbow() {
         this.targetAngle = DEFAULT_POSITION_ELBOW;
-        this.motor = new CANSparkMax(ELBOW_ID, ELBOW_MOTOR_TYPE);
-        this.flooredStartRotations = Rotation2d.fromRotations(Math.floor(motor.getEncoder().getPosition()));
-
-        motor.getEncoder().setPositionConversionFactor(ELBOW_GEAR_RATIO);
-        motor.getPIDController().setP(ELBOW_PID_CONTROLLER.getP());
-        motor.getPIDController().setD(ELBOW_PID_CONTROLLER.getD());
-        motor.getPIDController().setI(ELBOW_PID_CONTROLLER.getI());
-        motor.getPIDController().setOutputRange(-POWER_LIMIT_ELBOW, POWER_LIMIT_ELBOW);
-        motor.burnFlash();
-    }
-
-    @Override
-    public Rotation2d getMotorAngle() {
-        return Rotation2d.fromRotations(motor.getEncoder().getPosition());
+        this.arm = new SingleJointedArmSimulation(new SingleJointedArmSim(GERABOX, GERAING, SingleJointedArmSim.estimateMOI(ARM_LENGTH_METERS, ARM_MASS), ARM_LENGTH_METERS, MIN_ANGLE.getRadians(), MAX_ANGLE.getRadians(), true, 0));
     }
 
     @Override
@@ -62,7 +50,7 @@ public class SimulationElbow extends GBSubsystem implements IElbow {
     @Override
     public boolean isAtAngle(Rotation2d angle) {
         double anglesDelta = (this.targetAngle.getDegrees() % 360) - (angle.getDegrees() % 360);
-        return Math.abs(anglesDelta) <= ELBOW_TOLERANCE.getDegrees();
+        return Math.abs(anglesDelta) <= ELBOW_TOLERANCE_SIM.getDegrees();
     }
 
     @Override
@@ -72,7 +60,7 @@ public class SimulationElbow extends GBSubsystem implements IElbow {
 
     @Override
     public Rotation2d getCurrentAngle() {
-        return Rotation2d.fromRotations(motor.getEncoder().getPosition());
+        return arm.getPosition();
     }
 
     @Override
@@ -82,14 +70,9 @@ public class SimulationElbow extends GBSubsystem implements IElbow {
 
     @Override
     public void subsystemPeriodic() {
-        double target = flooredStartRotations.getRotations() + (targetAngle.getRotations() % 1);
-        double FFValue = ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
+        double target = targetAngle.getRotations() % 1;
+        double FFValue = ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), arm.getVelocity().getRadians());
 
-        motor.getPIDController().setReference(
-                target,
-                CANSparkBase.ControlType.kPosition,
-                PID_SLOT,
-                FFValue
-        );
+        arm.setPower(Controller.calculate(getCurrentAngle().getRadians(), getTargetAngle().getRadians()));
     }
 }

@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkLowLevel;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.system.plant.DCMotor;
 
 public class ElbowConstants {
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
@@ -27,4 +28,17 @@ public class ElbowConstants {
     public static final Rotation2d PICKUP_POSITION_ELBOW = new Rotation2d(0, 0);
 
     protected static final int PID_SLOT = 0;
+
+    // * Sim
+
+    protected static double PLANT;
+    protected static DCMotor GERABOX = new DCMotor(0, 0, 0, 0, 0, 0);
+    protected static double GERAING = 0;
+    protected static double ARM_LENGTH_METERS = 0;
+    protected static double ARM_MASS = 0;
+    protected static Rotation2d MIN_ANGLE = Rotation2d.fromRotations(0);
+    protected static Rotation2d MAX_ANGLE = Rotation2d.fromRotations(0);
+
+    protected static Rotation2d ELBOW_TOLERANCE_SIM = Rotation2d.fromRotations(0);
+    protected static PIDController Controller = new PIDController(0, 0, 0); // Outputs power
 }
