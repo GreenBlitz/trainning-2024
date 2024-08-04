@@ -1,18 +1,13 @@
-package training.subsystems;
+package training.subsystems.Elbow;
 
-import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkLowLevel;
-import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.ElbowConstants;
-import training.subsystems.NeoElbow.NeoElbow;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
     private final IElbow elbow;
 
     public Elbow() {
-        elbow = new NeoElbow();
+        elbow = ElbowFactory.create();
     }
 
     @Override

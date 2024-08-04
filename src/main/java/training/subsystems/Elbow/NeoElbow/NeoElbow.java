@@ -1,12 +1,11 @@
-package training.subsystems.NeoElbow;
+package training.subsystems.Elbow.NeoElbow;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.ElbowConstants;
-import training.subsystems.IElbow;
+import training.subsystems.Elbow.ElbowConstants;
+import training.subsystems.Elbow.IElbow;
 import utils.GBSubsystem;
 
 public class NeoElbow extends GBSubsystem implements IElbow {

@@ -1,8 +1,6 @@
 package training;
 
-import training.subsystems.Elbow;
-import training.subsystems.IElbow;
-import training.subsystems.NeoElbow.NeoElbow;
+import training.subsystems.Elbow.Elbow;
 import training.subsystems.Module;
 
 public class Robot {
