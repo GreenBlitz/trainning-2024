@@ -49,6 +49,11 @@ public class Elbow extends GBSubsystem {
 
     }
     public void stayInPlace(){
+        motor.getPIDController().setReference(
+                Rotation2d.getRotations(getCurrentAngle()),
+                CANSparkBase.ControlType.kPosition,
+                0,
+                Constants.ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRotations(), getCurrentVelocity().getRotations())
 
     }
 }
