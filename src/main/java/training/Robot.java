@@ -5,8 +5,8 @@ import training.subsystems.Module;
 
 public class Robot {
     
-    private Module module;
-    private Elbow elbow;
+    private final Module module;
+    private final Elbow elbow;
 
     public Robot(){
         this.module = new Module();

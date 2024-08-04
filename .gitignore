@@ -180,3 +180,5 @@ simulationlogs/
 
 # Folder that has CTRE Phoenix Sim device config storage
 ctre_sim/
+
+src/main/python/__pycache__
