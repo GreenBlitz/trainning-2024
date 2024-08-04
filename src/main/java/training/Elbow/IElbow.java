@@ -8,8 +8,6 @@ import static training.Elbow.ElbowConstants.*;
 import static training.Elbow.ElbowConstants.PID_SLOT;
 
 public interface IElbow {
-    Rotation2d getMotorAngle();
-
     Rotation2d getTargetAngle();
 
     void setTargetAngle(Rotation2d targetAngle);

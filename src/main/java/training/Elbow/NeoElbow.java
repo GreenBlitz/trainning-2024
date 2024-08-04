@@ -44,11 +44,6 @@ public class NeoElbow extends GBSubsystem implements IElbow {
     }
 
     @Override
-    public Rotation2d getMotorAngle() {
-        return Rotation2d.fromRotations(motor.getEncoder().getPosition());
-    }
-
-    @Override
     public Rotation2d getTargetAngle() {
         return targetAngle;
     }
