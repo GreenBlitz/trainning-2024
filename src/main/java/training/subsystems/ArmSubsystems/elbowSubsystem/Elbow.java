@@ -1,25 +1,24 @@
 package training.subsystems.ArmSubsystems.elbowSubsystem;
 
-import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkLowLevel;
-import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.commands.ArmCommands.elbowCommands.ElbowDefultCommand;
+import training.subsystems.ArmSubsystems.elbowSubsystem.neoElbow.NeoElbow;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-    private final CANSparkMax motor;
+    private IElbow iElbow;
 
     private static Elbow instance;
 
-    private Elbow() {
-        this.motor = new CANSparkMax(ElbowConstants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-        motor.getEncoder().setPositionConversionFactor(ElbowConstants.ELBOW_GEAR_RATIO.getDegrees());
-        motor.getPIDController().setP(ElbowConstants.ELBOW_P_VALUE);
-        motor.getPIDController().setI(ElbowConstants.ELBOW_I_VALUE);
-        motor.getPIDController().setD(ElbowConstants.ELBOW_D_VALUE);
-        motor.getEncoder().setPosition(ElbowConstants.ELBOW_STARTING_POSITION.getDegrees());
+    private Elbow(){
+        iElbow = ElbowFactory.create();
+    }
+
+    public static Elbow getInstance(){
+        if (instance == null) {
+            instance = new Elbow();
+        }
+        return instance;
     }
 
     @Override
@@ -28,40 +27,24 @@ public class Elbow extends GBSubsystem {
     }
 
     @Override
-    protected void subsystemPeriodic() {
+    protected void subsystemPeriodic() {}
 
+
+    public void goToPosition(Rotation2d targetPosition){
+        iElbow.goToPosition(targetPosition);
+    }
+    public void stayAtPosition(){
+        iElbow.stayAtPosition();
+    }
+    public boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d tolerance){
+        return iElbow.isAtTargetPosition(targetAngle, tolerance);
     }
 
-    public static Elbow getInstance() {
-        if (instance == null) {
-            instance = new Elbow();
-        }
-        return instance;
+    public void setVoltage(double voltage){
+        iElbow.setVoltage(voltage);
     }
 
-    public void goToPosition(Rotation2d position) {
-        motor.getPIDController().setReference(
-                position.getDegrees(),
-                CANSparkBase.ControlType.kPosition,
-                0,
-                ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity())
-        );
+    public void setPower(double power){
+        iElbow.setPower(power);
     }
-
-    public void stayAtPosition() {
-        goToPosition(getPosition());
-    }
-
-    public Rotation2d getPosition() {
-        return Rotation2d.fromRotations(motor.getEncoder().getPosition());
-    }
-
-    public double getVelocity() {
-        return motor.getEncoder().getVelocity();
-    }
-
-    public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d tolerance) {
-        return (Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees());
-    }
-
 }

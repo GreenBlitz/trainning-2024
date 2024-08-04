@@ -20,7 +20,7 @@ public class MoveElbow extends Command {
     }
 
     public boolean isFinished() {
-        return elbow.isAtTargetAngle(targetPosition, ElbowConstants.ELBOW_TOLERANCE_DEGREES);
+        return elbow.isAtTargetPosition(targetPosition, ElbowConstants.ELBOW_TOLERANCE_DEGREES);
     }
 
 }

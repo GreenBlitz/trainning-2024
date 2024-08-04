@@ -10,7 +10,6 @@ import training.commands.ArmCommands.wristCommands.WristDefultCommand;
 import training.commands.ArmCommands.elbowCommands.qiulElbow;
 import training.commands.ArmCommands.wristCommands.qiulWrist;
 import training.subsystems.ArmSubsystems.elbowSubsystem.Elbow;
-import training.subsystems.ArmSubsystems.elbowSubsystem.ElbowConstants;
 import training.subsystems.ArmSubsystems.wristSubsystem.Wrist;
 import training.subsystems.ArmSubsystems.wristSubsystem.WristConstants;
 import utils.DefaultRobotManager;
@@ -39,7 +38,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
         smartJoystick.R1.whileTrue(new RollClockwise());
         smartJoystick.R2.whileTrue(new RollCounterClockwise());
 
-        smartJoystick.POV_DOWN.whileTrue(new qiulElbow(Rotation2d.fromDegrees(55)));
+        smartJoystick.POV_DOWN.whileTrue(new qiulElbow(Rotation2d.fromDegrees(45)));
         smartJoystick.POV_UP.whileTrue(new qiulWrist(Rotation2d.fromDegrees(390)));
 
         Elbow.getInstance().setDefaultCommand(new ElbowDefultCommand());
