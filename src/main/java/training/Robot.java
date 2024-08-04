@@ -1,16 +1,17 @@
 package training;
 
-import training.subsystems.Elbow;
+import training.subsystems.IElbow;
+import training.subsystems.NeoElbow.NeoElbow;
 import training.subsystems.Module;
 
 public class Robot {
     
     private final Module module;
-    private final Elbow elbow;
+    private final IElbow elbow;
 
     public Robot(){
         this.module = new Module();
-        this.elbow = new Elbow();
+        this.elbow = new NeoElbow();
     }
 
     // Add your subsystems getters...
@@ -19,7 +20,7 @@ public class Robot {
     public Module getModule() {
         return module;
     }
-    public Elbow getElbow() {
+    public IElbow getElbow() {
         return elbow;
     }
 }

@@ -5,10 +5,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import org.littletonrobotics.junction.Logger;
 import training.ElbowConstants;
 import training.Robot;
-import training.subsystems.Elbow;
+import training.subsystems.IElbow;
+import training.subsystems.NeoElbow.NeoElbow;
 
 public class MoveElbowByPosition extends Command {
-    private final Elbow elbow;
+    private final IElbow elbow;
     private final Rotation2d position;
     public MoveElbowByPosition(Robot robot, Rotation2d position) {
         this.elbow = robot.getElbow();
