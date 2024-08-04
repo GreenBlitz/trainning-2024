@@ -3,7 +3,6 @@ package training.subsystems.RobotArm;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
@@ -29,7 +28,7 @@ public class ElbowSubsystem extends GBSubsystem {
     }
 
     public void goToPosition(Rotation2d position) {
-        motor.getPIDController().setReference(position.getRadians(), CANSparkBase.ControlType.kPosition, ElbowConstants.PID_SLOT,ElbowConstants.ARB_FEED_FOWORDS);
+        motor.getPIDController().setReference(position.getRadians(), CANSparkBase.ControlType.kPosition, ElbowConstants.PID_SLOT,ElbowConstants.ARE_FEED_FORWARDS);
     }
 
     public Rotation2d getPower() {
