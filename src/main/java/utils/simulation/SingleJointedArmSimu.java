@@ -4,11 +4,11 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import utils.DefaultRobotManager;
 
-public class SingleJointedArmSimulation extends MotorSimulation {
+public class SingleJointedArmSimu extends MotorSimulation {
 
     private final SingleJointedArmSim armSimulation;
 
-    public SingleJointedArmSimulation(SingleJointedArmSim armSimulation) {
+    public SingleJointedArmSimu(SingleJointedArmSim armSimulation) {
         this.armSimulation = armSimulation;
     }
 

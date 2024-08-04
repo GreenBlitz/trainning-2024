@@ -2,14 +2,14 @@ package commands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import subsystems.elbow.Elbow;
+import subsystems.elbow.neoElbow.NeoElbow;
 
 public class MoveElbowToAngle extends Command {
     private final Rotation2d angle;
-    private final Elbow elbow;
+    private final NeoElbow elbow;
 
     public MoveElbowToAngle(Rotation2d angle) {
-        elbow = Elbow.getInstance();
+        elbow = NeoElbow.getInstance();
         addRequirements(elbow);
 
         this.angle = angle;
