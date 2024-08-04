@@ -1,6 +1,7 @@
 package training.Roller;
 
 import com.revrobotics.CANSparkLowLevel;
+import edu.wpi.first.math.controller.PIDController;
 
 public class RollerConstants {
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
@@ -18,4 +19,9 @@ public class RollerConstants {
     protected static final double ROLLER_I = 0;
     protected static final double ROLLER_D = 0;
     protected static final double POWER_LIMIT_ROLLER = 0.9; //! overwrites PID
+
+    //* Simulation
+    protected static final double GEARING = 0;
+    protected static final double POWER_TO_ACCELERATION = 0;
+    protected static PIDController SimulationController = new PIDController(0, 0, 0);
 }

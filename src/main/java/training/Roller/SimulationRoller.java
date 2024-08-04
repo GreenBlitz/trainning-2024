@@ -1,7 +1,8 @@
 package training.Roller;
 
-import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkMax;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.wpilibj.simulation.DCMotorSim;
 import utils.GBSubsystem;
 
 import static training.Roller.RollerConstants.*;
@@ -18,20 +19,12 @@ public class SimulationRoller extends GBSubsystem implements IRoller {
         return instance;
     }
 
-    private final CANSparkMax motor;
+    private final DCMotorSim motor;
     private double targetVelocity;
     private RollerDirection direction;
 
     private SimulationRoller() {
-        this.motor = new CANSparkMax(ROLLER_ID, ROLLER_MOTOR_TYPE);
-
-        motor.getEncoder().setPositionConversionFactor(ROLLER_GEAR_RATIO);
-        motor.getPIDController().setP(ROLLER_P);
-        motor.getPIDController().setI(ROLLER_I);
-        motor.getPIDController().setD(ROLLER_D);
-        motor.getPIDController().setOutputRange(-POWER_LIMIT_ROLLER, POWER_LIMIT_ROLLER);
-        motor.burnFlash(); // applies some of the changes above
-
+        this.motor = new DCMotorSim(DCMotor.getNEO(1), GEARING, POWER_TO_ACCELERATION);
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
     }
 
@@ -60,12 +53,12 @@ public class SimulationRoller extends GBSubsystem implements IRoller {
     @Override
     public void stop() {
         targetVelocity = 0;
-        motor.set(0);
+        motor.setInputVoltage(0);
     }
 
     @Override
     public void subsystemPeriodic() {
-        motor.getPIDController().setReference(targetVelocity * direction.toInt(), CANSparkBase.ControlType.kVelocity);
+        motor.setInputVoltage(SimulationController.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec()));
     }
 
     @Override
