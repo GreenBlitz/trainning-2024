@@ -2,8 +2,8 @@ package training.subsystems.arm.elbow;
 
 public class CommandsBuilder {
 
-    private Elbow elbow;
-    public CommandsBuilder(Elbow elbow){
+    private final Elbow elbow;
+    public CommandsBuilder(Elbow clbow){
         this.elbow = elbow;
     }
     public Commnad moveToPosition(Rotation2d angle){
@@ -12,9 +12,7 @@ public class CommandsBuilder {
                 () -> elbow.moveToAngle(angle),
                 () -> {},
                 interrupted ->  elbow.stayInPlace(),
-                () -> elbow.isAtAngle(angle)
-        );
+                () -> elbow.isAtAngle(angle) );
 
     }
-
 }

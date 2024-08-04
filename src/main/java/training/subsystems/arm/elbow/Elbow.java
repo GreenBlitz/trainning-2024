@@ -21,16 +21,16 @@ public class Elbow extends GBSubsystem {
     public Elbow(){
         this.motor = new CANSparkMax(Constants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
         motor.getEncoder().setPositionConversionFactor(Constants.GEAR_RATIO);
-        motor.getPIDController().setP(Constants.P);
-        motor.getPIDController().setI(Constants.I);
-        motor.getPIDController().setD(Constants.D);
+        motor.getPIDController().setP(Constants.KP);
+        motor.getPIDController().setI(Constants.KI);
+        motor.getPIDController().setD(Constants.KD);
 
     }
 
     public Rotation2d getCurrentAngle(){
         return Rotation2d.fromRotations(motor.getEncoder().getPosition());
     }
-    public void setMotorPower(double power){
+    public void setPower(double power){
         motor.set(power);
     }
     public boolean isAtAngle(Rotation2d angle){
@@ -49,11 +49,7 @@ public class Elbow extends GBSubsystem {
 
     }
     public void stayInPlace(){
-        motor.getPIDController().setReference(
-                Rotation2d.getRotations(getCurrentAngle()),
-                CANSparkBase.ControlType.kPosition,
-                0,
-                Constants.ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRotations(), getCurrentVelocity().getRotations())
+       moveToAngle(Rotation2d.getRotations(getCurrentAngle()));
 
     }
 }
