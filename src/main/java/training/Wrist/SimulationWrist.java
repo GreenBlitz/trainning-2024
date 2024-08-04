@@ -27,7 +27,7 @@ public class SimulationWrist extends GBSubsystem implements IWrist {
     private boolean inTestingMode;
 
     private SimulationWrist() {
-        this.motor = new DCMotorSim(DCMotor.getNEO(1), GEARBOX, GEARING, SingleJointedArmSim.estimateMOI(WRIST_LENGTH_METERS));
+        this.motor = new DCMotorSim(DCMotor.getNEO(1), GEARING, SingleJointedArmSim.estimateMOI(WRIST_LENGTH_METERS, WRIST_MASS_KG));
     }
 
     @Override
