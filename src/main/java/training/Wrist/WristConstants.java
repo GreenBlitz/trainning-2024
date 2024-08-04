@@ -1,6 +1,7 @@
 package training.Wrist;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 
 public class WristConstants {
@@ -19,4 +20,8 @@ public class WristConstants {
 
     protected static final Rotation2d WRIST_UPPER_POSITION = new Rotation2d(0);
     protected static final Rotation2d WRIST_LOWER_POSITION = new Rotation2d(0);
+    protected static final double GEARBOX = 0;
+    protected static final double GEARING = 0;
+    protected static final double WRIST_LENGTH_METERS = 0;
+    protected static final PIDController WristSimulationController = new PIDController(0, 0, 0);
 }

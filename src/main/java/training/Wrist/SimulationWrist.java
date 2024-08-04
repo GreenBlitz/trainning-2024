@@ -2,8 +2,10 @@ package training.Wrist;
 
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.wpilibj.simulation.DCMotorSim;
+import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import utils.GBSubsystem;
 
@@ -19,15 +21,13 @@ public class SimulationWrist extends GBSubsystem implements IWrist {
         return instance;
     }
 
-    private final TalonSRX motor;
+    private final DCMotorSim motor;
     private BaseTalonConfiguration configuration;
     private Rotation2d targetAngle;
     private boolean inTestingMode;
 
     private SimulationWrist() {
-        this.motor = new TalonSRX(WRIST_ID);
-        this.inTestingMode = false;
-        motor.configAllSettings(WRIST_PID_CONFIG);
+        this.motor = new DCMotorSim(DCMotor.getNEO(1), GEARBOX, GEARING, SingleJointedArmSim.estimateMOI(WRIST_LENGTH_METERS));
     }
 
     @Override
@@ -50,13 +50,13 @@ public class SimulationWrist extends GBSubsystem implements IWrist {
         if (Math.abs(power) >= POWER_LIMIT_WRIST) {
             SmartDashboard.putString("motor is trying to spin in power above MAX_POWER_CIM limit. Reverting to 0.9", "");
         }
-        motor.set(TalonSRXControlMode.PercentOutput, Math.min(power, 0.9));
+        motor.setInputVoltage(power);
     }
 
     @Override
     public void subsystemPeriodic() {
         if (!inTestingMode) {
-            motor.setSelectedSensorPosition(targetAngle.getRotations());
+            motor.setInputVoltage(WristSimulationController.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec()));
         }
     }
 
