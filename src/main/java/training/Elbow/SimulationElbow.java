@@ -1,7 +1,5 @@
 package training.Elbow;
 
-import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import utils.GBSubsystem;
@@ -24,7 +22,7 @@ public class SimulationElbow extends GBSubsystem implements IElbow {
 
     private SimulationElbow() {
         this.targetAngle = DEFAULT_POSITION_ELBOW;
-        this.arm = new SingleJointedArmSimulation(new SingleJointedArmSim(GERABOX, GERAING, SingleJointedArmSim.estimateMOI(ARM_LENGTH_METERS, ARM_MASS), ARM_LENGTH_METERS, MIN_ANGLE.getRadians(), MAX_ANGLE.getRadians(), true, 0));
+        this.arm = new SingleJointedArmSimulation(new SingleJointedArmSim(GEARBOX, GEARING, SingleJointedArmSim.estimateMOI(ARM_LENGTH_METERS, ARM_MASS), ARM_LENGTH_METERS, MIN_ANGLE.getRadians(), MAX_ANGLE.getRadians(), true, 0));
     }
 
     @Override
