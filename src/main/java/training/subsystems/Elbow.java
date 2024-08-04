@@ -4,7 +4,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
-    private TalonFX motor;
+    private final TalonFX motor;
     private static Elbow instance;
 
     private Elbow(){
@@ -21,6 +21,8 @@ public class Elbow extends GBSubsystem {
         init();
         return instance;
     }
+
+
 
     @Override
     protected String getLogPath() {
