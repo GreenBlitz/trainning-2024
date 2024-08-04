@@ -3,7 +3,6 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import utils.GBSubsystem;
 
 public class NeoElbow implements IElbow {
 
@@ -30,7 +29,7 @@ public class NeoElbow implements IElbow {
     }
 
     @Override
-    public void moveElbow(Rotation2d position){
+    public void moveElbowToPosition(Rotation2d position){
             motor.getPIDController().setReference(
                     position.getDegrees(),
                     CANSparkBase.ControlType.kPosition,
@@ -42,7 +41,7 @@ public class NeoElbow implements IElbow {
 
     @Override
     public void stayAtPosition(){
-        moveElbow(getPosition());
+        moveElbowToPosition(getPosition());
     }
 
     @Override
@@ -56,8 +55,8 @@ public class NeoElbow implements IElbow {
     }
 
     @Override
-    public void setVoltage(double voltage) {
-        motor.set(voltage);
+    public void setPower(double power) {
+        motor.set(power);
     }
 
     @Override

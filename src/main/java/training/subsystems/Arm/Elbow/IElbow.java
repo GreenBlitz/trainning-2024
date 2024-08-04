@@ -4,9 +4,9 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public interface IElbow {
 
-    void setVoltage(double voltage);
+    void setPower(double power);
 
-    void moveElbow(Rotation2d position);
+    void moveElbowToPosition(Rotation2d position);
 
     void stayAtPosition();
 

@@ -1,6 +1,5 @@
 package training.subsystems.Arm.Elbow;
 
-import com.revrobotics.CANSparkBase;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
@@ -25,8 +24,8 @@ public class Elbow extends GBSubsystem {
         return instance;
     }
 
-    public void setVoltage(double voltage) {
-        iElbow.setVoltage(voltage);
+    public void setPower(double power) {
+        iElbow.setPower(power);
     }
 
 
