@@ -2,6 +2,7 @@ package training.Roller;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
+import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 import static training.Roller.RollerConstants.*;
@@ -9,14 +10,12 @@ import static training.Roller.RollerDirection.kBackward;
 import static training.Roller.RollerDirection.kForward;
 
 public interface IRoller {
-    double getTargetVelocity();
+    abstract void setPower(double power);
 
-    void setTargetVelocity(double targetVelocity);
+    abstract Rotation2d getPosition();
 
-    void runForward();
+    abstract Rotation2d getVelocity();
 
-    void runBackward();
-
-    void stop();
+    abstract void updateVelocity(Rotation2d targetVelocity, RollerDirection direction);
 }
 

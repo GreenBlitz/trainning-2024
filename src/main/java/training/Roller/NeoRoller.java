@@ -2,6 +2,7 @@ package training.Roller;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
+import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 import static training.Roller.RollerConstants.ROLLER_ID;
@@ -17,10 +18,8 @@ import static training.Roller.RollerConstants.ROLLER_LOG_PATH;
 import static training.Roller.RollerDirection.kBackward;
 import static training.Roller.RollerDirection.kForward;
 
-public class NeoRoller extends GBSubsystem implements IRoller {
+public class NeoRoller implements IRoller {
     private final CANSparkMax motor;
-    private double targetVelocity;
-    private RollerDirection direction;
 
     public NeoRoller() {
         this.motor = new CANSparkMax(ROLLER_ID, ROLLER_MOTOR_TYPE);
@@ -32,44 +31,25 @@ public class NeoRoller extends GBSubsystem implements IRoller {
         motor.getPIDController().setOutputRange(-POWER_LIMIT_ROLLER, POWER_LIMIT_ROLLER);
         motor.burnFlash(); // applies some of the changes above
 
-        this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
     }
 
     @Override
-    public double getTargetVelocity() {
-        return targetVelocity;
+    public void updateVelocity(Rotation2d targetVelocity, RollerDirection direction) {
+        motor.getPIDController().setReference(targetVelocity.getRotations() * direction.toInt(), CANSparkBase.ControlType.kVelocity);
     }
 
     @Override
-    public void setTargetVelocity(double targetVelocity) {
-        this.targetVelocity = targetVelocity;
+    public Rotation2d getPosition() {
+        return new Rotation2d(motor.getEncoder().getPosition());
     }
 
     @Override
-    public void runForward() {
-        this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
-        direction = kForward;
+    public Rotation2d getVelocity() {
+        return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
     }
 
     @Override
-    public void runBackward() {
-        this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
-        direction = kBackward;
-    }
-
-    @Override
-    public void stop() {
-        targetVelocity = 0;
-        motor.set(0);
-    }
-
-    @Override
-    public void subsystemPeriodic() {
-        motor.getPIDController().setReference(targetVelocity * direction.toInt(), CANSparkBase.ControlType.kVelocity);
-    }
-
-    @Override
-    protected String getLogPath() {
-        return ROLLER_LOG_PATH;
+    public void setPower(double power) {
+        motor.set(power);
     }
 }
