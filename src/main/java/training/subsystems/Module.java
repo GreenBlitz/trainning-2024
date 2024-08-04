@@ -5,7 +5,6 @@ import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import training.ModuleConstants;
 import utils.GBSubsystem;
 
 public class Module extends GBSubsystem {
