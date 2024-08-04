@@ -32,12 +32,12 @@ public class ElbowConstants {
     // * Sim
 
     protected static double PLANT;
-    protected static DCMotor GEARBOX = new DCMotor(0, 0, 0, 0, 0, 0);
-    protected static double GEARING = 0;
-    protected static double ARM_LENGTH_METERS = 0;
-    protected static double ARM_MASS = 0;
-    protected static Rotation2d MIN_ANGLE = Rotation2d.fromRotations(0);
-    protected static Rotation2d MAX_ANGLE = Rotation2d.fromRotations(0);
+    protected static DCMotor ELBOW_GEARBOX = new DCMotor(0, 0, 0, 0, 0, 0);
+    protected static double ELBOW_GEARING = 0;
+    protected static double ELBOW_LENGTH_METERS = 0;
+    protected static double ELBOW_MASS = 0;
+    protected static Rotation2d ELBOW_MIN_ANGLE = Rotation2d.fromRotations(0);
+    protected static Rotation2d ELBOW_MAX_ANGLE = Rotation2d.fromRotations(0);
 
     protected static Rotation2d ELBOW_TOLERANCE_SIM = Rotation2d.fromRotations(0);
     protected static PIDController Controller = new PIDController(0, 0, 0); // Outputs power

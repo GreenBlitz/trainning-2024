@@ -22,7 +22,7 @@ public class SimulationElbow extends GBSubsystem implements IElbow {
 
     private SimulationElbow() {
         this.targetAngle = DEFAULT_POSITION_ELBOW;
-        this.arm = new SingleJointedArmSimulation(new SingleJointedArmSim(GEARBOX, GEARING, SingleJointedArmSim.estimateMOI(ARM_LENGTH_METERS, ARM_MASS), ARM_LENGTH_METERS, MIN_ANGLE.getRadians(), MAX_ANGLE.getRadians(), true, 0));
+        this.arm = new SingleJointedArmSimulation(new SingleJointedArmSim(ELBOW_GEARBOX, ELBOW_GEARING, SingleJointedArmSim.estimateMOI(ELBOW_LENGTH_METERS, ELBOW_MASS), ELBOW_LENGTH_METERS, ELBOW_MIN_ANGLE.getRadians(), ELBOW_MAX_ANGLE.getRadians(), true, 0));
     }
 
     @Override

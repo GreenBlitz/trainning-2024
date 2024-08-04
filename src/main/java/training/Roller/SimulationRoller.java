@@ -1,6 +1,5 @@
 package training.Roller;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
 import utils.GBSubsystem;
@@ -24,7 +23,7 @@ public class SimulationRoller extends GBSubsystem implements IRoller {
     private RollerDirection direction;
 
     private SimulationRoller() {
-        this.motor = new DCMotorSim(DCMotor.getNEO(1), GEARING, POWER_TO_ACCELERATION);
+        this.motor = new DCMotorSim(DCMotor.getNEO(1), ROLLER_GEARING, POWER_TO_ACCELERATION);
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
     }
 

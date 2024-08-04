@@ -1,6 +1,5 @@
 package training.Wrist;
 
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
@@ -27,7 +26,7 @@ public class SimulationWrist extends GBSubsystem implements IWrist {
     private boolean inTestingMode;
 
     private SimulationWrist() {
-        this.motor = new DCMotorSim(DCMotor.getNEO(1), GEARING, SingleJointedArmSim.estimateMOI(WRIST_LENGTH_METERS, WRIST_MASS_KG));
+        this.motor = new DCMotorSim(DCMotor.getNEO(1), WRIST_GEARING, SingleJointedArmSim.estimateMOI(WRIST_LENGTH_METERS, WRIST_MASS_KG));
     }
 
     @Override
@@ -64,7 +63,7 @@ public class SimulationWrist extends GBSubsystem implements IWrist {
     @Override
     public void subsystemPeriodic() {
         if (!inTestingMode) {
-            motor.setInputVoltage(WristSimulationController.calculate(getCurrentPosition().getRadians(), getCurrentVelocity().getRotations()));
+            motor.setInputVoltage(WRIST_SIMULATION_CONTROLLER.calculate(getCurrentPosition().getRadians(), getCurrentVelocity().getRotations()));
         }
     }
 

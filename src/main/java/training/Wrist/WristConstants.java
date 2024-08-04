@@ -20,8 +20,8 @@ public class WristConstants {
 
     protected static final Rotation2d WRIST_UPPER_POSITION = new Rotation2d(0);
     protected static final Rotation2d WRIST_LOWER_POSITION = new Rotation2d(0);
-    protected static final double GEARING = 0;
+    protected static final double WRIST_GEARING = 0;
     protected static final double WRIST_LENGTH_METERS = 0;
     protected static final double WRIST_MASS_KG = 0;
-    protected static final PIDController WristSimulationController = new PIDController(0, 0, 0);
+    protected static final PIDController WRIST_SIMULATION_CONTROLLER = new PIDController(0, 0, 0);
 }
