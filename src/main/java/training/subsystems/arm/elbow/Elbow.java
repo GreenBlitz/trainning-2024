@@ -17,6 +17,7 @@ public class Elbow extends GBSubsystem {
 
     }
     private final CANSparkMax motor;
+    private final CommandsBuilder commmands;
 
     public Elbow(){
         this.motor = new CANSparkMax(Constants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
@@ -24,7 +25,7 @@ public class Elbow extends GBSubsystem {
         motor.getPIDController().setP(Constants.KP);
         motor.getPIDController().setI(Constants.KI);
         motor.getPIDController().setD(Constants.KD);
-
+        this.Commnads = new CommandsBuilder(this);
     }
 
     public Rotation2d getCurrentAngle(){
