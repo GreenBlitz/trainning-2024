@@ -8,7 +8,9 @@ import utils.GBSubsystem;
 
 public class ElbowSubsystem  extends GBSubsystem {
     private final CANSparkMax motor;
-    private final Rotation2d targetPosition;
+
+
+    private static ElbowSubsystem instance;
 
 
     @Override
@@ -23,10 +25,18 @@ public class ElbowSubsystem  extends GBSubsystem {
 
     public ElbowSubsystem(){
         this.motor = new CANSparkMax(ElbowConstants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-        this.targetPosition = ElbowConstants.ELBOW_START_POSITION;
+        motor.getEncoder().setPositionConversionFactor(ElbowConstants.ELBOW_GEAR_RATIO.getDegrees());
         motor.getPIDController().setP(ElbowConstants.ELBOW_P);
         motor.getPIDController().setI(ElbowConstants.ELBOW_I);
         motor.getPIDController().setD(ElbowConstants.ELBOW_D);
+        motor.getEncoder().setPosition(ElbowConstants.ELBOW_START_POSITION.getDegrees());
+    }
+
+    public static ElbowSubsystem getInstance() {
+        if (instance == null) {
+            instance = new ElbowSubsystem();
+        }
+        return instance;
     }
 
     public void moveElbow(Rotation2d position){

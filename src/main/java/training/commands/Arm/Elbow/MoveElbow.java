@@ -8,7 +8,7 @@ public class MoveElbow extends Command {
     private final Rotation2d targetPosition;
 
     public MoveElbow(ElbowSubsystem elbow, Rotation2d targetPosition){
-        this.elbow = elbow;
+        this.elbow = ElbowSubsystem.getInstance();
         this.targetPosition = targetPosition;
     }
 

@@ -26,5 +26,7 @@ public class ElbowConstants {
     protected static final double ELBOW_KV = 0;
     protected static final double ELBOW_KA = 0;
 
+    public static final Rotation2d ELBOW_GEAR_RATIO = Rotation2d.fromDegrees(1 / (28.0 * (60.0 / 16.0)));
+
 
 }
