@@ -11,21 +11,12 @@ import utils.GBSubsystem;
 import static training.Wrist.WristConstants.*;
 
 public class SimulationWrist extends GBSubsystem implements IWrist {
-    private static SimulationWrist instance;
-
-    public static SimulationWrist getInstance() {
-        if (instance == null) {
-            instance = new SimulationWrist();
-        }
-        return instance;
-    }
-
     private final DCMotorSim motor;
     private BaseTalonConfiguration configuration;
     private Rotation2d targetAngle;
     private boolean inTestingMode;
 
-    private SimulationWrist() {
+    public SimulationWrist() {
         this.motor = new DCMotorSim(DCMotor.getNEO(1), WRIST_GEARING, SingleJointedArmSim.estimateMOI(WRIST_LENGTH_METERS, WRIST_MASS_KG));
     }
 

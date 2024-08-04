@@ -8,19 +8,10 @@ import utils.simulation.SingleJointedArmSimulation;
 import static training.Elbow.ElbowConstants.*;
 
 public class SimulationElbow extends GBSubsystem implements IElbow {
-    private static SimulationElbow instance;
-
-    public static SimulationElbow getInstance() {
-        if (instance == null) {
-            instance = new SimulationElbow();
-        }
-        return instance;
-    }
-
     private final SingleJointedArmSimulation arm;
     private Rotation2d targetAngle;
 
-    private SimulationElbow() {
+    public SimulationElbow() {
         this.targetAngle = DEFAULT_POSITION_ELBOW;
         this.arm = new SingleJointedArmSimulation(new SingleJointedArmSim(ELBOW_GEARBOX, ELBOW_GEARING, SingleJointedArmSim.estimateMOI(ELBOW_LENGTH_METERS, ELBOW_MASS), ELBOW_LENGTH_METERS, ELBOW_MINIMUM_ANGLE.getRadians(), ELBOW_MAXIMUM_ANGLE.getRadians(), true, 0));
     }

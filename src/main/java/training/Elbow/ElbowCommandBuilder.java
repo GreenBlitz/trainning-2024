@@ -6,13 +6,14 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
+import utils.GBSubsystem;
 
 import static training.Elbow.ElbowConstants.DEFAULT_TIME_IN_AIR_ELBOW_SECONDS;
 import static training.Elbow.ElbowConstants.LIFTING_POSITION_DEGREES;
 
 
 public class ElbowCommandBuilder {
-    private final NeoElbow elbowSubsystem;
+    private final Elbow elbowSubsystem;
 
     public Command MoveElbowToAngle(Rotation2d targetAngle) {
         return new FunctionalCommand(
@@ -25,7 +26,7 @@ public class ElbowCommandBuilder {
     }
 
     public ElbowCommandBuilder() {
-        this.elbowSubsystem = NeoElbow.getInstance();
+        this.elbowSubsystem = new ElbowFactory().create();
     }
 
     public Command LiftElbow() {

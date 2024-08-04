@@ -44,7 +44,7 @@ public class ElbowConstants {
     protected static final int PID_SLOT = 0;
 
 
-    // * Sim
+    // * Simulation
 
     protected static double PLANT;
 

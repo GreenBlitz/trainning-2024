@@ -15,21 +15,12 @@ import static training.Wrist.WristConstants.WRIST_LOG_PATH;
 import static training.Wrist.WristConstants.WRIST_PID_CONFIG;
 
 public class NeoWrist extends GBSubsystem implements IWrist {
-    private static NeoWrist instance;
-
-    public static NeoWrist getInstance() {
-        if (instance == null) {
-            instance = new NeoWrist();
-        }
-        return instance;
-    }
-
     private final TalonSRX motor;
     private BaseTalonConfiguration configuration;
     private Rotation2d targetAngle;
     private boolean inTestingMode;
 
-    private NeoWrist() {
+    public NeoWrist() {
         this.motor = new TalonSRX(WRIST_ID);
         this.inTestingMode = false;
         motor.configAllSettings(WRIST_PID_CONFIG);

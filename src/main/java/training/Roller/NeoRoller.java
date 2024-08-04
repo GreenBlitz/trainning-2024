@@ -18,20 +18,11 @@ import static training.Roller.RollerDirection.kBackward;
 import static training.Roller.RollerDirection.kForward;
 
 public class NeoRoller extends GBSubsystem implements IRoller {
-    private static NeoRoller instance;
-
-    public static NeoRoller getInstance() {
-        if (instance == null) {
-            instance = new NeoRoller();
-        }
-        return instance;
-    }
-
     private final CANSparkMax motor;
     private double targetVelocity;
     private RollerDirection direction;
 
-    private NeoRoller() {
+    public NeoRoller() {
         this.motor = new CANSparkMax(ROLLER_ID, ROLLER_MOTOR_TYPE);
 
         motor.getEncoder().setPositionConversionFactor(ROLLER_GEAR_RATIO);

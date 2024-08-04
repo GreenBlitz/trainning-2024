@@ -9,20 +9,11 @@ import static training.Roller.RollerDirection.kBackward;
 import static training.Roller.RollerDirection.kForward;
 
 public class SimulationRoller extends GBSubsystem implements IRoller {
-    private static SimulationRoller instance;
-
-    public static SimulationRoller getInstance() {
-        if (instance == null) {
-            instance = new SimulationRoller();
-        }
-        return instance;
-    }
-
     private final DCMotorSim motor;
     private double targetVelocity;
     private RollerDirection direction;
 
-    private SimulationRoller() {
+    public SimulationRoller() {
         this.motor = new DCMotorSim(DCMotor.getNEO(1), ROLLER_GEARING, POWER_TO_ACCELERATION);
         this.targetVelocity = ROLLER_DEFAULT_VELOCITY_RPM;
     }

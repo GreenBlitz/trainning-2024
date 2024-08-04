@@ -16,21 +16,12 @@ import static training.Elbow.ElbowConstants.ELBOW_TOLERANCE;
 import static training.Elbow.ElbowConstants.ELBOW_FEEDFORWARD;
 import static training.Elbow.ElbowConstants.PID_SLOT;
 
-public class NeoElbow extends GBSubsystem implements IElbow {
-    private static NeoElbow instance;
-
-    public static NeoElbow getInstance() {
-        if (instance == null) {
-            instance = new NeoElbow();
-        }
-        return instance;
-    }
-
+public class NeoElbow extends Elbow implements IElbow {
     private final CANSparkMax motor;
     private final Rotation2d flooredStartRotations;
     private Rotation2d targetAngle;
 
-    private NeoElbow() {
+    public NeoElbow() {
         this.targetAngle = DEFAULT_POSITION_ELBOW;
         this.motor = new CANSparkMax(ELBOW_ID, ELBOW_MOTOR_TYPE);
         this.flooredStartRotations = Rotation2d.fromRotations(Math.floor(motor.getEncoder().getPosition()));
@@ -67,11 +58,6 @@ public class NeoElbow extends GBSubsystem implements IElbow {
     public boolean isAtAngle(Rotation2d angle) {
         double anglesDelta = (this.targetAngle.getDegrees() % 360) - (angle.getDegrees() % 360);
         return Math.abs(anglesDelta) <= ELBOW_TOLERANCE.getDegrees();
-    }
-
-    @Override
-    protected String getLogPath() {
-        return ELBOW_LOG_PATH;
     }
 
     @Override

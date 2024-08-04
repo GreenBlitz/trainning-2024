@@ -1,15 +1,15 @@
 package training.Roller;
 
-import training.Elbow.IElbow;
-import training.Elbow.NeoElbow;
-import training.Elbow.SimulationElbow;
 import training.Robot;
 
 public class RollerFactory {
+    SimulationRoller simulationRoller = new SimulationRoller();
+    NeoRoller neoRoller = new NeoRoller();
+
     public IRoller create() {
         return switch (Robot.getRobotType()) {
-            case Simulation -> SimulationRoller.getInstance();
-            case PREVIOUSLY_SYNCOPA -> NeoRoller.getInstance();
+            case SIMULATION -> simulationRoller;
+            case PREVIOUSLY_SYNCOPA -> neoRoller;
         };
     }
 }
