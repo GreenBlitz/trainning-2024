@@ -41,6 +41,14 @@ public class SimulationWrist extends GBSubsystem implements IWrist {
         targetAngle = direction.getValue() == 1 ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
     }
 
+    public Rotation2d getCurrentPosition() {
+        return Rotation2d.fromRotations(motor.getAngularPositionRotations());
+    }
+
+    public Rotation2d getCurrentVelocity() {
+        return Rotation2d.fromRotations(motor.getAngularVelocityRPM());
+    }
+
 
     /** Don't use this in production code. It's here only for debugging etc.
      */
@@ -56,7 +64,7 @@ public class SimulationWrist extends GBSubsystem implements IWrist {
     @Override
     public void subsystemPeriodic() {
         if (!inTestingMode) {
-            motor.setInputVoltage(WristSimulationController.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec()));
+            motor.setInputVoltage(WristSimulationController.calculate(getCurrentPosition().getRadians(), getCurrentVelocity().getRotations()));
         }
     }
 
