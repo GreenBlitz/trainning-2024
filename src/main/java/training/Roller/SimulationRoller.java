@@ -57,7 +57,7 @@ public class SimulationRoller extends GBSubsystem implements IRoller {
 
     @Override
     public void subsystemPeriodic() {
-        motor.setInputVoltage(SimulationController.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec()));
+        motor.setInputVoltage(ROLLER_SIMULATION_CONTROLLER.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec()));
     }
 
     @Override

@@ -32,7 +32,7 @@ public class ElbowCommandBuilder {
         return new SequentialCommandGroup(UpElbow(), new WaitCommand(DEFAULT_TIME_IN_AIR_ELBOW_SECONDS), DownElbow());
     }
 
-    public Command LockElbowInPlaceCommand() {
+    public Command LockElbowInPlace() {
         return new InstantCommand(elbowSubsystem::LockElbowInPlace, elbowSubsystem);
     }
 
