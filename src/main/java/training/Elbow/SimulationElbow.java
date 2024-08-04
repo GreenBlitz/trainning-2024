@@ -71,6 +71,6 @@ public class SimulationElbow extends GBSubsystem implements IElbow {
         double target = targetAngle.getRotations() % 1;
         double FFValue = ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), arm.getVelocity().getRadians());
 
-        arm.setPower(Controller.calculate(getCurrentAngle().getRadians(), getTargetAngle().getRadians()));
+        arm.setPower(Controller.calculate(target, getTargetAngle().getRadians()) + FFValue);
     }
 }
