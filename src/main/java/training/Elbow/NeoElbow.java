@@ -19,10 +19,8 @@ import static training.Elbow.ElbowConstants.PID_SLOT;
 public class NeoElbow extends Elbow implements IElbow {
     private final CANSparkMax motor;
     private final Rotation2d flooredStartRotations;
-    private Rotation2d targetAngle;
 
     public NeoElbow() {
-        this.targetAngle = DEFAULT_POSITION_ELBOW;
         this.motor = new CANSparkMax(ELBOW_ID, ELBOW_MOTOR_TYPE);
         this.flooredStartRotations = Rotation2d.fromRotations(Math.floor(motor.getEncoder().getPosition()));
 
@@ -35,43 +33,16 @@ public class NeoElbow extends Elbow implements IElbow {
     }
 
     @Override
-    public Rotation2d getTargetAngle() {
-        return targetAngle;
-    }
-
-    @Override
-    public void setTargetAngle(Rotation2d targetAngle) {
-        this.targetAngle = targetAngle;
-    }
-
-    @Override
-    public void addToAngle(Rotation2d angle) {
-        this.targetAngle = this.targetAngle.plus(angle);
-    }
-
-    @Override
-    public void subtractFromAngle(Rotation2d angle) {
-        this.targetAngle = this.targetAngle.minus(angle);
-    }
-
-    @Override
-    public boolean isAtAngle(Rotation2d angle) {
-        double anglesDelta = (this.targetAngle.getDegrees() % 360) - (angle.getDegrees() % 360);
-        return Math.abs(anglesDelta) <= ELBOW_TOLERANCE.getDegrees();
-    }
-
-    @Override
     public Rotation2d getCurrentAngle() {
         return Rotation2d.fromRotations(motor.getEncoder().getPosition());
     }
 
-    @Override
-    public void LockElbowInPlace() {
-        targetAngle = getCurrentAngle();
+    public Rotation2d getCurrentVelocity() {
+        return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
     }
 
     @Override
-    public void subsystemPeriodic() {
+    public void updateAngle(Rotation2d targetAngle) {
         double target = flooredStartRotations.getRotations() + (targetAngle.getRotations() % 1);
         double FFValue = ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
 

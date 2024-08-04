@@ -26,7 +26,7 @@ public class ElbowCommandBuilder {
     }
 
     public ElbowCommandBuilder() {
-        this.elbowSubsystem = new ElbowFactory().create();
+        this.elbowSubsystem = (Elbow) new ElbowFactory().create();
     }
 
     public Command LiftElbow() {

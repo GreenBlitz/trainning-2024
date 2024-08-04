@@ -7,44 +7,11 @@ import utils.simulation.SingleJointedArmSimulation;
 
 import static training.Elbow.ElbowConstants.*;
 
-public class SimulationElbow extends GBSubsystem implements IElbow {
+public class SimulationElbow implements IElbow {
     private final SingleJointedArmSimulation arm;
-    private Rotation2d targetAngle;
 
     public SimulationElbow() {
-        this.targetAngle = DEFAULT_POSITION_ELBOW;
         this.arm = new SingleJointedArmSimulation(new SingleJointedArmSim(ELBOW_GEARBOX, ELBOW_GEARING, SingleJointedArmSim.estimateMOI(ELBOW_LENGTH_METERS, ELBOW_MASS), ELBOW_LENGTH_METERS, ELBOW_MINIMUM_ANGLE.getRadians(), ELBOW_MAXIMUM_ANGLE.getRadians(), true, 0));
-    }
-
-    @Override
-    public Rotation2d getTargetAngle() {
-        return targetAngle;
-    }
-
-    @Override
-    public void setTargetAngle(Rotation2d targetAngle) {
-        this.targetAngle = targetAngle;
-    }
-
-    @Override
-    public void addToAngle(Rotation2d angle) {
-        this.targetAngle = this.targetAngle.plus(angle);
-    }
-
-    @Override
-    public void subtractFromAngle(Rotation2d angle) {
-        this.targetAngle = this.targetAngle.minus(angle);
-    }
-
-    @Override
-    public boolean isAtAngle(Rotation2d angle) {
-        double anglesDelta = (this.targetAngle.getDegrees() % 360) - (angle.getDegrees() % 360);
-        return Math.abs(anglesDelta) <= ELBOW_TOLERANCE_SIM.getDegrees();
-    }
-
-    @Override
-    protected String getLogPath() {
-        return ELBOW_LOG_PATH;
     }
 
     @Override
@@ -53,15 +20,15 @@ public class SimulationElbow extends GBSubsystem implements IElbow {
     }
 
     @Override
-    public void LockElbowInPlace() {
-        targetAngle = getCurrentAngle();
+    public Rotation2d getCurrentVelocity() {
+        return arm.getVelocity();
     }
 
     @Override
-    public void subsystemPeriodic() {
+    public void updateAngle(Rotation2d targetAngle) {
         double target = targetAngle.getRotations() % 1;
         double FFValue = ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), arm.getVelocity().getRadians());
 
-        arm.setPower(Controller.calculate(target, getTargetAngle().getRadians()) + FFValue);
+        arm.setPower(Controller.calculate(target, targetAngle.getRadians()) + FFValue);
     }
 }
