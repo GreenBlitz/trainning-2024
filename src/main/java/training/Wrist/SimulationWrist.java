@@ -23,7 +23,7 @@ public class SimulationWrist implements IWrist {
     /** Don't use this in production code. It's here only for debugging etc.
      */
     @Deprecated
-    public void setPowerTestingOnly(double power) {
+    public void setPower(double power) {
         inTestingMode = true;
         if (Math.abs(power) >= POWER_LIMIT_WRIST) {
             SmartDashboard.putString("motor is trying to spin in power above MAX_POWER_CIM limit. Reverting to 0.9", "");

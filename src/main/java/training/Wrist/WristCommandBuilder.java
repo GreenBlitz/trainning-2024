@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class WristCommandBuilder {
-    private final NeoWrist wristSubsystem;
+    private final Wrist wristSubsystem;
 
     public WristCommandBuilder() {
-        this.wristSubsystem = NeoWrist.getInstance();
+        this.wristSubsystem = new Wrist();
     }
 
     public Command MoveUpWrist() {

@@ -8,10 +8,15 @@ import static training.Wrist.WristConstants.*;
 
 public class Wrist extends GBSubsystem {
     private Rotation2d targetAngle;
+    private final IWrist motor;
+
+    public Wrist() {
+        this.motor = new WristFactory().create();
+    }
 
     public void stop() {
         targetAngle = new Rotation2d(0);
-        motor.set(TalonSRXControlMode.PercentOutput, 0);
+        motor.setPower(0);
     }
 
     public void rotate(WristDirection direction) {
@@ -25,7 +30,7 @@ public class Wrist extends GBSubsystem {
 
     @Override
     protected void subsystemPeriodic() {
-
+        motor.updateAngle(targetAngle);
     }
 
 }
