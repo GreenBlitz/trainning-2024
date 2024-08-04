@@ -4,9 +4,9 @@ import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import utils.GBSubsystem;
 
-public class RollerSubsystem extends GBSubsystem {
+public class Roller extends GBSubsystem {
     private final CANSparkMax motor;
-    private static RollerSubsystem instance;
+    private static Roller instance;
 
     @Override
     protected String getLogPath() {
@@ -18,13 +18,13 @@ public class RollerSubsystem extends GBSubsystem {
 
     }
 
-    public RollerSubsystem() {
+    public Roller() {
         this.motor = new CANSparkMax(RollerConstants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
     }
 
-    public static RollerSubsystem getInstance() {
+    public static Roller getInstance() {
         if (instance == null) {
-            instance = new RollerSubsystem();
+            instance = new Roller();
         }
         return instance;
     }

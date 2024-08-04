@@ -1,13 +1,13 @@
 package training.commands.Arm.Roller;
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.Arm.Roller.RollerSubsystem;
+import training.subsystems.Arm.Roller.Roller;
 
 public class RollerCounterClockwise extends Command {
 
-    private final RollerSubsystem roller;
+    private final Roller roller;
 
     public RollerCounterClockwise(){
-        this.roller = RollerSubsystem.getInstance();
+        this.roller = Roller.getInstance();
     }
 
     @Override

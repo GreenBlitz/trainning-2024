@@ -2,26 +2,18 @@ package training.subsystems.Arm.Elbow;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-public class ElbowSubsystem  extends GBSubsystem {
+public class NeoElbow implements IElbow {
 
     private final CANSparkMax motor;
 
-    private static ElbowSubsystem instance;
+    private static NeoElbow instance;
 
-    @Override
-    protected String getLogPath() {
-        return null;
-    }
 
-    @Override
-    protected void subsystemPeriodic() {
-    }
 
-    public ElbowSubsystem(){
+    public NeoElbow(){
         this.motor = new CANSparkMax(ElbowConstants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
         motor.getEncoder().setPositionConversionFactor(ElbowConstants.ELBOW_GEAR_RATIO.getDegrees());
         motor.getPIDController().setP(ElbowConstants.ELBOW_P);
@@ -30,36 +22,45 @@ public class ElbowSubsystem  extends GBSubsystem {
         motor.getEncoder().setPosition(ElbowConstants.ELBOW_START_POSITION.getDegrees());
     }
 
-    public static ElbowSubsystem getInstance() {
+    public static NeoElbow getInstance() {
         if (instance == null) {
-            instance = new ElbowSubsystem();
+            instance = new NeoElbow();
         }
         return instance;
     }
 
+    @Override
     public void moveElbow(Rotation2d position){
             motor.getPIDController().setReference(
                     position.getDegrees(),
                     CANSparkBase.ControlType.kPosition,
                     0,
-                    ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity())
+                    ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
             );
 
     }
 
+    @Override
     public void stayAtPosition(){
         moveElbow(getPosition());
     }
 
+    @Override
     public Rotation2d getPosition(){
         return Rotation2d.fromRotations(motor.getEncoder().getPosition());
     }
 
-    public double getVelocity(){
-        return motor.getEncoder().getVelocity();
+    @Override
+    public Rotation2d getVelocity(){
+        return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
     }
 
+    @Override
+    public void setVoltage(double voltage) {
+        motor.set(voltage);
+    }
 
+    @Override
     public boolean isAtPosition(Rotation2d target){
         return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE;
     }
