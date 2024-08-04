@@ -33,7 +33,7 @@ public class SimulationWrist extends GBSubsystem implements IWrist {
     @Override
     public void stop() {
         targetAngle = new Rotation2d(0);
-        motor.set(TalonSRXControlMode.PercentOutput, 0);
+        motor.setInputVoltage(0);
     }
 
     @Override
