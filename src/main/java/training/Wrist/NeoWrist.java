@@ -14,10 +14,9 @@ import static training.Wrist.WristConstants.WRIST_LOWER_POSITION;
 import static training.Wrist.WristConstants.WRIST_LOG_PATH;
 import static training.Wrist.WristConstants.WRIST_PID_CONFIG;
 
-public class NeoWrist extends GBSubsystem implements IWrist {
+public class NeoWrist implements IWrist {
     private final TalonSRX motor;
     private BaseTalonConfiguration configuration;
-    private Rotation2d targetAngle;
     private boolean inTestingMode;
 
     public NeoWrist() {
@@ -26,21 +25,10 @@ public class NeoWrist extends GBSubsystem implements IWrist {
         motor.configAllSettings(WRIST_PID_CONFIG);
     }
 
-    @Override
-    public void stop() {
-        targetAngle = new Rotation2d(0);
-        motor.set(TalonSRXControlMode.PercentOutput, 0);
-    }
-
-    @Override
-    public void rotate(WristDirection direction) {
-        targetAngle = direction.getValue() == 1 ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
-    }
-
-
     /** Don't use this in production code. It's here only for debugging etc.
      */
     @Deprecated
+    @Override
     public void setPowerTestingOnly(double power) {
         inTestingMode = true;
         if (Math.abs(power) >= POWER_LIMIT_WRIST) {
@@ -50,14 +38,9 @@ public class NeoWrist extends GBSubsystem implements IWrist {
     }
 
     @Override
-    public void subsystemPeriodic() {
+    public void updateAngle(Rotation2d targetAngle) {
         if (!inTestingMode) {
             motor.setSelectedSensorPosition(targetAngle.getRotations());
         }
-    }
-
-    @Override
-    protected String getLogPath() {
-        return WRIST_LOG_PATH;
     }
 }

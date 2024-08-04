@@ -5,12 +5,12 @@ import training.Roller.NeoRoller;
 
 public class ElbowFactory {
     SimulationElbow simulationElbow = new SimulationElbow();
-    NeoRoller neoRoller = new NeoRoller();
+    NeoElbow neoElbow = new NeoElbow();
 
     public IElbow create() {
         return switch (Robot.getRobotType()) {
             case SIMULATION -> simulationElbow;
-            case PREVIOUSLY_SYNCOPA -> neoRoller;
+            case PREVIOUSLY_SYNCOPA -> neoElbow;
         };
     }
 }

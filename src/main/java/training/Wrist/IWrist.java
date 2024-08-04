@@ -7,7 +7,7 @@ import static training.Wrist.WristConstants.WRIST_LOWER_POSITION;
 import static training.Wrist.WristConstants.WRIST_UPPER_POSITION;
 
 public interface IWrist {
-    public abstract void stop();
+    public abstract void setPowerTestingOnly(double power);
 
-    public abstract void rotate(WristDirection direction);
+    public abstract void updateAngle(Rotation2d targetAngle);
 }

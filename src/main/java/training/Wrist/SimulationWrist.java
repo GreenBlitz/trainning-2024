@@ -10,44 +10,15 @@ import utils.GBSubsystem;
 
 import static training.Wrist.WristConstants.*;
 
-public class SimulationWrist extends GBSubsystem implements IWrist {
-    private static SimulationWrist instance;
-
-    public static SimulationWrist getInstance() {
-        if (instance == null) {
-            instance = new SimulationWrist();
-        }
-        return instance;
-    }
-
+public class SimulationWrist implements IWrist {
     private final DCMotorSim motor;
     private BaseTalonConfiguration configuration;
     private Rotation2d targetAngle;
     private boolean inTestingMode;
 
-    private SimulationWrist() {
+    public SimulationWrist() {
         this.motor = new DCMotorSim(DCMotor.getNEO(1), WRIST_GEARING, SingleJointedArmSim.estimateMOI(WRIST_LENGTH_METERS, WRIST_MASS_KG));
     }
-
-    @Override
-    public void stop() {
-        targetAngle = new Rotation2d(0);
-        motor.setInputVoltage(0);
-    }
-
-    @Override
-    public void rotate(WristDirection direction) {
-        targetAngle = direction.getValue() == 1 ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
-    }
-
-    public Rotation2d getCurrentPosition() {
-        return Rotation2d.fromRotations(motor.getAngularPositionRotations());
-    }
-
-    public Rotation2d getCurrentVelocity() {
-        return Rotation2d.fromRotations(motor.getAngularVelocityRPM());
-    }
-
 
     /** Don't use this in production code. It's here only for debugging etc.
      */
@@ -61,14 +32,9 @@ public class SimulationWrist extends GBSubsystem implements IWrist {
     }
 
     @Override
-    public void subsystemPeriodic() {
+    public void updateAngle(Rotation2d targetAngle) {
         if (!inTestingMode) {
-            motor.setInputVoltage(WRIST_SIMULATION_CONTROLLER.calculate(getCurrentPosition().getRadians(), getCurrentVelocity().getRotations()));
+            motor.setInputVoltage(WRIST_SIMULATION_CONTROLLER.calculate(motor.getAngularPositionRotations(), motor.getAngularVelocityRPM()));
         }
-    }
-
-    @Override
-    protected String getLogPath() {
-        return WRIST_LOG_PATH;
     }
 }

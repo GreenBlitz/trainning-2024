@@ -7,7 +7,7 @@ import static training.Elbow.ElbowConstants.*;
 
 public class Elbow extends GBSubsystem {
     private Rotation2d targetAngle;
-    private IElbow motor;
+    private final IElbow motor;
 
     public Elbow() {
         this.motor = new ElbowFactory().create();
@@ -50,6 +50,6 @@ public class Elbow extends GBSubsystem {
 
     @Override
     protected void subsystemPeriodic() {
-
+        motor.updateAngle(targetAngle);
     }
 }
