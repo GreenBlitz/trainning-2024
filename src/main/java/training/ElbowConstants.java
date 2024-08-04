@@ -1,6 +1,7 @@
 package training;
 
 import com.ctre.phoenix6.configs.Slot0Configs;
+import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 
 public class ElbowConstants {
@@ -13,4 +14,5 @@ public class ElbowConstants {
     public static final double KI_VALUE = 0;
     public static final double KD_VALUE = 0;
     public static final Rotation2d ANGULAR_TOLERANCE = Rotation2d.fromDegrees(1.8);
+    public static final ArmFeedforward FEED_FORWARD_PARAMETERS = new ArmFeedforward(1, 1, 0);
 }
