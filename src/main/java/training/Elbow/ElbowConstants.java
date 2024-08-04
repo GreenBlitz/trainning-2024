@@ -7,6 +7,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 
 public class ElbowConstants {
+
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
 
     protected static final String ELBOW_LOG_PATH = "";
@@ -63,4 +64,5 @@ public class ElbowConstants {
     protected static Rotation2d ELBOW_TOLERANCE_SIM = Rotation2d.fromRotations(0);
 
     protected static PIDController Controller = new PIDController(0, 0, 0); // Outputs power
+
 }

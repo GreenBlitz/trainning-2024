@@ -31,4 +31,5 @@ public class SimulationElbow implements IElbow {
 
         arm.setPower(Controller.calculate(target, targetAngle.getRadians()) + FFValue);
     }
+
 }

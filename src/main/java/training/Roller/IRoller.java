@@ -10,12 +10,13 @@ import static training.Roller.RollerDirection.kBackward;
 import static training.Roller.RollerDirection.kForward;
 
 public interface IRoller {
-    abstract void setPower(double power);
+    void setPower(double power);
 
-    abstract Rotation2d getPosition();
+    Rotation2d getPosition();
 
-    abstract Rotation2d getVelocity();
+    Rotation2d getVelocity();
 
-    abstract void updateVelocity(Rotation2d targetVelocity, RollerDirection direction);
+    void updateVelocity(Rotation2d targetVelocity, RollerDirection direction);
+
 }
 

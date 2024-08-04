@@ -36,4 +36,5 @@ public class SimulationRoller implements IRoller {
         ROLLER_SIMULATION_CONTROLLER.setSetpoint(targetVelocity.times(direction.toInt()).getRadians());
         setPower(ROLLER_SIMULATION_CONTROLLER.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec()));
     }
+
 }

@@ -16,4 +16,5 @@ public class WristCommandBuilder {
     public Command MoveDownWrist() {
         return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kRight), wristSubsystem);
     }
+
 }

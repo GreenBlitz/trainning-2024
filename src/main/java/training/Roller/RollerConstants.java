@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkLowLevel;
 import edu.wpi.first.math.controller.PIDController;
 
 public class RollerConstants {
+
     //* These constants are temp and shall be replaced with calibrated constants that aren't 0
     protected static final double ROLLER_ROLLING_TIME_SECONDS = 0.5;
 

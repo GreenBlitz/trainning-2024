@@ -10,4 +10,5 @@ public interface IWrist {
     public abstract void setPowerTestingOnly(double power);
 
     public abstract void updateAngle(Rotation2d targetAngle);
+
 }

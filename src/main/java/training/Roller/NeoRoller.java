@@ -52,4 +52,5 @@ public class NeoRoller implements IRoller {
     public void setPower(double power) {
         motor.set(power);
     }
+
 }

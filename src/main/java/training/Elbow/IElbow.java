@@ -13,4 +13,5 @@ public interface IElbow {
     Rotation2d getCurrentAngle();
 
     Rotation2d getCurrentVelocity();
+
 }

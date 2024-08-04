@@ -37,4 +37,5 @@ public class SimulationWrist implements IWrist {
             motor.setInputVoltage(WRIST_SIMULATION_CONTROLLER.calculate(motor.getAngularPositionRotations(), motor.getAngularVelocityRPM()));
         }
     }
+
 }

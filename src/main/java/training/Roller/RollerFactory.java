@@ -9,4 +9,5 @@ public class RollerFactory {
             case PREVIOUSLY_SYNCOPA -> new NeoRoller();
         };
     }
+
 }

@@ -13,4 +13,5 @@ public enum WristDirection {
     public int getValue() {
         return this.value;
     }
+
 }

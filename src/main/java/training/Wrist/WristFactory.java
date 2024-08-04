@@ -9,4 +9,5 @@ public class WristFactory {
             case PREVIOUSLY_SYNCOPA -> new NeoWrist();
         };
     }
+
 }
