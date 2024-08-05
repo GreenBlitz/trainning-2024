@@ -1,9 +1,10 @@
-package training.Roller;
+package training.Roller.NeoRoller;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import utils.GBSubsystem;
+import training.Roller.IRoller;
+import training.Roller.RollerDirection;
 
 import static training.Roller.RollerConstants.ROLLER_ID;
 import static training.Roller.RollerConstants.ROLLER_MOTOR_TYPE;
@@ -12,23 +13,18 @@ import static training.Roller.RollerConstants.ROLLER_P;
 import static training.Roller.RollerConstants.ROLLER_I;
 import static training.Roller.RollerConstants.ROLLER_D;
 import static training.Roller.RollerConstants.POWER_LIMIT_ROLLER;
-import static training.Roller.RollerConstants.ROLLER_DEFAULT_VELOCITY_RPM;
-import static training.Roller.RollerConstants.ROLLER_LOG_PATH;
-
-import static training.Roller.RollerDirection.kBackward;
-import static training.Roller.RollerDirection.kForward;
 
 public class NeoRoller implements IRoller {
     private final CANSparkMax motor;
 
     public NeoRoller() {
-        this.motor = new CANSparkMax(ROLLER_ID, ROLLER_MOTOR_TYPE);
+        this.motor = new CANSparkMax(NeoRollerConstants.ROLLER_ID, NeoRollerConstants.ROLLER_MOTOR_TYPE);
 
-        motor.getEncoder().setPositionConversionFactor(ROLLER_GEAR_RATIO);
-        motor.getPIDController().setP(ROLLER_P);
-        motor.getPIDController().setI(ROLLER_I);
-        motor.getPIDController().setD(ROLLER_D);
-        motor.getPIDController().setOutputRange(-POWER_LIMIT_ROLLER, POWER_LIMIT_ROLLER);
+        motor.getEncoder().setPositionConversionFactor(NeoRollerConstants.ROLLER_GEAR_RATIO);
+        motor.getPIDController().setP(NeoRollerConstants.ROLLER_P);
+        motor.getPIDController().setI(NeoRollerConstants.ROLLER_I);
+        motor.getPIDController().setD(NeoRollerConstants.ROLLER_D);
+        motor.getPIDController().setOutputRange(-NeoRollerConstants.POWER_LIMIT_ROLLER, NeoRollerConstants.POWER_LIMIT_ROLLER);
         motor.burnFlash(); // applies some of the changes above
 
     }

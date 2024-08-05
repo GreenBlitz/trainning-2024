@@ -1,19 +1,18 @@
-package training.Roller;
+package training.Roller.SimulationRoller;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
-import utils.GBSubsystem;
+import training.Roller.IRoller;
+import training.Roller.RollerDirection;
 
 import static training.Roller.RollerConstants.*;
-import static training.Roller.RollerDirection.kBackward;
-import static training.Roller.RollerDirection.kForward;
 
 public class SimulationRoller implements IRoller {
     private final DCMotorSim motor;
 
     public SimulationRoller() {
-        this.motor = new DCMotorSim(DCMotor.getNEO(1), ROLLER_GEARING, POWER_TO_ACCELERATION);
+        this.motor = new DCMotorSim(DCMotor.getNEO(1), SimulationRollerConstants.ROLLER_GEARING, SimulationRollerConstants.POWER_TO_ACCELERATION);
     }
 
     @Override
@@ -33,8 +32,8 @@ public class SimulationRoller implements IRoller {
 
     @Override
     public void updateVelocity(Rotation2d targetVelocity, RollerDirection direction) {
-        ROLLER_SIMULATION_CONTROLLER.setSetpoint(targetVelocity.times(direction.toInt()).getRadians());
-        setPower(ROLLER_SIMULATION_CONTROLLER.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec()));
+        SimulationRollerConstants.ROLLER_SIMULATION_CONTROLLER.setSetpoint(targetVelocity.times(direction.toInt()).getRadians());
+        setPower(SimulationRollerConstants.ROLLER_SIMULATION_CONTROLLER.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec()));
     }
 
 }
