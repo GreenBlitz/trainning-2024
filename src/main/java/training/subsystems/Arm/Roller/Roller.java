@@ -18,7 +18,7 @@ public class Roller extends GBSubsystem {
 	protected void subsystemPeriodic() {}
 
 	public Roller() {
-		this.motor = new CANSparkMax(RollerConstants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
+		this.motor = new CANSparkMax(RollerConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 	}
 
 	public static Roller getInstance() {
@@ -28,11 +28,11 @@ public class Roller extends GBSubsystem {
 		return instance;
 	}
 
-	public void clockwise() {
+	public void rollClockwise() {
 		motor.set(RollerConstants.DEFAULT_VELOCITY_CLOCKWISE);
 	}
 
-	public void counterClockwise() {
+	public void rollCounterClockwise() {
 		motor.set(RollerConstants.DEFAULT_VELOCITY_COUNTERCLOCKWISE);
 	}
 

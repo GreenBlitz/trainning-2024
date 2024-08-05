@@ -9,11 +9,13 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 public class Wrist extends GBSubsystem {
 
+	private static Wrist instance;
+
 	private final TalonSRX motor;
 
 	private final Rotation2d targetPosition;
 
-	private static Wrist instance;
+
 
 	@Override
 	protected String getLogPath() {
@@ -24,7 +26,7 @@ public class Wrist extends GBSubsystem {
 	protected void subsystemPeriodic() {}
 
 	public Wrist() {
-		this.motor = new TalonSRX(WristConstants.WRIST_ID);
+		this.motor = new TalonSRX(WristConstants.MOTOR_ID);
 		this.targetPosition = WristConstants.WRIST_START_POSITION;
 		motor.configAllSettings(WristConstants.TALON_SRX_CONFIG);
 		motor.configSelectedFeedbackSensor(

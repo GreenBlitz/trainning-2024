@@ -6,7 +6,7 @@ import utils.GBSubsystem;
 public class Elbow extends GBSubsystem {
 
 	protected static Elbow instance;
-	protected static IElbow iElbow;
+	private IElbow iElbow;
 
 	@Override
 	protected String getLogPath() {
@@ -26,7 +26,6 @@ public class Elbow extends GBSubsystem {
 	public void setPower(double power) {
 		iElbow.setPower(power);
 	}
-
 
 	public boolean isAtPosition(Rotation2d target) {
 		return Math.abs(iElbow.getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE;

@@ -6,7 +6,7 @@ public class ElbowFactory {
 
 	public static IElbow create() {
 		return switch (RobotConstants.ROBOT_TYPE) {
-			case SIMULATION -> null;
+			case SIMULATION -> SimulationElbow.getInstance();
 			case REAL -> NeoElbow.getInstance();
 		};
 	}

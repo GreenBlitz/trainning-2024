@@ -10,7 +10,7 @@ public class MoveWrist extends Command {
 
 	private final Rotation2d targetPosition;
 
-	public MoveWrist(Wrist wrist, Rotation2d targetPosition) {
+	public MoveWrist(Rotation2d targetPosition) {
 		this.wrist = Wrist.getInstance();
 		this.targetPosition = targetPosition;
 	}

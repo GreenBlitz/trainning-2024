@@ -10,14 +10,21 @@ import utils.simulation.SingleJointedArmSimulation;
 
 public class SimulationElbow implements IElbow {
 
-	private SingleJointedArmSimulation elbowSimulation;
-	private SingleJointedArmSim armSim;
-	private PIDController controller;
+	private static SimulationElbow instance;
+	private final SingleJointedArmSimulation elbowSimulation;
+	private final SingleJointedArmSim armSim;
+	private final PIDController controller;
 	private TalonFXConfiguration config;
 
+	public static SimulationElbow getInstance() {
+		if (instance == null) {
+			instance = new SimulationElbow();
+		}
+		return instance;
+	}
 
 	public SimulationElbow() {
-		armSim = new SingleJointedArmSim(
+		this.armSim = new SingleJointedArmSim(
 			DCMotor.getFalcon500(ElbowConstants.NUMBER_OF_MOTORS),
 			ElbowConstants.GEAR_RATIO,
 			SingleJointedArmSim.estimateMOI(ElbowConstants.ARM_LENGTH, ElbowConstants.ARM_MASS_KG),
@@ -27,13 +34,13 @@ public class SimulationElbow implements IElbow {
 			false,
 			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
-		controller = new PIDController(ElbowConstants.ELBOW_P, ElbowConstants.ELBOW_I, ElbowConstants.ELBOW_D);
-		elbowSimulation = new SingleJointedArmSimulation(armSim);
+		this.controller = new PIDController(ElbowConstants.P, ElbowConstants.I, ElbowConstants.D);
+		this.elbowSimulation = new SingleJointedArmSimulation(armSim);
 		config = new TalonFXConfiguration();
 		config.Slot0.kP = controller.getP();
 		config.Slot0.kI = controller.getI();
 		config.Slot0.kD = controller.getD();
-		elbowSimulation.applyConfiguration(config);
+		this.elbowSimulation.applyConfiguration(config);
 	}
 
 
@@ -43,13 +50,13 @@ public class SimulationElbow implements IElbow {
 	}
 
 	@Override
-	public void moveElbowToPosition(Rotation2d targetPosition) {
+	public void moveToPosition(Rotation2d targetPosition) {
 		elbowSimulation.setControl(new PositionVoltage(targetPosition.getRotations()));
 	}
 
 	@Override
 	public void stayAtPosition() {
-		moveElbowToPosition(getPosition());
+		moveToPosition(getPosition());
 	}
 
 	@Override
@@ -57,12 +64,12 @@ public class SimulationElbow implements IElbow {
 		return elbowSimulation.getPosition();
 	}
 
-	@Override
+
 	public Rotation2d getVelocity() {
 		return elbowSimulation.getVelocity();
 	}
 
-	@Override
+
 	public boolean isAtPosition(Rotation2d target) {
 		return Math.abs(elbowSimulation.getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE;
 	}

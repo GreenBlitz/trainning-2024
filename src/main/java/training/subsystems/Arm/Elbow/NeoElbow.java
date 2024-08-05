@@ -8,16 +8,14 @@ import edu.wpi.first.math.geometry.Rotation2d;
 public class NeoElbow implements IElbow {
 
 	private final CANSparkMax motor;
-
 	private static NeoElbow instance;
 
-
 	public NeoElbow() {
-		this.motor = new CANSparkMax(ElbowConstants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
+		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getEncoder().setPositionConversionFactor(ElbowConstants.ELBOW_GEAR_RATIO);
-		motor.getPIDController().setP(ElbowConstants.ELBOW_P);
-		motor.getPIDController().setI(ElbowConstants.ELBOW_I);
-		motor.getPIDController().setD(ElbowConstants.ELBOW_D);
+		motor.getPIDController().setP(ElbowConstants.P);
+		motor.getPIDController().setI(ElbowConstants.I);
+		motor.getPIDController().setD(ElbowConstants.D);
 		motor.getEncoder().setPosition(ElbowConstants.ELBOW_START_POSITION.getDegrees());
 	}
 
@@ -29,19 +27,19 @@ public class NeoElbow implements IElbow {
 	}
 
 	@Override
-	public void moveElbowToPosition(Rotation2d position) {
+	public void moveToPosition(Rotation2d position) {
 		motor.getPIDController()
 			.setReference(
 				position.getDegrees(),
 				CANSparkBase.ControlType.kPosition,
-				0,
+				ElbowConstants.PID_SLOT,
 				ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
 			);
 	}
 
 	@Override
 	public void stayAtPosition() {
-		moveElbowToPosition(getPosition());
+		moveToPosition(getPosition());
 	}
 
 	@Override
@@ -49,7 +47,7 @@ public class NeoElbow implements IElbow {
 		return Rotation2d.fromRotations(motor.getEncoder().getPosition());
 	}
 
-	@Override
+
 	public Rotation2d getVelocity() {
 		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
 	}
@@ -59,7 +57,7 @@ public class NeoElbow implements IElbow {
 		motor.set(power);
 	}
 
-	@Override
+
 	public boolean isAtPosition(Rotation2d target) {
 		return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE;
 	}

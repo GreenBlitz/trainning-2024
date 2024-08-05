@@ -6,14 +6,12 @@ public interface IElbow {
 
 	void setPower(double power);
 
-	void moveElbowToPosition(Rotation2d position);
+	void moveToPosition(Rotation2d position);
 
 	void stayAtPosition();
 
 	Rotation2d getPosition();
 
-	Rotation2d getVelocity();
 
-	boolean isAtPosition(Rotation2d target);
 
 }
