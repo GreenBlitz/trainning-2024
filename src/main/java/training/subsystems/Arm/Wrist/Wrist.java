@@ -16,7 +16,6 @@ public class Wrist extends GBSubsystem {
 	private final Rotation2d targetPosition;
 
 
-
 	@Override
 	protected String getLogPath() {
 		return null;

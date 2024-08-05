@@ -37,7 +37,6 @@ public class ElbowConstants {
 	protected static final double KA = 0;
 
 
-
 	public static final double ELBOW_GEAR_RATIO = (1 / (28.0 * (60.0 / 16.0)));
 
 
