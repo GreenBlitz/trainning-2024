@@ -1,8 +1,8 @@
-package training.Elbow;
+package training.Elbow.SimulationElbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
-import utils.GBSubsystem;
+import training.Elbow.IElbow;
 import utils.simulation.SingleJointedArmSimulation;
 
 import static training.Elbow.ElbowConstants.*;

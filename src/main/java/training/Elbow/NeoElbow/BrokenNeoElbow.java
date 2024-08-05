@@ -1,30 +1,25 @@
-package training.Elbow;
+package training.Elbow.NeoElbow;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
+import training.Elbow.ElbowConstants;
+import training.Elbow.IElbow;
 
-import static training.Elbow.ElbowConstants.ELBOW_GEAR_RATIO;
-import static training.Elbow.ElbowConstants.ELBOW_PID_CONTROLLER;
-import static training.Elbow.ElbowConstants.ELBOW_ID;
-import static training.Elbow.ElbowConstants.ELBOW_MOTOR_TYPE;
-import static training.Elbow.ElbowConstants.POWER_LIMIT_ELBOW;
-import static training.Elbow.ElbowConstants.ELBOW_FEEDFORWARD;
-import static training.Elbow.ElbowConstants.PID_SLOT;
 
 public class BrokenNeoElbow implements IElbow {
     private final CANSparkMax motor;
     private final Rotation2d flooredStartRotations;
 
     public BrokenNeoElbow() {
-        this.motor = new CANSparkMax(ELBOW_ID, ELBOW_MOTOR_TYPE);
+        this.motor = new CANSparkMax(NeoElbowConstants.ELBOW_ID, NeoElbowConstants.ELBOW_MOTOR_TYPE);
         this.flooredStartRotations = Rotation2d.fromRotations(Math.floor(motor.getEncoder().getPosition()));
 
-        motor.getEncoder().setPositionConversionFactor(ELBOW_GEAR_RATIO);
-        motor.getPIDController().setP(ELBOW_PID_CONTROLLER.getP());
-        motor.getPIDController().setD(ELBOW_PID_CONTROLLER.getD());
-        motor.getPIDController().setI(ELBOW_PID_CONTROLLER.getI());
-        motor.getPIDController().setOutputRange(-POWER_LIMIT_ELBOW, POWER_LIMIT_ELBOW);
+        motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.ELBOW_GEAR_RATIO);
+        motor.getPIDController().setP(NeoElbowConstants.ELBOW_PID_CONTROLLER.getP());
+        motor.getPIDController().setD(NeoElbowConstants.ELBOW_PID_CONTROLLER.getD());
+        motor.getPIDController().setI(NeoElbowConstants.ELBOW_PID_CONTROLLER.getI());
+        motor.getPIDController().setOutputRange(-NeoElbowConstants.LOWER_POWER_LIMIT_ELBOW , NeoElbowConstants.UPPER_POWER_LIMIT_ELBOW);
         motor.burnFlash();
     }
 
@@ -40,12 +35,12 @@ public class BrokenNeoElbow implements IElbow {
     @Override
     public void updateAngle(Rotation2d targetAngle) {
         double target = flooredStartRotations.getRotations() + (targetAngle.getRotations() % 1);
-        double FFValue = ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
+        double FFValue = NeoElbowConstants.ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
 
         motor.getPIDController().setReference(
                 target,
                 CANSparkBase.ControlType.kPosition,
-                PID_SLOT,
+                NeoElbowConstants.PID_SLOT,
                 FFValue
         );
     }

@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 
-import static training.Elbow.ElbowConstants.DEFAULT_TIME_IN_AIR_ELBOW_SECONDS;
-import static training.Elbow.ElbowConstants.LIFTING_POSITION_DEGREES;
-
 
 public class ElbowCommandBuilder {
     private final Elbow elbowSubsystem;
@@ -30,7 +27,7 @@ public class ElbowCommandBuilder {
     }
 
     public Command liftElbow() {
-        return new SequentialCommandGroup(upElbow(), new WaitCommand(DEFAULT_TIME_IN_AIR_ELBOW_SECONDS), downElbow());
+        return new SequentialCommandGroup(upElbow(), new WaitCommand(ElbowConstants.DEFAULT_TIME_IN_AIR_ELBOW_SECONDS), downElbow());
     }
 
     public Command elbowStandInPlace() {
@@ -38,11 +35,11 @@ public class ElbowCommandBuilder {
     }
 
     public Command upElbow() {
-        return moveElbowToAngle(LIFTING_POSITION_DEGREES);
+        return moveElbowToAngle(ElbowConstants.LIFTING_POSITION_DEGREES);
     }
 
     public Command downElbow() {
-        return moveElbowToAngle(LIFTING_POSITION_DEGREES.times(-1));
+        return moveElbowToAngle(ElbowConstants.LIFTING_POSITION_DEGREES.times(-1));
     }
 
 }

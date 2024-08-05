@@ -3,15 +3,13 @@ package training.Elbow;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-import static training.Elbow.ElbowConstants.*;
-
 public class Elbow extends GBSubsystem {
     private Rotation2d targetAngle;
     private final IElbow motor;
 
     public Elbow() {
         this.motor = new ElbowFactory().create();
-        this.targetAngle = DEFAULT_POSITION_ELBOW;
+        this.targetAngle = ElbowConstants.DEFAULT_POSITION_ELBOW;
     }
 
     public void LockElbowInPlace() {
@@ -40,12 +38,12 @@ public class Elbow extends GBSubsystem {
 
     public boolean isAtAngle(Rotation2d angle) {
         double anglesDelta = (this.targetAngle.getDegrees() % 360) - (angle.getDegrees() % 360);
-        return Math.abs(anglesDelta) <= ELBOW_TOLERANCE.getDegrees();
+        return Math.abs(anglesDelta) <= ElbowConstants.ELBOW_TOLERANCE.getDegrees();
     }
 
     @Override
     protected String getLogPath() {
-        return ELBOW_LOG_PATH;
+        return ElbowConstants.ELBOW_LOG_PATH;
     }
 
     @Override
