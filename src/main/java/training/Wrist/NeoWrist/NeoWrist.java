@@ -1,17 +1,14 @@
-package training.Wrist;
+package training.Wrist.NeoWrist;
 
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import utils.GBSubsystem;
+import training.Wrist.IWrist;
 
 import static training.Wrist.WristConstants.POWER_LIMIT_WRIST;
 import static training.Wrist.WristConstants.WRIST_ID;
-import static training.Wrist.WristConstants.WRIST_UPPER_POSITION;
-import static training.Wrist.WristConstants.WRIST_LOWER_POSITION;
-import static training.Wrist.WristConstants.WRIST_LOG_PATH;
 import static training.Wrist.WristConstants.WRIST_PID_CONFIG;
 
 public class NeoWrist implements IWrist {
@@ -20,9 +17,9 @@ public class NeoWrist implements IWrist {
     private boolean inTestingMode;
 
     public NeoWrist() {
-        this.motor = new TalonSRX(WRIST_ID);
+        this.motor = new TalonSRX(WristConstnats.WRIST_ID);
         this.inTestingMode = false;
-        motor.configAllSettings(WRIST_PID_CONFIG);
+        motor.configAllSettings(WristConstnats.WRIST_PID_CONFIG);
     }
 
     /** Don't use this in production code. It's here only for debugging etc.
@@ -31,7 +28,7 @@ public class NeoWrist implements IWrist {
     @Override
     public void setPower(double power) {
         inTestingMode = true;
-        if (Math.abs(power) >= POWER_LIMIT_WRIST) {
+        if (Math.abs(power) >= WristConstnats.POWER_LIMIT_WRIST) {
             SmartDashboard.putString("motor is trying to spin in power above MAX_POWER_CIM limit. Reverting to 0.9", "");
         }
         motor.set(TalonSRXControlMode.PercentOutput, Math.min(power, 0.9));
