@@ -4,15 +4,16 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public interface IElbow {
 
-    void setPower(double power);
+	void setPower(double power);
 
-    void moveElbowToPosition(Rotation2d position);
+	void moveElbowToPosition(Rotation2d position);
 
-    void stayAtPosition();
+	void stayAtPosition();
 
-    Rotation2d getPosition();
+	Rotation2d getPosition();
 
-    Rotation2d getVelocity();
+	Rotation2d getVelocity();
 
-    boolean isAtPosition(Rotation2d target);
+	boolean isAtPosition(Rotation2d target);
+
 }
