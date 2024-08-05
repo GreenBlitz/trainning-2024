@@ -35,8 +35,8 @@ public class SimulationElbow implements IElbow {
                 ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
         );
 
-        PIDController=ElbowConstants.PIDController;
-        feedForwardControler=ElbowConstants.FEEDFORWARD_CONTROLER;
+        PIDController = ElbowConstants.PIDController;
+        feedForwardControler = ElbowConstants.FEEDFORWARD_CONTROLER;
     }
 
     public static SimulationElbow getInstance() {
@@ -55,13 +55,13 @@ public class SimulationElbow implements IElbow {
         motor.setInputVoltage(appliedVoltage);
     }
 
-    public void setPower(double power){
-        setVoltage(power*RobotConstants.MAX_MOTOR_VOLTAGE);
+    public void setPower(double power) {
+        setVoltage(power * RobotConstants.MAX_MOTOR_VOLTAGE);
     }
 
     public void goToPosition(Rotation2d targetPosition) {
         setVoltage(PIDController.calculate(getPosition().getDegrees(), targetPosition.getDegrees())
-                +feedForwardControler.calculate(getPosition().getDegrees(), targetPosition.getDegrees()));
+                + feedForwardControler.calculate(getPosition().getDegrees(), targetPosition.getDegrees()));
 
     }
 
@@ -76,7 +76,7 @@ public class SimulationElbow implements IElbow {
 
     @Override
     public void updateInputs(ElbowInputsAutoLogged inputs) {
-        inputs.motorVelocity= Rotation2d.fromRadians(motor.getVelocityRadPerSec());
+        inputs.motorVelocity = Rotation2d.fromRadians(motor.getVelocityRadPerSec());
         inputs.motorCurrent = motor.getCurrentDrawAmps();
     }
 

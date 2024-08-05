@@ -19,7 +19,7 @@ public class ElbowConstants {
     public static final double ELBOW_I_VALUE = 0;
     public static final double ELBOW_D_VALUE = 0;
 
-    public static final PIDController PIDController = new  PIDController(
+    public static final PIDController PIDController = new PIDController(
             ElbowConstants.ELBOW_P_VALUE,
             ElbowConstants.ELBOW_I_VALUE,
             ElbowConstants.ELBOW_D_VALUE);
@@ -58,8 +58,6 @@ public class ElbowConstants {
             this.ANGLE = angle;
         }
     }
-
-
 
 
 }

@@ -71,7 +71,7 @@ public class NeoElbow implements IElbow {
 
     @Override
     public void updateInputs(ElbowInputsAutoLogged inputs) {
-        inputs.motorVelocity= Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+        inputs.motorVelocity = Rotation2d.fromRotations(motor.getEncoder().getVelocity());
         inputs.motorCurrent = motor.getOutputCurrent();
     }
 

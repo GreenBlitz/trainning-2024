@@ -11,12 +11,12 @@ public class WristConstants {
     public static final Rotation2d WRIST_CLIMBING_POSITION = Rotation2d.fromDegrees(390);
 
     public static final Rotation2d WRIST_TOLERANCE_DEGREES = Rotation2d.fromDegrees(5);
-    
-    public static final int PID_SLOT  = 0;
-    
+
+    public static final int PID_SLOT = 0;
+
     public static final double MAG_ENCODER_CONVERSION_FACTOR = 8192;
-    
-    
+
+
     protected static final double WRIST_P_VALUE = 0.4;
     protected static final double WRIST_I_VALUE = 0;
     protected static final double WRIST_D_VALUE = 0;

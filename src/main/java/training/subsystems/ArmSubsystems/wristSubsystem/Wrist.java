@@ -34,7 +34,7 @@ public class Wrist extends GBSubsystem {
     protected void subsystemPeriodic() {
         Logger.recordOutput("hfhf", getPosition());
     }
-    
+
 
     public static Wrist getInstance() {
         if (instance == null) {
@@ -44,12 +44,12 @@ public class Wrist extends GBSubsystem {
     }
 
     public void goToPosition(Rotation2d targetPosition) {
-        motor.selectProfileSlot(WristConstants.PID_SLOT,0);
-        motor.set(ControlMode.Position, targetPosition.getRotations()*WristConstants.MAG_ENCODER_CONVERSION_FACTOR);
+        motor.selectProfileSlot(WristConstants.PID_SLOT, 0);
+        motor.set(ControlMode.Position, targetPosition.getRotations() * WristConstants.MAG_ENCODER_CONVERSION_FACTOR);
     }
-    
-    public void setPower(double powerMotor){
-        motor.set(ControlMode.PercentOutput,powerMotor);
+
+    public void setPower(double powerMotor) {
+        motor.set(ControlMode.PercentOutput, powerMotor);
     }
 
     public void stopMotor() {

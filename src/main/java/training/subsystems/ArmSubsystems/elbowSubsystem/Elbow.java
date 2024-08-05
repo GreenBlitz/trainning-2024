@@ -10,11 +10,11 @@ public class Elbow extends GBSubsystem {
 
     private static Elbow instance;
 
-    private Elbow(){
+    private Elbow() {
         iElbow = ElbowFactory.create();
     }
 
-    public static Elbow getInstance(){
+    public static Elbow getInstance() {
         if (instance == null) {
             instance = new Elbow();
         }
@@ -27,24 +27,27 @@ public class Elbow extends GBSubsystem {
     }
 
     @Override
-    protected void subsystemPeriodic() {}
+    protected void subsystemPeriodic() {
+    }
 
 
-    public void goToPosition(Rotation2d targetPosition){
+    public void goToPosition(Rotation2d targetPosition) {
         iElbow.goToPosition(targetPosition);
     }
-    public void stayAtPosition(){
+
+    public void stayAtPosition() {
         iElbow.stayAtPosition();
     }
-    public boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d tolerance){
+
+    public boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d tolerance) {
         return iElbow.isAtTargetPosition(targetAngle, tolerance);
     }
 
-    public void setVoltage(double voltage){
+    public void setVoltage(double voltage) {
         iElbow.setVoltage(voltage);
     }
 
-    public void setPower(double power){
+    public void setPower(double power) {
         iElbow.setPower(power);
     }
 }
