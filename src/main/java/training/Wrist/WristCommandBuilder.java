@@ -10,10 +10,10 @@ public class WristCommandBuilder {
         this.wristSubsystem = new Wrist();
     }
 
-    public Command MoveUpWrist() {
+    public Command moveUpWrist() {
         return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kLeft), wristSubsystem);
     }
-    public Command MoveDownWrist() {
+    public Command moveDownWrist() {
         return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kRight), wristSubsystem);
     }
 

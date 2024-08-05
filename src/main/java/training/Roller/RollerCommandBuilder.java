@@ -16,15 +16,15 @@ public class RollerCommandBuilder {
         return new InstantCommand(rollerSubsystem::stop, rollerSubsystem);
     }
 
-    public Command NoteOut() {
-        return RunRollerForward().withTimeout(ROLLER_ROLLING_TIME_SECONDS);
+    public Command noteOut() {
+        return rollForward().withTimeout(ROLLER_ROLLING_TIME_SECONDS);
     }
 
-    public Command RunRollerBackward() {
+    public Command rollBackward() {
         return new InstantCommand(rollerSubsystem::runBackward, rollerSubsystem);
     }
 
-    public Command RunRollerForward() {
+    public Command rollForward() {
         return new InstantCommand(rollerSubsystem::runForward, rollerSubsystem);
     }
 

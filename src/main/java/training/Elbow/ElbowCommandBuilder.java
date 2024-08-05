@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
-import utils.GBSubsystem;
 
 import static training.Elbow.ElbowConstants.DEFAULT_TIME_IN_AIR_ELBOW_SECONDS;
 import static training.Elbow.ElbowConstants.LIFTING_POSITION_DEGREES;
@@ -15,7 +14,12 @@ import static training.Elbow.ElbowConstants.LIFTING_POSITION_DEGREES;
 public class ElbowCommandBuilder {
     private final Elbow elbowSubsystem;
 
-    public Command MoveElbowToAngle(Rotation2d targetAngle) {
+    public ElbowCommandBuilder() {
+        this.elbowSubsystem = (Elbow) new ElbowFactory().create();
+    }
+
+
+    public Command moveElbowToAngle(Rotation2d targetAngle) {
         return new FunctionalCommand(
                 () -> {},
                 () -> elbowSubsystem.setTargetAngle(targetAngle),
@@ -25,24 +29,20 @@ public class ElbowCommandBuilder {
         );
     }
 
-    public ElbowCommandBuilder() {
-        this.elbowSubsystem = (Elbow) new ElbowFactory().create();
+    public Command liftElbow() {
+        return new SequentialCommandGroup(upElbow(), new WaitCommand(DEFAULT_TIME_IN_AIR_ELBOW_SECONDS), downElbow());
     }
 
-    public Command LiftElbow() {
-        return new SequentialCommandGroup(UpElbow(), new WaitCommand(DEFAULT_TIME_IN_AIR_ELBOW_SECONDS), DownElbow());
-    }
-
-    public Command LockElbowInPlace() {
+    public Command elbowStandInPlace() {
         return new InstantCommand(elbowSubsystem::LockElbowInPlace, elbowSubsystem);
     }
 
-    public Command UpElbow() {
-        return MoveElbowToAngle(LIFTING_POSITION_DEGREES);
+    public Command upElbow() {
+        return moveElbowToAngle(LIFTING_POSITION_DEGREES);
     }
 
-    public Command DownElbow() {
-        return MoveElbowToAngle(LIFTING_POSITION_DEGREES.times(-1));
+    public Command downElbow() {
+        return moveElbowToAngle(LIFTING_POSITION_DEGREES.times(-1));
     }
 
 }
