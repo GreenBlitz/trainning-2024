@@ -17,10 +17,6 @@ import utils.joysticks.SmartJoystick;
 public class TrainingRobotManager extends DefaultRobotManager {
 
     private Robot robot;
-    private MoveElbow moveElbow;
-    private MoveWrist moveWrist;
-    private RollClockwise rollClockwise;
-    private RollCounterClockwise rollCounterClockwise;
     private SmartJoystick smartJoystick;
 
     @Override
@@ -49,15 +45,16 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
     }
 
-    @Override
-    public void teleopInit() {
-        // schedule your command...
-    }
+
+	@Override
+	public void teleopInit() {
+		// schedule your command...
+	}
 
 
-    @Override
-    public void teleopExit() {
-        // cancel your command...
-    }
+	@Override
+	public void teleopExit() {
+		// cancel your command...
+	}
 
 }

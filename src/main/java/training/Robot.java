@@ -22,7 +22,7 @@ import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
 public class Robot {
 
-    // Enter your subsystems...
+	// Enter your subsystems...
 
     private final NeoElbow elbow;
     private final Wrist wrist;
@@ -35,6 +35,7 @@ public class Robot {
         roller = Roller.getInstance();
 
     }
+
 
 
     public enum robotType {
