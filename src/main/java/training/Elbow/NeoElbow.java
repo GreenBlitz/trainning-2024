@@ -16,7 +16,7 @@ import static training.Elbow.ElbowConstants.ELBOW_TOLERANCE;
 import static training.Elbow.ElbowConstants.ELBOW_FEEDFORWARD;
 import static training.Elbow.ElbowConstants.PID_SLOT;
 
-public class NeoElbow extends Elbow implements IElbow {
+public class NeoElbow implements IElbow {
     private final CANSparkMax motor;
     private final Rotation2d flooredStartRotations;
 
