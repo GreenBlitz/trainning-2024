@@ -2,7 +2,7 @@ package training;
 
 public class Robot {
 
-    // Enter your subsystems...
+	// Enter your subsystems...
 
     public enum RobotType {
         SIMULATION,
@@ -12,9 +12,11 @@ public class Robot {
     public static final RobotType ROBOT_TYPE = RobotType.SIMULATION;
 
     public Robot() {
+        // Boot your subsystems...
     }
 
-    // Add your subsystems getters...
+
+	// Add your subsystems getters...
 
 }
 

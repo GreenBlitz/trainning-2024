@@ -17,18 +17,21 @@ public class TrainingRobotManager extends DefaultRobotManager {
         this.robot = new Robot();
     }
 
-    @Override
-    public void trainingPeriodic() {
-        // add stuff...
-    }
 
-    @Override
-    public void teleopInit() {
-        // schedule your command...
-    }
+	@Override
+	public void trainingPeriodic() {
+		// add stuff...
+	}
 
-    @Override
-    public void teleopExit() {
-        // cancel your command...
-    }
+	@Override
+	public void teleopInit() {
+		// schedule your command...
+	}
+
+
+	@Override
+	public void teleopExit() {
+		// cancel your command...
+	}
+
 }

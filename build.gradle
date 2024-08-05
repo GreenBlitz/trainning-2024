@@ -4,6 +4,7 @@ import groovy.json.JsonSlurper
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2024.3.2"
+    id "com.diffplug.spotless" version "6.25.0"
 }
 
 java {
@@ -205,3 +206,17 @@ tasks.register('deployWithComputerPrograms') {
 compileJava.finalizedBy('checkAkitInstall')
 discoverroborio.finalizedBy('setReachableIP')
 setReachableIP.finalizedBy('setVisualVMHost')
+
+// Spotless formatting
+spotless {
+    java {
+        target fileTree(".") {
+            include "src/main/java/**/*.java"
+            exclude '**/build/**', '**/build-*/**'
+        }
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        eclipse().configFile("codestyle.xml")
+        formatAnnotations()
+    }
+}
