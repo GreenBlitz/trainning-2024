@@ -1,5 +1,7 @@
 package training;
 
+import static training.RobotConstants.ROBOT_TYPE;
+
 public class Robot {
 
     // Enter your subsystems...
@@ -7,7 +9,7 @@ public class Robot {
     public Robot() { }
 
     public static RobotType getRobotType() {
-        return RobotType.SIMULATION;
+        return ROBOT_TYPE;
     }
 
     // Add your subsystems getters...
