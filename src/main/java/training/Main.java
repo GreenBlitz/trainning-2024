@@ -1,5 +1,5 @@
 
-package java.training;// Copyright (c) FIRST and other WPILib contributors.
+package training;// Copyright (c) FIRST and other WPILib contributors.
 
 // Open Source Software; you can modify and/or share it under the terms of
 
@@ -8,6 +8,7 @@ package java.training;// Copyright (c) FIRST and other WPILib contributors.
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.RobotBase;
+import training.TrainingRobotManager;
 
 /**
  * Do NOT add any static variables to this class, or any initialization at all. Unless you know what you are doing, do not modify
