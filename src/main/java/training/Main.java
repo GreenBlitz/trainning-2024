@@ -6,9 +6,7 @@ package training;// Copyright (c) FIRST and other WPILib contributors.
 // the WPILib BSD license file in the root directory of this project.
 
 
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.RobotBase;
-import training.TrainingRobotManager;
 
 /**
  * Do NOT add any static variables to this class, or any initialization at all. Unless you know what you are doing, do not modify

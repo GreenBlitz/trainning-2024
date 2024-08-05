@@ -1,21 +1,20 @@
 package training.subsystems.ArmSubsystems.elbowSubsystem;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import org.littletonrobotics.junction.AutoLog;
 
 public interface IElbow {
 
-    void goToPosition(Rotation2d targetPosition);
+	void goToPosition(Rotation2d targetPosition);
 
-    void stayAtPosition();
+	void stayAtPosition();
 
-    boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d tolerance);
+	boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d tolerance);
 
-    void setVoltage(double voltage);
+	void setVoltage(double voltage);
 
-    void setPower(double power);
+	void setPower(double power);
 
-    void updateInputs(ElbowInputsAutoLogged inputs);
+	void updateInputs(ElbowInputsAutoLogged inputs);
 
 
 }
