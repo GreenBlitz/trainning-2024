@@ -5,11 +5,11 @@ public class Robot {
     // Enter your subsystems...
 
     public enum RobotType {
-        SIM,
+        SIMULATION,
         REAL
     }
 
-    public static final RobotType ROBOT_TYPE = RobotType.SIM;
+    public static final RobotType ROBOT_TYPE = RobotType.SIMULATION;
 
     public Robot() {
     }
