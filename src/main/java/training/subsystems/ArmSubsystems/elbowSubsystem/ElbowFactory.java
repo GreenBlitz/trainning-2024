@@ -6,11 +6,11 @@ import training.subsystems.ArmSubsystems.elbowSubsystem.simulationElbow.Simulati
 
 public class ElbowFactory {
 
-    public static IElbow create() {
-        return switch (Robot.ROBOT_TYPE) {
-            case SYNCOPA -> NeoElbow.getInstance();
-            case SIMULATION -> SimulationElbow.getInstance();
-        };
-    }
+	public static IElbow create() {
+		return switch (Robot.ROBOT_TYPE) {
+			case SYNCOPA -> NeoElbow.getInstance();
+			case SIMULATION -> SimulationElbow.getInstance();
+		};
+	}
 
 }

@@ -5,18 +5,18 @@ import training.subsystems.ArmSubsystems.rollerSubsystem.Roller;
 
 public class RollCounterClockwise extends Command {
 
-    private final Roller roller;
+	private final Roller roller;
 
-    public RollCounterClockwise() {
-        this.roller = Roller.getInstance();
-    }
+	public RollCounterClockwise() {
+		this.roller = Roller.getInstance();
+	}
 
-    public void initialize() {
-        roller.rollBCounterClockwise();
-    }
+	public void initialize() {
+		roller.rollBCounterClockwise();
+	}
 
-    public void end(boolean interrupted) {
-        roller.stop();
-    }
+	public void end(boolean interrupted) {
+		roller.stop();
+	}
 
 }

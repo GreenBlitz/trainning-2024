@@ -5,17 +5,17 @@ import training.subsystems.ArmSubsystems.elbowSubsystem.Elbow;
 
 public class ElbowDefultCommand extends Command {
 
-    private Elbow elbow;
+	private Elbow elbow;
 
-    public ElbowDefultCommand() {
-        this.elbow = Elbow.getInstance();
-        addRequirements(elbow);
-    }
+	public ElbowDefultCommand() {
+		this.elbow = Elbow.getInstance();
+		addRequirements(elbow);
+	}
 
-    @Override
-    public void initialize() {
-        elbow.stayAtPosition();
-    }
+	@Override
+	public void initialize() {
+		elbow.stayAtPosition();
+	}
 
 
 }

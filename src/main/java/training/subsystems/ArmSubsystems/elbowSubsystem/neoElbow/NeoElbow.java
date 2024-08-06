@@ -13,59 +13,65 @@ import training.subsystems.ArmSubsystems.elbowSubsystem.IElbow;
 
 public class NeoElbow implements IElbow {
 
-    private final CANSparkMax motor;
+	private final CANSparkMax motor;
 
-    private static NeoElbow instance;
-    private double appliedVoltage;
-
-
-    private NeoElbow() {
-        this.motor = new CANSparkMax(ElbowConstants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-        motor.getEncoder().setPositionConversionFactor(ElbowConstants.ELBOW_GEAR_RATIO.getDegrees());
-        motor.getPIDController().setP(ElbowConstants.ELBOW_P_VALUE);
-        motor.getPIDController().setI(ElbowConstants.ELBOW_I_VALUE);
-        motor.getPIDController().setD(ElbowConstants.ELBOW_D_VALUE);
-        motor.getEncoder().setPosition(ElbowConstants.ELBOW_STARTING_POSITION.getDegrees());
-    }
-
-    public static NeoElbow getInstance() {
-        if (instance == null) {
-            instance = new NeoElbow();
-        }
-        return instance;
-    }
-
-    public void setPower(double power) {
-        motor.set(power);
-    }
-
-    public void setVoltage(double voltage) {
-        appliedVoltage = MathUtil.clamp(voltage, -RobotConstants.MAX_MOTOR_VOLTAGE, RobotConstants.MAX_MOTOR_VOLTAGE);
-        motor.setVoltage(appliedVoltage);
-    }
-
-    public void goToPosition(Rotation2d position) {
-        motor.getPIDController().setReference(position.getDegrees(), CANSparkBase.ControlType.kPosition, 0, ElbowConstants.FEEDFORWARD_CONTROLER.calculate(getPosition().getRadians(), getVelocity()));
-    }
+	private static NeoElbow instance;
+	private double appliedVoltage;
 
 
-    @Override
-    public void updateInputs(ElbowInputsAutoLogged inputs) {
-        inputs.velocity = Rotation2d.fromRotations(motor.getEncoder().getVelocity());
-        inputs.current = motor.getOutputCurrent();
-        inputs.position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
-    }
+	private NeoElbow() {
+		this.motor = new CANSparkMax(ElbowConstants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
+		motor.getEncoder().setPositionConversionFactor(ElbowConstants.ELBOW_GEAR_RATIO.getDegrees());
+		motor.getPIDController().setP(ElbowConstants.ELBOW_P_VALUE);
+		motor.getPIDController().setI(ElbowConstants.ELBOW_I_VALUE);
+		motor.getPIDController().setD(ElbowConstants.ELBOW_D_VALUE);
+		motor.getEncoder().setPosition(ElbowConstants.ELBOW_STARTING_POSITION.getDegrees());
+	}
 
-    public Rotation2d getPosition() {
-        return Rotation2d.fromRotations(motor.getEncoder().getPosition());
-    }
+	public static NeoElbow getInstance() {
+		if (instance == null) {
+			instance = new NeoElbow();
+		}
+		return instance;
+	}
 
-    public double getVelocity() {
-        return motor.getEncoder().getVelocity();
-    }
+	public void setPower(double power) {
+		motor.set(power);
+	}
 
-    public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d tolerance) {
-        return (Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees());
-    }
+	public void setVoltage(double voltage) {
+		appliedVoltage = MathUtil.clamp(voltage, -RobotConstants.MAX_MOTOR_VOLTAGE, RobotConstants.MAX_MOTOR_VOLTAGE);
+		motor.setVoltage(appliedVoltage);
+	}
+
+	public void goToPosition(Rotation2d position) {
+		motor.getPIDController()
+			.setReference(
+				position.getDegrees(),
+				CANSparkBase.ControlType.kPosition,
+				0,
+				ElbowConstants.FEEDFORWARD_CONTROLER.calculate(getPosition().getRadians(), getVelocity())
+			);
+	}
+
+
+	@Override
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.velocity = Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+		inputs.current = motor.getOutputCurrent();
+		inputs.position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
+	}
+
+	public Rotation2d getPosition() {
+		return Rotation2d.fromRotations(motor.getEncoder().getPosition());
+	}
+
+	public double getVelocity() {
+		return motor.getEncoder().getVelocity();
+	}
+
+	public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d tolerance) {
+		return (Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees());
+	}
 
 }
