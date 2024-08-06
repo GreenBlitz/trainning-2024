@@ -5,10 +5,10 @@ import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
     private Rotation2d targetAngle;
-    private final IElbow motor;
+    private final IElbow iElbow;
 
     public Elbow() {
-        this.motor = new ElbowFactory().create();
+        this.iElbow = new ElbowFactory().create();
         this.targetAngle = ElbowConstants.DEFAULT_POSITION_ELBOW;
     }
 
@@ -17,7 +17,7 @@ public class Elbow extends GBSubsystem {
     }
 
     public Rotation2d getCurrentAngle() {
-        return motor.getCurrentAngle();
+        return iElbow.getCurrentAngle();
     }
 
     public Rotation2d getTargetAngle() {
@@ -48,7 +48,7 @@ public class Elbow extends GBSubsystem {
 
     @Override
     protected void subsystemPeriodic() {
-        motor.updateAngle(targetAngle);
+        iElbow.updateAngle(targetAngle);
     }
 
 

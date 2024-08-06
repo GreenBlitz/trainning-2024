@@ -11,10 +11,10 @@ import static training.Roller.RollerDirection.kForward;
 public class Roller extends GBSubsystem {
     private Rotation2d targetVelocity;
     private RollerDirection direction;
-    private final IRoller motor;
+    private final IRoller iRoller;
 
     public Roller() {
-        this.motor = new RollerFactory().create();
+        this.iRoller = new RollerFactory().create();
         this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
     }
 
@@ -38,7 +38,7 @@ public class Roller extends GBSubsystem {
 
     public void stop() {
         targetVelocity = Rotation2d.fromRotations(0);
-        motor.setPower(0);
+        iRoller.setPower(0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Roller extends GBSubsystem {
 
     @Override
     protected void subsystemPeriodic() {
-        motor.updateVelocity(targetVelocity, direction);
+        iRoller.updateVelocity(targetVelocity, direction);
     }
 
 }
