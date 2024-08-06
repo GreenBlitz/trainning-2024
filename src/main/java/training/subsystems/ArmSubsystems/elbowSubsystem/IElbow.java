@@ -12,5 +12,4 @@ public interface IElbow {
 
 	void updateInputs(ElbowInputsAutoLogged inputs);
 
-
 }

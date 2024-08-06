@@ -10,8 +10,8 @@ public class MoveWrist extends Command {
 	private final Wrist wrist;
 	private final Rotation2d targetPosition;
 
-	public MoveWrist(Rotation2d targetPosition) {
-		this.wrist = Wrist.getInstance();
+	public MoveWrist(Rotation2d targetPosition, Wrist wrist) {
+		this.wrist = wrist;
 		this.targetPosition = targetPosition;
 	}
 
@@ -20,7 +20,7 @@ public class MoveWrist extends Command {
 	}
 
 	public boolean isFinished() {
-		return wrist.isAtTargetAngle(targetPosition, WristConstants.WRIST_TOLERANCE_DEGREES);
+		return wrist.isAtTargetAngle(targetPosition, WristConstants.WRIST_TOLERANCE);
 	}
 
 }

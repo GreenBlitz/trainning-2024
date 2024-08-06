@@ -4,16 +4,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.math.geometry.Rotation2d;
-import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
 
 	private final TalonSRX motor;
 	private final Rotation2d targetPosition;
-	private static Wrist instance;
 
-	private Wrist() {
+	public Wrist() {
 		this.motor = new TalonSRX(WristConstants.WRIST_ID);
 		this.targetPosition = WristConstants.WRIST_STARTING_POSITION;
 		motor.configAllSettings(WristConstants.TALON_SRX_CONFIG);
@@ -30,17 +28,7 @@ public class Wrist extends GBSubsystem {
 	}
 
 	@Override
-	protected void subsystemPeriodic() {
-		Logger.recordOutput("hfhf", getPosition());
-	}
-
-
-	public static Wrist getInstance() {
-		if (instance == null) {
-			instance = new Wrist();
-		}
-		return instance;
-	}
+	protected void subsystemPeriodic() {}
 
 	public void goToPosition(Rotation2d targetPosition) {
 		motor.selectProfileSlot(WristConstants.PID_SLOT, 0);
@@ -59,8 +47,8 @@ public class Wrist extends GBSubsystem {
 		return Rotation2d.fromRotations(motor.getSelectedSensorPosition());
 	}
 
-	public double getVelocity() {
-		return motor.getSelectedSensorVelocity();
+	public Rotation2d getVelocity() {
+		return Rotation2d.fromRotations(motor.getSelectedSensorVelocity());
 	}
 
 	public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d tolerance) {

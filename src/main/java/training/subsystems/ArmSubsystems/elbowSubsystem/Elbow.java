@@ -5,21 +5,12 @@ import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-	private IElbow iElbow;
-	private ElbowInputsAutoLogged inputs;
+	private final IElbow iElbow;
+	private final ElbowInputsAutoLogged inputs;
 
-	private static Elbow instance;
-
-	private Elbow() {
-		this.iElbow = ElbowFactory.create();
+	public Elbow() {
+		this.iElbow = Factory.create();
 		this.inputs = new ElbowInputsAutoLogged();
-	}
-
-	public static Elbow getInstance() {
-		if (instance == null) {
-			instance = new Elbow();
-		}
-		return instance;
 	}
 
 	@Override

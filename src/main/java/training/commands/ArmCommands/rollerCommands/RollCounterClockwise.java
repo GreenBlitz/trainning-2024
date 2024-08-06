@@ -7,12 +7,12 @@ public class RollCounterClockwise extends Command {
 
 	private final Roller roller;
 
-	public RollCounterClockwise() {
-		this.roller = Roller.getInstance();
+	public RollCounterClockwise(Roller roller) {
+		this.roller = roller;
 	}
 
 	public void initialize() {
-		roller.rollBCounterClockwise();
+		roller.rollCounterClockwise();
 	}
 
 	public void end(boolean interrupted) {

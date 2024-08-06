@@ -3,12 +3,12 @@ package training.commands.ArmCommands.elbowCommands;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.ArmSubsystems.elbowSubsystem.Elbow;
 
-public class ElbowDefultCommand extends Command {
+public class ElbowDefaultCommand extends Command {
 
-	private Elbow elbow;
+	private final Elbow elbow;
 
-	public ElbowDefultCommand() {
-		this.elbow = Elbow.getInstance();
+	public ElbowDefaultCommand(Elbow elbow) {
+		this.elbow = elbow;
 		addRequirements(elbow);
 	}
 

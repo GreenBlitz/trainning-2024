@@ -1,4 +1,4 @@
-package training.subsystems.ArmSubsystems.elbowSubsystem.neoElbow;
+package training.subsystems.ArmSubsystems.elbowSubsystem.neo;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.RobotConstants;
-import training.subsystems.ArmSubsystems.elbowSubsystem.ElbowConstants;
+import training.subsystems.ArmSubsystems.elbowSubsystem.Constants;
 import training.subsystems.ArmSubsystems.elbowSubsystem.ElbowInputsAutoLogged;
 import training.subsystems.ArmSubsystems.elbowSubsystem.IElbow;
 
@@ -15,24 +15,13 @@ public class NeoElbow implements IElbow {
 
 	private final CANSparkMax motor;
 
-	private static NeoElbow instance;
-	private double appliedVoltage;
-
-
-	private NeoElbow() {
-		this.motor = new CANSparkMax(ElbowConstants.ELBOW_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getEncoder().setPositionConversionFactor(ElbowConstants.ELBOW_GEAR_RATIO.getDegrees());
-		motor.getPIDController().setP(ElbowConstants.ELBOW_P_VALUE);
-		motor.getPIDController().setI(ElbowConstants.ELBOW_I_VALUE);
-		motor.getPIDController().setD(ElbowConstants.ELBOW_D_VALUE);
-		motor.getEncoder().setPosition(ElbowConstants.ELBOW_STARTING_POSITION.getDegrees());
-	}
-
-	public static NeoElbow getInstance() {
-		if (instance == null) {
-			instance = new NeoElbow();
-		}
-		return instance;
+	public NeoElbow() {
+		this.motor = new CANSparkMax(Constants.ID, CANSparkLowLevel.MotorType.kBrushless);
+		motor.getEncoder().setPositionConversionFactor(Constants.GEAR_RATIO.getDegrees());
+		motor.getPIDController().setP(Constants.P_VALUE);
+		motor.getPIDController().setI(Constants.I_VALUE);
+		motor.getPIDController().setD(Constants.D_VALUE);
+		motor.getEncoder().setPosition(Constants.STARTING_POSITION.getDegrees());
 	}
 
 	public void setPower(double power) {
@@ -40,7 +29,7 @@ public class NeoElbow implements IElbow {
 	}
 
 	public void setVoltage(double voltage) {
-		appliedVoltage = MathUtil.clamp(voltage, -RobotConstants.MAX_MOTOR_VOLTAGE, RobotConstants.MAX_MOTOR_VOLTAGE);
+		double appliedVoltage = MathUtil.clamp(voltage, -RobotConstants.MAX_BATTERY_VOLTAGE, RobotConstants.MAX_BATTERY_VOLTAGE);
 		motor.setVoltage(appliedVoltage);
 	}
 
@@ -50,7 +39,7 @@ public class NeoElbow implements IElbow {
 				position.getDegrees(),
 				CANSparkBase.ControlType.kPosition,
 				0,
-				ElbowConstants.FEEDFORWARD_CONTROLER.calculate(getPosition().getRadians(), getVelocity())
+				Constants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations())
 			);
 	}
 
@@ -66,8 +55,8 @@ public class NeoElbow implements IElbow {
 		return Rotation2d.fromRotations(motor.getEncoder().getPosition());
 	}
 
-	public double getVelocity() {
-		return motor.getEncoder().getVelocity();
+	public Rotation2d getVelocity() {
+		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
 	}
 
 	public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d tolerance) {

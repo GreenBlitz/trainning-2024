@@ -7,9 +7,8 @@ import utils.GBSubsystem;
 public class Roller extends GBSubsystem {
 
 	private final CANSparkMax motor;
-	private static Roller instance;
 
-	private Roller() {
+	public Roller() {
 		this.motor = new CANSparkMax(RollerConstants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
 	}
 
@@ -21,18 +20,11 @@ public class Roller extends GBSubsystem {
 	@Override
 	protected void subsystemPeriodic() {}
 
-	public static Roller getInstance() {
-		if (instance == null) {
-			instance = new Roller();
-		}
-		return instance;
-	}
-
 	public void rollClockwise() {
 		motor.set(RollerConstants.DEFAULT_ROLLER_CLOCKWISE_POWER);
 	}
 
-	public void rollBCounterClockwise() {
+	public void rollCounterClockwise() {
 		motor.set(RollerConstants.DEFAULT_ROLLER_COUNTER_CLOCKWISE_POWER);
 	}
 
@@ -40,7 +32,7 @@ public class Roller extends GBSubsystem {
 		motor.set(0);
 	}
 
-	public double getRollerVelocity() {
+	public double getVelocity() {
 		return motor.getEncoder().getVelocity();
 	}
 

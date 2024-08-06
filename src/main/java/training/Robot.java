@@ -1,6 +1,6 @@
 package training;
 
-import training.subsystems.ArmSubsystems.elbowSubsystem.neoElbow.NeoElbow;
+import training.subsystems.ArmSubsystems.elbowSubsystem.Elbow;
 import training.subsystems.ArmSubsystems.rollerSubsystem.Roller;
 import training.subsystems.ArmSubsystems.wristSubsystem.Wrist;
 
@@ -8,17 +8,17 @@ public class Robot {
 
 	// Enter your subsystems...
 
-	private final NeoElbow elbow;
+	public static final Robot.robotType ROBOT_TYPE = Robot.robotType.SIMULATION;
+	private final Elbow elbow;
 	private final Wrist wrist;
 	private final Roller roller;
-	public static final Robot.robotType ROBOT_TYPE = Robot.robotType.SIMULATION;
 
 
 	public Robot() {
 		// Boot your subsystems...
-		elbow = NeoElbow.getInstance();
-		wrist = Wrist.getInstance();
-		roller = Roller.getInstance();
+		this.elbow = new Elbow();
+		this.wrist = new Wrist();
+		this.roller = new Roller();
 	}
 
 
@@ -27,6 +27,17 @@ public class Robot {
 		SIMULATION,
 	}
 
+	public Elbow getElbow() {
+		return elbow;
+	}
+
+	public Roller getRoller() {
+		return roller;
+	}
+
+	public Wrist getWrist() {
+		return wrist;
+	}
 
 	// Add your subsystems getters...
 }

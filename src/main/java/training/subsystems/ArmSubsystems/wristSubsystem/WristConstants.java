@@ -10,7 +10,7 @@ public class WristConstants {
 	public static final Rotation2d WRIST_STARTING_POSITION = Rotation2d.fromDegrees(90);
 	public static final Rotation2d WRIST_CLIMBING_POSITION = Rotation2d.fromDegrees(390);
 
-	public static final Rotation2d WRIST_TOLERANCE_DEGREES = Rotation2d.fromDegrees(5);
+	public static final Rotation2d WRIST_TOLERANCE = Rotation2d.fromDegrees(5);
 
 	public static final int PID_SLOT = 0;
 
