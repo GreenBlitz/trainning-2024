@@ -32,7 +32,7 @@ public class NeoWrist implements IWrist {
 	}
 
 	@Override
-	public void updateAngle(Rotation2d targetAngle) {
+	public void moveToAngle(Rotation2d targetAngle) {
 		if (!inTestingMode) {
 			motor.setSelectedSensorPosition(targetAngle.getRotations());
 		}

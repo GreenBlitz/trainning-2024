@@ -36,12 +36,12 @@ public class SimulationElbow implements IElbow {
 	}
 
 	@Override
-	public void updateAngle(Rotation2d targetAngle) {
-		double target = targetAngle.getRotations() % 1;
-		double FFValue = SimulationElbowConstants.SIMULATION_ELBOW_FEEDFORWARD
+	public void moveToAngle(Rotation2d targetAngle) {
+		double targetAngelRotations = targetAngle.getRotations() % 1;
+		double feedForwardOutputVoltage = SimulationElbowConstants.SIMULATION_ELBOW_FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), arm.getVelocity().getRadians());
 
-		arm.setPower(SimulationElbowConstants.CONTROLLER.calculate(target, targetAngle.getRadians()) + FFValue);
+		arm.setPower(SimulationElbowConstants.CONTROLLER.calculate(targetAngelRotations, targetAngle.getRadians()) + feedForwardOutputVoltage);
 	}
 
 }

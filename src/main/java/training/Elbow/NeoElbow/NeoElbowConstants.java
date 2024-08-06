@@ -22,6 +22,6 @@ public class NeoElbowConstants {
 	protected static final double LOWER_POWER_LIMIT_ELBOW = -0.9;
 
 
-	protected static final int PID_SLOT = 0;
+	protected static final int POSITION_PID_SLOT = 0;
 
 }

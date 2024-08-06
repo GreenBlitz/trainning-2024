@@ -30,7 +30,7 @@ public class Wrist extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
-		iWrist.updateAngle(targetAngle);
+		iWrist.moveToAngle(targetAngle);
 	}
 
 

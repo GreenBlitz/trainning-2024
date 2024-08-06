@@ -22,11 +22,11 @@ public class RollerCommandBuilder {
 	}
 
 	public Command rollBackward() {
-		return new InstantCommand(roller::runBackward, roller);
+		return new InstantCommand(roller::rollBackward, roller);
 	}
 
 	public Command rollForward() {
-		return new InstantCommand(roller::runForward, roller);
+		return new InstantCommand(roller::rollForward, roller);
 	}
 
 

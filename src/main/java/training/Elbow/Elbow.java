@@ -49,7 +49,7 @@ public class Elbow extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
-		iElbow.updateAngle(targetAngle);
+		iElbow.moveToAngle(targetAngle);
 	}
 
 

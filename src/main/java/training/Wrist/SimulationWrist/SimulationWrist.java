@@ -35,7 +35,7 @@ public class SimulationWrist implements IWrist {
 	}
 
 	@Override
-	public void updateAngle(Rotation2d targetAngle) {
+	public void moveToAngle(Rotation2d targetAngle) {
 		if (!inTestingMode) {
 			motor.setInputVoltage(
 				SimulationWristConstants.WRIST_SIMULATION_CONTROLLER

@@ -34,12 +34,12 @@ public class BrokenNeoElbow implements IElbow {
 	}
 
 	@Override
-	public void updateAngle(Rotation2d targetAngle) {
-		double target = flooredStartRotations.getRotations() + (targetAngle.getRotations() % 1);
-		double FFValue = NeoElbowConstants.NEO_ELBOW_FEEDFORWARD
+	public void moveToAngle(Rotation2d targetAngle) {
+		double targetAngleRotations = flooredStartRotations.getRotations() + (targetAngle.getRotations() % 1);
+		double feedForwardOutputVoltage = NeoElbowConstants.NEO_ELBOW_FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
 
-		motor.getPIDController().setReference(target, CANSparkBase.ControlType.kPosition, NeoElbowConstants.PID_SLOT, FFValue);
+		motor.getPIDController().setReference(targetAngleRotations, CANSparkBase.ControlType.kPosition, NeoElbowConstants.POSITION_PID_SLOT, feedForwardOutputVoltage);
 	}
 
 }

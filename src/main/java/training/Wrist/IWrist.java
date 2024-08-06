@@ -6,7 +6,7 @@ public interface IWrist {
 
 	void setPower(double power);
 
-	void updateAngle(Rotation2d targetAngle);
+	void moveToAngle(Rotation2d targetAngle);
 
 
 }

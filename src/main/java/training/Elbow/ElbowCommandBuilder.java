@@ -13,7 +13,7 @@ public class ElbowCommandBuilder {
 	private final Elbow elbow;
 
 	public ElbowCommandBuilder() {
-		this.elbow = (Elbow) new ElbowFactory().create();
+		this.elbow = new Elbow();
 	}
 
 

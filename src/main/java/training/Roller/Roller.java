@@ -27,12 +27,12 @@ public class Roller extends GBSubsystem {
 		this.targetVelocity = targetVelocity;
 	}
 
-	public void runForward() {
+	public void rollForward() {
 		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
 		direction = kForward;
 	}
 
-	public void runBackward() {
+	public void rollBackward() {
 		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
 		direction = kBackward;
 	}
