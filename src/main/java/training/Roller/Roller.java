@@ -9,46 +9,47 @@ import static training.Roller.RollerDirection.kBackward;
 import static training.Roller.RollerDirection.kForward;
 
 public class Roller extends GBSubsystem {
-    private Rotation2d targetVelocity;
-    private RollerDirection direction;
-    private final IRoller iRoller;
 
-    public Roller() {
-        this.iRoller = new RollerFactory().create();
-        this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
-    }
+	private Rotation2d targetVelocity;
+	private RollerDirection direction;
+	private final IRoller iRoller;
 
-    public Rotation2d getTargetVelocity() {
-        return targetVelocity;
-    }
+	public Roller() {
+		this.iRoller = new RollerFactory().create();
+		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
+	}
 
-    public void setTargetVelocity(Rotation2d targetVelocity) {
-        this.targetVelocity = targetVelocity;
-    }
+	public Rotation2d getTargetVelocity() {
+		return targetVelocity;
+	}
 
-    public void runForward() {
-        this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
-        direction = kForward;
-    }
+	public void setTargetVelocity(Rotation2d targetVelocity) {
+		this.targetVelocity = targetVelocity;
+	}
 
-    public void runBackward() {
-        this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
-        direction = kBackward;
-    }
+	public void runForward() {
+		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
+		direction = kForward;
+	}
 
-    public void stop() {
-        targetVelocity = Rotation2d.fromRotations(0);
-        iRoller.setPower(0);
-    }
+	public void runBackward() {
+		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
+		direction = kBackward;
+	}
 
-    @Override
-    protected String getLogPath() {
-        return ROLLER_LOG_PATH;
-    }
+	public void stop() {
+		targetVelocity = Rotation2d.fromRotations(0);
+		iRoller.setPower(0);
+	}
 
-    @Override
-    protected void subsystemPeriodic() {
-        iRoller.updateVelocity(targetVelocity, direction);
-    }
+	@Override
+	protected String getLogPath() {
+		return ROLLER_LOG_PATH;
+	}
+
+	@Override
+	protected void subsystemPeriodic() {
+		iRoller.updateVelocity(targetVelocity, direction);
+	}
 
 }

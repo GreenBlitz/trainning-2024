@@ -8,22 +8,23 @@ import utils.DefaultRobotManager;
 import utils.KeyboardController;
 
 public class TrainingRobotManager extends DefaultRobotManager {
-    private Robot robot;
-    private final KeyboardController keyboardController;
-    private Joystick joystick;
 
-    public TrainingRobotManager() {
-        this.keyboardController = new KeyboardController();
-        joystick = new Joystick(0);
-    }
+	private Robot robot;
+	private final KeyboardController keyboardController;
+	private Joystick joystick;
 
-    @Override
-    public void trainingInit() {
-        this.robot = new Robot();
-        keyboardController.A.onTrue(new RollerCommandBuilder().noteOut());
-        keyboardController.B.onTrue(new ElbowCommandBuilder().liftElbow());
-        keyboardController.C.onTrue(new WristCommandBuilder().moveUpWrist());
-    }
+	public TrainingRobotManager() {
+		this.keyboardController = new KeyboardController();
+		joystick = new Joystick(0);
+	}
+
+	@Override
+	public void trainingInit() {
+		this.robot = new Robot();
+		keyboardController.A.onTrue(new RollerCommandBuilder().noteOut());
+		keyboardController.B.onTrue(new ElbowCommandBuilder().liftElbow());
+		keyboardController.C.onTrue(new WristCommandBuilder().moveUpWrist());
+	}
 
 	@Override
 	public void trainingPeriodic() {

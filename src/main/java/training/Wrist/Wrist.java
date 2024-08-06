@@ -6,31 +6,32 @@ import utils.GBSubsystem;
 import static training.Wrist.WristConstants.*;
 
 public class Wrist extends GBSubsystem {
-    private Rotation2d targetAngle;
-    private final IWrist iWrist;
 
-    public Wrist() {
-        this.iWrist = new WristFactory().create();
-    }
+	private Rotation2d targetAngle;
+	private final IWrist iWrist;
 
-    public void stop() {
-        targetAngle = new Rotation2d(0);
-        iWrist.setPower(0);
-    }
+	public Wrist() {
+		this.iWrist = new WristFactory().create();
+	}
 
-    public void rotate(WristDirection direction) {
-        targetAngle = direction.getValue() == 1 ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
-    }
+	public void stop() {
+		targetAngle = new Rotation2d(0);
+		iWrist.setPower(0);
+	}
 
-    @Override
-    protected String getLogPath() {
-        return WRIST_LOG_PATH;
-    }
+	public void rotate(WristDirection direction) {
+		targetAngle = direction.getValue() == 1 ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
+	}
 
-    @Override
-    protected void subsystemPeriodic() {
-        iWrist.updateAngle(targetAngle);
-    }
+	@Override
+	protected String getLogPath() {
+		return WRIST_LOG_PATH;
+	}
+
+	@Override
+	protected void subsystemPeriodic() {
+		iWrist.updateAngle(targetAngle);
+	}
 
 
 }

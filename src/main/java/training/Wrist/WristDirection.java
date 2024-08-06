@@ -1,17 +1,18 @@
 package training.Wrist;
 
 public enum WristDirection {
-    kLeft(1),
-    kRight(-1);
 
-    private final int value;
+	kLeft(1),
+	kRight(-1);
 
-    WristDirection(int val) {
-        this.value = val;
-    }
+	private final int value;
 
-    public int getValue() {
-        return this.value;
-    }
+	WristDirection(int val) {
+		this.value = val;
+	}
+
+	public int getValue() {
+		return this.value;
+	}
 
 }
