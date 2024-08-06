@@ -7,8 +7,8 @@ public enum RollerDirection {
 
 	private final int value;
 
-	RollerDirection(int val) {
-		this.value = val;
+	RollerDirection(int value) {
+		this.value = value;
 	}
 
 	public int toInt() {

@@ -7,8 +7,8 @@ public enum WristDirection {
 
 	private final boolean value;
 
-	WristDirection(boolean val) {
-		this.value = val;
+	WristDirection(boolean value) {
+		this.value = value;
 	}
 
 	public boolean gotLeft() {
