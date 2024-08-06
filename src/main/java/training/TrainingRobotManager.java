@@ -22,8 +22,10 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	public void trainingInit() {
 		this.robot = new Robot();
 		keyboardController.A.onTrue(new RollerCommandBuilder().noteOut());
-		keyboardController.B.onTrue(new ElbowCommandBuilder().liftElbow());
+		keyboardController.B.onTrue(new ElbowCommandBuilder().moveElbowUpAndDown());
 		keyboardController.C.onTrue(new WristCommandBuilder().moveUpWrist());
+
+		new WristCommandBuilder().moveUpWrist().schedule();
 	}
 
 	@Override

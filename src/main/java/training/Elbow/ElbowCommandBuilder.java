@@ -27,12 +27,17 @@ public class ElbowCommandBuilder {
 		);
 	}
 
-	public Command liftElbow() {
+	public Command moveElbowUpAndDown() {
 		return new SequentialCommandGroup(
 			upElbow(),
 			new WaitCommand(ElbowConstants.DEFAULT_TIME_IN_AIR_ELBOW_SECONDS),
 			downElbow()
 		);
+	}
+
+	public Command moveElbowUpAndDown(double timeInAirSeconds) { // i know there is a Time object in wpilib, i'll change that
+																	// later
+		return new SequentialCommandGroup(upElbow(), new WaitCommand(timeInAirSeconds), downElbow());
 	}
 
 	public Command elbowStandInPlace() {
