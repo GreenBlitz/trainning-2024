@@ -39,7 +39,13 @@ public class BrokenNeoElbow implements IElbow {
 		double feedForwardOutputVoltage = NeoElbowConstants.NEO_ELBOW_FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
 
-		motor.getPIDController().setReference(targetAngleRotations, CANSparkBase.ControlType.kPosition, NeoElbowConstants.POSITION_PID_SLOT, feedForwardOutputVoltage);
+		motor.getPIDController()
+			.setReference(
+				targetAngleRotations,
+				CANSparkBase.ControlType.kPosition,
+				NeoElbowConstants.POSITION_PID_SLOT,
+				feedForwardOutputVoltage
+			);
 	}
 
 }

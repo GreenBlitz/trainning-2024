@@ -41,7 +41,10 @@ public class SimulationElbow implements IElbow {
 		double feedForwardOutputVoltage = SimulationElbowConstants.SIMULATION_ELBOW_FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), arm.getVelocity().getRadians());
 
-		arm.setPower(SimulationElbowConstants.CONTROLLER.calculate(targetAngelRotations, targetAngle.getRadians()) + feedForwardOutputVoltage);
+		arm.setPower(
+			SimulationElbowConstants.CONTROLLER.calculate(targetAngelRotations, targetAngle.getRadians())
+				+ feedForwardOutputVoltage
+		);
 	}
 
 }
