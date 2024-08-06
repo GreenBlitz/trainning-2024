@@ -6,14 +6,14 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import static training.Roller.RollerConstants.DEFAULT_ROLLING_TIME_SECONDS;
 
 public class RollerCommandBuilder {
-    private final Roller rollerSubsystem;
+    private final Roller roller;
 
     public RollerCommandBuilder() {
-        this.rollerSubsystem = new Roller();
+        this.roller = new Roller();
     }
 
     public Command RollerStop() {
-        return new InstantCommand(rollerSubsystem::stop, rollerSubsystem);
+        return new InstantCommand(roller::stop, roller);
     }
 
     public Command noteOut() {
@@ -21,11 +21,12 @@ public class RollerCommandBuilder {
     }
 
     public Command rollBackward() {
-        return new InstantCommand(rollerSubsystem::runBackward, rollerSubsystem);
+        return new InstantCommand(roller::runBackward, roller);
     }
 
     public Command rollForward() {
-        return new InstantCommand(rollerSubsystem::runForward, rollerSubsystem);
+        return new InstantCommand(roller::runForward, roller);
     }
+
 
 }

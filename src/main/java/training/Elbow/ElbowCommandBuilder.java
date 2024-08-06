@@ -9,20 +9,20 @@ import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 
 
 public class ElbowCommandBuilder {
-    private final Elbow elbowSubsystem;
+    private final Elbow elbow;
 
     public ElbowCommandBuilder() {
-        this.elbowSubsystem = (Elbow) new ElbowFactory().create();
+        this.elbow = (Elbow) new ElbowFactory().create();
     }
 
 
     public Command moveElbowToAngle(Rotation2d targetAngle) {
         return new FunctionalCommand(
                 () -> {},
-                () -> elbowSubsystem.setTargetAngle(targetAngle),
+                () -> elbow.setTargetAngle(targetAngle),
                 (interrupted) -> {},
-                () -> elbowSubsystem.isAtAngle(targetAngle),
-                elbowSubsystem
+                () -> elbow.isAtAngle(targetAngle),
+                elbow
         );
     }
 
@@ -31,7 +31,7 @@ public class ElbowCommandBuilder {
     }
 
     public Command elbowStandInPlace() {
-        return new InstantCommand(elbowSubsystem::LockElbowInPlace, elbowSubsystem);
+        return new InstantCommand(elbow::LockElbowInPlace, elbow);
     }
 
     public Command upElbow() {

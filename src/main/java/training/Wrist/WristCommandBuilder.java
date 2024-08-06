@@ -4,17 +4,17 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public class WristCommandBuilder {
-    private final Wrist wristSubsystem;
+    private final Wrist wrist;
 
     public WristCommandBuilder() {
-        this.wristSubsystem = new Wrist();
+        this.wrist = new Wrist();
     }
 
     public Command moveUpWrist() {
-        return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kLeft), wristSubsystem);
+        return new InstantCommand(() -> wrist.rotate(WristDirection.kLeft), wrist);
     }
     public Command moveDownWrist() {
-        return new InstantCommand(() -> wristSubsystem.rotate(WristDirection.kRight), wristSubsystem);
+        return new InstantCommand(() -> wrist.rotate(WristDirection.kRight), wrist);
     }
 
 }
