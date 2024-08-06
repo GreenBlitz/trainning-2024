@@ -9,9 +9,9 @@ import utils.KeyboardController;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
-	private Robot robot;
 	private final KeyboardController keyboardController;
-	private Joystick joystick;
+	private final Joystick joystick;
+	private Robot robot;
 
 	public TrainingRobotManager() {
 		this.keyboardController = new KeyboardController();

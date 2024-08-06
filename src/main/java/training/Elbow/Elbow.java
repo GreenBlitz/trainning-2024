@@ -5,8 +5,8 @@ import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-	private Rotation2d targetAngle;
 	private final IElbow iElbow;
+	private Rotation2d targetAngle;
 
 	public Elbow() {
 		this.iElbow = new ElbowFactory().create();

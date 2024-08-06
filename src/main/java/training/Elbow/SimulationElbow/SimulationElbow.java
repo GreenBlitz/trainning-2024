@@ -12,12 +12,13 @@ public class SimulationElbow implements IElbow {
 	public SimulationElbow() {
 		this.arm = new SingleJointedArmSimulation(
 			new SingleJointedArmSim(
-				SimulationElbowConatns.ELBOW_GEARBOX,
-				SimulationElbowConatns.ELBOW_GEARING,
-				SingleJointedArmSim.estimateMOI(SimulationElbowConatns.ELBOW_LENGTH_METERS, SimulationElbowConatns.ELBOW_MASS),
-				SimulationElbowConatns.ELBOW_LENGTH_METERS,
-				SimulationElbowConatns.ELBOW_MINIMUM_ANGLE.getRadians(),
-				SimulationElbowConatns.ELBOW_MAXIMUM_ANGLE.getRadians(),
+				SimulationElbowConstants.ELBOW_GEARBOX,
+				SimulationElbowConstants.ELBOW_GEARING,
+				SingleJointedArmSim
+					.estimateMOI(SimulationElbowConstants.ELBOW_LENGTH_METERS, SimulationElbowConstants.ELBOW_MASS),
+				SimulationElbowConstants.ELBOW_LENGTH_METERS,
+				SimulationElbowConstants.ELBOW_MINIMUM_ANGLE.getRadians(),
+				SimulationElbowConstants.ELBOW_MAXIMUM_ANGLE.getRadians(),
 				true,
 				0
 			)
@@ -37,10 +38,10 @@ public class SimulationElbow implements IElbow {
 	@Override
 	public void updateAngle(Rotation2d targetAngle) {
 		double target = targetAngle.getRotations() % 1;
-		double FFValue = SimulationElbowConatns.SIMULATION_ELBOW_FEEDFORWARD
+		double FFValue = SimulationElbowConstants.SIMULATION_ELBOW_FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), arm.getVelocity().getRadians());
 
-		arm.setPower(SimulationElbowConatns.CONTROLLER.calculate(target, targetAngle.getRadians()) + FFValue);
+		arm.setPower(SimulationElbowConstants.CONTROLLER.calculate(target, targetAngle.getRadians()) + FFValue);
 	}
 
 }

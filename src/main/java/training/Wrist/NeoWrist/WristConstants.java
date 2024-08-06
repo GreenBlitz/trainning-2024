@@ -2,7 +2,7 @@ package training.Wrist.NeoWrist;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
-public class WristConstnats {
+public class WristConstants {
 
 	protected static final double POWER_LIMIT_WRIST = 0.9; // limit both min and max
 

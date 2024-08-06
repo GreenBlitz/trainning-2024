@@ -7,8 +7,8 @@ import static training.Wrist.WristConstants.*;
 
 public class Wrist extends GBSubsystem {
 
-	private Rotation2d targetAngle;
 	private final IWrist iWrist;
+	private Rotation2d targetAngle;
 
 	public Wrist() {
 		this.iWrist = new WristFactory().create();

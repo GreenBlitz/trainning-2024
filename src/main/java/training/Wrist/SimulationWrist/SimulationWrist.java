@@ -1,6 +1,5 @@
 package training.Wrist.SimulationWrist;
 
-import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
@@ -13,8 +12,6 @@ import static training.Wrist.WristConstants.*;
 public class SimulationWrist implements IWrist {
 
 	private final DCMotorSim motor;
-	private BaseTalonConfiguration configuration;
-	private Rotation2d targetAngle;
 	private boolean inTestingMode;
 
 	public SimulationWrist() {

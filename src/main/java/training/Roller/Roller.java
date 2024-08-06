@@ -10,9 +10,9 @@ import static training.Roller.RollerDirection.kForward;
 
 public class Roller extends GBSubsystem {
 
+	private final IRoller iRoller;
 	private Rotation2d targetVelocity;
 	private RollerDirection direction;
-	private final IRoller iRoller;
 
 	public Roller() {
 		this.iRoller = new RollerFactory().create();

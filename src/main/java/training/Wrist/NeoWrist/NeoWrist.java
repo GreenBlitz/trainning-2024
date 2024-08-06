@@ -1,7 +1,6 @@
 package training.Wrist.NeoWrist;
 
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
-import com.ctre.phoenix.motorcontrol.can.BaseTalonConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,13 +10,12 @@ import training.Wrist.IWrist;
 public class NeoWrist implements IWrist {
 
 	private final TalonSRX motor;
-	private BaseTalonConfiguration configuration;
 	private boolean inTestingMode;
 
 	public NeoWrist() {
-		this.motor = new TalonSRX(WristConstnats.WRIST_ID);
+		this.motor = new TalonSRX(WristConstants.WRIST_ID);
 		this.inTestingMode = false;
-		motor.configAllSettings(WristConstnats.WRIST_PID_CONFIG);
+		motor.configAllSettings(WristConstants.WRIST_PID_CONFIG);
 	}
 
 	/**
@@ -27,10 +25,10 @@ public class NeoWrist implements IWrist {
 	@Override
 	public void setPower(double power) {
 		inTestingMode = true;
-		if (Math.abs(power) >= WristConstnats.POWER_LIMIT_WRIST) {
+		if (Math.abs(power) >= WristConstants.POWER_LIMIT_WRIST) {
 			SmartDashboard.putString("Reverting to max speed 0.9", "");
 		}
-		motor.set(TalonSRXControlMode.PercentOutput, Math.min(power, WristConstnats.POWER_LIMIT_WRIST));
+		motor.set(TalonSRXControlMode.PercentOutput, Math.min(power, WristConstants.POWER_LIMIT_WRIST));
 	}
 
 	@Override
