@@ -8,56 +8,57 @@ import subsystems.elbow.IElbow;
 import utils.GBSubsystem;
 
 public class NeoElbow extends GBSubsystem implements IElbow {
-    private static NeoElbow instance;
-    private static CANSparkMax motor;
 
-    private NeoElbow() {
-        motor = new CANSparkMax(RobotConstants.ELBOW_MOTOR_ID, RobotConstants.ELBOW_MOTOR_BRUSHLESS_TYPE);
-        motor.getPIDController().setP(ElbowConstants.ELBOW_KP);
-        motor.getPIDController().setI(ElbowConstants.ELBOW_KI);
-        motor.getPIDController().setD(ElbowConstants.ELBOW_KD);
-    }
+	private static NeoElbow instance;
+	private static CANSparkMax motor;
 
-    public static NeoElbow getInstance() {
-        if (instance == null) {
-            instance = new NeoElbow();
-        }
-        return instance;
-    }
+	private NeoElbow() {
+		motor = new CANSparkMax(RobotConstants.ELBOW_MOTOR_ID, RobotConstants.ELBOW_MOTOR_BRUSHLESS_TYPE);
+		motor.getPIDController().setP(ElbowConstants.ELBOW_KP);
+		motor.getPIDController().setI(ElbowConstants.ELBOW_KI);
+		motor.getPIDController().setD(ElbowConstants.ELBOW_KD);
+	}
 
-    public Rotation2d getAngle() {
-        return Rotation2d.fromRotations(motor.getEncoder().getPosition() % 1);
-    }
+	public static NeoElbow getInstance() {
+		if (instance == null) {
+			instance = new NeoElbow();
+		}
+		return instance;
+	}
 
-    public double getRPMVelocity() {
-        return motor.getEncoder().getVelocity();
-    }
+	public Rotation2d getAngle() {
+		return Rotation2d.fromRotations(motor.getEncoder().getPosition() % 1);
+	}
 
-    @Override
-    public void setPower(double power) {
-        motor.set(power);
-    }
+	public double getRPMVelocity() {
+		return motor.getEncoder().getVelocity();
+	}
 
-    private double calculateFeedForward() {
-        return NeoElbowConstants.ELBOW_FEED_FORWARD.calculate(getAngle().getRadians(), getRPMVelocity());
-    }
+	@Override
+	public void setPower(double power) {
+		motor.set(power);
+	}
 
-    public void goToPosition(Rotation2d position) {
-        motor.getPIDController().setReference(
-                position.getRadians(),
-                RobotConstants.ELBOW_CONTROL_TYPE,
-                NeoElbowConstants.ELBOW_PID_SLOT,
-                calculateFeedForward()
-        );
-    }
+	private double calculateFeedForward() {
+		return NeoElbowConstants.ELBOW_FEED_FORWARD.calculate(getAngle().getRadians(), getRPMVelocity());
+	}
 
-    @Override
-    protected String getLogPath() {
-        return "";
-    }
+	public void goToPosition(Rotation2d position) {
+		motor.getPIDController()
+			.setReference(
+				position.getRadians(),
+				RobotConstants.ELBOW_CONTROL_TYPE,
+				NeoElbowConstants.ELBOW_PID_SLOT,
+				calculateFeedForward()
+			);
+	}
 
-    @Override
-    protected void subsystemPeriodic() {
+	@Override
+	protected String getLogPath() {
+		return "";
+	}
 
-    }
+	@Override
+	protected void subsystemPeriodic() {}
+
 }

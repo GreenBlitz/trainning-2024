@@ -9,57 +9,56 @@ import subsystems.elbow.ElbowConstants;
 import subsystems.elbow.IElbow;
 
 public class SimulationElbow implements IElbow {
-    private static SimulationElbow instance;
-    private final SingleJointedArmSim motor;
-    private final PIDController controller;
 
-    private SimulationElbow() {
-        motor = new SingleJointedArmSim(
-                DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
-                SimulationElbowConstants.GEAR_RATIO,
-                SingleJointedArmSim.estimateMOI(
-                        SimulationElbowConstants.ARM_LENGTH,
-                        SimulationElbowConstants.ARM_MASS_KG
-                ),
-                SimulationElbowConstants.ARM_LENGTH,
-                SimulationElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
-                SimulationElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
-                false,
-                SimulationElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
-        );
-        controller = new PIDController(ElbowConstants.ELBOW_KP, ElbowConstants.ELBOW_KI, ElbowConstants.ELBOW_KD);
-    }
+	private static SimulationElbow instance;
+	private final SingleJointedArmSim motor;
+	private final PIDController controller;
 
-    public SimulationElbow getInstance() {
-        if (instance == null) {
-            instance = new SimulationElbow();
-        }
-        return instance;
-    }
+	private SimulationElbow() {
+		motor = new SingleJointedArmSim(
+			DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
+			SimulationElbowConstants.GEAR_RATIO,
+			SingleJointedArmSim.estimateMOI(SimulationElbowConstants.ARM_LENGTH, SimulationElbowConstants.ARM_MASS_KG),
+			SimulationElbowConstants.ARM_LENGTH,
+			SimulationElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
+			SimulationElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
+			false,
+			SimulationElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
+		);
+		controller = new PIDController(ElbowConstants.ELBOW_KP, ElbowConstants.ELBOW_KI, ElbowConstants.ELBOW_KD);
+	}
 
-    @Override
-    public Rotation2d getAngle() {
-        return Rotation2d.fromRadians(motor.getAngleRads());
-    }
+	public SimulationElbow getInstance() {
+		if (instance == null) {
+			instance = new SimulationElbow();
+		}
+		return instance;
+	}
 
-    @Override
-    public double getRPMVelocity() {
-        return motor.getVelocityRadPerSec() / SimulationElbowConstants.FULL_CIRCLE_RAD;
-    }
+	@Override
+	public Rotation2d getAngle() {
+		return Rotation2d.fromRadians(motor.getAngleRads());
+	}
 
-    @Override
-    public void setPower(double power) {
-        setVoltage(power * SimulationConstants.BATTERY_VOLTAGE);
-    }
+	@Override
+	public double getRPMVelocity() {
+		return motor.getVelocityRadPerSec() / SimulationElbowConstants.FULL_CIRCLE_RAD;
+	}
 
-    private void setVoltage(double voltage) {
-        double limited_voltage = Math.min((Math.max(voltage, -SimulationConstants.BATTERY_VOLTAGE)),
-                SimulationConstants.BATTERY_VOLTAGE);
-        motor.setInputVoltage(limited_voltage);
-    }
+	@Override
+	public void setPower(double power) {
+		setVoltage(power * SimulationConstants.BATTERY_VOLTAGE);
+	}
 
-    @Override
-    public void goToPosition(Rotation2d position) {
-        setVoltage(controller.calculate(motor.getAngleRads(), position.getRadians()));
-    }
+	private void setVoltage(double voltage) {
+		double limited_voltage = Math
+			.min((Math.max(voltage, -SimulationConstants.BATTERY_VOLTAGE)), SimulationConstants.BATTERY_VOLTAGE);
+		motor.setInputVoltage(limited_voltage);
+	}
+
+	@Override
+	public void goToPosition(Rotation2d position) {
+		setVoltage(controller.calculate(motor.getAngleRads(), position.getRadians()));
+	}
+
 }

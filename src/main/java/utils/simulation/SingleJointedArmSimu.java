@@ -8,9 +8,9 @@ public class SingleJointedArmSimu extends MotorSimulation {
 
 	private final SingleJointedArmSim armSimulation;
 
-    public SingleJointedArmSimu(SingleJointedArmSim armSimulation) {
-        this.armSimulation = armSimulation;
-    }
+	public SingleJointedArmSimu(SingleJointedArmSim armSimulation) {
+		this.armSimulation = armSimulation;
+	}
 
 	public double getCurrent() {
 		return armSimulation.getCurrentDrawAmps();

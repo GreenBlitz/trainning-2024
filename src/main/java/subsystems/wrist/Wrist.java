@@ -6,34 +6,33 @@ import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
 
-    private static Wrist instance;
-    private static TalonSRX motor;
+	private static Wrist instance;
+	private static TalonSRX motor;
 
-    private Wrist() {
-        motor = new TalonSRX(WristConstants.WRIST_MOTOR_ID);
-    }
+	private Wrist() {
+		motor = new TalonSRX(WristConstants.WRIST_MOTOR_ID);
+	}
 
-    public static Wrist getInstance() {
-        if (instance == null) {
-            instance = new Wrist();
-        }
-        return instance;
-    }
+	public static Wrist getInstance() {
+		if (instance == null) {
+			instance = new Wrist();
+		}
+		return instance;
+	}
 
-    public void GoToPosition(Rotation2d position) {
-        motor.set(
-                WristConstants.WRIST_PID_CONTROL_MODE,
-                position.getRotations() % WristConstants.SINGLE_ROTATION * WristConstants.FULL_CIRCLE_ENCODER_TICKS
-        );
-    }
+	public void GoToPosition(Rotation2d position) {
+		motor.set(
+			WristConstants.WRIST_PID_CONTROL_MODE,
+			position.getRotations() % WristConstants.SINGLE_ROTATION * WristConstants.FULL_CIRCLE_ENCODER_TICKS
+		);
+	}
 
-    @Override
-    protected String getLogPath() {
-        return "";
-    }
+	@Override
+	protected String getLogPath() {
+		return "";
+	}
 
-    @Override
-    protected void subsystemPeriodic() {
+	@Override
+	protected void subsystemPeriodic() {}
 
-    }
 }
