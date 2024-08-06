@@ -12,11 +12,11 @@ public class RollClockwise extends Command {
 	}
 
 	public void initialize() {
-		roller.rollClockwise();
+		this.roller.rollClockwise();
 	}
 
 	public void end(boolean interrupted) {
-		roller.stop();
+		this.roller.stop();
 	}
 
 }

@@ -9,7 +9,6 @@ import training.RobotConstants;
 import training.subsystems.ArmSubsystems.elbowSubsystem.ElbowConstants;
 import training.subsystems.ArmSubsystems.elbowSubsystem.ElbowInputsAutoLogged;
 import training.subsystems.ArmSubsystems.elbowSubsystem.IElbow;
-import training.subsystems.ArmSubsystems.elbowSubsystem.ElbowConstants;
 
 
 public class NeoElbow implements IElbow {
@@ -47,27 +46,21 @@ public class NeoElbow implements IElbow {
 
 	public void goToPosition(Rotation2d position) {
 		motor.getPIDController()
-			.setReference(
-				position.getDegrees(),
-				CANSparkBase.ControlType.kPosition,
-				0,
-				ElbowConstants.FEEDFORWARD_CONTROLER.calculate(getPosition().getRadians(), getVelocity())
-			);
+				.setReference(
+						position.getDegrees(),
+						CANSparkBase.ControlType.kPosition,
+						0,
+						ElbowConstants.FEEDFORWARD_CONTROLER.calculate(getPosition().getRadians(), getVelocity())
+				);
 	}
 
-	public void stayAtPosition() {
-		goToPosition(getPosition());
-	}
 
-	@Override
-	public boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d tolerance) {
-		return Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees();
-	}
 
 	@Override
 	public void updateInputs(ElbowInputsAutoLogged inputs) {
-		inputs.motorVelocity = Rotation2d.fromRotations(motor.getEncoder().getVelocity());
-		inputs.motorCurrent = motor.getOutputCurrent();
+		inputs.velocity = Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+		inputs.current = motor.getOutputCurrent();
+		inputs.position=Rotation2d.fromRotations(motor.getEncoder().getPosition());
 	}
 
 	public Rotation2d getPosition() {

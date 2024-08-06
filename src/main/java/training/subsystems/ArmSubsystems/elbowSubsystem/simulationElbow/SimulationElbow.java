@@ -22,14 +22,14 @@ public class SimulationElbow implements IElbow {
 
 	private SimulationElbow() {
 		this.motor = new SingleJointedArmSim(
-			DCMotor.getNEO(1),
-			ElbowConstants.ELBOW_GEAR_RATIO.getDegrees(),
-			SingleJointedArmSim.estimateMOI(ElbowConstants.ARM_LENGTH, ElbowConstants.ARM_MASS_KG),
-			ElbowConstants.ARM_LENGTH,
-			ElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
-			ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
-			false,
-			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
+				DCMotor.getNEO(1),
+				ElbowConstants.ELBOW_GEAR_RATIO.getDegrees(),
+				SingleJointedArmSim.estimateMOI(ElbowConstants.ARM_LENGTH, ElbowConstants.ARM_MASS_KG),
+				ElbowConstants.ARM_LENGTH,
+				ElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
+				ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
+				false,
+				ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
 
 		PIDController = ElbowConstants.PIDController;
@@ -54,24 +54,16 @@ public class SimulationElbow implements IElbow {
 
 	public void goToPosition(Rotation2d targetPosition) {
 		setVoltage(
-			PIDController.calculate(getPosition().getDegrees(), targetPosition.getDegrees())
-				+ feedForwardControler.calculate(getPosition().getDegrees(), targetPosition.getDegrees())
+				PIDController.calculate(getPosition().getDegrees(), targetPosition.getDegrees())
+						+ feedForwardControler.calculate(getPosition().getDegrees(), targetPosition.getDegrees())
 		);
-	}
-
-	public void stayAtPosition() {
-		goToPosition(getPosition());
-	}
-
-	@Override
-	public boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d tolerance) {
-		return Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees();
 	}
 
 	@Override
 	public void updateInputs(ElbowInputsAutoLogged inputs) {
-		inputs.motorVelocity = Rotation2d.fromRadians(motor.getVelocityRadPerSec());
-		inputs.motorCurrent = motor.getCurrentDrawAmps();
+		inputs.velocity = Rotation2d.fromRadians(motor.getVelocityRadPerSec());
+		inputs.current = motor.getCurrentDrawAmps();
+		inputs.position=Rotation2d.fromRadians(motor.getAngleRads());
 	}
 
 	public Rotation2d getPosition() {

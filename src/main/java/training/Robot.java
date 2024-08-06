@@ -11,6 +11,8 @@ public class Robot {
 	private final NeoElbow elbow;
 	private final Wrist wrist;
 	private final Roller roller;
+	public static final Robot.robotType ROBOT_TYPE = Robot.robotType.SIMULATION;
+
 
 	public Robot() {
 		// Boot your subsystems...

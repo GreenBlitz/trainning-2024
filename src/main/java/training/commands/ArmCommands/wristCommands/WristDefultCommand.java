@@ -8,18 +8,12 @@ public class WristDefultCommand extends Command {
 	private Wrist wrist;
 
 	public WristDefultCommand() {
-		wrist = Wrist.getInstance();
+		this.wrist = Wrist.getInstance();
 		addRequirements(wrist);
 	}
 
-	@Override
 	public void initialize() {
 		wrist.stopMotor();
-	}
-
-	@Override
-	public void end(boolean interrupted) {
-		super.end(interrupted);
 	}
 
 }

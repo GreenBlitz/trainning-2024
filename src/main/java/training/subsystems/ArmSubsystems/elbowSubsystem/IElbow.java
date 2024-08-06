@@ -6,10 +6,6 @@ public interface IElbow {
 
 	void goToPosition(Rotation2d targetPosition);
 
-	void stayAtPosition();
-
-	boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d tolerance);
-
 	void setVoltage(double voltage);
 
 	void setPower(double power);
