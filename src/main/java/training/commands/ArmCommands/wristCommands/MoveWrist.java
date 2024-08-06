@@ -7,20 +7,20 @@ import training.subsystems.ArmSubsystems.wristSubsystem.WristConstants;
 
 public class MoveWrist extends Command {
 
-	private final Wrist wrist;
-	private final Rotation2d targetPosition;
+    private final Wrist wrist;
+    private final Rotation2d targetPosition;
 
-	public MoveWrist(Rotation2d targetPosition) {
-		this.wrist = Wrist.getInstance();
-		this.targetPosition = targetPosition;
-	}
+    public MoveWrist(Rotation2d targetPosition) {
+        this.wrist = Wrist.getInstance();
+        this.targetPosition = targetPosition;
+    }
 
-	public void initialize() {
-		wrist.goToPosition(targetPosition);
-	}
+    public void initialize() {
+        wrist.goToPosition(targetPosition);
+    }
 
-	public boolean isFinished() {
-		return wrist.isAtTargetAngle(targetPosition, WristConstants.WRIST_TOLERANCE_DEGREES);
-	}
+    public boolean isFinished() {
+        return wrist.isAtTargetAngle(targetPosition, WristConstants.WRIST_TOLERANCE_DEGREES);
+    }
 
 }

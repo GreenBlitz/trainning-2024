@@ -4,13 +4,13 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public interface IElbow {
 
-	void goToPosition(Rotation2d targetPosition);
+    void goToPosition(Rotation2d targetPosition);
 
-	void setVoltage(double voltage);
+    void setVoltage(double voltage);
 
-	void setPower(double power);
+    void setPower(double power);
 
-	void updateInputs(ElbowInputsAutoLogged inputs);
+    void updateInputs(ElbowInputsAutoLogged inputs);
 
 
 }

@@ -5,15 +5,15 @@ import training.subsystems.ArmSubsystems.wristSubsystem.Wrist;
 
 public class WristDefultCommand extends Command {
 
-	private Wrist wrist;
+    private Wrist wrist;
 
-	public WristDefultCommand() {
-		this.wrist = Wrist.getInstance();
-		addRequirements(wrist);
-	}
+    public WristDefultCommand() {
+        this.wrist = Wrist.getInstance();
+        addRequirements(wrist);
+    }
 
-	public void initialize() {
-		wrist.stopMotor();
-	}
+    public void initialize() {
+        wrist.stopMotor();
+    }
 
 }
