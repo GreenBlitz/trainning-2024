@@ -28,7 +28,7 @@ public class NeoWrist implements IWrist {
         if (Math.abs(power) >= WristConstnats.POWER_LIMIT_WRIST) {
             SmartDashboard.putString("motor is trying to spin in power above MAX_POWER_CIM limit. Reverting to 0.9", "");
         }
-        motor.set(TalonSRXControlMode.PercentOutput, Math.min(power, 0.9));
+        motor.set(TalonSRXControlMode.PercentOutput, Math.min(power, WristConstnats.POWER_LIMIT_WRIST));
     }
 
     @Override
@@ -37,5 +37,6 @@ public class NeoWrist implements IWrist {
             motor.setSelectedSensorPosition(targetAngle.getRotations());
         }
     }
+
 
 }
