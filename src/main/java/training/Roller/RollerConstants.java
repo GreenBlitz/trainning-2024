@@ -1,5 +1,7 @@
 package training.Roller;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+
 public class RollerConstants {
 
 	// * These constants are temp and shall be replaced with calibrated constants that aren't 0
@@ -7,7 +9,7 @@ public class RollerConstants {
 
 	protected static final String ROLLER_LOG_PATH = "";
 
-	protected static final double ROLLER_DEFAULT_VELOCITY_RPM = 0;
+	protected static final Rotation2d ROLLER_DEFAULT_VELOCITY = Rotation2d.fromRotations(0);
 
 	// * Simulation
 

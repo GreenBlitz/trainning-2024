@@ -2,8 +2,6 @@ package training.Roller;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 
-import static training.Roller.RollerConstants.*;
-
 public interface IRoller {
 
 	void setPower(double power);
@@ -12,7 +10,7 @@ public interface IRoller {
 
 	Rotation2d getVelocity();
 
-	void updateVelocity(Rotation2d targetVelocity, RollerDirection direction);
+	void updateVelocity(Rotation2d targetVelocity);
 
 
 }

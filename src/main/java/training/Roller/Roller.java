@@ -3,20 +3,17 @@ package training.Roller;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-import static training.Roller.RollerConstants.ROLLER_DEFAULT_VELOCITY_RPM;
+import static training.Roller.RollerConstants.ROLLER_DEFAULT_VELOCITY;
 import static training.Roller.RollerConstants.ROLLER_LOG_PATH;
-import static training.Roller.RollerDirection.kBackward;
-import static training.Roller.RollerDirection.kForward;
 
 public class Roller extends GBSubsystem {
 
 	private final IRoller iRoller;
 	private Rotation2d targetVelocity;
-	private RollerDirection direction;
 
 	public Roller() {
 		this.iRoller = new RollerFactory().create();
-		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
+		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY.getRotations());
 	}
 
 	public Rotation2d getTargetVelocity() {
@@ -28,13 +25,11 @@ public class Roller extends GBSubsystem {
 	}
 
 	public void rollForward() {
-		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
-		direction = kForward;
+		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY.getRotations());
 	}
 
 	public void rollBackward() {
-		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY_RPM);
-		direction = kBackward;
+		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY.times(-1).getRotations());
 	}
 
 	public void stop() {
@@ -49,7 +44,7 @@ public class Roller extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
-		iRoller.updateVelocity(targetVelocity, direction);
+		iRoller.updateVelocity(targetVelocity);
 	}
 
 }

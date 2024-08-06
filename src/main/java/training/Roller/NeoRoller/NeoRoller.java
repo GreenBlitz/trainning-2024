@@ -4,7 +4,6 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.Roller.IRoller;
-import training.Roller.RollerDirection;
 
 
 public class NeoRoller implements IRoller {
@@ -23,9 +22,8 @@ public class NeoRoller implements IRoller {
 	}
 
 	@Override
-	public void updateVelocity(Rotation2d targetVelocity, RollerDirection direction) {
-		motor.getPIDController()
-			.setReference(targetVelocity.getRotations() * direction.toInt(), CANSparkBase.ControlType.kVelocity);
+	public void updateVelocity(Rotation2d targetVelocity) {
+		motor.getPIDController().setReference(targetVelocity.getRotations(), CANSparkBase.ControlType.kVelocity);
 	}
 
 	@Override
