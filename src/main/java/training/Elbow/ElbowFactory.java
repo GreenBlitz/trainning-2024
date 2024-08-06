@@ -7,7 +7,7 @@ import training.Robot;
 public class ElbowFactory {
 
 	public IElbow create() {
-		return switch (Robot.getRobotType()) {
+		return switch (Robot.robotType) {
 			case SIMULATION -> new SimulationElbow();
 			case SYNCOPA -> new BrokenNeoElbow();
 		};

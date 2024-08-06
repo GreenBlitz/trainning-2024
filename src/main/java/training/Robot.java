@@ -8,9 +8,7 @@ public class Robot {
 
 	public Robot() {}
 
-	public static RobotType getRobotType() {
-		return ROBOT_TYPE;
-	}
+	public static final RobotType robotType = ROBOT_TYPE;
 
 	// Add your subsystems getters...
 

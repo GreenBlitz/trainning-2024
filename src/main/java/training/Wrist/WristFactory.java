@@ -7,7 +7,7 @@ import training.Wrist.SimulationWrist.SimulationWrist;
 public class WristFactory {
 
 	public IWrist create() {
-		return switch (Robot.getRobotType()) {
+		return switch (Robot.robotType) {
 			case SIMULATION -> new SimulationWrist();
 			case SYNCOPA -> new NeoWrist();
 		};

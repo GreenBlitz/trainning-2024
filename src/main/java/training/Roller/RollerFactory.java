@@ -7,7 +7,7 @@ import training.Roller.SimulationRoller.SimulationRoller;
 public class RollerFactory {
 
 	public IRoller create() {
-		return switch (Robot.getRobotType()) {
+		return switch (Robot.robotType) {
 			case SIMULATION -> new SimulationRoller();
 			case SYNCOPA -> new NeoRoller();
 		};
