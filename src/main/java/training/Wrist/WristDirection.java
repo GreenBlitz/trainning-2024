@@ -2,16 +2,16 @@ package training.Wrist;
 
 public enum WristDirection {
 
-	kLeft(1),
-	kRight(-1);
+	kLeft(true),
+	kRight(false);
 
-	private final int value;
+	private final boolean value;
 
-	WristDirection(int val) {
+	WristDirection(boolean val) {
 		this.value = val;
 	}
 
-	public int getValue() {
+	public boolean gotLeft() {
 		return this.value;
 	}
 

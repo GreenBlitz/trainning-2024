@@ -20,7 +20,7 @@ public class Wrist extends GBSubsystem {
 	}
 
 	public void rotate(WristDirection direction) {
-		targetAngle = direction.getValue() == 1 ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
+		targetAngle = direction.gotLeft() ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
 	}
 
 	@Override
