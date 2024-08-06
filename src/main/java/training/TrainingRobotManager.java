@@ -25,18 +25,20 @@ public class TrainingRobotManager extends DefaultRobotManager {
         keyboardController.C.onTrue(new WristCommandBuilder().moveUpWrist());
     }
 
-    @Override
-    public void trainingPeriodic() {
-        // add stuff...
-    }
+	@Override
+	public void trainingPeriodic() {
+		// add stuff...
+	}
 
-    @Override
-    public void teleopInit() {
-        // schedule your command...
-    }
+	@Override
+	public void teleopInit() {
+		// schedule your command...
+	}
 
-    @Override
-    public void teleopExit() {
-        // cancel your command...
-    }
+
+	@Override
+	public void teleopExit() {
+		// cancel your command...
+	}
+
 }
