@@ -13,4 +13,6 @@ public class SimulationWristConstants {
     protected static final PIDController WRIST_SIMULATION_CONTROLLER = new PIDController(0, 0, 0);
 
     protected static final double POWER_LIMIT_WRIST_SIMULATION = 0.9; // limit both min and max
+
+
 }
