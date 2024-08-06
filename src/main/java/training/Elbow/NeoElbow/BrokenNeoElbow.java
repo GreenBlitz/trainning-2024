@@ -3,7 +3,6 @@ package training.Elbow.NeoElbow;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.Elbow.ElbowConstants;
 import training.Elbow.IElbow;
 
 
@@ -35,7 +34,7 @@ public class BrokenNeoElbow implements IElbow {
     @Override
     public void updateAngle(Rotation2d targetAngle) {
         double target = flooredStartRotations.getRotations() + (targetAngle.getRotations() % 1);
-        double FFValue = NeoElbowConstants.ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
+        double FFValue = NeoElbowConstants.NEO_ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
 
         motor.getPIDController().setReference(
                 target,

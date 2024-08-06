@@ -6,13 +6,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import training.Roller.IRoller;
 import training.Roller.RollerDirection;
 
-import static training.Roller.RollerConstants.ROLLER_ID;
-import static training.Roller.RollerConstants.ROLLER_MOTOR_TYPE;
-import static training.Roller.RollerConstants.ROLLER_GEAR_RATIO;
-import static training.Roller.RollerConstants.ROLLER_P;
-import static training.Roller.RollerConstants.ROLLER_I;
-import static training.Roller.RollerConstants.ROLLER_D;
-import static training.Roller.RollerConstants.POWER_LIMIT_ROLLER;
 
 public class NeoRoller implements IRoller {
     private final CANSparkMax motor;

@@ -7,9 +7,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import training.Wrist.IWrist;
 
-import static training.Wrist.WristConstants.POWER_LIMIT_WRIST;
-import static training.Wrist.WristConstants.WRIST_ID;
-import static training.Wrist.WristConstants.WRIST_PID_CONFIG;
 
 public class NeoWrist implements IWrist {
     private final TalonSRX motor;
