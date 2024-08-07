@@ -1,10 +1,10 @@
 package utils.logger;
 
 import com.ctre.phoenix6.SignalLogger;
-import training.TrainingRobotManager;
 import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
+import training.TrainingRobotManager;
 
 import java.nio.file.Path;
 
