@@ -34,10 +34,9 @@ public class SimulationRoller implements IRoller {
 
 	@Override
 	public void updateVelocity(Rotation2d targetVelocity) {
-		SimulationRollerConstants.SIMULATION_CONTROLLER.setSetpoint(targetVelocity.getRadians());
+		SimulationRollerConstants.CONTROLLER.setSetpoint(targetVelocity.getRadians());
 		setPower(
-			SimulationRollerConstants.SIMULATION_CONTROLLER
-				.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec())
+			SimulationRollerConstants.CONTROLLER.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec())
 		);
 	}
 

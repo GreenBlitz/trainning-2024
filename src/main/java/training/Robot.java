@@ -1,14 +1,12 @@
 package training;
 
-import static training.RobotConstants.ROBOT_TYPE;
-
 public class Robot {
 
 	// Enter your subsystems...
 
 	public Robot() {}
 
-	public static final RobotType robotType = ROBOT_TYPE;
+	public static final RobotType ROBOT_TYPE = RobotType.SIMULATION;
 
 	// Add your subsystems getters...
 

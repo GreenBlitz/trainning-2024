@@ -37,7 +37,7 @@ public class SimulationElbow implements IElbow {
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
 		double targetAngelRotations = targetAngle.getRotations() % 1;
-		double feedForwardOutputVoltage = SimulationElbowConstants.SIMULATION_FEEDFORWARD
+		double feedForwardOutputVoltage = SimulationElbowConstants.FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), arm.getVelocity().getRadians());
 
 		arm.setPower(

@@ -26,7 +26,7 @@ public class SimulationWrist implements IWrist {
 	@Deprecated
 	public void setPower(double power) {
 		inTestingMode = true;
-		if (Math.abs(power) >= SimulationWristConstants.POWER_LIMIT_SIMULATION) {
+		if (Math.abs(power) >= SimulationWristConstants.POWER_LIMIT) {
 			SmartDashboard.putString("Reverting to max speed 0.9", "");
 		}
 		motor.setInputVoltage(power);
@@ -36,8 +36,7 @@ public class SimulationWrist implements IWrist {
 	public void moveToAngle(Rotation2d targetAngle) {
 		if (!inTestingMode) {
 			motor.setInputVoltage(
-				SimulationWristConstants.SIMULATION_CONTROLLER
-					.calculate(motor.getAngularPositionRotations(), motor.getAngularVelocityRPM())
+				SimulationWristConstants.CONTROLLER.calculate(motor.getAngularPositionRotations(), motor.getAngularVelocityRPM())
 			);
 		}
 	}
