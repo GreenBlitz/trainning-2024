@@ -12,5 +12,4 @@ public class WristConstants {
 
 	protected static final Rotation2d LOWER_POSITION = new Rotation2d(0);
 
-
 }

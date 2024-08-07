@@ -16,5 +16,4 @@ public class WristConstants {
 
 	protected static final int ID = 4;
 
-
 }

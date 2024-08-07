@@ -12,6 +12,5 @@ public interface IRoller {
 
 	void updateVelocity(Rotation2d targetVelocity);
 
-
 }
 

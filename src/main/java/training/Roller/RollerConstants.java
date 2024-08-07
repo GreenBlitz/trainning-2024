@@ -11,6 +11,4 @@ public class RollerConstants {
 
 	protected static final Rotation2d DEFAULT_VELOCITY = Rotation2d.fromRotations(0);
 
-	// * Simulation
-
 }

@@ -17,7 +17,7 @@ public class BrokenNeoElbow implements IElbow {
 		motor.getPIDController().setP(NeoElbowConstants.PID_CONTROLLER.getP());
 		motor.getPIDController().setD(NeoElbowConstants.PID_CONTROLLER.getD());
 		motor.getPIDController().setI(NeoElbowConstants.PID_CONTROLLER.getI());
-		motor.getPIDController().setOutputRange(-NeoElbowConstants.LOWER_POWER_LIMIT, NeoElbowConstants.UPPER_POWER_LIMIT);
+		motor.getPIDController().setOutputRange(NeoElbowConstants.LOWER_POWER_LIMIT, NeoElbowConstants.UPPER_POWER_LIMIT);
 		motor.getPIDController().setPositionPIDWrappingMaxInput(1);
 		motor.getPIDController().setPositionPIDWrappingMinInput(0);
 		motor.getPIDController().getPositionPIDWrappingEnabled();
@@ -36,7 +36,7 @@ public class BrokenNeoElbow implements IElbow {
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
 		double targetAngleRotations = targetAngle.getRotations() % 1;
-		double feedForwardOutputVoltage = NeoElbowConstants.NEO_FEEDFORWARD
+		double feedForwardOutputVoltage = NeoElbowConstants.FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
 
 		motor.getPIDController()

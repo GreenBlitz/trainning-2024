@@ -39,5 +39,4 @@ public class Wrist extends GBSubsystem {
 		iWrist.moveToAngle(targetAngle);
 	}
 
-
 }

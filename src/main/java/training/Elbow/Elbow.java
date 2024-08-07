@@ -58,5 +58,4 @@ public class Elbow extends GBSubsystem {
 		iElbow.moveToAngle(targetAngle);
 	}
 
-
 }

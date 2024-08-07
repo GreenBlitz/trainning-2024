@@ -29,5 +29,4 @@ public class RollerCommandBuilder {
 		return new InstantCommand(roller::rollForward, roller);
 	}
 
-
 }

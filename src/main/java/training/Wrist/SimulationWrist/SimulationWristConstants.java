@@ -14,5 +14,4 @@ public class SimulationWristConstants {
 
 	protected static final double POWER_LIMIT = 0.9; // limit both min and max
 
-
 }

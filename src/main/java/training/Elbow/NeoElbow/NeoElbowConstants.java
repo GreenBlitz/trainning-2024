@@ -13,7 +13,7 @@ public class NeoElbowConstants {
 
 	protected static final PIDController PID_CONTROLLER = new PIDController(0, 0, 0);
 
-	protected static final ArmFeedforward NEO_FEEDFORWARD = new ArmFeedforward(0, 0, 0, 0); // Keep kV and kA 0
+	protected static final ArmFeedforward FEEDFORWARD = new ArmFeedforward(0, 0, 0, 0); // Keep kV and kA 0
 
 
 	protected static final double ELBOW_GEAR_RATIO = (double) 250 / 7;

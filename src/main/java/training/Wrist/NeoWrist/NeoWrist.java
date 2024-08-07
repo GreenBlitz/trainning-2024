@@ -33,5 +33,4 @@ public class NeoWrist implements IWrist {
 		motor.setSelectedSensorPosition(targetAngle.getRotations());
 	}
 
-
 }

@@ -6,7 +6,7 @@ public class ElbowConstants {
 
 	// * These constants are temp and shall be replaced with calibrated constants that aren't 0
 
-	protected static final String LOG_PATH = "";
+	protected static final String LOG_PATH = "Elbow/";
 
 
 	public static final Rotation2d DEFAULT_POSITION = new Rotation2d(1, 1);
@@ -22,6 +22,5 @@ public class ElbowConstants {
 	protected static final Rotation2d LIFTING_POSITION_DEGREES = Rotation2d.fromDegrees(30);
 
 	protected static final Rotation2d TOLERANCE = new Rotation2d(0);
-
 
 }
