@@ -25,7 +25,7 @@ public class Roller extends GBSubsystem {
         return instance;
     }
 
-    public void goToPosition(Rotation2d position) {
+    public void moveAtSpeed(Rotation2d position) {
         motor.getPIDController().setReference(position.getRadians(), CANSparkBase.ControlType.kPosition, RolerConstens.PID_SLOT, RolerConstens.ARB_FEED_FOWORDS);
     }
 
