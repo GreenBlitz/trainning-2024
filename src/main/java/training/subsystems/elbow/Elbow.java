@@ -34,8 +34,10 @@ public class Elbow extends GBSubsystem {
     }
 
     public boolean isAtAngle(Rotation2d targetAngle){
-        return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosit
+        return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosition())==0;
     }
+
+
 
 
 
