@@ -1,13 +1,26 @@
 package training;
 
+import training.subsystems.Elbow.Elbow;
+import training.subsystems.Module;
+
 public class Robot {
 
-	// Enter your subsystems...
+    private final Module module;
+    private final Elbow elbow;
 
-	public Robot() {
-		// Boot your subsystems...
-	}
+    public Robot() {
+        this.module = new Module();
+        this.elbow = new Elbow();
+    }
 
-	// Add your subsystems getters...
+    // Add your subsystems getters...
+
+    public Module getModule() {
+        return module;
+    }
+
+    public Elbow getElbow() {
+        return elbow;
+    }
 
 }
