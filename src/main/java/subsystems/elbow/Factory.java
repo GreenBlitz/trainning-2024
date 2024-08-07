@@ -6,11 +6,11 @@ import training.Robot;
 
 public class Factory {
 
-    public static IElbow create(){
-        return switch (Robot.ROBOT_TYPE){
-            case REAL -> new NeoElbow();
-            case SIMULATION -> new SimulationElbow();
-        };
-    }
+	public static IElbow create() {
+		return switch (Robot.ROBOT_TYPE) {
+			case REAL -> new NeoElbow();
+			case SIMULATION -> new SimulationElbow();
+		};
+	}
 
 }

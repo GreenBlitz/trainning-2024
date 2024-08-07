@@ -1,12 +1,12 @@
 package training;
 
 import subsystems.Roller.Roller;
-import subsystems.elbow.neoElbow.NeoElbow;
+import subsystems.elbow.Elbow;
 import subsystems.wrist.Wrist;
 
 public class Robot {
 
-	public enum RobotType{
+	public enum RobotType {
 		SIMULATION,
 		REAL
 	}
@@ -15,13 +15,13 @@ public class Robot {
 
 
 	// Enter your subsystems...
-	private final NeoElbow elbow;
+	private final Elbow elbow;
 	private final Wrist wrist;
 	private final Roller roller;
 
 	public Robot() {
 		// Boot your subsystems...
-		this.elbow = NeoElbow.getInstance();
+		this.elbow = Elbow.getInstance();
 		this.wrist = Wrist.getInstance();
 		this.roller = Roller.getInstance();
 	}

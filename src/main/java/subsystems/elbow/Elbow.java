@@ -1,32 +1,34 @@
 package subsystems.elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import utils.GBSubsystem;
 
-public class Elbow implements IElbow {
+public class Elbow extends GBSubsystem {
 
-    private IElbow iElbow;
+	private static Elbow instance;
+	private IElbow iElbow;
 
-    public Elbow(){
-        iElbow =Factory.create();
-    }
+	private Elbow() {
+		iElbow = Factory.create();
+	}
 
-    @Override
-    public Rotation2d getAngle() {
-        return iElbow.getAngle();
-    }
+	public static Elbow getInstance() {
+		if (instance == null) {
+			instance = new Elbow();
+		}
+		return instance;
+	}
 
-    @Override
-    public double getRPMVelocity() {
-        return iElbow.getRPMVelocity();
-    }
+	public void goToPosition(Rotation2d position) {
+		iElbow.goToPosition(position);
+	}
 
-    @Override
-    public void setPower(double power) {
-        iElbow.setPower(power);
-    }
+	@Override
+	protected String getLogPath() {
+		return "";
+	}
 
-    @Override
-    public void goToPosition(Rotation2d position) {
-        iElbow.goToPosition(position);
-    }
+	@Override
+	protected void subsystemPeriodic() {}
+
 }
