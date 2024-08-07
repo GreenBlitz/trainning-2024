@@ -1,4 +1,4 @@
-package training.subsystems.Arm.Elbow;
+package training.subsystems.Arm.Elbow.SimulationElbow;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionVoltage;
@@ -6,6 +6,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
+import training.subsystems.Arm.Elbow.IElbow;
 import utils.simulation.SingleJointedArmSimulation;
 
 public class SimulationElbow implements IElbow {

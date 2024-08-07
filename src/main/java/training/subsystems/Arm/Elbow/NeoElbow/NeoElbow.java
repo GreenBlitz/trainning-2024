@@ -1,9 +1,11 @@
-package training.subsystems.Arm.Elbow;
+package training.subsystems.Arm.Elbow.NeoElbow;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
+import training.subsystems.Arm.Elbow.ElbowConstants;
+import training.subsystems.Arm.Elbow.IElbow;
 
 public class NeoElbow implements IElbow {
 
@@ -11,11 +13,11 @@ public class NeoElbow implements IElbow {
 
 	public NeoElbow() {
 		this.motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.ELBOW_GEAR_RATIO);
+		motor.getEncoder().setPositionConversionFactor(ElbowConstants.GEAR_RATIO);
 		motor.getPIDController().setP(NeoElbowConstants.P);
 		motor.getPIDController().setI(NeoElbowConstants.I);
 		motor.getPIDController().setD(NeoElbowConstants.D);
-		motor.getEncoder().setPosition(NeoElbowConstants.PresetPositions.STARTING.ANGLE.getDegrees());
+		motor.getEncoder().setPosition(ElbowConstants.PresetPositions.STARTING.ANGLE.getDegrees());
 	}
 
 

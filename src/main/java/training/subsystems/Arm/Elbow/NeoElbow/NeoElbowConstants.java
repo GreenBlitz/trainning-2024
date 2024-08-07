@@ -1,4 +1,4 @@
-package training.subsystems.Arm.Elbow;
+package training.subsystems.Arm.Elbow.NeoElbow;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -9,21 +9,7 @@ public class NeoElbowConstants {
 
 	protected static final double TOLERANCE = 5;
 
-	public enum PresetPositions {
 
-		SAFE(Rotation2d.fromDegrees(-67)),
-		INTAKE(Rotation2d.fromDegrees(-76)),
-		SCORE(Rotation2d.fromDegrees(55)),
-		STARTING(Rotation2d.fromDegrees(0)),
-		TRANSFER(Rotation2d.fromDegrees(-80));
-
-		public final Rotation2d ANGLE;
-
-		PresetPositions(Rotation2d angle) {
-			this.ANGLE = angle;
-		}
-
-	}
 
 	protected static final double KS = 0;
 
@@ -43,6 +29,5 @@ public class NeoElbowConstants {
 
 	protected static final double D = 45;
 
-	public static final double ELBOW_GEAR_RATIO = (1 / (28.0 * (60.0 / 16.0)));
 
 }

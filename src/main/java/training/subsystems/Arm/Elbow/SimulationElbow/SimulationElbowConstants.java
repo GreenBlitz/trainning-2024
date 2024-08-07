@@ -1,4 +1,4 @@
-package training.subsystems.Arm.Elbow;
+package training.subsystems.Arm.Elbow.SimulationElbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 
