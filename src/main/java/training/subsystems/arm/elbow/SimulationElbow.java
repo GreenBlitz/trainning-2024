@@ -41,48 +41,28 @@ public class SimulationElbow implements  IElbow {
 	
 	@Override
 	public Rotation2d getCurrentVelocity() {
-		return  elbowSimulation.getVelocityRadPerSec() / SimulationElbowConstants.
+		return  Rotation2d.fromRotations(elbowSimulation.getVelocityRadPerSec() / SimulationElbowConstants.FULL_CIRCLE_RAD);
 	}
 	
-	@Override
-	public void moveToAngle(Rotation2d angle) {
+	private void setVoltage(double voltage) {
+		
+		double limited_voltage = Math.min((Math.max(voltage, -Constants.BATTERY_VOLTAGE)), Constants.BATTERY_VOLTAGE);
+		elbowSimulation.setInputVoltage(limited_voltage);
+		
+	}
 	
+	
+
+	public void moveToAngle(Rotation2d angle) {
+	  		setVoltage(controller.calculate(elbowSimulation.getAngleRads(), angle.getRadians()));
 	}
 	
 	@Override
 	public void stayInPlace() {
+		moveToAngle(getCurrentAngle());
 	
 	}
 }
 	
-	
-	@Override
-	public Rotation2d getCurrentAngle() {
-		return null;
-	}
-	
-	@Override
-	public void setPower(double power) {
-	
-	}
-	
-	@Override
-	public boolean isAtAngle(Rotation2d angle) {
-		return false;
-	}
-	
-	@Override
-	public Rotation2d getCurrentVelocity() {
-		return null;
-	}
-	
-	@Override
-	public void moveToAngle(Rotation2d angle) {
-	
-	}
-	
-	@Override
-	public void stayInPlace() {
-	
-	}
-}
+
+

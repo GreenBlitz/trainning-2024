@@ -50,6 +50,6 @@ public class SimulationElbowConstants {
 	
 	public static final PIDController SIMULATION_PID = new PIDController(Constants.KP, Constants.KI, Constants.KD);
 	
-	public static final
+	public static final double FULL_CIRCLE_RAD = 2 * Math.PI;;
 }
 
