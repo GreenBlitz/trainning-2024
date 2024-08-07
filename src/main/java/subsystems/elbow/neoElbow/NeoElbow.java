@@ -9,21 +9,13 @@ import utils.GBSubsystem;
 
 public class NeoElbow extends GBSubsystem implements IElbow {
 
-	private static NeoElbow instance;
 	private static CANSparkMax motor;
 
-	private NeoElbow() {
+	public NeoElbow() {
 		motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, RobotConstants.MOTOR_BRUSHLESS_TYPE);
 		motor.getPIDController().setP(ElbowConstants.KP);
 		motor.getPIDController().setI(ElbowConstants.KI);
 		motor.getPIDController().setD(ElbowConstants.KD);
-	}
-
-	public static NeoElbow getInstance() {
-		if (instance == null) {
-			instance = new NeoElbow();
-		}
-		return instance;
 	}
 
 	public Rotation2d getAngle() {

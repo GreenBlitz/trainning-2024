@@ -10,11 +10,10 @@ import subsystems.elbow.IElbow;
 
 public class SimulationElbow implements IElbow {
 
-	private static SimulationElbow instance;
 	private final SingleJointedArmSim motor;
 	private final PIDController controller;
 
-	private SimulationElbow() {
+	public SimulationElbow() {
 		this.motor = new SingleJointedArmSim(
 			DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
 			SimulationElbowConstants.GEAR_RATIO,
@@ -26,13 +25,6 @@ public class SimulationElbow implements IElbow {
 			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
 		this.controller = new PIDController(ElbowConstants.KP, ElbowConstants.KI, ElbowConstants.KD);
-	}
-
-	public SimulationElbow getInstance() {
-		if (instance == null) {
-			instance = new SimulationElbow();
-		}
-		return instance;
 	}
 
 	@Override
