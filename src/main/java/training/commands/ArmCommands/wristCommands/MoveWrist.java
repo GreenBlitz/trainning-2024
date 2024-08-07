@@ -15,10 +15,12 @@ public class MoveWrist extends Command {
 		this.targetPosition = targetPosition;
 	}
 
+	@Override
 	public void initialize() {
 		wrist.goToPosition(targetPosition);
 	}
 
+	@Override
 	public boolean isFinished() {
 		return wrist.isAtTargetAngle(targetPosition, WristConstants.TOLERANCE);
 	}

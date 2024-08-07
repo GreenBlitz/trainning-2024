@@ -1,6 +1,7 @@
 package training.subsystems.ArmSubsystems.elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
@@ -19,7 +20,10 @@ public class Elbow extends GBSubsystem {
 	}
 
 	@Override
-	protected void subsystemPeriodic() {}
+	protected void subsystemPeriodic() {
+		iElbow.updateInputs(inputs);
+		Logger.processInputs("Elbow inputs", inputs);
+	}
 
 	public static Rotation2d angleDistance(Rotation2d currentAngle, Rotation2d targetAngle) {
 		return currentAngle.minus(targetAngle);

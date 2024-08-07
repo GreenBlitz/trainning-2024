@@ -12,6 +12,7 @@ public class StopWrist extends Command {
 		addRequirements(wrist);
 	}
 
+	@Override
 	public void initialize() {
 		wrist.stopMotor();
 	}
