@@ -1,14 +1,25 @@
 package training;
 
+import edu.wpi.first.wpilibj.Joystick;
 import utils.DefaultRobotManager;
+import utils.KeyboardController;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
+	private final KeyboardController keyboardController;
+	private final Joystick joystick;
 	private Robot robot;
+
+	public TrainingRobotManager() {
+		this.keyboardController = new KeyboardController();
+		joystick = new Joystick(0);
+	}
 
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
+		robot.bindKeyboard();
+		robot.getElbow().getCommandBuilder().moveUp().schedule();
 	}
 
 	@Override
