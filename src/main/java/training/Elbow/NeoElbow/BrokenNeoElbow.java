@@ -17,8 +17,7 @@ public class BrokenNeoElbow implements IElbow {
 		motor.getPIDController().setP(NeoElbowConstants.PID_CONTROLLER.getP());
 		motor.getPIDController().setD(NeoElbowConstants.PID_CONTROLLER.getD());
 		motor.getPIDController().setI(NeoElbowConstants.PID_CONTROLLER.getI());
-		motor.getPIDController()
-			.setOutputRange(-NeoElbowConstants.LOWER_POWER_LIMIT, NeoElbowConstants.UPPER_POWER_LIMIT);
+		motor.getPIDController().setOutputRange(-NeoElbowConstants.LOWER_POWER_LIMIT, NeoElbowConstants.UPPER_POWER_LIMIT);
 		motor.getPIDController().setPositionPIDWrappingMaxInput(1);
 		motor.getPIDController().setPositionPIDWrappingMinInput(0);
 		motor.getPIDController().getPositionPIDWrappingEnabled();

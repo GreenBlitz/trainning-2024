@@ -28,15 +28,11 @@ public class ElbowCommandBuilder {
 	}
 
 	public Command moveUpAndDown() {
-		return new SequentialCommandGroup(
-			moveUp(),
-			new WaitCommand(ElbowConstants.DEFAULT_TIME_IN_AIR_SECONDS),
-			moveDown()
-		);
+		return new SequentialCommandGroup(moveUp(), new WaitCommand(ElbowConstants.DEFAULT_TIME_IN_AIR_SECONDS), moveDown());
 	}
 
 	public Command moveUpAndDown(double timeInAirSeconds) { // i know there is a Time object in wpilib, i'll change that
-																	// later
+															// later
 		return new SequentialCommandGroup(moveUp(), new WaitCommand(timeInAirSeconds), moveDown());
 	}
 

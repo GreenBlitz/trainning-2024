@@ -7,7 +7,7 @@ public class RollerConstants {
 	// * These constants are temp and shall be replaced with calibrated constants that aren't 0
 	protected static final double DEFAULT_ROLLING_TIME_SECONDS = 0.5;
 
-	protected static final String LOG_PATH = "";
+	protected static final String LOG_PATH = "Roller/";
 
 	protected static final Rotation2d DEFAULT_VELOCITY = Rotation2d.fromRotations(0);
 

@@ -14,8 +14,7 @@ public class SimulationElbow implements IElbow {
 			new SingleJointedArmSim(
 				SimulationElbowConstants.GEARBOX,
 				SimulationElbowConstants.GEARING,
-				SingleJointedArmSim
-					.estimateMOI(SimulationElbowConstants.LENGTH_METERS, SimulationElbowConstants.MASS),
+				SingleJointedArmSim.estimateMOI(SimulationElbowConstants.LENGTH_METERS, SimulationElbowConstants.MASS),
 				SimulationElbowConstants.LENGTH_METERS,
 				SimulationElbowConstants.MINIMUM_ANGLE.getRadians(),
 				SimulationElbowConstants.MAXIMUM_ANGLE.getRadians(),

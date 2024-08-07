@@ -6,7 +6,7 @@ public class WristConstants {
 
 	// * These constants are temp and shall be replaced with calibrated constants that aren't 0
 
-	protected static final String LOG_PATH = "";
+	protected static final String LOG_PATH = "Wrist/";
 
 	protected static final Rotation2d UPPER_POSITION = new Rotation2d(0);
 
