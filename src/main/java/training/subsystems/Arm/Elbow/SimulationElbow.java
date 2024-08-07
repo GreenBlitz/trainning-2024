@@ -12,9 +12,8 @@ public class SimulationElbow implements IElbow {
 
 	private static SimulationElbow instance;
 	private final SingleJointedArmSimulation elbowSimulation;
-	private final SingleJointedArmSim armSim;
 	private final PIDController controller;
-	private TalonFXConfiguration config;
+	private final TalonFXConfiguration config;
 
 	public static SimulationElbow getInstance() {
 		if (instance == null) {
@@ -24,17 +23,17 @@ public class SimulationElbow implements IElbow {
 	}
 
 	public SimulationElbow() {
-		this.armSim = new SingleJointedArmSim(
-			DCMotor.getFalcon500(ElbowConstants.NUMBER_OF_MOTORS),
-			ElbowConstants.GEAR_RATIO,
-			SingleJointedArmSim.estimateMOI(ElbowConstants.ARM_LENGTH, ElbowConstants.ARM_MASS_KG),
-			ElbowConstants.ARM_LENGTH,
-			ElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
-			ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
+		final SingleJointedArmSim armSim = new SingleJointedArmSim(
+			DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
+				SimulationElbowConstants.GEAR_RATIO,
+			SingleJointedArmSim.estimateMOI(SimulationElbowConstants.ARM_LENGTH, SimulationElbowConstants.ARM_MASS_KG),
+				SimulationElbowConstants.ARM_LENGTH,
+				SimulationElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
+				SimulationElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
 			false,
-			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
+				SimulationElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
-		this.controller = new PIDController(ElbowConstants.P, ElbowConstants.I, ElbowConstants.D);
+		this.controller = new PIDController(SimulationElbowConstants.P, SimulationElbowConstants.I, SimulationElbowConstants.D);
 		this.elbowSimulation = new SingleJointedArmSimulation(armSim);
 		config = new TalonFXConfiguration();
 		config.Slot0.kP = controller.getP();
@@ -71,7 +70,7 @@ public class SimulationElbow implements IElbow {
 
 
 	public boolean isAtPosition(Rotation2d target) {
-		return Math.abs(elbowSimulation.getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE;
+		return Math.abs(elbowSimulation.getPosition().getDegrees() - target.getDegrees()) <= SimulationElbowConstants.TOLERANCE;
 	}
 
 }

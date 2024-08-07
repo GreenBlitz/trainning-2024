@@ -11,12 +11,12 @@ public class NeoElbow implements IElbow {
 	private static NeoElbow instance;
 
 	public NeoElbow() {
-		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getEncoder().setPositionConversionFactor(ElbowConstants.ELBOW_GEAR_RATIO);
-		motor.getPIDController().setP(ElbowConstants.P);
-		motor.getPIDController().setI(ElbowConstants.I);
-		motor.getPIDController().setD(ElbowConstants.D);
-		motor.getEncoder().setPosition(ElbowConstants.ELBOW_START_POSITION.getDegrees());
+		this.motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
+		motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.ELBOW_GEAR_RATIO);
+		motor.getPIDController().setP(NeoElbowConstants.P);
+		motor.getPIDController().setI(NeoElbowConstants.I);
+		motor.getPIDController().setD(NeoElbowConstants.D);
+		motor.getEncoder().setPosition(NeoElbowConstants.ELBOW_START_POSITION.getDegrees());
 	}
 
 	public static NeoElbow getInstance() {
@@ -32,8 +32,8 @@ public class NeoElbow implements IElbow {
 			.setReference(
 				position.getDegrees(),
 				CANSparkBase.ControlType.kPosition,
-				ElbowConstants.PID_SLOT,
-				ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
+				NeoElbowConstants.PID_SLOT,
+				NeoElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
 			);
 	}
 
@@ -59,7 +59,7 @@ public class NeoElbow implements IElbow {
 
 
 	public boolean isAtPosition(Rotation2d target) {
-		return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE;
+		return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= NeoElbowConstants.TOLERANCE;
 	}
 
 }

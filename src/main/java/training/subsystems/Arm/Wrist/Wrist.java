@@ -42,7 +42,7 @@ public class Wrist extends GBSubsystem {
 		return instance;
 	}
 
-	public void goTo(Rotation2d targetPosition) {
+	public void moveToAngle(Rotation2d targetPosition) {
 		motor.selectProfileSlot(WristConstants.PID_SLOT, 0);
 		motor.set(ControlMode.Position, targetPosition.getRotations());
 	}
