@@ -37,4 +37,7 @@ public class Elbow extends GBSubsystem {
 	}
 
 
+	public double getPosition(){
+		return iElbow.getPosition().getDegrees();
+	}
 }
