@@ -12,7 +12,7 @@ public class SimulationRoller implements IRoller {
 	public SimulationRoller() {
 		this.motor = new DCMotorSim(
 			DCMotor.getNEO(1),
-			SimulationRollerConstants.ROLLER_GEARING,
+			SimulationRollerConstants.GEARING,
 			SimulationRollerConstants.POWER_TO_ACCELERATION
 		);
 	}
@@ -34,9 +34,9 @@ public class SimulationRoller implements IRoller {
 
 	@Override
 	public void updateVelocity(Rotation2d targetVelocity) {
-		SimulationRollerConstants.ROLLER_SIMULATION_CONTROLLER.setSetpoint(targetVelocity.getRadians());
+		SimulationRollerConstants.SIMULATION_CONTROLLER.setSetpoint(targetVelocity.getRadians());
 		setPower(
-			SimulationRollerConstants.ROLLER_SIMULATION_CONTROLLER
+			SimulationRollerConstants.SIMULATION_CONTROLLER
 				.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec())
 		);
 	}

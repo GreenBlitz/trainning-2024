@@ -13,9 +13,9 @@ public class NeoWrist implements IWrist {
 	private boolean inTestingMode;
 
 	public NeoWrist() {
-		this.motor = new TalonSRX(WristConstants.WRIST_ID);
+		this.motor = new TalonSRX(WristConstants.ID);
 		this.inTestingMode = false;
-		motor.configAllSettings(WristConstants.WRIST_PID_CONFIG);
+		motor.configAllSettings(WristConstants.PID_CONFIG);
 	}
 
 	/**
@@ -25,10 +25,10 @@ public class NeoWrist implements IWrist {
 	@Override
 	public void setPower(double power) {
 		inTestingMode = true;
-		if (Math.abs(power) >= WristConstants.POWER_LIMIT_WRIST) {
+		if (Math.abs(power) >= WristConstants.POWER_LIMIT) {
 			SmartDashboard.putString("Reverting to max speed 0.9", "");
 		}
-		motor.set(TalonSRXControlMode.PercentOutput, Math.min(power, WristConstants.POWER_LIMIT_WRIST));
+		motor.set(TalonSRXControlMode.PercentOutput, Math.min(power, WristConstants.POWER_LIMIT));
 	}
 
 	@Override

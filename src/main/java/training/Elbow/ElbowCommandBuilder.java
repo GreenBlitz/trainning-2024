@@ -30,7 +30,7 @@ public class ElbowCommandBuilder {
 	public Command moveUpAndDown() {
 		return new SequentialCommandGroup(
 			moveUp(),
-			new WaitCommand(ElbowConstants.DEFAULT_TIME_IN_AIR_ELBOW_SECONDS),
+			new WaitCommand(ElbowConstants.DEFAULT_TIME_IN_AIR_SECONDS),
 			moveDown()
 		);
 	}

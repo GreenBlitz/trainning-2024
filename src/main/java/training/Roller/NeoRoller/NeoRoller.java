@@ -11,13 +11,13 @@ public class NeoRoller implements IRoller {
 	private final CANSparkMax motor;
 
 	public NeoRoller() {
-		this.motor = new CANSparkMax(NeoRollerConstants.ROLLER_ID, NeoRollerConstants.ROLLER_MOTOR_TYPE);
+		this.motor = new CANSparkMax(NeoRollerConstants.ID, NeoRollerConstants.MOTOR_TYPE);
 
-		motor.getEncoder().setPositionConversionFactor(NeoRollerConstants.ROLLER_GEAR_RATIO);
-		motor.getPIDController().setP(NeoRollerConstants.ROLLER_P);
-		motor.getPIDController().setI(NeoRollerConstants.ROLLER_I);
-		motor.getPIDController().setD(NeoRollerConstants.ROLLER_D);
-		motor.getPIDController().setOutputRange(-NeoRollerConstants.POWER_LIMIT_ROLLER, NeoRollerConstants.POWER_LIMIT_ROLLER);
+		motor.getEncoder().setPositionConversionFactor(NeoRollerConstants.GEAR_RATIO);
+		motor.getPIDController().setP(NeoRollerConstants.KP);
+		motor.getPIDController().setI(NeoRollerConstants.KI);
+		motor.getPIDController().setD(NeoRollerConstants.KD);
+		motor.getPIDController().setOutputRange(-NeoRollerConstants.POWER_LIMIT, NeoRollerConstants.POWER_LIMIT);
 		motor.burnFlash(); // applies some of the changes above
 	}
 

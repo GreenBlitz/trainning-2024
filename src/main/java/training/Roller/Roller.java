@@ -3,8 +3,8 @@ package training.Roller;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-import static training.Roller.RollerConstants.ROLLER_DEFAULT_VELOCITY;
-import static training.Roller.RollerConstants.ROLLER_LOG_PATH;
+import static training.Roller.RollerConstants.DEFAULT_VELOCITY;
+import static training.Roller.RollerConstants.LOG_PATH;
 
 public class Roller extends GBSubsystem {
 
@@ -15,7 +15,7 @@ public class Roller extends GBSubsystem {
 	public Roller() {
 		this.commandBuilder = new RollerCommandBuilder(this);
 		this.iRoller = new RollerFactory().create();
-		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY.getRotations());
+		this.targetVelocity = Rotation2d.fromRotations(DEFAULT_VELOCITY.getRotations());
 	}
 
 	public RollerCommandBuilder getCommandBuilder() {
@@ -31,11 +31,11 @@ public class Roller extends GBSubsystem {
 	}
 
 	protected void rollForward() {
-		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY.getRotations());
+		this.targetVelocity = Rotation2d.fromRotations(DEFAULT_VELOCITY.getRotations());
 	}
 
 	protected void rollBackward() {
-		this.targetVelocity = Rotation2d.fromRotations(ROLLER_DEFAULT_VELOCITY.times(-1).getRotations());
+		this.targetVelocity = Rotation2d.fromRotations(DEFAULT_VELOCITY.times(-1).getRotations());
 	}
 
 	protected void stop() {
@@ -45,7 +45,7 @@ public class Roller extends GBSubsystem {
 
 	@Override
 	protected String getLogPath() {
-		return ROLLER_LOG_PATH;
+		return LOG_PATH;
 	}
 
 	@Override

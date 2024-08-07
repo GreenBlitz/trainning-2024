@@ -11,14 +11,14 @@ public class BrokenNeoElbow implements IElbow {
 	private final CANSparkMax motor;
 
 	public BrokenNeoElbow() {
-		this.motor = new CANSparkMax(NeoElbowConstants.ELBOW_ID, NeoElbowConstants.ELBOW_MOTOR_TYPE);
+		this.motor = new CANSparkMax(NeoElbowConstants.ID, NeoElbowConstants.MOTOR_TYPE);
 
 		motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.ELBOW_GEAR_RATIO);
-		motor.getPIDController().setP(NeoElbowConstants.ELBOW_PID_CONTROLLER.getP());
-		motor.getPIDController().setD(NeoElbowConstants.ELBOW_PID_CONTROLLER.getD());
-		motor.getPIDController().setI(NeoElbowConstants.ELBOW_PID_CONTROLLER.getI());
+		motor.getPIDController().setP(NeoElbowConstants.PID_CONTROLLER.getP());
+		motor.getPIDController().setD(NeoElbowConstants.PID_CONTROLLER.getD());
+		motor.getPIDController().setI(NeoElbowConstants.PID_CONTROLLER.getI());
 		motor.getPIDController()
-			.setOutputRange(-NeoElbowConstants.LOWER_POWER_LIMIT_ELBOW, NeoElbowConstants.UPPER_POWER_LIMIT_ELBOW);
+			.setOutputRange(-NeoElbowConstants.LOWER_POWER_LIMIT, NeoElbowConstants.UPPER_POWER_LIMIT);
 		motor.getPIDController().setPositionPIDWrappingMaxInput(1);
 		motor.getPIDController().setPositionPIDWrappingMinInput(0);
 		motor.getPIDController().getPositionPIDWrappingEnabled();
@@ -37,7 +37,7 @@ public class BrokenNeoElbow implements IElbow {
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
 		double targetAngleRotations = targetAngle.getRotations() % 1;
-		double feedForwardOutputVoltage = NeoElbowConstants.NEO_ELBOW_FEEDFORWARD
+		double feedForwardOutputVoltage = NeoElbowConstants.NEO_FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
 
 		motor.getPIDController()

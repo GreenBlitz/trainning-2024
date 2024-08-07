@@ -26,12 +26,12 @@ public class Wrist extends GBSubsystem {
 	}
 
 	protected void rotate(WristDirection direction) {
-		targetAngle = direction.gotLeft() ? WRIST_UPPER_POSITION : WRIST_LOWER_POSITION;
+		targetAngle = direction.gotLeft() ? UPPER_POSITION : LOWER_POSITION;
 	}
 
 	@Override
 	protected String getLogPath() {
-		return WRIST_LOG_PATH;
+		return LOG_PATH;
 	}
 
 	@Override

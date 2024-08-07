@@ -11,7 +11,7 @@ public class Elbow extends GBSubsystem {
 
 	public Elbow() {
 		this.iElbow = new ElbowFactory().create();
-		this.targetAngle = ElbowConstants.DEFAULT_POSITION_ELBOW;
+		this.targetAngle = ElbowConstants.DEFAULT_POSITION;
 		this.commandBuilder = new ElbowCommandBuilder(this);
 	}
 
@@ -45,12 +45,12 @@ public class Elbow extends GBSubsystem {
 
 	public boolean isAtAngle(Rotation2d angle) {
 		double anglesDelta = (this.targetAngle.getDegrees() % 360) - (angle.getDegrees() % 360);
-		return Math.abs(anglesDelta) <= ElbowConstants.ELBOW_TOLERANCE.getDegrees();
+		return Math.abs(anglesDelta) <= ElbowConstants.TOLERANCE.getDegrees();
 	}
 
 	@Override
 	protected String getLogPath() {
-		return ElbowConstants.ELBOW_LOG_PATH;
+		return ElbowConstants.LOG_PATH;
 	}
 
 	@Override

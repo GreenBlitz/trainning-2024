@@ -12,13 +12,13 @@ public class SimulationElbow implements IElbow {
 	public SimulationElbow() {
 		this.arm = new SingleJointedArmSimulation(
 			new SingleJointedArmSim(
-				SimulationElbowConstants.ELBOW_GEARBOX,
-				SimulationElbowConstants.ELBOW_GEARING,
+				SimulationElbowConstants.GEARBOX,
+				SimulationElbowConstants.GEARING,
 				SingleJointedArmSim
-					.estimateMOI(SimulationElbowConstants.ELBOW_LENGTH_METERS, SimulationElbowConstants.ELBOW_MASS),
-				SimulationElbowConstants.ELBOW_LENGTH_METERS,
-				SimulationElbowConstants.ELBOW_MINIMUM_ANGLE.getRadians(),
-				SimulationElbowConstants.ELBOW_MAXIMUM_ANGLE.getRadians(),
+					.estimateMOI(SimulationElbowConstants.LENGTH_METERS, SimulationElbowConstants.MASS),
+				SimulationElbowConstants.LENGTH_METERS,
+				SimulationElbowConstants.MINIMUM_ANGLE.getRadians(),
+				SimulationElbowConstants.MAXIMUM_ANGLE.getRadians(),
 				true,
 				0
 			)
@@ -38,7 +38,7 @@ public class SimulationElbow implements IElbow {
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
 		double targetAngelRotations = targetAngle.getRotations() % 1;
-		double feedForwardOutputVoltage = SimulationElbowConstants.SIMULATION_ELBOW_FEEDFORWARD
+		double feedForwardOutputVoltage = SimulationElbowConstants.SIMULATION_FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), arm.getVelocity().getRadians());
 
 		arm.setPower(
