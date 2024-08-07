@@ -15,7 +15,7 @@ public class SimulationElbow implements IElbow {
 	private final PIDController controller;
 
 	private SimulationElbow() {
-		motor = new SingleJointedArmSim(
+		this.motor = new SingleJointedArmSim(
 			DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
 			SimulationElbowConstants.GEAR_RATIO,
 			SingleJointedArmSim.estimateMOI(SimulationElbowConstants.ARM_LENGTH, SimulationElbowConstants.ARM_MASS_KG),
@@ -23,9 +23,9 @@ public class SimulationElbow implements IElbow {
 			SimulationElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
 			SimulationElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
 			false,
-			SimulationElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
+			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
-		controller = new PIDController(ElbowConstants.ELBOW_KP, ElbowConstants.ELBOW_KI, ElbowConstants.ELBOW_KD);
+		this.controller = new PIDController(ElbowConstants.KP, ElbowConstants.KI, ElbowConstants.KD);
 	}
 
 	public SimulationElbow getInstance() {

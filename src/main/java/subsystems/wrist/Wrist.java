@@ -10,7 +10,7 @@ public class Wrist extends GBSubsystem {
 	private static TalonSRX motor;
 
 	private Wrist() {
-		motor = new TalonSRX(WristConstants.WRIST_MOTOR_ID);
+		this.motor = new TalonSRX(WristConstants.MOTOR_ID);
 	}
 
 	public static Wrist getInstance() {
@@ -22,7 +22,7 @@ public class Wrist extends GBSubsystem {
 
 	public void GoToPosition(Rotation2d position) {
 		motor.set(
-			WristConstants.WRIST_PID_CONTROL_MODE,
+			WristConstants.PID_CONTROL_MODE,
 			position.getRotations() % WristConstants.SINGLE_ROTATION * WristConstants.FULL_CIRCLE_ENCODER_TICKS
 		);
 	}

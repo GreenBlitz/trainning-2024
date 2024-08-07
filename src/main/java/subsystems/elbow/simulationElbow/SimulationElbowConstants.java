@@ -16,22 +16,6 @@ public class SimulationElbowConstants {
 
 	public static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(90);
 
-	public enum PresetPositions {
-
-		SAFE(Rotation2d.fromDegrees(-67)),
-		INTAKE(Rotation2d.fromDegrees(-76)),
-		SCORE(Rotation2d.fromDegrees(55)),
-		STARTING(Rotation2d.fromDegrees(0)),
-		TRANSFER(Rotation2d.fromDegrees(-80));
-
-		public final Rotation2d ANGLE;
-
-		PresetPositions(Rotation2d angle) {
-			this.ANGLE = angle;
-		}
-
-	}
-
 	public static final double FULL_CIRCLE_RAD = 2 * Math.PI;
 
 }

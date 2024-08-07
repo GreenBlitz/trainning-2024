@@ -1,6 +1,7 @@
 package subsystems.Roller;
 
 import com.revrobotics.CANSparkMax;
+import subsystems.RobotConstants;
 import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
@@ -9,7 +10,7 @@ public class Roller extends GBSubsystem {
 	private static CANSparkMax motor;
 
 	private Roller() {
-		motor = new CANSparkMax(RollerConstants.ROLLER_MOTOR_ID, RollerConstants.ROLLER_MOTOR_BRUSHLESS_TYPE);
+		motor = new CANSparkMax(RollerConstants.MOTOR_ID, RobotConstants.MOTOR_BRUSHLESS_TYPE);
 	}
 
 	public static Roller getInstance() {
@@ -20,7 +21,7 @@ public class Roller extends GBSubsystem {
 	}
 
 	public void setRotationalSpeed(double rotationalSpeed) {
-		motor.getPIDController().setReference(rotationalSpeed, RollerConstants.ROLLER_CONTROL_TYPE);
+		motor.getPIDController().setReference(rotationalSpeed, RollerConstants.CONTROL_TYPE);
 	}
 
 	public void stop() {

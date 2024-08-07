@@ -13,9 +13,9 @@ public class Robot {
 
 	public Robot() {
 		// Boot your subsystems...
-		elbow = NeoElbow.getInstance();
-		wrist = Wrist.getInstance();
-		roller = Roller.getInstance();
+		this.elbow = NeoElbow.getInstance();
+		this.wrist = Wrist.getInstance();
+		this.roller = Roller.getInstance();
 	}
 
 	// Add your subsystems getters...

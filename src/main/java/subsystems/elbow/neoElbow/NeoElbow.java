@@ -13,10 +13,10 @@ public class NeoElbow extends GBSubsystem implements IElbow {
 	private static CANSparkMax motor;
 
 	private NeoElbow() {
-		motor = new CANSparkMax(RobotConstants.ELBOW_MOTOR_ID, RobotConstants.ELBOW_MOTOR_BRUSHLESS_TYPE);
-		motor.getPIDController().setP(ElbowConstants.ELBOW_KP);
-		motor.getPIDController().setI(ElbowConstants.ELBOW_KI);
-		motor.getPIDController().setD(ElbowConstants.ELBOW_KD);
+		motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, RobotConstants.MOTOR_BRUSHLESS_TYPE);
+		motor.getPIDController().setP(ElbowConstants.KP);
+		motor.getPIDController().setI(ElbowConstants.KI);
+		motor.getPIDController().setD(ElbowConstants.KD);
 	}
 
 	public static NeoElbow getInstance() {
@@ -40,15 +40,15 @@ public class NeoElbow extends GBSubsystem implements IElbow {
 	}
 
 	private double calculateFeedForward() {
-		return NeoElbowConstants.ELBOW_FEED_FORWARD.calculate(getAngle().getRadians(), getRPMVelocity());
+		return NeoElbowConstants.FEED_FORWARD.calculate(getAngle().getRadians(), getRPMVelocity());
 	}
 
 	public void goToPosition(Rotation2d position) {
 		motor.getPIDController()
 			.setReference(
 				position.getRadians(),
-				RobotConstants.ELBOW_CONTROL_TYPE,
-				NeoElbowConstants.ELBOW_PID_SLOT,
+				RobotConstants.PID_POSITION_CONTROL_TYPE,
+				NeoElbowConstants.PID_SLOT,
 				calculateFeedForward()
 			);
 	}
