@@ -1,4 +1,4 @@
-package training.subsystems.ArmSubsystems.wristSubsystem;
+package training.subsystems.ArmSubsystems.wrist;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -12,8 +12,8 @@ public class Wrist extends GBSubsystem {
 	private final Rotation2d targetPosition;
 
 	public Wrist() {
-		this.motor = new TalonSRX(WristConstants.WRIST_ID);
-		this.targetPosition = WristConstants.WRIST_STARTING_POSITION;
+		this.motor = new TalonSRX(WristConstants.ID);
+		this.targetPosition = WristConstants.STARTING_POSITION;
 		motor.configAllSettings(WristConstants.TALON_SRX_CONFIG);
 		motor.configSelectedFeedbackSensor(
 			FeedbackDevice.CTRE_MagEncoder_Relative,
@@ -24,7 +24,7 @@ public class Wrist extends GBSubsystem {
 
 	@Override
 	protected String getLogPath() {
-		return null;
+		return "Wrist/";
 	}
 
 	@Override

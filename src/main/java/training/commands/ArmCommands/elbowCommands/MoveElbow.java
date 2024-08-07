@@ -2,8 +2,8 @@ package training.commands.ArmCommands.elbowCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.ArmSubsystems.elbowSubsystem.Elbow;
-import training.subsystems.ArmSubsystems.elbowSubsystem.Constants;
+import training.subsystems.ArmSubsystems.elbow.Elbow;
+import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
 
 public class MoveElbow extends Command {
 
@@ -20,7 +20,7 @@ public class MoveElbow extends Command {
 	}
 
 	public boolean isFinished() {
-		return elbow.isAtTargetPosition(targetPosition, Constants.TOLERANCE);
+		return elbow.isAtTargetPosition(targetPosition, ElbowConstants.TOLERANCE);
 	}
 
 }

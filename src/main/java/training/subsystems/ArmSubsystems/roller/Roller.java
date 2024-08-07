@@ -1,7 +1,8 @@
-package training.subsystems.ArmSubsystems.rollerSubsystem;
+package training.subsystems.ArmSubsystems.roller;
 
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
+import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
@@ -9,31 +10,31 @@ public class Roller extends GBSubsystem {
 	private final CANSparkMax motor;
 
 	public Roller() {
-		this.motor = new CANSparkMax(RollerConstants.ROLLER_ID, CANSparkLowLevel.MotorType.kBrushless);
+		this.motor = new CANSparkMax(RollerConstants.ID, CANSparkLowLevel.MotorType.kBrushless);
 	}
 
 	@Override
 	protected String getLogPath() {
-		return null;
+		return "Roller/";
 	}
 
 	@Override
 	protected void subsystemPeriodic() {}
 
 	public void rollClockwise() {
-		motor.set(RollerConstants.DEFAULT_ROLLER_CLOCKWISE_POWER);
+		motor.set(RollerConstants.DEFAULT_CLOCKWISE_POWER);
 	}
 
 	public void rollCounterClockwise() {
-		motor.set(RollerConstants.DEFAULT_ROLLER_COUNTER_CLOCKWISE_POWER);
+		motor.set(RollerConstants.DEFAULT_COUNTER_CLOCKWISE_POWER);
 	}
 
 	public void stop() {
 		motor.set(0);
 	}
 
-	public double getVelocity() {
-		return motor.getEncoder().getVelocity();
+	public Rotation2d getVelocity() {
+		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
 	}
 
 }

@@ -1,13 +1,13 @@
 package training;
 
-import training.commands.ArmCommands.elbowCommands.ElbowDefaultCommand;
+import training.commands.ArmCommands.elbowCommands.ElbowStayInPlace;
 import training.commands.ArmCommands.elbowCommands.MoveElbow;
 import training.commands.ArmCommands.wristCommands.MoveWrist;
 import training.commands.ArmCommands.rollerCommands.RollClockwise;
 import training.commands.ArmCommands.rollerCommands.RollCounterClockwise;
-import training.commands.ArmCommands.wristCommands.WristDefaultCommand;
-import training.subsystems.ArmSubsystems.elbowSubsystem.Constants;
-import training.subsystems.ArmSubsystems.wristSubsystem.WristConstants;
+import training.commands.ArmCommands.wristCommands.StopWrist;
+import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
+import training.subsystems.ArmSubsystems.wrist.WristConstants;
 import utils.DefaultRobotManager;
 import utils.joysticks.SmartJoystick;
 
@@ -19,19 +19,19 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
-		this.smartJoystick = new SmartJoystick(RobotConstants.ID_OF_SMART_JOYSTICK);
+		this.smartJoystick = new SmartJoystick(GlobalConstants.ID_OF_SMART_JOYSTICK);
 
-		smartJoystick.B.onTrue(new MoveElbow(Constants.CLIMBING_POSITION, robot.getElbow()));
-		smartJoystick.A.onTrue(new MoveElbow(Constants.CLIMBING_POSITION, robot.getElbow()));
+		smartJoystick.B.onTrue(new MoveElbow(ElbowConstants.CLIMBING_POSITION, robot.getElbow()));
+		smartJoystick.A.onTrue(new MoveElbow(ElbowConstants.STARTING_POSITION, robot.getElbow()));
 
-		smartJoystick.Y.onTrue(new MoveWrist(WristConstants.WRIST_CLIMBING_POSITION, robot.getWrist()));
-		smartJoystick.X.onTrue(new MoveWrist(WristConstants.WRIST_STARTING_POSITION, robot.getWrist()));
+		smartJoystick.Y.onTrue(new MoveWrist(WristConstants.CLIMBING_POSITION, robot.getWrist()));
+		smartJoystick.X.onTrue(new MoveWrist(WristConstants.STARTING_POSITION, robot.getWrist()));
 
 		smartJoystick.R1.whileTrue(new RollClockwise(robot.getRoller()));
 		smartJoystick.R2.whileTrue(new RollCounterClockwise(robot.getRoller()));
 
-		robot.getElbow().setDefaultCommand(new ElbowDefaultCommand(robot.getElbow()));
-		robot.getWrist().setDefaultCommand(new WristDefaultCommand(robot.getWrist()));
+		robot.getElbow().setDefaultCommand(new ElbowStayInPlace(robot.getElbow()));
+		robot.getWrist().setDefaultCommand(new StopWrist(robot.getWrist()));
 	}
 
 	@Override

@@ -1,45 +1,46 @@
-package training.subsystems.ArmSubsystems.elbowSubsystem.simulation;
+package training.subsystems.ArmSubsystems.elbow.simulation;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.RobotConstants;
-import training.subsystems.ArmSubsystems.elbowSubsystem.ElbowInputsAutoLogged;
-import training.subsystems.ArmSubsystems.elbowSubsystem.IElbow;
+import training.GlobalConstants;
+import training.subsystems.ArmSubsystems.elbow.ElbowInputsAutoLogged;
+import training.subsystems.ArmSubsystems.elbow.IElbow;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
-import training.subsystems.ArmSubsystems.elbowSubsystem.Constants;
+import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
 
-public class SimulationElbow implements IElbow {
+public class Simulation implements IElbow {
 
 	private final SingleJointedArmSim motor;
 	private final PIDController pidController;
 	private final ArmFeedforward feedForwardController;
 
-	public SimulationElbow() {
+	public Simulation() {
 		this.motor = new SingleJointedArmSim(
 			DCMotor.getNEO(1),
-			Constants.GEAR_RATIO.getDegrees(),
-			SingleJointedArmSim.estimateMOI(Constants.ARM_LENGTH, Constants.ARM_MASS_KG),
-			Constants.ARM_LENGTH,
-			Constants.BACKWARD_ANGLE_LIMIT.getRadians(),
-			Constants.FORWARD_ANGLE_LIMIT.getRadians(),
+			ElbowConstants.GEAR_RATIO.getDegrees(),
+			SingleJointedArmSim.estimateMOI(ElbowConstants.ARM_LENGTH, ElbowConstants.ARM_MASS_KG),
+			ElbowConstants.ARM_LENGTH,
+			ElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
+			ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
 			false,
-			Constants.PresetPositions.STARTING.ANGLE.getRadians()
+			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
 
-		pidController = Constants.pidController;
-		feedForwardController = Constants.FEEDFORWARD_CONTROLLER;
+		pidController = SimulationConstants.PID_Controller;
+		feedForwardController = SimulationConstants.FEEDFORWARD_CONTROLLER;
 	}
 
 	public void setVoltage(double voltage) {
-		double appliedVoltage = MathUtil.clamp(voltage, -RobotConstants.MAX_BATTERY_VOLTAGE, RobotConstants.MAX_BATTERY_VOLTAGE);
+		double appliedVoltage = MathUtil
+			.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
 		motor.setInputVoltage(appliedVoltage);
 	}
 
 	public void setPower(double power) {
-		setVoltage(power * RobotConstants.MAX_BATTERY_VOLTAGE);
+		setVoltage(power * GlobalConstants.MAX_BATTERY_VOLTAGE);
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
@@ -51,9 +52,10 @@ public class SimulationElbow implements IElbow {
 
 	@Override
 	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.position = Rotation2d.fromRadians(motor.getAngleRads());
 		inputs.velocity = Rotation2d.fromRadians(motor.getVelocityRadPerSec());
 		inputs.current = motor.getCurrentDrawAmps();
-		inputs.position = Rotation2d.fromRadians(motor.getAngleRads());
+		inputs.voltage = motor.getOutput(0);
 	}
 
 	public Rotation2d getPosition() {

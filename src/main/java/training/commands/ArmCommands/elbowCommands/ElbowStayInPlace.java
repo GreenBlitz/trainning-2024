@@ -1,13 +1,13 @@
 package training.commands.ArmCommands.elbowCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import training.subsystems.ArmSubsystems.elbowSubsystem.Elbow;
+import training.subsystems.ArmSubsystems.elbow.Elbow;
 
-public class ElbowDefaultCommand extends Command {
+public class ElbowStayInPlace extends Command {
 
 	private final Elbow elbow;
 
-	public ElbowDefaultCommand(Elbow elbow) {
+	public ElbowStayInPlace(Elbow elbow) {
 		this.elbow = elbow;
 		addRequirements(elbow);
 	}
@@ -16,6 +16,5 @@ public class ElbowDefaultCommand extends Command {
 	public void initialize() {
 		elbow.stayAtPosition();
 	}
-
 
 }
