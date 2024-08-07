@@ -17,7 +17,7 @@ public class NeoRoller implements IRoller {
 		motor.getPIDController().setP(NeoRollerConstants.KP);
 		motor.getPIDController().setI(NeoRollerConstants.KI);
 		motor.getPIDController().setD(NeoRollerConstants.KD);
-		motor.getPIDController().setOutputRange(-NeoRollerConstants.POWER_LIMIT, NeoRollerConstants.POWER_LIMIT);
+		motor.getPIDController().setOutputRange(NeoRollerConstants.POWER_LIMIT_BELOW, NeoRollerConstants.POWER_LIMIT_ABOVE);
 		motor.burnFlash(); // applies some of the changes above
 	}
 

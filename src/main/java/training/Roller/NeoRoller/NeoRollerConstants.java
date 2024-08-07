@@ -17,6 +17,8 @@ public class NeoRollerConstants {
 
 	protected static final double KD = 0;
 
-	protected static final double POWER_LIMIT = 0.9; // ! overwrites PID
+	protected static final double POWER_LIMIT_ABOVE = 0.9; // ! overwrites PID
+
+	protected static final double POWER_LIMIT_BELOW = -0.9; // ! overwrites PID
 
 }
