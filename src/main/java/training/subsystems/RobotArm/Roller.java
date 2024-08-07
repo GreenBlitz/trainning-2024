@@ -9,12 +9,10 @@ import utils.GBSubsystem;
 public class Roller extends GBSubsystem {
 
 	private CANSparkMax motor;
-	private Rotation2d position;
 	private static Roller instance;
 
 	private Roller() {
 		this.motor = new CANSparkMax(RolerConstens.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		this.position = new Rotation2d();
 		motor.getPIDController().setP(RolerConstens.KP);
 		motor.getPIDController().setI(RolerConstens.KI);
 		motor.getPIDController().setD(RolerConstens.KD);
@@ -26,11 +24,11 @@ public class Roller extends GBSubsystem {
 		return instance;
 	}
 
-	public void moveAtSpeed(Rotation2d position) {
+	public void moveAtSpeed(double velocity) {
 		motor.getPIDController()
 			.setReference(
-				position.getRadians(),
-				CANSparkBase.ControlType.kPosition,
+				velocity,
+				CANSparkBase.ControlType.kVelocity,
 				RolerConstens.PID_SLOT,
 				RolerConstens.ARB_FEED_FOWORDS
 			);

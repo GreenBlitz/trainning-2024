@@ -37,7 +37,7 @@ public class ElbowSubsystem extends GBSubsystem {
 			);
 	}
 
-	public Rotation2d getPower() {
+	public Rotation2d getPosition() {
 		return Rotation2d.fromDegrees(motor.getEncoder().getPosition());
 	}
 
