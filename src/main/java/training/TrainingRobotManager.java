@@ -12,9 +12,6 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	private final KeyboardController keyboardController;
 	private final Joystick joystick;
 	private Robot robot;
-	private Roller roller;
-	private Elbow elbow;
-	private Wrist wrist;
 
 	public TrainingRobotManager() {
 		this.keyboardController = new KeyboardController();
@@ -23,17 +20,9 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 	@Override
 	public void trainingInit() {
-		roller = new Roller();
-		elbow = new Elbow();
-		wrist = new Wrist();
-
-
 		this.robot = new Robot();
-		keyboardController.A.onTrue(roller.getCommandBuilder().noteOut());
-		keyboardController.B.onTrue(elbow.getCommandBuilder().moveUpAndDown());
-		keyboardController.C.onTrue(wrist.getCommandBuilder().moveUp());
-
-		wrist.getCommandBuilder().moveUp().schedule();
+		robot.bindKeyboard();
+		robot.getElbow().getCommandBuilder().moveUp().schedule();
 	}
 
 	@Override
