@@ -6,18 +6,19 @@ import edu.wpi.first.wpilibj2.command.FunctionalCommand;
 
 public class CommandsBuilder {
 
-    private final Elbow elbow;
-    public CommandsBuilder(Elbow elbow){
-        this.elbow = elbow;
-    }
-    
-    public Command moveToPosition(Rotation2d angle){
+	private final Elbow elbow;
 
-        return new FunctionalCommand(
-                () -> elbow.moveToAngle(angle),
-                () -> {},
-                interrupted ->  elbow.stayInPlace(),
-                () -> elbow.isAtAngle(angle) );
+	public CommandsBuilder(Elbow elbow) {
+		this.elbow = elbow;
+	}
 
-    }
+	public Command moveToPosition(Rotation2d angle) {
+		return new FunctionalCommand(
+			() -> elbow.moveToAngle(angle),
+			() -> {},
+			interrupted -> elbow.stayInPlace(),
+			() -> elbow.isAtAngle(angle)
+		);
+	}
+
 }
