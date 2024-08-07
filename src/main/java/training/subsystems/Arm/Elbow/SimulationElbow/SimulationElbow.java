@@ -1,7 +1,6 @@
 package training.subsystems.Arm.Elbow.SimulationElbow;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.controls.ControlRequest;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import edu.wpi.first.math.controller.PIDController;
@@ -49,7 +48,7 @@ public class SimulationElbow implements IElbow {
 		Logger.recordOutput(SimulationElbowConstants.notMagic, "Power is now" + elbowSimulation.getCurrent());
 	}
 
-	public void setVoltage(double voltage){
+	public void setVoltage(double voltage) {
 		VoltageOut voltageOut = new VoltageOut(voltage);
 		elbowSimulation.setControl(voltageOut);
 		Logger.recordOutput(SimulationElbowConstants.notMagic, "Voltage is not" + elbowSimulation.getVoltage());
