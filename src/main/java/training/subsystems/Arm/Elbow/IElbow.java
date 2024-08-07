@@ -12,5 +12,4 @@ public interface IElbow {
 
 	Rotation2d getPosition();
 
-
 }

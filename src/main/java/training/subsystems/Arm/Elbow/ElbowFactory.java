@@ -1,13 +1,13 @@
 package training.subsystems.Arm.Elbow;
 
-import training.RobotConstants;
+import training.Robot;
 
 public class ElbowFactory {
 
 	public static IElbow create() {
-		return switch (RobotConstants.ROBOT_TYPE) {
-			case SIMULATION -> SimulationElbow.getInstance();
-			case REAL -> NeoElbow.getInstance();
+		return switch (Robot.ROBOT_TYPE) {
+			case SIMULATION -> new SimulationElbow();
+			case REAL -> new NeoElbow();
 		};
 	}
 

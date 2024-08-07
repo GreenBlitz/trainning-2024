@@ -10,20 +10,13 @@ import utils.simulation.SingleJointedArmSimulation;
 
 public class SimulationElbow implements IElbow {
 
-	private static SimulationElbow instance;
 	private final SingleJointedArmSimulation elbowSimulation;
 	private final PIDController controller;
 	private final TalonFXConfiguration config;
 
-	public static SimulationElbow getInstance() {
-		if (instance == null) {
-			instance = new SimulationElbow();
-		}
-		return instance;
-	}
 
 	public SimulationElbow() {
-		final SingleJointedArmSim armSim = new SingleJointedArmSim(
+		final SingleJointedArmSim armSimulation = new SingleJointedArmSim(
 			DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
 			SimulationElbowConstants.GEAR_RATIO,
 			SingleJointedArmSim.estimateMOI(SimulationElbowConstants.ARM_LENGTH, SimulationElbowConstants.ARM_MASS_KG),
@@ -34,12 +27,12 @@ public class SimulationElbow implements IElbow {
 			SimulationElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
 		this.controller = new PIDController(SimulationElbowConstants.P, SimulationElbowConstants.I, SimulationElbowConstants.D);
-		this.elbowSimulation = new SingleJointedArmSimulation(armSim);
-		config = new TalonFXConfiguration();
+		this.elbowSimulation = new SingleJointedArmSimulation(armSimulation);
+		this.config = new TalonFXConfiguration();
 		config.Slot0.kP = controller.getP();
 		config.Slot0.kI = controller.getI();
 		config.Slot0.kD = controller.getD();
-		this.elbowSimulation.applyConfiguration(config);
+		elbowSimulation.applyConfiguration(config);
 	}
 
 
@@ -66,11 +59,6 @@ public class SimulationElbow implements IElbow {
 
 	public Rotation2d getVelocity() {
 		return elbowSimulation.getVelocity();
-	}
-
-
-	public boolean isAtPosition(Rotation2d target) {
-		return Math.abs(elbowSimulation.getPosition().getDegrees() - target.getDegrees()) <= SimulationElbowConstants.TOLERANCE;
 	}
 
 }

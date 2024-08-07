@@ -8,7 +8,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 public class NeoElbow implements IElbow {
 
 	private final CANSparkMax motor;
-	private static NeoElbow instance;
 
 	public NeoElbow() {
 		this.motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
@@ -16,15 +15,10 @@ public class NeoElbow implements IElbow {
 		motor.getPIDController().setP(NeoElbowConstants.P);
 		motor.getPIDController().setI(NeoElbowConstants.I);
 		motor.getPIDController().setD(NeoElbowConstants.D);
-		motor.getEncoder().setPosition(NeoElbowConstants.ELBOW_START_POSITION.getDegrees());
+		motor.getEncoder().setPosition(NeoElbowConstants.PresetPositions.STARTING.ANGLE.getDegrees());
 	}
 
-	public static NeoElbow getInstance() {
-		if (instance == null) {
-			instance = new NeoElbow();
-		}
-		return instance;
-	}
+
 
 	@Override
 	public void moveToPosition(Rotation2d position) {
@@ -55,11 +49,6 @@ public class NeoElbow implements IElbow {
 	@Override
 	public void setPower(double power) {
 		motor.set(power);
-	}
-
-
-	public boolean isAtPosition(Rotation2d target) {
-		return Math.abs(getPosition().getDegrees() - target.getDegrees()) <= NeoElbowConstants.TOLERANCE;
 	}
 
 }

@@ -13,7 +13,7 @@ public class Elbow extends GBSubsystem {
 
 	@Override
 	protected String getLogPath() {
-		return null;
+		return "Elbow/";
 	}
 
 	@Override

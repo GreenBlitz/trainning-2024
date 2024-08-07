@@ -9,7 +9,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	private Robot robot;
 
 	public TrainingRobotManager() {
-		this.joystick = new SmartJoystick(RobotConstants.JOYSTICK_PORT);
+		this.joystick = new SmartJoystick(GlobalConstants.JOYSTICK_PORT);
 	}
 
 	@Override

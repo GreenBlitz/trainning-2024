@@ -2,15 +2,16 @@ package training.commands.Arm.Elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
+import training.subsystems.Arm.Elbow.Elbow;
 import training.subsystems.Arm.Elbow.NeoElbow;
 
 public class MoveElbow extends Command {
 
-	private final NeoElbow elbow;
+	private final Elbow elbow;
 
 	private final Rotation2d targetPosition;
 
-	public MoveElbow(NeoElbow elbow, Rotation2d targetPosition) {
+	public MoveElbow(Elbow elbow, Rotation2d targetPosition) {
 		this.elbow = elbow;
 		this.targetPosition = targetPosition;
 	}
