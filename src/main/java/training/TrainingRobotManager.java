@@ -1,9 +1,6 @@
 package training;
 
 import edu.wpi.first.wpilibj.Joystick;
-import training.Elbow.Elbow;
-import training.Roller.Roller;
-import training.Wrist.Wrist;
 import utils.DefaultRobotManager;
 import utils.KeyboardController;
 
