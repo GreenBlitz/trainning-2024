@@ -9,11 +9,9 @@ import training.Elbow.IElbow;
 public class BrokenNeoElbow implements IElbow {
 
 	private final CANSparkMax motor;
-	private final Rotation2d flooredStartRotations;
 
 	public BrokenNeoElbow() {
 		this.motor = new CANSparkMax(NeoElbowConstants.ELBOW_ID, NeoElbowConstants.ELBOW_MOTOR_TYPE);
-		this.flooredStartRotations = Rotation2d.fromRotations(Math.floor(motor.getEncoder().getPosition()));
 
 		motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.ELBOW_GEAR_RATIO);
 		motor.getPIDController().setP(NeoElbowConstants.ELBOW_PID_CONTROLLER.getP());
@@ -21,6 +19,9 @@ public class BrokenNeoElbow implements IElbow {
 		motor.getPIDController().setI(NeoElbowConstants.ELBOW_PID_CONTROLLER.getI());
 		motor.getPIDController()
 			.setOutputRange(-NeoElbowConstants.LOWER_POWER_LIMIT_ELBOW, NeoElbowConstants.UPPER_POWER_LIMIT_ELBOW);
+		motor.getPIDController().setPositionPIDWrappingMaxInput(1);
+		motor.getPIDController().setPositionPIDWrappingMinInput(0);
+		motor.getPIDController().getPositionPIDWrappingEnabled();
 		motor.burnFlash();
 	}
 
@@ -35,7 +36,7 @@ public class BrokenNeoElbow implements IElbow {
 
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
-		double targetAngleRotations = flooredStartRotations.getRotations() + (targetAngle.getRotations() % 1);
+		double targetAngleRotations = targetAngle.getRotations() % 1;
 		double feedForwardOutputVoltage = NeoElbowConstants.NEO_ELBOW_FEEDFORWARD
 			.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
 
