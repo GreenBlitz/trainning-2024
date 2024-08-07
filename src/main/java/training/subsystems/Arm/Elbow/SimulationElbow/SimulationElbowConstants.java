@@ -4,11 +4,12 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public class SimulationElbowConstants {
 
-	protected static final double P = 89;
 
-	protected static final double I = 76;
 
-	protected static final double D = 45;
+	protected static final double P = 40;
+	protected static final double I = 0;
+
+	protected static final double D = 0;
 
 	protected static final double TOLERANCE = 5;
 
@@ -28,7 +29,7 @@ public class SimulationElbowConstants {
 	public static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(90);
 
 
-	public static final double GEAR_RATIO = 1 / (28.0 * (60.0 / 16.0));
+	public static final double GEAR_RATIO =1 /( 1 / (28.0 * (60.0 / 16.0)));
 
 	public static final int CURRENT_LIMIT = 40;
 

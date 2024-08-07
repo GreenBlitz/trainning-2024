@@ -208,15 +208,15 @@ discoverroborio.finalizedBy('setReachableIP')
 setReachableIP.finalizedBy('setVisualVMHost')
 
 // Spotless formatting
-spotless {
-    java {
-        target fileTree(".") {
-            include "src/main/java/**/*.java"
-            exclude '**/build/**', '**/build-*/**'
-        }
-        removeUnusedImports()
-        trimTrailingWhitespace()
-        eclipse().configFile("codestyle.xml")
-        formatAnnotations()
-    }
-}
+//spotless {
+//    java {
+//        target fileTree(".") {
+//            include "src/main/java/**/*.java"
+//            exclude '**/build/**', '**/build-*/**'
+//        }
+//        removeUnusedImports()
+//        trimTrailingWhitespace()
+//        eclipse().configFile("codestyle.xml")
+//        formatAnnotations()
+//    }
+//}

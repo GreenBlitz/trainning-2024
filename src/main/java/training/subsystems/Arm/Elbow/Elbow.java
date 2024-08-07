@@ -1,14 +1,17 @@
 package training.subsystems.Arm.Elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
 	private IElbow iElbow;
+	private ElbowInputsAutoLogged inputs;
 
 	public Elbow() {
 		this.iElbow = ElbowFactory.create();
+		this.inputs = new ElbowInputsAutoLogged();
 	}
 
 	@Override
@@ -17,7 +20,10 @@ public class Elbow extends GBSubsystem {
 	}
 
 	@Override
-	protected void subsystemPeriodic() {}
+	protected void subsystemPeriodic() {
+		iElbow.updateInputs(inputs);
+		Logger.processInputs("Elbow inputs", inputs);
+	}
 
 
 	public void setPower(double power) {
@@ -36,8 +42,9 @@ public class Elbow extends GBSubsystem {
 		moveToPosition(iElbow.getPosition());
 	}
 
-
 	public double getPosition(){
 		return iElbow.getPosition().getDegrees();
 	}
+
+
 }

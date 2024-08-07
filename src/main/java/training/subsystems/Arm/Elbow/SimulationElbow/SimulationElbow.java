@@ -16,7 +16,6 @@ import utils.simulation.SingleJointedArmSimulation;
 public class SimulationElbow implements IElbow {
 
 	private final SingleJointedArmSimulation elbowSimulation;
-	private final PIDController controller;
 	private final TalonFXConfiguration config;
 	private PositionVoltage positionVoltage = new PositionVoltage(ElbowConstants.PresetPositions.STARTING.ANGLE.getRotations());
 
@@ -25,19 +24,21 @@ public class SimulationElbow implements IElbow {
 		final SingleJointedArmSim armSimulation = new SingleJointedArmSim(
 			DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
 			SimulationElbowConstants.GEAR_RATIO,
-			SingleJointedArmSim.estimateMOI(SimulationElbowConstants.ARM_LENGTH, SimulationElbowConstants.ARM_MASS_KG),
+			SingleJointedArmSim.estimateMOI(
+					SimulationElbowConstants.ARM_LENGTH,
+					SimulationElbowConstants.ARM_MASS_KG
+			),
 			SimulationElbowConstants.ARM_LENGTH,
 			SimulationElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
 			SimulationElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
 			false,
 			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
-		this.controller = new PIDController(SimulationElbowConstants.P, SimulationElbowConstants.I, SimulationElbowConstants.D);
 		this.elbowSimulation = new SingleJointedArmSimulation(armSimulation);
 		this.config = new TalonFXConfiguration();
-		config.Slot0.kP = controller.getP();
-		config.Slot0.kI = controller.getI();
-		config.Slot0.kD = controller.getD();
+		config.Slot0.kP = SimulationElbowConstants.P;
+		config.Slot0.kI = SimulationElbowConstants.I;
+		config.Slot0.kD = SimulationElbowConstants.D;
 		elbowSimulation.applyConfiguration(config);
 	}
 
@@ -77,6 +78,7 @@ public class SimulationElbow implements IElbow {
 		inputs.position = elbowSimulation.getPosition();
 		inputs.velocity = elbowSimulation.getVelocity().getRotations();
 		inputs.voltage = elbowSimulation.getVoltage();
+		inputs.positionReference = elbowSimulation.getProfiledSetPoint();
 	}
 
 }
