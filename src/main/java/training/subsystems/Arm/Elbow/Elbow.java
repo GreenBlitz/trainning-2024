@@ -7,7 +7,7 @@ public class Elbow extends GBSubsystem {
 
 	private IElbow iElbow;
 
-	public Elbow(){
+	public Elbow() {
 		this.iElbow = ElbowFactory.create();
 	}
 
@@ -18,7 +18,6 @@ public class Elbow extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {}
-
 
 
 	public void setPower(double power) {
@@ -36,7 +35,6 @@ public class Elbow extends GBSubsystem {
 	public void stayAtPosition() {
 		moveToPosition(iElbow.getPosition());
 	}
-
 
 
 }
