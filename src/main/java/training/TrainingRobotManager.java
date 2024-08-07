@@ -1,6 +1,8 @@
 package training;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import training.commands.MoveAngularByPosition;
+import training.commands.MoveElbowByPosition;
 import training.commands.MoveLinearMotor;
 import training.subsystems.Module;
 import utils.DefaultRobotManager;
@@ -15,9 +17,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
     public void trainingInit() {
         this.robot = new Robot();
         joystick = new SmartJoystick(JoystickPorts.MAIN);
-        joystick.A.whileTrue(new MoveLinearMotor(robot,joystick));
-        joystick.B.whileTrue(new MoveAngularByPosition(robot, joystick, 2));
-        joystick.X.whileTrue(new MoveAngularByPosition(robot, joystick, 1.5));
+        joystick.A.onTrue(new MoveElbowByPosition(robot, Rotation2d.fromDegrees(90)));
+        joystick.B.onTrue(new MoveElbowByPosition(robot, Rotation2d.fromDegrees(180)));
     }
 
 	@Override

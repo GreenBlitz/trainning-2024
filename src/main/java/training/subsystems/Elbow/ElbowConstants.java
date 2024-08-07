@@ -10,15 +10,15 @@ public class ElbowConstants {
     public static final double POSITION_CONVERSION_FACTOR = 1; //check and change
     public static final double VELOCITY_CONVERSION_FACTOR = 1; //check and change
 
-    public static final double KP_VALUE = 45;
+    public static final double KP_VALUE = 0.4;
     public static final double KI_VALUE = 0;
-    public static final double KD_VALUE = 0;
+    public static final double KD_VALUE = 1.5;
     public static final Rotation2d ANGULAR_TOLERANCE = Rotation2d.fromDegrees(1.8);
     public static final ArmFeedforward FEED_FORWARD_PARAMETERS = new ArmFeedforward(1, 1, 0);
-    public static final RobotType ROBOT_TYPE = RobotType.SYNCOPA;
-    public static final double ARM_LENGTH = 1;
-    public static final double ARM_MASS_KG = 1;
-    public static final Rotation2d BACKWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(360);
-    public static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(360);
+    public static final RobotType ROBOT_TYPE = RobotType.SIMULATION;
+    public static final double ARM_LENGTH = 0.44;
+    public static final double ARM_MASS_KG = 0.44;
+    public static final Rotation2d BACKWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(0);
+    public static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromRotations(999);
 
 }

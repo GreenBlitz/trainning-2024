@@ -1,6 +1,7 @@
 package training.subsystems.Elbow.SimulationElbow;
 
 import com.ctre.phoenix6.StatusCode;
+import com.ctre.phoenix6.configs.ClosedLoopGeneralConfigs;
 import com.ctre.phoenix6.configs.FeedbackConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.ControlRequest;
@@ -16,9 +17,8 @@ import utils.simulation.SingleJointedArmSimulation;
 
 import java.util.Map;
 
-public class SimulationElbow extends GBSubsystem implements IElbow {
+public class SimulationElbow implements IElbow {
     private final SingleJointedArmSimulation motor;
-
     public SimulationElbow() {
         SingleJointedArmSim elbowSimulation = new SingleJointedArmSim(
                 DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
@@ -32,19 +32,13 @@ public class SimulationElbow extends GBSubsystem implements IElbow {
                 ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
                 false,
                 ElbowConstants.STARTING_POSITION.getRadians());
+        ClosedLoopGeneralConfigs a = new ClosedLoopGeneralConfigs();
+        a.ContinuousWrap = true;
         motor = new SingleJointedArmSimulation(elbowSimulation);
         TalonFXConfiguration talonFXConfiguration = new TalonFXConfiguration()
-                .withFeedback(new FeedbackConfigs().withSensorToMechanismRatio(150/7))
-                .withSlot0(SimulationElbowConstants.SLOT_0_CONFIGS);
+                .withSlot0(SimulationElbowConstants.SLOT_0_CONFIGS)
+                .withClosedLoopGeneral(a);
         motor.applyConfiguration(talonFXConfiguration);
-    }
-    @Override
-    protected String getLogPath() {
-        return "";
-    }
-
-    @Override
-    protected void subsystemPeriodic() {
     }
 
 
