@@ -1,21 +1,25 @@
 package training;
-import Commands.java;
+
+import edu.wpi.first.math.geometry.Rotation2d;
+import training.subsystems.arm.elbow.Elbow;
 import utils.DefaultRobotManager;
+import utils.KeyboardController;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
 	private Robot robot;
-
-
-    @Override
+	private KeyboardController keyboardController;
+	private Elbow elbow;
+	
+	@Override
     public void trainingInit() {
         this.robot = new Robot();
         this.keyboardController = new KeyboardController();
 
-        keyboardController.A.onTrue(Commands.moveToPosition(Rotation2d.fromDegrees(0)));
-        keyboardController.W.onTrue(Commands.moveToPosition(Rotation2d.fromDegrees(324)));
-        keyboardController.D.onTrue(Commands.moveToPosition(Rotation2d.fromDegrees(20)));
-        keyboardController.S.onTrue(Commands.moveToPosition(Rotation2d.fromDegrees(80)));
+        keyboardController.A.onTrue(elbow.getCommmands().moveToPosition(Rotation2d.fromDegrees(0)));
+        keyboardController.W.onTrue(elbow.getCommmands().moveToPosition(Rotation2d.fromDegrees(324)));
+        keyboardController.D.onTrue(elbow.getCommmands().moveToPosition(Rotation2d.fromDegrees(20)));
+        keyboardController.S.onTrue(elbow.getCommmands().moveToPosition(Rotation2d.fromDegrees(80)));
     }
 
 

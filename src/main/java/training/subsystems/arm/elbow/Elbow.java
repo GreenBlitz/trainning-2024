@@ -16,41 +16,39 @@ public class Elbow extends GBSubsystem {
     protected void subsystemPeriodic() {
 
     }
-    private final CANSparkMax motor;
-    private final CommandsBuilder commmands;
+  
+    private  CommandsBuilder commmands;
+    private  IElbow iElbow;
+    
 
     public Elbow(){
-        this.motor = new CANSparkMax(Constants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-        motor.getEncoder().setPositionConversionFactor(Constants.GEAR_RATIO);
-        motor.getPIDController().setP(Constants.KP);
-        motor.getPIDController().setI(Constants.KI);
-        motor.getPIDController().setD(Constants.KD);
         this.commmands = new CommandsBuilder(this);
+        this.iElbow = ElbowFactory.create();
+        
+    }
+    public CommandsBuilder getCommmands(){
+        return this.commmands;
     }
 
     public Rotation2d getCurrentAngle(){
-        return Rotation2d.fromRotations(motor.getEncoder().getPosition());
+        return iElbow.getCurrentAngle();
     }
     public void setPower(double power){
-        motor.set(power);
+        iElbow.setPower(power);
     }
     public boolean isAtAngle(Rotation2d angle){
-        return Math.abs((getCurrentAngle().getDegrees() - angle.getDegrees())) <= Constants.TOLERANCE.getDegrees();
+         return Math.abs((getCurrentAngle().getDegrees() - angle.getDegrees())) <= Constants.TOLERANCE.getDegrees();
     }
     public Rotation2d getCurrentVelocity(){
-        return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+        return iElbow.getCurrentVelocity();
     }
     public void moveToAngle(Rotation2d angle){
-        motor.getPIDController().setReference(
-                angle.getRotations(),
-                CANSparkBase.ControlType.kPosition,
-                0,
-                Constants.ELBOW_FEEDFORWARD.calculate(getCurrentAngle().getRotations(), getCurrentVelocity().getRotations())
-
+        iElbow.moveToAngle(angle);
 
     }
+    
     public void stayInPlace(){
-       moveToAngle(Rotation2d.getRotations(getCurrentAngle()));
+       iElbow.stayInPlace();
 
     }
 }
