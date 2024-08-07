@@ -4,7 +4,6 @@ import com.revrobotics.CANSparkLowLevel;
 
 public class NeoRollerConstants {
 
-
 	protected static final int ID = 22;
 
 	protected static final CANSparkLowLevel.MotorType MOTOR_TYPE = CANSparkLowLevel.MotorType.kBrushless;
