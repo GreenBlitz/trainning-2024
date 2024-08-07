@@ -7,6 +7,6 @@ public class ElbowFactory {
 		return  switch (Robot.ROBOT_TYPE){
 			case Real -> new NEOElbow();
 			case Simulation ->  new SimulationElbow();
-		}
+		};
 	}
 }
