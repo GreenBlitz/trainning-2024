@@ -1,14 +1,12 @@
 package training.subsystems.Arm.Elbow.NeoElbow;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
-import edu.wpi.first.math.geometry.Rotation2d;
 
 public class NeoElbowConstants {
 
 	protected static final int MOTOR_ID = 0;
 
 	protected static final double TOLERANCE = 5;
-
 
 
 	protected static final double KS = 0;

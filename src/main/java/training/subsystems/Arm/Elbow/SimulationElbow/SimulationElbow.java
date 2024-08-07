@@ -6,6 +6,8 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
+import training.subsystems.Arm.Elbow.ElbowConstants;
+import training.subsystems.Arm.Elbow.ElbowInputsAutoLogged;
 import training.subsystems.Arm.Elbow.IElbow;
 import utils.simulation.SingleJointedArmSimulation;
 
@@ -14,6 +16,7 @@ public class SimulationElbow implements IElbow {
 	private final SingleJointedArmSimulation elbowSimulation;
 	private final PIDController controller;
 	private final TalonFXConfiguration config;
+	private PositionVoltage positionVoltage = new PositionVoltage(ElbowConstants.PresetPositions.STARTING.ANGLE.getRotations());
 
 
 	public SimulationElbow() {
@@ -25,7 +28,7 @@ public class SimulationElbow implements IElbow {
 			SimulationElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
 			SimulationElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
 			false,
-			SimulationElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
+			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
 		this.controller = new PIDController(SimulationElbowConstants.P, SimulationElbowConstants.I, SimulationElbowConstants.D);
 		this.elbowSimulation = new SingleJointedArmSimulation(armSimulation);
@@ -44,7 +47,7 @@ public class SimulationElbow implements IElbow {
 
 	@Override
 	public void moveToPosition(Rotation2d targetPosition) {
-		elbowSimulation.setControl(new PositionVoltage(targetPosition.getRotations()));
+		elbowSimulation.setControl(positionVoltage.withPosition(targetPosition.getRotations()));
 	}
 
 	@Override
@@ -57,9 +60,11 @@ public class SimulationElbow implements IElbow {
 		return elbowSimulation.getPosition();
 	}
 
-
-	public Rotation2d getVelocity() {
-		return elbowSimulation.getVelocity();
+	@Override
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.current = elbowSimulation.getCurrent();
+		inputs.position = elbowSimulation.getPosition();
+		inputs.velocity = elbowSimulation.getVelocity().getRotations();
 	}
 
 }

@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.subsystems.Arm.Elbow.ElbowConstants;
+import training.subsystems.Arm.Elbow.ElbowInputsAutoLogged;
 import training.subsystems.Arm.Elbow.IElbow;
 
 public class NeoElbow implements IElbow {
@@ -42,6 +43,10 @@ public class NeoElbow implements IElbow {
 		return Rotation2d.fromRotations(motor.getEncoder().getPosition());
 	}
 
+	@Override
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+
+	}
 
 	public Rotation2d getVelocity() {
 		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
