@@ -27,4 +27,6 @@ public class ElbowConstants {
 
 	}
 
+	public static final double ANGLE_RAD_TOLERANCE = 0.05;
+
 }
