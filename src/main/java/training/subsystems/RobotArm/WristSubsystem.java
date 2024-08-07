@@ -3,11 +3,7 @@ package training.subsystems.RobotArm;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkLowLevel;
-import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.Module;
 import utils.GBSubsystem;
 
 public class WristSubsystem extends GBSubsystem {
@@ -28,8 +24,8 @@ public class WristSubsystem extends GBSubsystem {
 
 
     public void goToPosition(Rotation2d position) {
-        motor.selectProfileSlot(WristConstans.PID_SLOT,0);
-        motor.set(ControlMode.Position,(position.getRotations()*WristConstans.MAG_ENCODER_CONVERSION_FACTOR));
+        motor.selectProfileSlot(WristConstans.PID_SLOT, 0);
+        motor.set(ControlMode.Position, (position.getRotations() * WristConstans.MAG_ENCODER_CONVERSION_FACTOR));
     }
 
 

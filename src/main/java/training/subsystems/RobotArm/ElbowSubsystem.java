@@ -15,7 +15,7 @@ public class ElbowSubsystem extends GBSubsystem {
 
     private ElbowSubsystem() {
         this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-        this.position = new Rotation2d();
+        this.position = new Rotation2d(ElbowConstants.BIGINNING_POSITION);
         motor.getPIDController().setP(ElbowConstants.KP);
         motor.getPIDController().setI(ElbowConstants.KI);
         motor.getPIDController().setD(ElbowConstants.KD);
@@ -28,7 +28,11 @@ public class ElbowSubsystem extends GBSubsystem {
     }
 
     public void goToPosition(Rotation2d position) {
-        motor.getPIDController().setReference(position.getRadians(), CANSparkBase.ControlType.kPosition, ElbowConstants.PID_SLOT,ElbowConstants.ARE_FEED_FORWARDS);
+        motor.getPIDController().setReference(
+                position.getRadians(),
+                CANSparkBase.ControlType.kPosition,
+                ElbowConstants.PID_SLOT,ElbowConstants.ARE_FEED_FORWARDS
+        );
     }
 
     public Rotation2d getPower() {

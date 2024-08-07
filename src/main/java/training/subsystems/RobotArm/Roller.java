@@ -6,38 +6,32 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
-public class RollerSubsystem extends GBSubsystem {
+public class Roller extends GBSubsystem {
     private CANSparkMax motor;
     private Rotation2d position;
-    private static RollerSubsystem instance;
+    private static Roller instance;
 
-    private RollerSubsystem() {
+    private Roller() {
         this.motor = new CANSparkMax(RolerConstens.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
         this.position = new Rotation2d();
-        motor.getPIDController().setP(ElbowConstants.KP);
-        motor.getPIDController().setI(ElbowConstants.KI);
-        motor.getPIDController().setD(ElbowConstants.KD);
+        motor.getPIDController().setP(RolerConstens.KP);
+        motor.getPIDController().setI(RolerConstens.KI);
+        motor.getPIDController().setD(RolerConstens.KD);
     }
-    public static RollerSubsystem getInstance() {
+
+    public static Roller getInstance() {
         if (instance != null)
-            instance = new RollerSubsystem();
+            instance = new Roller();
         return instance;
     }
 
     public void goToPosition(Rotation2d position) {
-        motor.getPIDController().setReference(position.getRadians(), CANSparkBase.ControlType.kPosition, RolerConstens.PID_SLOT,RolerConstens.ARB_FEED_FOWORDS);
+        motor.getPIDController().setReference(position.getRadians(), CANSparkBase.ControlType.kPosition, RolerConstens.PID_SLOT, RolerConstens.ARB_FEED_FOWORDS);
     }
 
     public Rotation2d getPower() {
         return Rotation2d.fromDegrees(motor.getEncoder().getPosition());
     }
-
-
-
-
-
-
-
 
     protected String getLogPath() {
 
@@ -49,7 +43,6 @@ public class RollerSubsystem extends GBSubsystem {
 
     }
 }
-
 
 
 //    public void setPosition(Rotation2d position){
