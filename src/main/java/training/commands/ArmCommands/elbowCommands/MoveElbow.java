@@ -2,7 +2,6 @@ package training.commands.ArmCommands.elbowCommands;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import org.littletonrobotics.junction.Logger;
 import training.subsystems.ArmSubsystems.elbow.Elbow;
 import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
 
@@ -25,7 +24,6 @@ public class MoveElbow extends Command {
 	public boolean isFinished() {
 		return elbow.isAtTargetPosition(targetPosition, ElbowConstants.TOLERANCE);
 	}
-
 
 
 }
