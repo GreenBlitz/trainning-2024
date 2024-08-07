@@ -12,8 +12,8 @@ public class ElbowCommandBuilder {
 
 	private final Elbow elbow;
 
-	public ElbowCommandBuilder() {
-		this.elbow = new Elbow();
+	public ElbowCommandBuilder(Elbow elbow) {
+		this.elbow = elbow;
 	}
 
 

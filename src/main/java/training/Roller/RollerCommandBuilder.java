@@ -9,8 +9,8 @@ public class RollerCommandBuilder {
 
 	private final Roller roller;
 
-	public RollerCommandBuilder() {
-		this.roller = new Roller();
+	public RollerCommandBuilder(Roller roller) {
+		this.roller = roller;
 	}
 
 	public Command RollerStop() {

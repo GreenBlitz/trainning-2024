@@ -7,8 +7,8 @@ public class WristCommandBuilder {
 
 	private final Wrist wrist;
 
-	public WristCommandBuilder() {
-		this.wrist = new Wrist();
+	public WristCommandBuilder(Wrist wrist) {
+		this.wrist = wrist;
 	}
 
 	public Command moveUpWrist() {
