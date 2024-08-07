@@ -19,7 +19,6 @@ public class NeoElbow implements IElbow {
 	}
 
 
-
 	@Override
 	public void moveToPosition(Rotation2d position) {
 		motor.getPIDController()
