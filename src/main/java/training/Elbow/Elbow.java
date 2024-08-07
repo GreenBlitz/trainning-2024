@@ -6,14 +6,20 @@ import utils.GBSubsystem;
 public class Elbow extends GBSubsystem {
 
 	private final IElbow iElbow;
+	private final ElbowCommandBuilder commandBuilder;
 	private Rotation2d targetAngle;
 
 	public Elbow() {
 		this.iElbow = new ElbowFactory().create();
 		this.targetAngle = ElbowConstants.DEFAULT_POSITION_ELBOW;
+		this.commandBuilder = new ElbowCommandBuilder(this);
 	}
 
-	public void LockElbowInPlace() {
+	public ElbowCommandBuilder getCommandBuilder() {
+		return commandBuilder;
+	}
+
+	protected void LockElbowInPlace() {
 		targetAngle = getCurrentAngle();
 	}
 
@@ -29,11 +35,11 @@ public class Elbow extends GBSubsystem {
 		this.targetAngle = targetAngle;
 	}
 
-	public void addToAngle(Rotation2d angle) {
+	protected void addToAngle(Rotation2d angle) {
 		this.targetAngle = this.targetAngle.plus(angle);
 	}
 
-	public void subtractFromAngle(Rotation2d angle) {
+	protected void subtractFromAngle(Rotation2d angle) {
 		this.targetAngle = this.targetAngle.minus(angle);
 	}
 
