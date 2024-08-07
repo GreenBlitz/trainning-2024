@@ -30,10 +30,10 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 		this.robot = new Robot();
 		keyboardController.A.onTrue(roller.getCommandBuilder().noteOut());
-		keyboardController.B.onTrue(elbow.getCommandBuilder().moveElbowUpAndDown());
-		keyboardController.C.onTrue(wrist.getCommandBuilder().moveUpWrist());
+		keyboardController.B.onTrue(elbow.getCommandBuilder().moveUpAndDown());
+		keyboardController.C.onTrue(wrist.getCommandBuilder().moveUp());
 
-		wrist.getCommandBuilder().moveUpWrist().schedule();
+		wrist.getCommandBuilder().moveUp().schedule();
 	}
 
 	@Override

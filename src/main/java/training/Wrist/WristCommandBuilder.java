@@ -11,11 +11,11 @@ public class WristCommandBuilder {
 		this.wrist = wrist;
 	}
 
-	public Command moveUpWrist() {
+	public Command moveUp() {
 		return new InstantCommand(() -> wrist.rotate(WristDirection.kLeft), wrist);
 	}
 
-	public Command moveDownWrist() {
+	public Command moveDown() {
 		return new InstantCommand(() -> wrist.rotate(WristDirection.kRight), wrist);
 	}
 

@@ -13,7 +13,7 @@ public class RollerCommandBuilder {
 		this.roller = roller;
 	}
 
-	public Command RollerStop() {
+	public Command stop() {
 		return new InstantCommand(roller::stop, roller);
 	}
 

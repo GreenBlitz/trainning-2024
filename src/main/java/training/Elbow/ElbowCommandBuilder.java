@@ -17,7 +17,7 @@ public class ElbowCommandBuilder {
 	}
 
 
-	public Command moveElbowToAngle(Rotation2d targetAngle) {
+	public Command moveToAngle(Rotation2d targetAngle) {
 		return new FunctionalCommand(
 			() -> {},
 			() -> elbow.setTargetAngle(targetAngle),
@@ -27,29 +27,29 @@ public class ElbowCommandBuilder {
 		);
 	}
 
-	public Command moveElbowUpAndDown() {
+	public Command moveUpAndDown() {
 		return new SequentialCommandGroup(
-			upElbow(),
+			moveUp(),
 			new WaitCommand(ElbowConstants.DEFAULT_TIME_IN_AIR_ELBOW_SECONDS),
-			downElbow()
+			moveDown()
 		);
 	}
 
-	public Command moveElbowUpAndDown(double timeInAirSeconds) { // i know there is a Time object in wpilib, i'll change that
+	public Command moveUpAndDown(double timeInAirSeconds) { // i know there is a Time object in wpilib, i'll change that
 																	// later
-		return new SequentialCommandGroup(upElbow(), new WaitCommand(timeInAirSeconds), downElbow());
+		return new SequentialCommandGroup(moveUp(), new WaitCommand(timeInAirSeconds), moveDown());
 	}
 
-	public Command elbowStandInPlace() {
+	public Command standInPlace() {
 		return new InstantCommand(elbow::LockElbowInPlace, elbow);
 	}
 
-	public Command upElbow() {
-		return moveElbowToAngle(ElbowConstants.LIFTING_POSITION_DEGREES);
+	public Command moveUp() {
+		return moveToAngle(ElbowConstants.LIFTING_POSITION_DEGREES);
 	}
 
-	public Command downElbow() {
-		return moveElbowToAngle(ElbowConstants.LIFTING_POSITION_DEGREES.times(-1));
+	public Command moveDown() {
+		return moveToAngle(ElbowConstants.LIFTING_POSITION_DEGREES.times(-1));
 	}
 
 }
