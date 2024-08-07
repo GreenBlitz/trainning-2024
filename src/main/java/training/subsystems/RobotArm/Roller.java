@@ -7,41 +7,46 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
-    private CANSparkMax motor;
-    private Rotation2d position;
-    private static Roller instance;
 
-    private Roller() {
-        this.motor = new CANSparkMax(RolerConstens.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-        this.position = new Rotation2d();
-        motor.getPIDController().setP(RolerConstens.KP);
-        motor.getPIDController().setI(RolerConstens.KI);
-        motor.getPIDController().setD(RolerConstens.KD);
-    }
+	private CANSparkMax motor;
+	private Rotation2d position;
+	private static Roller instance;
 
-    public static Roller getInstance() {
-        if (instance != null)
-            instance = new Roller();
-        return instance;
-    }
+	private Roller() {
+		this.motor = new CANSparkMax(RolerConstens.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
+		this.position = new Rotation2d();
+		motor.getPIDController().setP(RolerConstens.KP);
+		motor.getPIDController().setI(RolerConstens.KI);
+		motor.getPIDController().setD(RolerConstens.KD);
+	}
 
-    public void moveAtSpeed(Rotation2d position) {
-        motor.getPIDController().setReference(position.getRadians(), CANSparkBase.ControlType.kPosition, RolerConstens.PID_SLOT, RolerConstens.ARB_FEED_FOWORDS);
-    }
+	public static Roller getInstance() {
+		if (instance != null)
+			instance = new Roller();
+		return instance;
+	}
 
-    public Rotation2d getPower() {
-        return Rotation2d.fromDegrees(motor.getEncoder().getPosition());
-    }
+	public void moveAtSpeed(Rotation2d position) {
+		motor.getPIDController()
+			.setReference(
+				position.getRadians(),
+				CANSparkBase.ControlType.kPosition,
+				RolerConstens.PID_SLOT,
+				RolerConstens.ARB_FEED_FOWORDS
+			);
+	}
 
-    protected String getLogPath() {
+	public Rotation2d getPower() {
+		return Rotation2d.fromDegrees(motor.getEncoder().getPosition());
+	}
 
-        return "";
-    }
+	protected String getLogPath() {
+		return "";
+	}
 
 
-    protected void subsystemPeriodic() {
+	protected void subsystemPeriodic() {}
 
-    }
 }
 
 
@@ -61,5 +66,4 @@ public class Roller extends GBSubsystem {
 //        module.stopAngularMotor();
 //        Logger.recordOutput("Angular position of module",module.getAngularPosition());
 //    }
-
 

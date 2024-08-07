@@ -1,6 +1,7 @@
 package utils;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import training.TrainingRobotManager;
 import utils.constants.IPConstants;
 import utils.logging.LoggedTableBoolean;
 
