@@ -10,7 +10,7 @@ public class Elbow extends GBSubsystem {
 	private IElbow iElbow;
 
 	private Elbow() {
-		iElbow = Factory.create();
+		this.iElbow = Factory.create();
 	}
 
 	public static Elbow getInstance() {
