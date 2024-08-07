@@ -44,7 +44,12 @@ public class NeoElbow implements IElbow {
 	}
 
 	@Override
-	public void updateInputs(ElbowInputsAutoLogged inputs) {}
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.velocity = this.getVelocity().getRotations();
+		inputs.current = this.motor.getOutputCurrent();
+		inputs.position = this.getPosition();
+		inputs.voltage = motor.getBusVoltage() * motor.getAppliedOutput();
+	}
 
 	public Rotation2d getVelocity() {
 		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());

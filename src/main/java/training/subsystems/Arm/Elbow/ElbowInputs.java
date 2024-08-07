@@ -12,4 +12,6 @@ public class ElbowInputs {
 
 	public double velocity;
 
+	public double voltage;
+
 }

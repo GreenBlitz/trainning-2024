@@ -1,11 +1,14 @@
 package training.subsystems.Arm.Elbow.SimulationElbow;
 
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.ControlRequest;
 import com.ctre.phoenix6.controls.PositionVoltage;
+import com.ctre.phoenix6.controls.VoltageOut;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
+import org.littletonrobotics.junction.Logger;
 import training.subsystems.Arm.Elbow.ElbowConstants;
 import training.subsystems.Arm.Elbow.ElbowInputsAutoLogged;
 import training.subsystems.Arm.Elbow.IElbow;
@@ -43,16 +46,25 @@ public class SimulationElbow implements IElbow {
 	@Override
 	public void setPower(double power) {
 		elbowSimulation.setPower(power);
+		Logger.recordOutput(SimulationElbowConstants.notMagic, "Power is now" + elbowSimulation.getCurrent());
+	}
+
+	public void setVoltage(double voltage){
+		VoltageOut voltageOut = new VoltageOut(voltage);
+		elbowSimulation.setControl(voltageOut);
+		Logger.recordOutput(SimulationElbowConstants.notMagic, "Voltage is not" + elbowSimulation.getVoltage());
 	}
 
 	@Override
 	public void moveToPosition(Rotation2d targetPosition) {
 		elbowSimulation.setControl(positionVoltage.withPosition(targetPosition.getRotations()));
+		Logger.recordOutput(SimulationElbowConstants.notMagic, "Moved to" + getPosition());
 	}
 
 	@Override
 	public void stayAtPosition() {
 		moveToPosition(getPosition());
+		Logger.recordOutput(SimulationElbowConstants.notMagic, "At position" + getPosition());
 	}
 
 	@Override
@@ -65,6 +77,7 @@ public class SimulationElbow implements IElbow {
 		inputs.current = elbowSimulation.getCurrent();
 		inputs.position = elbowSimulation.getPosition();
 		inputs.velocity = elbowSimulation.getVelocity().getRotations();
+		inputs.voltage = elbowSimulation.getVoltage();
 	}
 
 }

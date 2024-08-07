@@ -32,4 +32,6 @@ public class SimulationElbowConstants {
 
 	public static final int CURRENT_LIMIT = 40;
 
+	public static final String notMagic = "Elbow";
+
 }
