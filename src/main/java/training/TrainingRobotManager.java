@@ -20,10 +20,10 @@ public class TrainingRobotManager extends DefaultRobotManager {
         joystick.X.whileTrue(new MoveAngularByPosition(robot, joystick, 1.5));
     }
 
-    @Override
-    public void trainingPeriodic() {
-        // add stuff...
-    }
+	@Override
+	public void trainingPeriodic() {
+		// add stuff...
+	}
 
     @Override
     public void teleopInit() {

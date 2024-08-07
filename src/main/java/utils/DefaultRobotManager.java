@@ -7,25 +7,25 @@ import utils.simulation.SimulationManager;
 
 public abstract class DefaultRobotManager extends LoggedRobot {
 
-    @Override
-    public final void robotInit() {
-        LoggerFactory.initializeLogger();
-        this.trainingInit();
-    }
+	@Override
+	public final void robotInit() {
+		LoggerFactory.initializeLogger();
+		this.trainingInit();
+	}
 
-    @Override
-    public final void robotPeriodic() {
-        CommandScheduler.getInstance().run();
-        trainingPeriodic();
-    }
+	@Override
+	public final void robotPeriodic() {
+		CommandScheduler.getInstance().run();
+		trainingPeriodic();
+	}
 
-    @Override
-    public final void simulationPeriodic() {
-        SimulationManager.updateRegisteredSimulations();
-    }
+	@Override
+	public final void simulationPeriodic() {
+		SimulationManager.updateRegisteredSimulations();
+	}
 
-    public void trainingInit() {}
+	public void trainingInit() {}
 
-    public void trainingPeriodic() {}
+	public void trainingPeriodic() {}
 
 }
