@@ -4,7 +4,6 @@ package training;// Copyright (c) FIRST and other WPILib contributors.
 
 // the WPILib BSD license file in the root directory of this project.
 
-
 import edu.wpi.first.wpilibj.RobotBase;
 
 /**
@@ -12,6 +11,7 @@ import edu.wpi.first.wpilibj.RobotBase;
  * this file except to change the parameter class to the startRobot call.
  */
 public final class Main {
+
 
 	private Main() {}
 

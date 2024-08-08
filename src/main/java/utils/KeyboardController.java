@@ -23,6 +23,7 @@ public class KeyboardController {
 	private static final String KEYBOARD_TABLE = "Keyboard";
 	private static final String KEYS_TAB = "Keys/";
 
+
 	public final Trigger ESC, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, DELETE, BACKTICK, ONE, TWO, THREE, FOUR, FIVE,
 		SIX, SEVEN, EIGHT, NINE, ZERO, MINUS, EQUALS, BACKSPACE, TAB, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T,
 		U, V, W, X, Y, Z, SEMICOLON, APOSTROPHE, LEFT_SHIFT, COMMA, PERIOD, SLASH, RIGHT_SHIFT, LEFT_CONTROL, LEFT_ALT,
@@ -130,6 +131,7 @@ public class KeyboardController {
 	public double getValueByButtons(Trigger positiveButton, Trigger negativeButton) {
 		return getValueByButtons(positiveButton, negativeButton, KEY_PRESSED_VALUE);
 	}
+
 
 	public double getValueByButtons(Trigger positiveButton, Trigger negativeButton, double value) {
 		if (positiveButton.getAsBoolean()) {
