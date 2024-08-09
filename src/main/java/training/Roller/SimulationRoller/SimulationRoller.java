@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
 import training.Roller.IRoller;
+import training.Roller.RollerInputsAutoLogged;
 
 public class SimulationRoller implements IRoller {
 
@@ -23,16 +24,6 @@ public class SimulationRoller implements IRoller {
 	}
 
 	@Override
-	public Rotation2d getPosition() {
-		return Rotation2d.fromRotations(motor.getAngularPositionRotations());
-	}
-
-	@Override
-	public Rotation2d getVelocity() {
-		return Rotation2d.fromRotations(motor.getAngularPositionRotations());
-	}
-
-	@Override
 	public void updateVelocity(Rotation2d targetVelocity) {
 		SimulationRollerConstants.CONTROLLER.setSetpoint(targetVelocity.getRadians());
 		setPower(
@@ -40,4 +31,10 @@ public class SimulationRoller implements IRoller {
 		);
 	}
 
+	@Override
+	public void updateInputs(RollerInputsAutoLogged inputs) {
+		inputs.outputCurrent = motor.getCurrentDrawAmps();
+		inputs.position = Rotation2d.fromRadians(motor.getAngularPositionRad());
+		inputs.velocity = Rotation2d.fromRadians(motor.getAngularVelocityRadPerSec());
+	}
 }

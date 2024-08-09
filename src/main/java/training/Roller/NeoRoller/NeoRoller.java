@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.Roller.IRoller;
+import training.Roller.RollerInputsAutoLogged;
 
 
 public class NeoRoller implements IRoller {
@@ -27,18 +28,15 @@ public class NeoRoller implements IRoller {
 	}
 
 	@Override
-	public Rotation2d getPosition() {
-		return new Rotation2d(motor.getEncoder().getPosition());
-	}
-
-	@Override
-	public Rotation2d getVelocity() {
-		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
-	}
-
-	@Override
 	public void setPower(double power) {
 		motor.set(power);
+	}
+
+	@Override
+	public void updateInputs(RollerInputsAutoLogged inputs) {
+		inputs.outputCurrent = motor.getOutputCurrent();
+		inputs.position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
+		inputs.velocity = Rotation2d.fromRotations(motor.getEncoder().getVelocity());
 	}
 
 }
