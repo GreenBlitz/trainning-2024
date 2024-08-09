@@ -3,6 +3,7 @@ package training.Elbow.NeoElbow;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
+import training.Elbow.ElbowInputsAutoLogged;
 import training.Elbow.IElbow;
 
 
@@ -25,11 +26,6 @@ public class BrokenNeoElbow implements IElbow {
 		motor.burnFlash();
 	}
 
-	@Override
-	public Rotation2d getCurrentAngle() {
-		return Rotation2d.fromRotations(motor.getEncoder().getPosition());
-	}
-
 	public Rotation2d getCurrentVelocity() {
 		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
 	}
@@ -38,7 +34,7 @@ public class BrokenNeoElbow implements IElbow {
 	public void moveToAngle(Rotation2d targetAngle) {
 		double targetAngleRotations = targetAngle.getRotations() % 1;
 		double feedForwardOutputVoltage = NeoElbowConstants.FEEDFORWARD
-			.calculate(getCurrentAngle().getRadians(), motor.getEncoder().getVelocity());
+			.calculate(motor.getEncoder().getPosition(), motor.getEncoder().getVelocity());
 
 		motor.getPIDController()
 			.setReference(
@@ -53,7 +49,7 @@ public class BrokenNeoElbow implements IElbow {
 	public void updateInputs(ElbowInputsAutoLogged inputs) {
 		inputs.outputCurrent = motor.getOutputCurrent();
 		inputs.position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
-		inputs.velocity = motor.getEncoder().getVelocity();
+		inputs.velocity = Rotation2d.fromRadians(motor.getEncoder().getVelocity());
 	}
 
 }

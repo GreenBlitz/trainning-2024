@@ -7,12 +7,14 @@ public class Elbow extends GBSubsystem {
 
 	private final IElbow iElbow;
 	private final ElbowCommandBuilder commandBuilder;
+	private final ElbowInputsAutoLogged inputs;
 	private Rotation2d targetAngle;
 
 	public Elbow() {
 		this.iElbow = new ElbowFactory().create();
 		this.targetAngle = ElbowConstants.DEFAULT_POSITION;
 		this.commandBuilder = new ElbowCommandBuilder(this);
+		this.inputs = new ElbowInputsAutoLogged();
 	}
 
 	public ElbowCommandBuilder getCommandBuilder() {
@@ -24,7 +26,7 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public Rotation2d getCurrentAngle() {
-		return iElbow.getCurrentAngle();
+		return inputs.position;
 	}
 
 	public Rotation2d getTargetAngle() {
@@ -56,6 +58,7 @@ public class Elbow extends GBSubsystem {
 	@Override
 	protected void subsystemPeriodic() {
 		iElbow.moveToAngle(targetAngle);
+		iElbow.updateInputs(inputs);
 	}
 
 }

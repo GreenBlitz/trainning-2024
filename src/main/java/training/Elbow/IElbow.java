@@ -6,10 +6,6 @@ public interface IElbow {
 
 	void moveToAngle(Rotation2d targetAngle);
 
-	Rotation2d getCurrentAngle();
-
-	Rotation2d getCurrentVelocity();
-
 	void updateInputs(ElbowInputsAutoLogged inputs);
 
 }

@@ -6,10 +6,10 @@ import org.littletonrobotics.junction.AutoLog;
 @AutoLog
 public class ElbowInputs {
 
-    public double outputCurrent;
+	public double outputCurrent;
 
-    public Rotation2d position;
+	public Rotation2d position;
 
-    public Rotation2d velocity;
+	public Rotation2d velocity;
 
 }
