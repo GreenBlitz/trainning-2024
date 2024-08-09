@@ -10,4 +10,6 @@ public interface IElbow {
 
 	Rotation2d getCurrentVelocity();
 
+	void updateInputs(ElbowInputsAutoLogged inputs);
+
 }

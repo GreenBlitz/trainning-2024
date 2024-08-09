@@ -9,6 +9,7 @@ import training.Elbow.IElbow;
 public class BrokenNeoElbow implements IElbow {
 
 	private final CANSparkMax motor;
+	private double pidOutput;
 
 	public BrokenNeoElbow() {
 		this.motor = new CANSparkMax(NeoElbowConstants.ID, NeoElbowConstants.MOTOR_TYPE);
@@ -46,6 +47,13 @@ public class BrokenNeoElbow implements IElbow {
 				NeoElbowConstants.POSITION_PID_SLOT,
 				feedForwardOutputVoltage
 			);
+	}
+
+	@Override
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.outputCurrent = motor.getOutputCurrent();
+		inputs.position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
+		inputs.velocity = motor.getEncoder().getVelocity();
 	}
 
 }

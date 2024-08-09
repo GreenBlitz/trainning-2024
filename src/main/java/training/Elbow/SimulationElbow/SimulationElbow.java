@@ -46,4 +46,11 @@ public class SimulationElbow implements IElbow {
 		);
 	}
 
+	@Override
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.outputCurrent = arm.getCurrent();
+		inputs.position = arm.getPosition();
+		inputs.velocity = arm.getVelocity();
+	}
+
 }
