@@ -37,4 +37,5 @@ public class SimulationRoller implements IRoller {
 		inputs.position = Rotation2d.fromRadians(motor.getAngularPositionRad());
 		inputs.velocity = Rotation2d.fromRadians(motor.getAngularVelocityRadPerSec());
 	}
+
 }

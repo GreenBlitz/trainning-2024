@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import training.Wrist.IWrist;
+import training.Wrist.WristInputsAutoLogged;
 
 
 public class NeoWrist implements IWrist {
@@ -31,6 +32,12 @@ public class NeoWrist implements IWrist {
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
 		motor.setSelectedSensorPosition(targetAngle.getRotations());
+	}
+
+	@Override
+	public void updateInputs(WristInputsAutoLogged inputs) {
+		inputs.position = Rotation2d.fromRotations(motor.getSelectedSensorPosition());
+		inputs.velocity = Rotation2d.fromRotations(motor.getSelectedSensorVelocity());
 	}
 
 }

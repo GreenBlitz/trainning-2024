@@ -8,4 +8,6 @@ public interface IWrist {
 
 	void moveToAngle(Rotation2d targetAngle);
 
+	void updateInputs(WristInputsAutoLogged inputs);
+
 }

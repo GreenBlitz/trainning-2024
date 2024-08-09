@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.simulation.DCMotorSim;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import training.Wrist.IWrist;
+import training.Wrist.WristInputsAutoLogged;
 
 public class SimulationWrist implements IWrist {
 
@@ -34,11 +35,15 @@ public class SimulationWrist implements IWrist {
 
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
-		if (!inTestingMode) {
-			motor.setInputVoltage(
-				SimulationWristConstants.CONTROLLER.calculate(motor.getAngularPositionRotations(), motor.getAngularVelocityRPM())
-			);
-		}
+		motor.setInputVoltage(
+			SimulationWristConstants.CONTROLLER.calculate(motor.getAngularPositionRotations(), motor.getAngularVelocityRPM())
+		);
+	}
+
+	@Override
+	public void updateInputs(WristInputsAutoLogged inputs) {
+		inputs.position = Rotation2d.fromRadians(motor.getAngularPositionRad());
+		inputs.velocity = Rotation2d.fromRadians(motor.getAngularVelocityRadPerSec());
 	}
 
 }

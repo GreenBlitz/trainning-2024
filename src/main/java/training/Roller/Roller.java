@@ -28,9 +28,13 @@ public class Roller extends GBSubsystem {
 		return targetVelocity;
 	}
 
-	public Rotation2d getCurrentPosition() {return inputs.position;}
+	public Rotation2d getCurrentPosition() {
+		return inputs.position;
+	}
 
-	public Rotation2d getCurrentVelocity() {return inputs.velocity;}
+	public Rotation2d getCurrentVelocity() {
+		return inputs.velocity;
+	}
 
 	public void setTargetVelocity(Rotation2d targetVelocity) {
 		this.targetVelocity = targetVelocity;
