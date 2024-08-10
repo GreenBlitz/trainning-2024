@@ -28,7 +28,7 @@ public class SimulationElbowConstants {
 	public static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(90);
 
 
-	public static final double GEAR_RATIO = 1 / (28.0 * (60.0 / 16.0));
+	public static final double GEAR_RATIO = 1 / (1 / (28.0 * (60.0 / 16.0)));
 
 	public static final int CURRENT_LIMIT = 40;
 

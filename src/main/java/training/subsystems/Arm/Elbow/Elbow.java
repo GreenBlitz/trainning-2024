@@ -7,7 +7,7 @@ import utils.GBSubsystem;
 public class Elbow extends GBSubsystem {
 
 	private IElbow iElbow;
-	private ElbowInputsAutoLogged inputs;
+	private ElbowInputsAutoLogged inputs = new ElbowInputsAutoLogged();
 
 	public Elbow() {
 		this.iElbow = ElbowFactory.create();

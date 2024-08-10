@@ -49,6 +49,7 @@ public class NeoElbow implements IElbow {
 		inputs.current = this.motor.getOutputCurrent();
 		inputs.position = this.getPosition();
 		inputs.voltage = motor.getBusVoltage() * motor.getAppliedOutput();
+		inputs.positionReference = Rotation2d.fromDegrees(55);
 	}
 
 	public Rotation2d getVelocity() {
