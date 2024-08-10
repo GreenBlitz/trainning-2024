@@ -24,7 +24,6 @@ public class Elbow extends GBSubsystem {
 		Logger.processInputs("Elbow inputs", inputs);
 	}
 
-
 	public void setPower(double power) {
 		iElbow.setPower(power);
 	}
@@ -42,7 +41,8 @@ public class Elbow extends GBSubsystem {
 	}
 
 
-	public double getPosition(){
+	public double getPosition() {
 		return iElbow.getPosition().getDegrees();
 	}
+
 }

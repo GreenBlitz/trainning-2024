@@ -20,10 +20,10 @@ public class Robot {
 	}
 
 
-
 	// Add your subsystems getters...
-	public Elbow getElbow(){
+	public Elbow getElbow() {
 		return elbow;
 	}
+
 }
 

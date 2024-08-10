@@ -1,13 +1,11 @@
 package training;
 
-import org.littletonrobotics.junction.Logger;
 import training.commands.Arm.Elbow.MoveElbow;
 import training.subsystems.Arm.Elbow.ElbowConstants;
 import utils.KeyboardController;
 import utils.SmartJoystick;
 import utils.DefaultRobotManager;
 
-import java.security.Key;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
