@@ -15,4 +15,5 @@ public class ElbowInputs {
 	public double voltage;
 
 	public Rotation2d positionReference;
+
 }

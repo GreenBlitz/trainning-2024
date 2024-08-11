@@ -58,7 +58,6 @@ public class SimulationElbow implements IElbow {
 	public void moveToPosition(Rotation2d targetPosition) {
 		elbowSimulation.setControl(positionVoltage.withPosition(targetPosition.getRotations()));
 		Logger.recordOutput(SimulationElbowConstants.notMagic, "Moved to" + getPosition());
-
 	}
 
 	@Override
