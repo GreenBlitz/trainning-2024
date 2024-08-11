@@ -24,7 +24,7 @@ public class Roller extends GBSubsystem {
 		return instance;
 	}
 
-	public void moveAtSpeed(double velocity) {
+	public void moveAtSpeed(Rotation2d velocity) {
 		motor.getPIDController()
 			.setReference(
 				velocity,
@@ -34,8 +34,12 @@ public class Roller extends GBSubsystem {
 			);
 	}
 
+
 	public Rotation2d getPower() {
 		return Rotation2d.fromDegrees(motor.getEncoder().getPosition());
+	}
+	public boolean isAtSpeed(Rotation2d velocity){
+		return (getPower()==velocity);
 	}
 
 	protected String getLogPath() {

@@ -12,7 +12,7 @@ public class WristSubsystem extends GBSubsystem {
 	private Rotation2d position;
 	private static WristSubsystem instance;
 
-	private WristSubsystem() {
+	public WristSubsystem() {
 		this.motor = new TalonSRX(WristConstans.MOTOR_ID);
 		this.position = new Rotation2d();
 		motor.configAllSettings(WristConstans.TALON_SRX_CONFIGURATION);
@@ -21,10 +21,12 @@ public class WristSubsystem extends GBSubsystem {
 			WristConstans.PID_SLOT,
 			WristConstans.TIME_OUT_FOR_CONFIGS_SET
 		);
+
 	}
 
 
 	public void goToPosition(Rotation2d position) {
+
 		motor.selectProfileSlot(WristConstans.PID_SLOT, 0);
 		motor.set(ControlMode.Position, (position.getRotations() * WristConstans.MAG_ENCODER_CONVERSION_FACTOR));
 	}
