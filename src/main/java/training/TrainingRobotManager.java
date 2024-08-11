@@ -21,7 +21,6 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void trainingInit() {
 		robot.bindKeyboard();
-		robot.getElbow().getCommandBuilder().moveUp().schedule();
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 	@Override
 	public void teleopInit() {
-		robot.getRoller().getCommandBuilder().rollForward().schedule();
+		robot.getElbow().getCommandBuilder().moveUpAndDown().schedule();
 	}
 
 

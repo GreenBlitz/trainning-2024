@@ -9,7 +9,7 @@ public class SimulationElbowConstants {
 
 	protected static final DCMotor GEARBOX = DCMotor.getNEO(1);
 
-	protected static final double GEARING = 1;
+	protected static final double GEARING = 28.0 * (60.0 / 16.0);
 
 	protected static final double LENGTH_METERS = 0.44;
 

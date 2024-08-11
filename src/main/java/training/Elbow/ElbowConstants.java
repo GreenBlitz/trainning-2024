@@ -9,7 +9,7 @@ public class ElbowConstants {
 	protected static final String LOG_PATH = "Elbow/";
 
 
-	public static final Rotation2d DEFAULT_POSITION = new Rotation2d(1, 1);
+	public static final Rotation2d DEFAULT_POSITION = new Rotation2d(0, 0);
 
 	public static final Rotation2d SCORE_POSITION = new Rotation2d(0, 0);
 

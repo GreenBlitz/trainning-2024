@@ -5,6 +5,7 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.littletonrobotics.junction.Logger;
 import training.Wrist.IWrist;
 import training.Wrist.WristInputsAutoLogged;
 
@@ -29,12 +30,16 @@ public class SimulationWrist implements IWrist {
 		inTestingMode = true;
 		if (Math.abs(power) >= SimulationWristConstants.POWER_LIMIT) {
 			SmartDashboard.putString("Reverting to max speed 0.9", "");
+			power = 0.9;
 		}
+
 		motor.setInputVoltage(power);
 	}
 
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
+		Logger.recordOutput("Wrist/targetAngle: ", targetAngle);
+
 		motor.setInputVoltage(
 			SimulationWristConstants.CONTROLLER.calculate(motor.getAngularPositionRotations(), motor.getAngularVelocityRPM())
 		);

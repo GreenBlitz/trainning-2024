@@ -23,11 +23,10 @@ public class RollerCommandBuilder {
 	}
 
 	public Command rollBackward() {
-		return new InstantCommand(roller::rollBackward, roller);
+		return new RunCommand(roller::rollBackward, roller);
 	}
 
 	public Command rollForward() {
-		System.out.println("rolling forward");
 		return new RunCommand(roller::rollForward, roller);
 	}
 
