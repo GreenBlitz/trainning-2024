@@ -10,7 +10,7 @@ import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
 
-	private CANSparkMax motor;
+	private static CANSparkMax motor;
 	private static Roller instance;
 	private Roller() {
 		motor = new CANSparkMax(RollerConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
@@ -25,9 +25,12 @@ public class Roller extends GBSubsystem {
 			instance = new Roller();
 		}
 	}
+	public boolean isAtVelocity(double targetVelocity) {
+		return Math.abs(targetVelocity - motor.getEncoder().getVelocity()) == 0.0;
+	}
 
-	public void goToAngel(Rotation2d targetAngle) {
-		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition);
+	public void goToSpeed(double targetSpeed) {
+		motor.getPIDController().setReference(targetSpeed, CANSparkBase.ControlType.kVelocity);
 	}
 
 	public static Roller getInstance() {
@@ -37,9 +40,8 @@ public class Roller extends GBSubsystem {
 	public void stop() {
 		motor.set(0);
 	}
-	public boolean isAtAngle(Rotation2d targetAngle) {
-		return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosition()) == 0;
-	}
+
+
 
 	@Override
 	protected String getLogPath() {

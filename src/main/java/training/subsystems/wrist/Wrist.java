@@ -12,7 +12,7 @@ import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
 
-	private CANSparkMax motor;
+	private  static CANSparkMax motor;
 	private static Wrist instance;
 
 	private Wrist() {
@@ -28,6 +28,10 @@ public class Wrist extends GBSubsystem {
 		}
 	}
 
+	public static void goToAngel(Rotation2d targetAngle) {
+		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition);
+	}
+
 	public boolean isAtAngle(Rotation2d targetAngle) {
 		return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosition()) == 0;
 	}
@@ -39,9 +43,7 @@ public class Wrist extends GBSubsystem {
 	public void stop() {
 		motor.set(0);
 	}
-	public void goToAngel(Rotation2d targetAngle) {
-		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition);
-	}
+
 
 
 	@Override

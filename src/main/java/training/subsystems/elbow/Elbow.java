@@ -8,7 +8,7 @@ import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-	private final CANSparkMax motor;
+	private static CANSparkMax motor;
 	private static Elbow instance;
 
 	private Elbow() {
@@ -29,7 +29,7 @@ public class Elbow extends GBSubsystem {
 		return instance;
 	}
 
-	public void goToAngel(Rotation2d targetAngle) {
+	public static void goToAngel(Rotation2d targetAngle) {
 		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition);
 	}
 
