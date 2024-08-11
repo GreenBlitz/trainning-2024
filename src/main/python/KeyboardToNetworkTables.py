@@ -8,6 +8,7 @@
 # CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+# TODO: check Windows and OS/X compatibility
 
 import sys
 import time
@@ -27,9 +28,9 @@ __IP = sys.argv[1]
 
 def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Callable:
     def keys_handler(key: keyboard._xorg.KeyCode) -> None:
-        if key is None or not hasattr(key, "char"):
+        if key is None or not hasattr(key, "char"): # ignores alt, ctrl and keys like that
             return
-        elif key == "/":
+        elif key.char == "/":
             table.putBoolean("slash", is_pressed)
         # TODO: implement numpad support
         else:
