@@ -11,8 +11,9 @@
 
 import sys
 import time
+from typing import Callable
 
-import keyboard
+from pynput import keyboard
 import ntcore
 
 import NetworkTableManager
@@ -24,24 +25,25 @@ __CLIENT_NAME = "KeyboardToNetworkTables"
 __IP = sys.argv[1]
 
 
-def __is_pressed(event: keyboard.KeyboardEvent) -> bool:
-    return event.event_type == keyboard.KEY_DOWN
+def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Callable:
+    def keys_handler(key: keyboard._xorg.KeyCode) -> None:
+        if key is None or not hasattr(key, "char"):
+            return
+        elif key == "/":
+            table.putBoolean("slash", is_pressed)
+        # TODO: implement numpad support
+        else:
+            table.putBoolean(key.char, is_pressed)
 
-
-def __on_key_event(event: keyboard.KeyboardEvent, table: ntcore.NetworkTableInstance):
-    if event is None or event.name is None:
-        return
-    elif event.name == "/":
-        table.putBoolean("slash", __is_pressed(event))
-    elif event.is_keypad:
-        table.putBoolean("numpad" + event.name, __is_pressed(event))
-    else:
-        table.putBoolean(event.name.lower(), __is_pressed(event))
+    return keys_handler
 
 
 def __track_keyboard_until_client_disconnect(keys_table: ntcore.NetworkTable, keyboard_client: ntcore.NetworkTableInstance):
-    keyboard.hook(lambda key_event: __on_key_event(key_event, keys_table))
-    while keyboard_client.isConnected():
+    with keyboard.Listener(
+            on_press=__keys_handler(keys_table, True),
+            on_release=__keys_handler(keys_table, False),
+    ) as listener:
+        listener.join()
         time.sleep(__KEYBOARD_EVENT_CHECKING_COOLDOWN_SECONDS)
 
 
