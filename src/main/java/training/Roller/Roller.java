@@ -1,6 +1,7 @@
 package training.Roller;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 import static training.Roller.RollerConstants.DEFAULT_VELOCITY;
@@ -62,6 +63,7 @@ public class Roller extends GBSubsystem {
 	protected void subsystemPeriodic() {
 		iRoller.updateVelocity(targetVelocity);
 		iRoller.updateInputs(inputs);
+		Logger.processInputs("Roller Inputs: ", inputs);
 	}
 
 }

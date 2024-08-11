@@ -1,6 +1,8 @@
 package training;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Joystick;
+import org.littletonrobotics.junction.Logger;
 import utils.DefaultRobotManager;
 import utils.KeyboardController;
 
@@ -8,16 +10,16 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 	private final KeyboardController keyboardController;
 	private final Joystick joystick;
-	private Robot robot;
+	private final Robot robot;
 
 	public TrainingRobotManager() {
+		this.robot = new Robot();
 		this.keyboardController = new KeyboardController();
 		joystick = new Joystick(0);
 	}
 
 	@Override
 	public void trainingInit() {
-		this.robot = new Robot();
 		robot.bindKeyboard();
 		robot.getElbow().getCommandBuilder().moveUp().schedule();
 	}
@@ -29,7 +31,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 	@Override
 	public void teleopInit() {
-		// schedule your command...
+		robot.getRoller().getCommandBuilder().rollForward().schedule();
 	}
 
 

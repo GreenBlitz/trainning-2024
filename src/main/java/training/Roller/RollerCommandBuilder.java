@@ -2,6 +2,7 @@ package training.Roller;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 
 import static training.Roller.RollerConstants.DEFAULT_ROLLING_TIME_SECONDS;
 
@@ -26,7 +27,8 @@ public class RollerCommandBuilder {
 	}
 
 	public Command rollForward() {
-		return new InstantCommand(roller::rollForward, roller);
+		System.out.println("rolling forward");
+		return new RunCommand(roller::rollForward, roller);
 	}
 
 }
