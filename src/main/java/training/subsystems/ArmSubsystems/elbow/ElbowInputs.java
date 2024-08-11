@@ -10,5 +10,6 @@ public class ElbowInputs {
 	public Rotation2d velocity = Rotation2d.fromRotations(0);
 	public double current = 0;
 	public double voltage = 0;
+	public Rotation2d targetPosition = ElbowConstants.STARTING_POSITION;
 
 }

@@ -14,6 +14,7 @@ public class MoveElbow extends Command {
 	public MoveElbow(Rotation2d targetPosition, Elbow elbow) {
 		this.elbow = elbow;
 		this.targetPosition = targetPosition;
+		addRequirements(elbow);
 	}
 
 	@Override
@@ -23,8 +24,10 @@ public class MoveElbow extends Command {
 
 	@Override
 	public boolean isFinished() {
+		System.out.println("aaaaaaaaahhh");
 		return elbow.isAtTargetPosition(targetPosition, ElbowConstants.POSITION_TOLERANCE, ElbowConstants.VELOCITY_TOLERANCE)
 			&& elbow.getVelocity().getRotations() <= ElbowConstants.VELOCITY_TOLERANCE.getRotations();
 	}
+
 
 }

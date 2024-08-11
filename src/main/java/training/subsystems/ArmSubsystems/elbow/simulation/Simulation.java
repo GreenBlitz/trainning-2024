@@ -44,7 +44,8 @@ public class Simulation implements IElbow {
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
-		setVoltage(pidController.calculate(getPosition().getRotations(), targetPosition.getRotations())
+		pidController.setSetpoint(targetPosition.getRadians());
+		setVoltage(pidController.calculate(getPosition().getRadians())
 //				+ feedForwardController.calculate(getPosition().getDegrees(), getVelocity().getRotations())
 		);
 	}

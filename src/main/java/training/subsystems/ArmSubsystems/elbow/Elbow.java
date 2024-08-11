@@ -23,6 +23,8 @@ public class Elbow extends GBSubsystem {
 	protected void subsystemPeriodic() {
 		iElbow.updateInputs(inputs);
 		Logger.recordOutput("Elbow position", getPosition().getDegrees());
+		Logger.recordOutput("Forward limit", ElbowConstants.FORWARD_ANGLE_LIMIT.getDegrees());
+		Logger.recordOutput("Backward limit", ElbowConstants.BACKWARD_ANGLE_LIMIT.getDegrees());
 	}
 
 	public static Rotation2d angleDistance(Rotation2d currentAngle, Rotation2d targetAngle) {
@@ -35,12 +37,13 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
-		iElbow.goToPosition(targetPosition);
+		iElbow.goToPosition(inputs.targetPosition);
 		Logger.recordOutput("target position:", targetPosition.getDegrees());
+		setTargetPosition(targetPosition);
 	}
 
 	public void stayAtPosition() {
-		goToPosition(inputs.position);
+		goToPosition(inputs.targetPosition);
 	}
 
 	public void setVoltage(double voltage) {
@@ -65,6 +68,14 @@ public class Elbow extends GBSubsystem {
 
 	public double getCurrent() {
 		return inputs.current;
+	}
+
+	public Rotation2d getTargetPosition() {
+		return inputs.targetPosition;
+	}
+
+	public void setTargetPosition(Rotation2d targetPosition) {
+		inputs.targetPosition = targetPosition;
 	}
 
 }
