@@ -1,8 +1,6 @@
 package training;
 
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Joystick;
-import org.littletonrobotics.junction.Logger;
 import utils.DefaultRobotManager;
 import utils.KeyboardController;
 
