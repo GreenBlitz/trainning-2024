@@ -26,10 +26,9 @@ public class Simulation implements IElbow {
 			ElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
 			ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
 			false,
-			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
+			ElbowConstants.STARTING_POSITION.getRadians()
 		);
-
-		pidController = SimulationConstants.PID_Controller;
+		pidController = SimulationConstants.PID_CONTROLLER;
 		feedForwardController = SimulationConstants.FEEDFORWARD_CONTROLLER;
 	}
 
@@ -37,6 +36,7 @@ public class Simulation implements IElbow {
 		double appliedVoltage = MathUtil
 			.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
 		motor.setInputVoltage(appliedVoltage);
+		System.out.println(appliedVoltage);
 	}
 
 	public void setPower(double power) {
@@ -44,9 +44,8 @@ public class Simulation implements IElbow {
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
-		setVoltage(
-			pidController.calculate(getPosition().getDegrees(), targetPosition.getDegrees())
-				+ feedForwardController.calculate(getPosition().getDegrees(), targetPosition.getDegrees())
+		setVoltage(pidController.calculate(getPosition().getRotations(), targetPosition.getRotations())
+//				+ feedForwardController.calculate(getPosition().getDegrees(), getVelocity().getRotations())
 		);
 	}
 
@@ -56,6 +55,7 @@ public class Simulation implements IElbow {
 		inputs.velocity = Rotation2d.fromRadians(motor.getVelocityRadPerSec());
 		inputs.current = motor.getCurrentDrawAmps();
 		inputs.voltage = motor.getOutput(0);
+		motor.update(0.02);
 	}
 
 	public Rotation2d getPosition() {

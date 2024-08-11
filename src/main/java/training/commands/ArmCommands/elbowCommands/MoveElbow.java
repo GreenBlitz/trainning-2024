@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.ArmSubsystems.elbow.Elbow;
 import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
 
+
 public class MoveElbow extends Command {
 
 	private final Elbow elbow;
@@ -16,14 +17,14 @@ public class MoveElbow extends Command {
 	}
 
 	@Override
-	public void initialize() {
+	public void execute() {
 		elbow.goToPosition(targetPosition);
 	}
 
 	@Override
 	public boolean isFinished() {
-		return elbow.isAtTargetPosition(targetPosition, ElbowConstants.TOLERANCE);
+		return elbow.isAtTargetPosition(targetPosition, ElbowConstants.POSITION_TOLERANCE, ElbowConstants.VELOCITY_TOLERANCE)
+			&& elbow.getVelocity().getRotations() <= ElbowConstants.VELOCITY_TOLERANCE.getRotations();
 	}
-
 
 }
