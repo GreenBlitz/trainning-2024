@@ -8,7 +8,9 @@
 # CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# TODO: check Windows and OS/X compatibility
+# keyboardController frontend improved
+#! FOR MACOS USERS: pls see the following page: https://pynput.readthedocs.io/en/latest/limitations.html#macos
+# TODO: check Windows, uinput and OS/X compatibility
 
 import sys
 import time
@@ -27,10 +29,12 @@ __IP = sys.argv[1]
 
 
 def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Callable:
-    def keys_handler(key: keyboard._xorg.KeyCode) -> None:
-        if key is None: # ignores alt, ctrl and keys like that
+    # key type is changing in runtime + depends on platform. Checked for Xorg keyboard layout.
+    def update_table(key) -> None:
+        if key is None:
             return
-        elif hasattr(key, "name"):                  # Special command keys
+        # Special command keys
+        elif hasattr(key, "name"):
             name = key.name
             if name == "ctrl_r":
                 name = "right ctrl"
@@ -38,32 +42,34 @@ def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Call
                 name = "right alt"
 
             table.putBoolean(name, is_pressed)
-        elif not hasattr(key, "char"):              # Avoids theoretical special edge cases
+        # Avoids theoretical special edge cases
+        elif not hasattr(key, "char"):
             return
-        elif key.char == "/":                       # Fixes wierd behavior on networktables
+        # Fixes wierd behavior on networktables
+        elif key.char == "/":
             table.putBoolean("slash", is_pressed)
-        # TODO: implement numpad support            # (Shahar) I don't have a numpad
-        else:                                       # Normal keys
+        # TODO: implement numpad support ~ (Shahar) I don't have a numpad
+        else:  # Normal keys
             character: str = key.char
             table.putBoolean(character.lower(), is_pressed)
 
-    return keys_handler
+    return update_table
 
 
-def __track_keyboard_until_client_disconnect(keys_table: ntcore.NetworkTable, keyboard_client: ntcore.NetworkTableInstance):
-    with keyboard.Listener(
+def __open_tracking_thread(keys_table: ntcore.NetworkTable):
+    listener = keyboard.Listener(
             on_press=__keys_handler(keys_table, True),
             on_release=__keys_handler(keys_table, False),
-    ) as listener:
-        listener.join()
-        time.sleep(__KEYBOARD_EVENT_CHECKING_COOLDOWN_SECONDS)
+    )
+    # runs on its own thread
+    listener.start()
 
 
 def __run_keyboard_tracking_client():
     keyboard_client = NetworkTableManager.get_connected_client(__IP, __CLIENT_NAME)
     keys_table = keyboard_client.getTable(__KEYBOARD_KEYS_TABLE)
 
-    __track_keyboard_until_client_disconnect(keys_table, keyboard_client)
+    __open_tracking_thread(keys_table)
     NetworkTableManager.terminate_client(keyboard_client, __CLIENT_NAME)
 
 
