@@ -10,6 +10,7 @@ import training.Roller.RollerInputsAutoLogged;
 public class SimulationRoller implements IRoller {
 
 	private final DCMotorSim motor;
+	private double pidOutput;
 
 	public SimulationRoller() {
 		this.motor = new DCMotorSim(
@@ -26,13 +27,10 @@ public class SimulationRoller implements IRoller {
 
 	@Override
 	public void updateVelocity(Rotation2d targetVelocity) {
-		SimulationRollerConstants.CONTROLLER.setSetpoint(targetVelocity.getRadians());
-
-		Logger.recordOutput("Elbow/targetVelocity: ", targetVelocity);
-
-		setPower(
-			SimulationRollerConstants.CONTROLLER.calculate(motor.getAngularPositionRad(), motor.getAngularVelocityRadPerSec())
-		);
+		Logger.recordOutput("Roller/targetVelocity: ", targetVelocity);
+		pidOutput = SimulationRollerConstants.CONTROLLER.calculate(motor.getAngularPositionRad(), targetVelocity.getRadians());
+		motor.setInput(pidOutput);
+		Logger.recordOutput("Roller/set power to: ", pidOutput);
 	}
 
 	@Override

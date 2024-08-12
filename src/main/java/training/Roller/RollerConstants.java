@@ -9,6 +9,6 @@ public class RollerConstants {
 
 	protected static final String LOG_PATH = "Roller/";
 
-	protected static final Rotation2d DEFAULT_VELOCITY = Rotation2d.fromRotations(0);
+	protected static final Rotation2d DEFAULT_VELOCITY = Rotation2d.fromRotations(10);
 
 }

@@ -31,6 +31,7 @@ public class SimulationElbow implements IElbow {
 		double feedForwardOutputVoltage = SimulationElbowConstants.FEEDFORWARD
 			.calculate(arm.getPosition().getRadians(), arm.getVelocity().getRadians());
 
+		Logger.recordOutput("Elbow/FF out: ", feedForwardOutputVoltage);
 		Logger.recordOutput("Elbow/targetAngle: ", targetAngle);
 
 		arm.setPower(

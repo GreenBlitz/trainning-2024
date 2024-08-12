@@ -1,25 +1,19 @@
 package training;
 
-import edu.wpi.first.wpilibj.Joystick;
 import utils.DefaultRobotManager;
-import utils.KeyboardController;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
-	private final KeyboardController keyboardController;
-	private final Joystick joystick;
 	private final Robot robot;
 
 	public TrainingRobotManager() {
 		this.robot = new Robot();
-		this.keyboardController = new KeyboardController();
-		joystick = new Joystick(0);
+		robot.bindKeyboard();
+		System.out.println("logging");
 	}
 
 	@Override
-	public void trainingInit() {
-		robot.bindKeyboard();
-	}
+	public void trainingInit() {}
 
 	@Override
 	public void trainingPeriodic() {
@@ -29,6 +23,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void teleopInit() {
 		robot.getElbow().getCommandBuilder().moveUpAndDown().schedule();
+		robot.getRoller().getCommandBuilder().noteOut().schedule();
 	}
 
 

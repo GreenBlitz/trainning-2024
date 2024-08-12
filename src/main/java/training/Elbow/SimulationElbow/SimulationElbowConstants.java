@@ -19,8 +19,8 @@ public class SimulationElbowConstants {
 
 	protected static final Rotation2d MAXIMUM_ANGLE = Rotation2d.fromRotations(0.5);
 
-	protected static final PIDController CONTROLLER = new PIDController(1, 0, 0); // Outputs power
+	protected static final PIDController CONTROLLER = new PIDController(3, 0, 0); // Outputs power
 
-	protected static final ArmFeedforward FEEDFORWARD = new ArmFeedforward(0, 0, 0, 0); // Keep kV and kA 0
+	protected static final ArmFeedforward FEEDFORWARD = new ArmFeedforward(0, 1.4, 0, 0); // Keep kV and kA 0
 
 }
