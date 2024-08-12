@@ -14,7 +14,7 @@
 
 import sys
 import time
-from typing import Callable
+from typing import Callable, TypeVar
 
 from pynput import keyboard
 import ntcore
@@ -28,13 +28,27 @@ __CLIENT_NAME = "KeyboardToNetworkTables"
 __IP = sys.argv[1]
 
 
+SpecialKey = TypeVar('SpecialKey')
+ASCIIKey = TypeVar('ASCIIKey')
+UndefinedKey = TypeVar('UndefinedKey')
+
+def __key_type_checker(key) -> type:
+    if hasattr(key, "name"):
+        return SpecialKey
+    elif hasattr(key, "char"):
+        return ASCIIKey
+
+    return UndefinedKey
+
+
+
 def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Callable:
     # key type is changing in runtime + depends on platform. Checked for Xorg keyboard layout.
     def update_table(key) -> None:
-        if key is None:
+        if __key_type_checker(key) is UndefinedKey:
             return
-        # Special command keys
-        elif hasattr(key, "name"):
+
+        elif __key_type_checker(key) is SpecialKey:
             name = key.name
             if name == "ctrl_r":
                 name = "right ctrl"
@@ -42,16 +56,14 @@ def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Call
                 name = "right alt"
 
             table.putBoolean(name, is_pressed)
-        # Avoids theoretical special edge cases
-        elif not hasattr(key, "char"):
-            return
-        # Fixes wierd behavior on networktables
-        elif key.char == "/":
-            table.putBoolean("slash", is_pressed)
-        # TODO: implement numpad support ~ (Shahar) I don't have a numpad
-        else:  # Normal keys
-            character: str = key.char
-            table.putBoolean(character.lower(), is_pressed)
+
+        elif __key_type_checker(key) is ASCIIKey:
+            # Fixes wierd behavior on networktables
+            if key.char == "/":
+                table.putBoolean("slash", is_pressed)
+            else:  # Normal keys
+                character: str = key.char
+                table.putBoolean(character.lower(), is_pressed)
 
     return update_table
 
