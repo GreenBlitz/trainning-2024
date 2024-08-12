@@ -56,20 +56,22 @@ def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Call
     return update_table
 
 
-def __open_tracking_thread(keys_table: ntcore.NetworkTable):
-    listener = keyboard.Listener(
+def __track_keyboard_until_client_disconnect(keys_table: ntcore.NetworkTable, keyboard_client: ntcore.NetworkTableInstance):
+    with keyboard.Listener(
             on_press=__keys_handler(keys_table, True),
             on_release=__keys_handler(keys_table, False),
-    )
-    # runs on its own thread
-    listener.start()
+    ) as listener:
+        listener.join()
+        if not keyboard_client.isConnected(): 
+            listener.stop() # TODO: i don't know how networkTables works so i guess it does the job but idk
+
 
 
 def __run_keyboard_tracking_client():
     keyboard_client = NetworkTableManager.get_connected_client(__IP, __CLIENT_NAME)
     keys_table = keyboard_client.getTable(__KEYBOARD_KEYS_TABLE)
 
-    __open_tracking_thread(keys_table)
+    __track_keyboard_until_client_disconnect(keys_table, keyboard_client)
     NetworkTableManager.terminate_client(keyboard_client, __CLIENT_NAME)
 
 
