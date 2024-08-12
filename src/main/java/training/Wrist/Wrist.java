@@ -1,6 +1,7 @@
 package training.Wrist;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 import static training.Wrist.WristConstants.*;
@@ -9,11 +10,13 @@ public class Wrist extends GBSubsystem {
 
 	private final IWrist iWrist;
 	private final WristCommandBuilder commandBuilder;
+	private final WristInputsAutoLogged inputs;
 	private Rotation2d targetAngle;
 
 	public Wrist() {
 		this.iWrist = new WristFactory().create();
 		this.commandBuilder = new WristCommandBuilder(this);
+		this.inputs = new WristInputsAutoLogged();
 	}
 
 	public WristCommandBuilder getCommandBuilder() {
@@ -37,6 +40,8 @@ public class Wrist extends GBSubsystem {
 	@Override
 	protected void subsystemPeriodic() {
 		iWrist.moveToAngle(targetAngle);
+		iWrist.updateInputs(inputs);
+		Logger.processInputs("Wrist/inputs", inputs);
 	}
 
 }

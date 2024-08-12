@@ -47,8 +47,12 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public boolean isAtAngle(Rotation2d angle) {
-		double anglesDelta = (this.targetAngle.getDegrees() % 360) - (angle.getDegrees() % 360);
+		double anglesDelta = (inputs.position.getDegrees() % 360) - (angle.getDegrees() % 360);
 		return Math.abs(anglesDelta) <= ElbowConstants.TOLERANCE.getDegrees();
+	}
+
+	public boolean isAtTargetAngle() {
+		return isAtAngle(targetAngle);
 	}
 
 	@Override
@@ -60,7 +64,7 @@ public class Elbow extends GBSubsystem {
 	protected void subsystemPeriodic() {
 		iElbow.moveToAngle(targetAngle);
 		iElbow.updateInputs(inputs);
-		Logger.processInputs("Elbow Inputs: ", inputs);
+		Logger.processInputs("Elbow/inputs: ", inputs);
 	}
 
 }

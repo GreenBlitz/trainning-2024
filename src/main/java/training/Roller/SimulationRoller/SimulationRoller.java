@@ -29,8 +29,7 @@ public class SimulationRoller implements IRoller {
 	public void updateVelocity(Rotation2d targetVelocity) {
 		Logger.recordOutput("Roller/targetVelocity: ", targetVelocity);
 		pidOutput = SimulationRollerConstants.CONTROLLER.calculate(motor.getAngularPositionRad(), targetVelocity.getRadians());
-		motor.setInput(pidOutput);
-		Logger.recordOutput("Roller/set power to: ", pidOutput);
+		motor.setInputVoltage(pidOutput);
 	}
 
 	@Override

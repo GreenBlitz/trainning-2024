@@ -22,7 +22,7 @@ public class ElbowCommandBuilder {
 			() -> {},
 			() -> elbow.setTargetAngle(targetAngle),
 			(interrupted) -> {},
-			() -> elbow.isAtAngle(targetAngle),
+			elbow::isAtTargetAngle,
 			elbow
 		);
 	}
@@ -31,8 +31,7 @@ public class ElbowCommandBuilder {
 		return new SequentialCommandGroup(moveUp(), new WaitCommand(ElbowConstants.DEFAULT_TIME_IN_AIR_SECONDS), moveDown());
 	}
 
-	public Command moveUpAndDown(double timeInAirSeconds) { // i know there is a Time object in wpilib, i'll change that
-															// later
+	public Command moveUpAndDown(double timeInAirSeconds) {
 		return new SequentialCommandGroup(moveUp(), new WaitCommand(timeInAirSeconds), moveDown());
 	}
 
@@ -41,11 +40,11 @@ public class ElbowCommandBuilder {
 	}
 
 	public Command moveUp() {
-		return moveToAngle(ElbowConstants.LIFTING_POSITION_DEGREES);
+		return moveToAngle(ElbowConstants.LIFTING_POSITION);
 	}
 
 	public Command moveDown() {
-		return moveToAngle(ElbowConstants.LIFTING_POSITION_DEGREES.times(-1));
+		return moveToAngle(ElbowConstants.DEFAULT_POSITION);
 	}
 
 }
