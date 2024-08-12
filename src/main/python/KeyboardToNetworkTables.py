@@ -27,10 +27,10 @@ __KEYBOARD_KEYS_TABLE = "Keyboard/Keys"
 __CLIENT_NAME = "KeyboardToNetworkTables"
 __IP = sys.argv[1]
 
-
 SpecialKey = TypeVar('SpecialKey')
 ASCIIKey = TypeVar('ASCIIKey')
 UndefinedKey = TypeVar('UndefinedKey')
+
 
 def __key_type_checker(key) -> type:
     if hasattr(key, "name"):
@@ -39,7 +39,6 @@ def __key_type_checker(key) -> type:
         return ASCIIKey
 
     return UndefinedKey
-
 
 
 def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Callable:
@@ -68,15 +67,15 @@ def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Call
     return update_table
 
 
-def __track_keyboard_until_client_disconnect(keys_table: ntcore.NetworkTable, keyboard_client: ntcore.NetworkTableInstance):
+def __track_keyboard_until_client_disconnect(keys_table: ntcore.NetworkTable,
+                                             keyboard_client: ntcore.NetworkTableInstance):
     with keyboard.Listener(
             on_press=__keys_handler(keys_table, True),
             on_release=__keys_handler(keys_table, False),
     ) as listener:
         listener.join()
-        if not keyboard_client.isConnected(): 
-            listener.stop() # TODO: i don't know how networkTables works so i guess it does the job but idk
-
+        if not keyboard_client.isConnected():
+            listener.stop()  # TODO: i don't know how networkTables works so i guess it does the job but idk
 
 
 def __run_keyboard_tracking_client():
