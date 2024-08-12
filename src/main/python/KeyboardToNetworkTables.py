@@ -28,13 +28,24 @@ __IP = sys.argv[1]
 
 def __keys_handler(table: ntcore.NetworkTableInstance, is_pressed: bool) -> Callable:
     def keys_handler(key: keyboard._xorg.KeyCode) -> None:
-        if key is None or not hasattr(key, "char"): # ignores alt, ctrl and keys like that
+        if key is None: # ignores alt, ctrl and keys like that
             return
-        elif key.char == "/":
+        elif hasattr(key, "name"):                  # Special command keys
+            name = key.name
+            if name == "ctrl_r":
+                name = "right ctrl"
+            if name == "alt_r":
+                name = "right alt"
+
+            table.putBoolean(name, is_pressed)
+        elif not hasattr(key, "char"):              # Avoids theoretical special edge cases
+            return
+        elif key.char == "/":                       # Fixes wierd behavior on networktables
             table.putBoolean("slash", is_pressed)
-        # TODO: implement numpad support
-        else:
-            table.putBoolean(key.char, is_pressed)
+        # TODO: implement numpad support            # (Shahar) I don't have a numpad
+        else:                                       # Normal keys
+            character: str = key.char
+            table.putBoolean(character.lower(), is_pressed)
 
     return keys_handler
 
