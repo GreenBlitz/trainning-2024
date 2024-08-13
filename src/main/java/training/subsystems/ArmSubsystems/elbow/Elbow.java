@@ -8,6 +8,7 @@ public class Elbow extends GBSubsystem {
 
 	private final IElbow iElbow;
 	private final ElbowInputsAutoLogged inputs;
+	private Rotation2d targetPosition = ElbowConstants.STARTING_POSITION;
 
 	public Elbow() {
 		this.iElbow = ElbowFactory.create();
@@ -37,13 +38,14 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
-		iElbow.goToPosition(inputs.targetPosition);
-		Logger.recordOutput("target position:", targetPosition.getDegrees());
 		setTargetPosition(targetPosition);
+		iElbow.goToPosition(getTargetPosition());
+		Logger.recordOutput("target position:", targetPosition.getDegrees());
 	}
 
 	public void stayAtPosition() {
-		goToPosition(inputs.targetPosition);
+		iElbow.stayAtPosition();
+		System.out.println("staying");
 	}
 
 	public void setVoltage(double voltage) {
@@ -71,11 +73,11 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public Rotation2d getTargetPosition() {
-		return inputs.targetPosition;
+		return targetPosition;
 	}
 
 	public void setTargetPosition(Rotation2d targetPosition) {
-		inputs.targetPosition = targetPosition;
+		this.targetPosition = targetPosition;
 	}
 
 }

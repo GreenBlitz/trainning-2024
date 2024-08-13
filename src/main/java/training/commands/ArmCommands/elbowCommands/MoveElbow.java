@@ -18,13 +18,17 @@ public class MoveElbow extends Command {
 	}
 
 	@Override
+	public void initialize() {
+		System.out.println("move");
+	}
+
+	@Override
 	public void execute() {
 		elbow.goToPosition(targetPosition);
 	}
 
 	@Override
 	public boolean isFinished() {
-		System.out.println("aaaaaaaaahhh");
 		return elbow.isAtTargetPosition(targetPosition, ElbowConstants.POSITION_TOLERANCE, ElbowConstants.VELOCITY_TOLERANCE)
 			&& elbow.getVelocity().getRotations() <= ElbowConstants.VELOCITY_TOLERANCE.getRotations();
 	}

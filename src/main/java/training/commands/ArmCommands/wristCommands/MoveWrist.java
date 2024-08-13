@@ -13,6 +13,8 @@ public class MoveWrist extends Command {
 	public MoveWrist(Rotation2d targetPosition, Wrist wrist) {
 		this.wrist = wrist;
 		this.targetPosition = targetPosition;
+		addRequirements(wrist);
+
 	}
 
 	@Override

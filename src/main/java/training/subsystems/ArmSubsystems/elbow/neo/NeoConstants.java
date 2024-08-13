@@ -1,6 +1,7 @@
 package training.subsystems.ArmSubsystems.elbow.neo;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
+import edu.wpi.first.math.geometry.Rotation2d;
 
 public class NeoConstants {
 
@@ -9,6 +10,8 @@ public class NeoConstants {
 	public static final double P_VALUE = 10;
 	public static final double I_VALUE = 0;
 	public static final double D_VALUE = 0;
+
+	public static final Rotation2d GEAR_RATIO = Rotation2d.fromDegrees(1 / (28.0 * (60.0 / 16.0)));
 
 	public static final double KS_VALUE = 0;
 	public static final double KG_VALUE = 0;

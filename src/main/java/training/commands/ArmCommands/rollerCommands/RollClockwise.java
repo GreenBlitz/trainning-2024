@@ -9,6 +9,8 @@ public class RollClockwise extends Command {
 
 	public RollClockwise(Roller roller) {
 		this.roller = roller;
+		addRequirements(roller);
+
 	}
 
 	@Override

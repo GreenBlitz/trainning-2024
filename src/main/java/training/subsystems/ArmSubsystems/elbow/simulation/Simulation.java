@@ -20,12 +20,12 @@ public class Simulation implements IElbow {
 	public Simulation() {
 		this.motor = new SingleJointedArmSim(
 			DCMotor.getNEO(1),
-			ElbowConstants.GEAR_RATIO.getDegrees(),
+			SimulationConstants.GEAR_RATIO.getDegrees(),
 			SingleJointedArmSim.estimateMOI(ElbowConstants.ARM_LENGTH, ElbowConstants.ARM_MASS_KG),
 			ElbowConstants.ARM_LENGTH,
 			ElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
 			ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
-			false,
+			true,
 			ElbowConstants.STARTING_POSITION.getRadians()
 		);
 		pidController = SimulationConstants.PID_CONTROLLER;
@@ -45,8 +45,19 @@ public class Simulation implements IElbow {
 
 	public void goToPosition(Rotation2d targetPosition) {
 		pidController.setSetpoint(targetPosition.getRadians());
-		setVoltage(pidController.calculate(getPosition().getRadians())
-//				+ feedForwardController.calculate(getPosition().getDegrees(), getVelocity().getRotations())
+		setVoltage(
+			pidController.calculate(getPosition().getRadians())
+				+ feedForwardController.calculate(getPosition().getDegrees(), getVelocity().getRotations())
+		);
+	}
+
+	@Override
+	public void stayAtPosition() {
+		setVoltage(
+			SimulationConstants.FEEDFORWARD_CONTROLLER.calculate(
+				getPosition().getRadians(),
+				getVelocity().getRadians() + pidController.calculate(getPosition().getRadians())
+			)
 		);
 	}
 
@@ -69,6 +80,10 @@ public class Simulation implements IElbow {
 
 	public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d tolerance) {
 		return (Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees());
+	}
+
+	public ArmFeedforward getFeedForwardController() {
+		return feedForwardController;
 	}
 
 }

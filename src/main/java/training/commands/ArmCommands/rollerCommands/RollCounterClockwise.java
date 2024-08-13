@@ -9,6 +9,7 @@ public class RollCounterClockwise extends Command {
 
 	public RollCounterClockwise(Roller roller) {
 		this.roller = roller;
+		addRequirements(roller);
 	}
 
 	public void initialize() {
