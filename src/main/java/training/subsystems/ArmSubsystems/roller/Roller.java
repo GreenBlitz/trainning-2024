@@ -5,11 +5,11 @@ import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
 
-	private final IRoller motor;
+	private final IRoller iRoller;
 	private final RollerInputsAutoLogged inputs;
 
 	public Roller() {
-		this.motor = RollerFactory.create();
+		this.iRoller = RollerFactory.create();
 		this.inputs = new RollerInputsAutoLogged();
 	}
 
@@ -22,15 +22,15 @@ public class Roller extends GBSubsystem {
 	protected void subsystemPeriodic() {}
 
 	public void rollClockwise() {
-		motor.setPower(RollerConstants.DEFAULT_CLOCKWISE_POWER);
+		iRoller.setPower(RollerConstants.DEFAULT_CLOCKWISE_POWER);
 	}
 
 	public void rollCounterClockwise() {
-		motor.setPower(RollerConstants.DEFAULT_COUNTER_CLOCKWISE_POWER);
+		iRoller.setPower(RollerConstants.DEFAULT_COUNTER_CLOCKWISE_POWER);
 	}
 
 	public void stop() {
-		motor.setPower(0);
+		iRoller.setPower(0);
 	}
 
 	public Rotation2d getVelocity() {
