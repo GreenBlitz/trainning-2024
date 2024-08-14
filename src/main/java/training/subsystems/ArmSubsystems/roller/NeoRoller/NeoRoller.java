@@ -24,8 +24,8 @@ public class NeoRoller implements IRoller {
 	}
 
 	public void updateInputs(RollerInputsAutoLogged inputs) {
-		inputs.position= Rotation2d.fromRotations(motor.getEncoder().getPosition());
-		inputs.velocity=Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+		inputs.position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
+		inputs.velocity = Rotation2d.fromRotations(motor.getEncoder().getVelocity());
 	}
 
 }

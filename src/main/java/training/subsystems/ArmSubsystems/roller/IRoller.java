@@ -1,6 +1,5 @@
 package training.subsystems.ArmSubsystems.roller;
 
-import training.subsystems.ArmSubsystems.elbow.ElbowInputsAutoLogged;
 
 public interface IRoller {
 

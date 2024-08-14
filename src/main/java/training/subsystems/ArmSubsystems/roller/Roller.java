@@ -1,8 +1,6 @@
 package training.subsystems.ArmSubsystems.roller;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.ArmSubsystems.elbow.ElbowInputsAutoLogged;
-import training.subsystems.ArmSubsystems.elbow.IElbow;
 import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
@@ -11,8 +9,8 @@ public class Roller extends GBSubsystem {
 	private final RollerInputsAutoLogged inputs;
 
 	public Roller() {
-		this.motor=RollerFactory.create();
-		this.inputs=new RollerInputsAutoLogged();
+		this.motor = RollerFactory.create();
+		this.inputs = new RollerInputsAutoLogged();
 	}
 
 	@Override
@@ -38,6 +36,7 @@ public class Roller extends GBSubsystem {
 	public Rotation2d getVelocity() {
 		return inputs.velocity;
 	}
+
 	public Rotation2d getPosition() {
 		return inputs.position;
 	}

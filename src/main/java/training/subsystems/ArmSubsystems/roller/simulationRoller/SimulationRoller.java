@@ -4,7 +4,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
 import training.GlobalConstants;
-import training.subsystems.ArmSubsystems.elbow.ElbowInputsAutoLogged;
 import training.subsystems.ArmSubsystems.roller.IRoller;
 import training.subsystems.ArmSubsystems.roller.RollerInputsAutoLogged;
 
@@ -31,8 +30,8 @@ public class SimulationRoller implements IRoller {
 
 	@Override
 	public void updateInputs(RollerInputsAutoLogged inputs) {
-		inputs.position= Rotation2d.fromRotations(motor.getAngularPositionRotations());
-		inputs.velocity=Rotation2d.fromRadians(motor.getAngularVelocityRadPerSec());
+		inputs.position = Rotation2d.fromRotations(motor.getAngularPositionRotations());
+		inputs.velocity = Rotation2d.fromRadians(motor.getAngularVelocityRadPerSec());
 	}
 
 
