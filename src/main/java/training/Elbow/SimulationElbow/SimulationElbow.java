@@ -30,13 +30,13 @@ public class SimulationElbow implements IElbow {
 	public void moveToAngle(Rotation2d targetAngle) {
 		double feedForwardOutputVoltage = SimulationElbowConstants.FEEDFORWARD
 			.calculate(arm.getPosition().getRadians(), arm.getVelocity().getRadians());
+		double PIDOutputVoltage = SimulationElbowConstants.CONTROLLER.calculate(arm.getPosition().getRadians(), targetAngle.getRadians());
 
-		Logger.recordOutput("Elbow/FF out: ", feedForwardOutputVoltage);
-		Logger.recordOutput("Elbow/targetAngle: ", targetAngle);
+		Logger.recordOutput("Elbow/FF out: ", Rotation2d.fromRadians(feedForwardOutputVoltage));
+		Logger.recordOutput("Elbow/PID out: ", Rotation2d.fromRadians(PIDOutputVoltage));
 
 		arm.setPower(
-			SimulationElbowConstants.CONTROLLER.calculate(arm.getPosition().getRadians(), targetAngle.getRadians())
-				+ feedForwardOutputVoltage
+				PIDOutputVoltage + feedForwardOutputVoltage
 		);
 	}
 

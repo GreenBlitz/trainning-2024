@@ -32,7 +32,7 @@ ASCIIKey = TypeVar('ASCIIKey')
 UndefinedKey = TypeVar('UndefinedKey')
 
 
-def __key_type_checker(key) -> type:
+def __key_type_checker(key: object) -> TypeVar:
     if hasattr(key, "name"):
         return SpecialKey
     elif hasattr(key, "char"):

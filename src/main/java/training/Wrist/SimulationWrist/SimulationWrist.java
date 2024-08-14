@@ -41,7 +41,7 @@ public class SimulationWrist implements IWrist {
 		Logger.recordOutput("Wrist/targetAngle: ", targetAngle);
 
 		motor.setInputVoltage(
-			SimulationWristConstants.CONTROLLER.calculate(motor.getAngularPositionRotations(), motor.getAngularVelocityRPM())
+			SimulationWristConstants.CONTROLLER.calculate(motor.getAngularPositionRotations(), targetAngle.getRotations())
 		);
 	}
 

@@ -64,7 +64,8 @@ public class Elbow extends GBSubsystem {
 	protected void subsystemPeriodic() {
 		iElbow.moveToAngle(targetAngle);
 		iElbow.updateInputs(inputs);
-		Logger.processInputs("Elbow/inputs: ", inputs);
+		Logger.recordOutput("Elbow/targetAngle: ", targetAngle);
+		Logger.processInputs("RealOutputs/Elbow/inputs: ", inputs);
 	}
 
 }
