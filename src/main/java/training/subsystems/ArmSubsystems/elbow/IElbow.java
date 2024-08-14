@@ -12,4 +12,5 @@ public interface IElbow {
 	void setPower(double power);
 
 	void updateInputs(ElbowInputsAutoLogged inputs);
+	void stayAtPosition();
 }
