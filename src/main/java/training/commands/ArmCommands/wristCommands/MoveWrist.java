@@ -14,7 +14,6 @@ public class MoveWrist extends Command {
 		this.wrist = wrist;
 		this.targetPosition = targetPosition;
 		addRequirements(wrist);
-
 	}
 
 	@Override

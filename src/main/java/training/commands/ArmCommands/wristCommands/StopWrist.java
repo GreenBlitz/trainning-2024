@@ -10,7 +10,6 @@ public class StopWrist extends Command {
 	public StopWrist(Wrist wrist) {
 		this.wrist = wrist;
 		addRequirements(wrist);
-
 	}
 
 	@Override

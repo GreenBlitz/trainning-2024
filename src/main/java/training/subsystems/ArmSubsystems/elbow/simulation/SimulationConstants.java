@@ -8,7 +8,7 @@ public class SimulationConstants {
 
 	public static final int ID = 0;
 
-	public static final double P_VALUE = 100;
+	public static final double P_VALUE = 150;
 	public static final double I_VALUE = 0;
 	public static final double D_VALUE = 0;
 	public static final PIDController PID_CONTROLLER = new PIDController(P_VALUE, I_VALUE, D_VALUE);

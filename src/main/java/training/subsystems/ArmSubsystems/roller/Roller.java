@@ -1,16 +1,18 @@
 package training.subsystems.ArmSubsystems.roller;
 
-import com.revrobotics.CANSparkLowLevel;
-import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
+import training.subsystems.ArmSubsystems.elbow.ElbowInputsAutoLogged;
+import training.subsystems.ArmSubsystems.elbow.IElbow;
 import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
 
-	private final CANSparkMax motor;
+	private final IRoller motor;
+	private final RollerInputsAutoLogged inputs;
 
 	public Roller() {
-		this.motor = new CANSparkMax(RollerConstants.ID, CANSparkLowLevel.MotorType.kBrushless);
+		this.motor=RollerFactory.create();
+		this.inputs=new RollerInputsAutoLogged();
 	}
 
 	@Override
@@ -22,19 +24,22 @@ public class Roller extends GBSubsystem {
 	protected void subsystemPeriodic() {}
 
 	public void rollClockwise() {
-		motor.set(RollerConstants.DEFAULT_CLOCKWISE_POWER);
+		motor.setPower(RollerConstants.DEFAULT_CLOCKWISE_POWER);
 	}
 
 	public void rollCounterClockwise() {
-		motor.set(RollerConstants.DEFAULT_COUNTER_CLOCKWISE_POWER);
+		motor.setPower(RollerConstants.DEFAULT_COUNTER_CLOCKWISE_POWER);
 	}
 
 	public void stop() {
-		motor.set(0);
+		motor.setPower(0);
 	}
 
 	public Rotation2d getVelocity() {
-		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+		return inputs.velocity;
+	}
+	public Rotation2d getPosition() {
+		return inputs.position;
 	}
 
 }

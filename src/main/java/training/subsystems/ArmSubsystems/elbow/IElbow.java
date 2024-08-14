@@ -1,6 +1,7 @@
 package training.subsystems.ArmSubsystems.elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import training.subsystems.ArmSubsystems.roller.RollerInputsAutoLogged;
 
 public interface IElbow {
 
@@ -11,7 +12,4 @@ public interface IElbow {
 	void setPower(double power);
 
 	void updateInputs(ElbowInputsAutoLogged inputs);
-
-	void stayAtPosition();
-
 }

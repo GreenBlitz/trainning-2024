@@ -3,8 +3,8 @@ package training;
 import training.commands.ArmCommands.elbowCommands.ElbowStayInPlace;
 import training.commands.ArmCommands.elbowCommands.MoveElbow;
 import training.commands.ArmCommands.wristCommands.MoveWrist;
-import training.commands.ArmCommands.rollerCommands.RollClockwise;
-import training.commands.ArmCommands.rollerCommands.RollCounterClockwise;
+//import training.commands.ArmCommands.rollerCommands.RollClockwise;
+//import training.commands.ArmCommands.rollerCommands.RollCounterClockwise;
 import training.commands.ArmCommands.wristCommands.StopWrist;
 import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
 import training.subsystems.ArmSubsystems.wrist.WristConstants;
@@ -27,8 +27,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
 		smartJoystick.Y.onTrue(new MoveWrist(WristConstants.CLIMBING_POSITION, robot.getWrist()));
 		smartJoystick.X.onTrue(new MoveWrist(WristConstants.STARTING_POSITION, robot.getWrist()));
 
-		smartJoystick.R1.whileTrue(new RollClockwise(robot.getRoller()));
-		smartJoystick.R2.whileTrue(new RollCounterClockwise(robot.getRoller()));
+//		smartJoystick.R1.whileTrue(new RollClockwise(robot.getRoller()));
+//		smartJoystick.R2.whileTrue(new RollCounterClockwise(robot.getRoller()));
 
 		robot.getElbow().setDefaultCommand(new ElbowStayInPlace(robot.getElbow()));
 		robot.getWrist().setDefaultCommand(new StopWrist(robot.getWrist()));
