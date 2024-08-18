@@ -1,7 +1,7 @@
 package training.subsystems.ArmSubsystems.roller.NeoRoller;
 
 
-public class NeoConstants {
+public class NeoRollerConstants {
 
 	protected static final int ID = 22;
 

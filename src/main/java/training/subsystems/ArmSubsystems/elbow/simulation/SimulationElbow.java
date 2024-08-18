@@ -11,16 +11,16 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
 
-public class Simulation implements IElbow {
+public class SimulationElbow implements IElbow {
 
 	private final SingleJointedArmSim motor;
 	private final PIDController pidController;
 	private final ArmFeedforward feedForwardController;
 
-	public Simulation() {
+	public SimulationElbow() {
 		this.motor = new SingleJointedArmSim(
-			DCMotor.getNEO(1),
-			SimulationConstants.GEAR_RATIO.getDegrees(),
+			DCMotor.getNEO(SimulationElbowConstants.NUMBER_OF_MOTORS),
+			SimulationElbowConstants.GEAR_RATIO.getDegrees(),
 			SingleJointedArmSim.estimateMOI(ElbowConstants.ARM_LENGTH, ElbowConstants.ARM_MASS_KG),
 			ElbowConstants.ARM_LENGTH,
 			ElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
@@ -28,15 +28,14 @@ public class Simulation implements IElbow {
 			true,
 			ElbowConstants.STARTING_POSITION.getRadians()
 		);
-		pidController = SimulationConstants.PID_CONTROLLER;
-		feedForwardController = SimulationConstants.FEEDFORWARD_CONTROLLER;
+		pidController = SimulationElbowConstants.PID_CONTROLLER;
+		feedForwardController = SimulationElbowConstants.FEEDFORWARD_CONTROLLER;
 	}
 
 	public void setVoltage(double voltage) {
 		double appliedVoltage = MathUtil
 			.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
 		motor.setInputVoltage(appliedVoltage);
-		// System.out.println(appliedVoltage);
 	}
 
 	public void setPower(double power) {
@@ -53,7 +52,7 @@ public class Simulation implements IElbow {
 	@Override
 	public void stayAtPosition() {
 		setVoltage(
-			SimulationConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), 0)
+			SimulationElbowConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), 0)
 				+ pidController.calculate(getPosition().getRadians(), getPosition().getRadians())
 		);
 	}
@@ -64,7 +63,7 @@ public class Simulation implements IElbow {
 		inputs.velocity = Rotation2d.fromRadians(motor.getVelocityRadPerSec());
 		inputs.current = motor.getCurrentDrawAmps();
 		inputs.voltage = motor.getOutput(0);
-		motor.update(0.02);
+		motor.update(SimulationElbowConstants.CYCLE_TIME);
 	}
 
 	public Rotation2d getPosition() {
@@ -73,14 +72,6 @@ public class Simulation implements IElbow {
 
 	public Rotation2d getVelocity() {
 		return Rotation2d.fromRotations(motor.getVelocityRadPerSec());
-	}
-
-	public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d tolerance) {
-		return (Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees());
-	}
-
-	public ArmFeedforward getFeedForwardController() {
-		return feedForwardController;
 	}
 
 }

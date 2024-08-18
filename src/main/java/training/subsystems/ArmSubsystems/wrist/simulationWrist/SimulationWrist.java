@@ -1,13 +1,12 @@
 package training.subsystems.ArmSubsystems.wrist.simulationWrist;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import training.GlobalConstants;
-import training.subsystems.ArmSubsystems.elbow.simulation.SimulationConstants;
+import training.subsystems.ArmSubsystems.elbow.simulation.SimulationElbowConstants;
 import training.subsystems.ArmSubsystems.wrist.IWrist;
 import training.subsystems.ArmSubsystems.wrist.WristConstants;
 import training.subsystems.ArmSubsystems.wrist.WristInputsAutoLogged;
@@ -17,13 +16,12 @@ public class SimulationWrist implements IWrist {
 
 	private final SingleJointedArmSimulation motor;
 	PIDController pidController;
-	ArmFeedforward feedForwardController;
 
 	public SimulationWrist() {
 		this.motor = new SingleJointedArmSimulation(
 			new SingleJointedArmSim(
-				DCMotor.getNEO(1),
-				SimulationConstants.GEAR_RATIO.getDegrees(),
+				DCMotor.getCIM(SimulationWristConstants.NUMBER_OF_MOTORS),
+				SimulationElbowConstants.GEAR_RATIO.getDegrees(),
 				SingleJointedArmSim.estimateMOI(WristConstants.ARM_LENGTH, WristConstants.ARM_MASS_KG),
 				WristConstants.ARM_LENGTH,
 				WristConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
@@ -32,14 +30,13 @@ public class SimulationWrist implements IWrist {
 				WristConstants.STARTING_POSITION.getRadians()
 			)
 		);
-		pidController = SimulationConstants.PID_CONTROLLER;
-		feedForwardController = SimulationConstants.FEEDFORWARD_CONTROLLER;
+		pidController = SimulationElbowConstants.PID_CONTROLLER;
 	}
 
 
 	@Override
 	public void goToPosition(Rotation2d targetPosition) {
-		setVoltage(pidController.calculate(motor.getPosition().getRotations(), targetPosition.getRotations()));
+		setVoltage(pidController.calculate(motor.getPosition().getRadians(), targetPosition.getRotations()));
 	}
 
 	@Override
@@ -49,10 +46,10 @@ public class SimulationWrist implements IWrist {
 
 	@Override
 	public void setVoltage(double voltage) {
-		double clampedVoltage=MathUtil.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
-		double appliedPower =clampedVoltage/ GlobalConstants.MAX_BATTERY_VOLTAGE;
+		double clampedVoltage = MathUtil
+			.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
+		double appliedPower = clampedVoltage / GlobalConstants.MAX_BATTERY_VOLTAGE;
 		motor.setPower(appliedPower);
-		System.out.println(clampedVoltage);
 	}
 
 	@Override

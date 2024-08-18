@@ -14,12 +14,12 @@ public class RollClockwise extends Command {
 
 	@Override
 	public void initialize() {
-		this.roller.rollClockwise();
+		roller.rollClockwise();
 	}
 
 	@Override
 	public void end(boolean interrupted) {
-		this.roller.stop();
+		roller.stop();
 	}
 
 }

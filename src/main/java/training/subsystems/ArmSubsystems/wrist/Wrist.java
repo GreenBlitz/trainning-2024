@@ -8,6 +8,7 @@ public class Wrist extends GBSubsystem {
 
 	private final IWrist iWrist;
 	private final WristInputsAutoLogged inputs;
+	private Rotation2d targetPosition = WristConstants.STARTING_POSITION;
 
 	public Wrist() {
 		iWrist = WristFactory.create();
@@ -22,14 +23,14 @@ public class Wrist extends GBSubsystem {
 	@Override
 	protected void subsystemPeriodic() {
 		iWrist.updateInputs(inputs);
-		Logger.processInputs("wrist inputs:", inputs);
-		Logger.recordOutput("Wrist position: ", inputs.position);
+		Logger.processInputs("Wrist/wrist inputs:", inputs);
+		Logger.recordOutput("Wrist/Wrist position: ", inputs.position);
 		updateInputs();
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
 		iWrist.goToPosition(targetPosition);
-		Logger.recordOutput("wrist target position:", targetPosition);
+		Logger.recordOutput("Wrist/wrist target position:", targetPosition);
 	}
 
 	public void updateInputs() {
@@ -56,8 +57,13 @@ public class Wrist extends GBSubsystem {
 		return currentAngle.minus(targetAngle);
 	}
 
-	public boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d positionTolerance) {
-		return Math.abs(angleDistance(inputs.position, targetAngle).getDegrees()) <= positionTolerance.getDegrees();
+	public boolean isAtTargetPosition() {
+		return Math.abs(angleDistance(inputs.position, targetPosition).getDegrees())
+			<= WristConstants.POSITION_TOLERANCE.getDegrees();
+	}
+
+	public boolean isAtTargetVelocity() {
+		return Math.abs(inputs.velocity.getRotations()) <= WristConstants.VELOCITY_TOLERANCE.getRotations();
 	}
 
 }

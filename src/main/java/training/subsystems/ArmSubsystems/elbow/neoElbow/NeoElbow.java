@@ -1,4 +1,4 @@
-package training.subsystems.ArmSubsystems.elbow.neo;
+package training.subsystems.ArmSubsystems.elbow.neoElbow;
 
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
@@ -11,14 +11,18 @@ import training.subsystems.ArmSubsystems.elbow.ElbowInputsAutoLogged;
 import training.subsystems.ArmSubsystems.elbow.IElbow;
 
 
-public class Neo implements IElbow {
+public class NeoElbow implements IElbow {
 
 	private final CANSparkMax motor;
 
-	public Neo() {
-		this.motor = new CANSparkMax(NeoConstants.ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getEncoder().setPositionConversionFactor(NeoConstants.GEAR_RATIO.getRotations());
-		motor.getEncoder().setVelocityConversionFactor(NeoConstants.GEAR_RATIO.getRotations());
+	public NeoElbow() {
+		this.motor = new CANSparkMax(NeoElbowConstants.ID, CANSparkLowLevel.MotorType.kBrushless);
+		motorConfig();
+	}
+
+	private void motorConfig() {
+		motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.GEAR_RATIO.getRotations());
+		motor.getEncoder().setVelocityConversionFactor(NeoElbowConstants.GEAR_RATIO.getRotations());
 
 		motor.setSoftLimit(CANSparkBase.SoftLimitDirection.kForward, (float) ElbowConstants.FORWARD_ANGLE_LIMIT.getRotations());
 		motor.enableSoftLimit(CANSparkBase.SoftLimitDirection.kForward, true);
@@ -26,9 +30,9 @@ public class Neo implements IElbow {
 		motor.setSoftLimit(CANSparkBase.SoftLimitDirection.kReverse, (float) ElbowConstants.BACKWARD_ANGLE_LIMIT.getRotations());
 		motor.enableSoftLimit(CANSparkBase.SoftLimitDirection.kReverse, true);
 
-		motor.getPIDController().setP(NeoConstants.P_VALUE);
-		motor.getPIDController().setI(NeoConstants.I_VALUE);
-		motor.getPIDController().setD(NeoConstants.D_VALUE);
+		motor.getPIDController().setP(NeoElbowConstants.KP);
+		motor.getPIDController().setI(NeoElbowConstants.KI);
+		motor.getPIDController().setD(NeoElbowConstants.KD);
 		motor.getEncoder().setPosition(ElbowConstants.STARTING_POSITION.getRotations());
 	}
 
@@ -48,13 +52,13 @@ public class Neo implements IElbow {
 				position.getRotations(),
 				CANSparkBase.ControlType.kPosition,
 				0,
-				NeoConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations())
+				NeoElbowConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations())
 			);
 	}
 
 	@Override
 	public void stayAtPosition() {
-		setVoltage(NeoConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRadians()));
+		setVoltage(NeoElbowConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations()));
 	}
 
 	@Override
@@ -72,10 +76,6 @@ public class Neo implements IElbow {
 
 	public Rotation2d getVelocity() {
 		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
-	}
-
-	public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d tolerance) {
-		return (Math.abs(getPosition().minus(targetAngle).getDegrees()) <= tolerance.getDegrees());
 	}
 
 }

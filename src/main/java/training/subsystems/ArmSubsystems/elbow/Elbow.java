@@ -23,29 +23,32 @@ public class Elbow extends GBSubsystem {
 	@Override
 	protected void subsystemPeriodic() {
 		iElbow.updateInputs(inputs);
-		Logger.recordOutput("Elbow position", getPosition().getDegrees());
-		Logger.recordOutput("Forward limit", ElbowConstants.FORWARD_ANGLE_LIMIT.getDegrees());
-		Logger.recordOutput("Backward limit", ElbowConstants.BACKWARD_ANGLE_LIMIT.getDegrees());
+		Logger.recordOutput("Elbow/Elbow position", getPosition().getDegrees());
+		Logger.recordOutput("Elbow/Forward limit", ElbowConstants.FORWARD_ANGLE_LIMIT.getDegrees());
+		Logger.recordOutput("Elbow/Backward limit", ElbowConstants.BACKWARD_ANGLE_LIMIT.getDegrees());
 	}
 
 	public static Rotation2d angleDistance(Rotation2d currentAngle, Rotation2d targetAngle) {
 		return currentAngle.minus(targetAngle);
 	}
 
-	public boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d positionTolerance, Rotation2d velocityTolerance) {
-		return Math.abs(angleDistance(inputs.position, targetAngle).getDegrees()) <= positionTolerance.getDegrees()
-			&& inputs.position.getRotations() <= velocityTolerance.getRotations();
+	public boolean isAtTargetPosition() {
+		return Math.abs(angleDistance(inputs.position, targetPosition).getDegrees())
+			<= ElbowConstants.POSITION_TOLERANCE.getDegrees();
+	}
+
+	public boolean isAtTargetVelocity() {
+		return Math.abs(inputs.velocity.getRotations()) <= ElbowConstants.VELOCITY_TOLERANCE.getRotations();
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
 		setTargetPosition(targetPosition);
 		iElbow.goToPosition(getTargetPosition());
-		Logger.recordOutput("elbow target position:", targetPosition.getDegrees());
+		Logger.recordOutput("Elbow/elbow target position:", targetPosition.getDegrees());
 	}
 
 	public void stayAtPosition() {
 		iElbow.stayAtPosition();
-		System.out.println("staying");
 	}
 
 	public void setVoltage(double voltage) {

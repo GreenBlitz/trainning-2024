@@ -1,6 +1,6 @@
 package training.subsystems.ArmSubsystems.roller.simulationRoller;
 
-public class SimulationConstants {
+public class SimulationRollerConstants {
 
 	protected static final int ID = 22;
 	public static final int NUMBER_OF_MOTORS = 1;

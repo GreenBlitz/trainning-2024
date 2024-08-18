@@ -12,15 +12,14 @@ public class TalonWrist implements IWrist {
 	private final TalonSRX motor;
 
 	public TalonWrist() {
-		this.motor = new TalonSRX(TalonConstants.ID);
-		motor.configAllSettings(TalonConstants.TALON_SRX_CONFIG);
+		this.motor = new TalonSRX(TalonWristConstants.ID);
+		motor.configAllSettings(TalonWristConstants.TALON_SRX_CONFIG);
 	}
 
 	@Override
 	public void goToPosition(Rotation2d targetPosition) {
 		setVoltage(
-			TalonConstants.PID_CONTROLLER.calculate(motor.getSelectedSensorPosition(), targetPosition.getRotations())
-				* GlobalConstants.MAX_BATTERY_VOLTAGE
+			TalonWristConstants.PID_CONTROLLER.calculate(motor.getSelectedSensorPosition(), targetPosition.getRotations())
 		);
 	}
 

@@ -3,7 +3,6 @@ package training.commands.ArmCommands.elbowCommands;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.ArmSubsystems.elbow.Elbow;
-import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
 
 
 public class MoveElbow extends Command {
@@ -18,9 +17,7 @@ public class MoveElbow extends Command {
 	}
 
 	@Override
-	public void initialize() {
-		System.out.println("move");
-	}
+	public void initialize() {}
 
 	@Override
 	public void execute() {
@@ -29,8 +26,7 @@ public class MoveElbow extends Command {
 
 	@Override
 	public boolean isFinished() {
-		return elbow.isAtTargetPosition(targetPosition, ElbowConstants.POSITION_TOLERANCE, ElbowConstants.VELOCITY_TOLERANCE)
-			&& elbow.getVelocity().getRotations() <= ElbowConstants.VELOCITY_TOLERANCE.getRotations();
+		return elbow.isAtTargetPosition() && elbow.isAtTargetVelocity();
 	}
 
 

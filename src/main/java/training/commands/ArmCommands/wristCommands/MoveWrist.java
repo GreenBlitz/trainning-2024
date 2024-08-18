@@ -3,7 +3,6 @@ package training.commands.ArmCommands.wristCommands;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.ArmSubsystems.wrist.Wrist;
-import training.subsystems.ArmSubsystems.wrist.WristConstants;
 
 public class MoveWrist extends Command {
 
@@ -17,9 +16,7 @@ public class MoveWrist extends Command {
 	}
 
 	@Override
-	public void initialize() {
-		System.out.println("move");
-	}
+	public void initialize() {}
 
 	@Override
 	public void execute() {
@@ -28,7 +25,7 @@ public class MoveWrist extends Command {
 
 	@Override
 	public boolean isFinished() {
-		return wrist.isAtTargetPosition(targetPosition, WristConstants.TOLERANCE);
+		return wrist.isAtTargetPosition() && wrist.isAtTargetVelocity();
 	}
 
 }

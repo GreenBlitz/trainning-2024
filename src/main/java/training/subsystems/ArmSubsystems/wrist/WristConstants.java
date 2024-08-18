@@ -8,7 +8,8 @@ public class WristConstants {
 	public static final Rotation2d STARTING_POSITION = Rotation2d.fromDegrees(90);
 	public static final Rotation2d CLIMBING_POSITION = Rotation2d.fromDegrees(390);
 
-	public static final Rotation2d TOLERANCE = Rotation2d.fromDegrees(5);
+	public static final Rotation2d POSITION_TOLERANCE = Rotation2d.fromDegrees(5);
+	public static final Rotation2d VELOCITY_TOLERANCE = Rotation2d.fromDegrees(0.01);
 
 	public static final double ARM_LENGTH = 0.44;
 	public static final double ARM_MASS_KG = 0.44;
