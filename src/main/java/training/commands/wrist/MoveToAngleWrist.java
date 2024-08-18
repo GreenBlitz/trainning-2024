@@ -8,20 +8,20 @@ public class MoveToAngleWrist extends Command {
 
     private Rotation2d targetAngle;
 
-    public MoveToAngleWrist(Rotation2d targetAngle){
+    public MoveToAngleWrist(Rotation2d targetAngle) {
         this.targetAngle = targetAngle;
     }
 
     @Override
     public void initialize() {
-        Wrist.goToAngel(targetAngle);
+        Wrist.goToAngle(targetAngle);
     }
 
-    public boolean isFinished(){
+    public boolean isFinished() {
         return Wrist.getInstance().isAtAngle(targetAngle);
     }
 
-    public void end(boolean interrupted){
+    public void end(boolean interrupted) {
         Wrist.getInstance().stop();
     }
 }

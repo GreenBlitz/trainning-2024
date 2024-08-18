@@ -12,47 +12,48 @@ import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
 
-	private  static CANSparkMax motor;
-	private static Wrist instance;
+    private static CANSparkMax motor;
+    private static Wrist instance;
 
-	private Wrist() {
-		motor = new CANSparkMax(WristConstant.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getPIDController().setP(WristConstant.MOTOR_ID_P);
-		motor.getPIDController().setI(WristConstant.MOTOR_ID_I);
-		motor.getPIDController().setD(WristConstant.MOTOR_ID_D);
-	}
+    private Wrist() {
+        motor = new CANSparkMax(WristConstant.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
+        motor.getPIDController().setP(WristConstant.MOTOR_P);
+        motor.getPIDController().setI(WristConstant.MOTOR_I);
+        motor.getPIDController().setD(WristConstant.MOTOR_D);
+    }
 
-	public static void init() {
-		if (instance == null) {
-			instance = new Wrist();
-		}
-	}
+    public static Wrist getInstance() {
+        init();
+        return instance;
+    }
 
-	public static void goToAngel(Rotation2d targetAngle) {
-		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition);
-	}
+    public static void init() {
+        if (instance == null) {
+            instance = new Wrist();
+        }
+    }
 
-	public boolean isAtAngle(Rotation2d targetAngle) {
-		return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosition()) == 0;
-	}
+    public static void goToAngle(Rotation2d targetAngle) {
+        motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition);
+    }
 
-	public static Wrist getInstance() {
-		init();
-		return instance;
-	}
-	public void stop() {
-		motor.set(0);
-	}
+    public boolean isAtAngle(Rotation2d targetAngle) {
+        return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosition()) == 0;
+    }
+
+    public void stop() {
+        motor.set(0);
+    }
 
 
+    @Override
+    protected String getLogPath() {
+        return "Wrist";
+    }
 
-	@Override
-	protected String getLogPath() {
-		return "Wrist";
-	}
-
-	@Override
-	protected void subsystemPeriodic() {}
+    @Override
+    protected void subsystemPeriodic() {
+    }
 
 }
 

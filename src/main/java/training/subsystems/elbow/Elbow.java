@@ -16,9 +16,9 @@ public class Elbow extends GBSubsystem {
 	private Elbow() {
 		this.armFeedforward = ElbowConstants.ARM_FEEDFORWARD;
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getPIDController().setP(ElbowConstants.MOTOR_ID_P);
-		motor.getPIDController().setI(ElbowConstants.MOTOR_ID_I);
-		motor.getPIDController().setD(ElbowConstants.MOTOR_ID_D);
+		motor.getPIDController().setP(ElbowConstants.MOTOR_P);
+		motor.getPIDController().setI(ElbowConstants.MOTOR_I);
+		motor.getPIDController().setD(ElbowConstants.MOTOR_D);
 	}
 
 	public static void init() {
@@ -43,7 +43,7 @@ public class Elbow extends GBSubsystem {
 	}
 
 
-	public void goToAngel(Rotation2d targetAngle) {
+	public void goToAngle(Rotation2d targetAngle) {
 		motor.getPIDController().setReference(targetAngle.getDegrees(),
 				CANSparkBase.ControlType.kPosition,
 				ElbowConstants.PID_SLOT,
@@ -56,13 +56,13 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public void stop() {
-		goToAngel(getPosition());
+		goToAngle(getPosition());
 	}
 
 
 	@Override
 	protected String getLogPath() {
-		return "Elbow";
+		return "";
 	}
 
 	@Override
