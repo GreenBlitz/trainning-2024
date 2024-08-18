@@ -1,10 +1,7 @@
 package training.Elbow.SimulationElbow;
 
-import com.ctre.phoenix6.controls.DifferentialPositionVoltage;
-import com.ctre.phoenix6.controls.DutyCycleOut;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import edu.wpi.first.math.geometry.Rotation2d;
-import org.littletonrobotics.junction.Logger;
 import training.Elbow.ElbowInputsAutoLogged;
 import training.Elbow.IElbow;
 import utils.simulation.SimpleMotorSimulation;

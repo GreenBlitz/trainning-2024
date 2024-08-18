@@ -5,8 +5,6 @@ import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.system.plant.DCMotor;
 
 public class SimulationElbowConstants {
 
@@ -17,8 +15,8 @@ public class SimulationElbowConstants {
 	protected static final TalonFXConfiguration CONFIG = new TalonFXConfiguration();
 
 	static {
-		CONFIG.withSlot0(new Slot0Configs()
-				.withKP(0.32) // 0.32 is perfect
+		CONFIG.withSlot0(
+			new Slot0Configs().withKP(0.32) // 0.32 is perfect
 				.withKD(0)
 				.withKI(0)
 				.withKG(0)
