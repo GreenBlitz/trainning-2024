@@ -1,5 +1,6 @@
 package training.subsystems.ArmSubsystems.wrist.simulationWrist;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -38,7 +39,7 @@ public class SimulationWrist implements IWrist {
 
 	@Override
 	public void goToPosition(Rotation2d targetPosition) {
-		setPower(pidController.calculate(motor.getPosition().getRotations(), targetPosition.getRotations()));
+		setVoltage(pidController.calculate(motor.getPosition().getRotations(), targetPosition.getRotations()));
 	}
 
 	@Override
@@ -48,7 +49,10 @@ public class SimulationWrist implements IWrist {
 
 	@Override
 	public void setVoltage(double voltage) {
-		motor.setPower(voltage / GlobalConstants.MAX_BATTERY_VOLTAGE);
+		double clampedVoltage=MathUtil.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
+		double appliedPower =clampedVoltage/ GlobalConstants.MAX_BATTERY_VOLTAGE;
+		motor.setPower(appliedPower);
+		System.out.println(clampedVoltage);
 	}
 
 	@Override

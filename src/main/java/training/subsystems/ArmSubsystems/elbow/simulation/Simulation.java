@@ -36,7 +36,7 @@ public class Simulation implements IElbow {
 		double appliedVoltage = MathUtil
 			.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
 		motor.setInputVoltage(appliedVoltage);
-		System.out.println(appliedVoltage);
+		// System.out.println(appliedVoltage);
 	}
 
 	public void setPower(double power) {
@@ -44,20 +44,17 @@ public class Simulation implements IElbow {
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
-		pidController.setSetpoint(targetPosition.getRadians());
 		setVoltage(
-			pidController.calculate(getPosition().getRadians())
-				+ feedForwardController.calculate(getPosition().getDegrees(), getVelocity().getRotations())
+			pidController.calculate(getPosition().getRadians(), targetPosition.getRadians())
+				+ feedForwardController.calculate(getPosition().getRadians(), 0)
 		);
 	}
 
 	@Override
 	public void stayAtPosition() {
 		setVoltage(
-			SimulationConstants.FEEDFORWARD_CONTROLLER.calculate(
-				getPosition().getRadians(),
-				getVelocity().getRadians() + pidController.calculate(getPosition().getRadians())
-			)
+			SimulationConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), 0)
+				+ pidController.calculate(getPosition().getRadians(), getPosition().getRadians())
 		);
 	}
 

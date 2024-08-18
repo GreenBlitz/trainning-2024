@@ -1,6 +1,7 @@
 package training.subsystems.ArmSubsystems.wrist;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
@@ -20,11 +21,15 @@ public class Wrist extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
+		iWrist.updateInputs(inputs);
+		Logger.processInputs("wrist inputs:", inputs);
+		Logger.recordOutput("Wrist position: ", inputs.position);
 		updateInputs();
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
 		iWrist.goToPosition(targetPosition);
+		Logger.recordOutput("wrist target position:", targetPosition);
 	}
 
 	public void updateInputs() {
@@ -51,7 +56,7 @@ public class Wrist extends GBSubsystem {
 		return currentAngle.minus(targetAngle);
 	}
 
-	public boolean isAtTargetAngle(Rotation2d targetAngle, Rotation2d positionTolerance) {
+	public boolean isAtTargetPosition(Rotation2d targetAngle, Rotation2d positionTolerance) {
 		return Math.abs(angleDistance(inputs.position, targetAngle).getDegrees()) <= positionTolerance.getDegrees();
 	}
 

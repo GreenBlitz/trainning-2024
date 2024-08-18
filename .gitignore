@@ -14,8 +14,11 @@
 # Precompiled Headers
 *.gch
 *.pch
-*.json
 *.pyc
+networktables.json
+simgui-ds.json
+simgui-window.json
+simgui.json
 
 
 # Compiled Dynamic libraries

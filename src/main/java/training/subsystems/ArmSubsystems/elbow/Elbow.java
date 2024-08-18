@@ -40,7 +40,7 @@ public class Elbow extends GBSubsystem {
 	public void goToPosition(Rotation2d targetPosition) {
 		setTargetPosition(targetPosition);
 		iElbow.goToPosition(getTargetPosition());
-		Logger.recordOutput("target position:", targetPosition.getDegrees());
+		Logger.recordOutput("elbow target position:", targetPosition.getDegrees());
 	}
 
 	public void stayAtPosition() {

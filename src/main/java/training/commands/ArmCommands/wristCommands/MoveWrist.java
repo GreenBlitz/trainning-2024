@@ -18,12 +18,17 @@ public class MoveWrist extends Command {
 
 	@Override
 	public void initialize() {
+		System.out.println("move");
+	}
+
+	@Override
+	public void execute() {
 		wrist.goToPosition(targetPosition);
 	}
 
 	@Override
 	public boolean isFinished() {
-		return wrist.isAtTargetAngle(targetPosition, WristConstants.TOLERANCE);
+		return wrist.isAtTargetPosition(targetPosition, WristConstants.TOLERANCE);
 	}
 
 }
