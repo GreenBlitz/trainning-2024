@@ -3,15 +3,13 @@ package training.subsystems.roller;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.elbow.Elbow;
-import training.subsystems.elbow.ElbowConstants;
 import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
 
 	private static CANSparkMax motor;
 	private static Roller instance;
+
 	private Roller() {
 		motor = new CANSparkMax(RollerConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getPIDController().setP(RollerConstants.MOTOR_P);
@@ -25,6 +23,7 @@ public class Roller extends GBSubsystem {
 			instance = new Roller();
 		}
 	}
+
 	public boolean isAtVelocity(double targetVelocity) {
 		return Math.abs(targetVelocity - motor.getEncoder().getVelocity()) == 0.0;
 	}
@@ -37,11 +36,10 @@ public class Roller extends GBSubsystem {
 		init();
 		return instance;
 	}
+
 	public void stop() {
 		motor.set(0);
-
 	}
-
 
 
 	@Override
@@ -53,11 +51,4 @@ public class Roller extends GBSubsystem {
 	protected void subsystemPeriodic() {}
 
 }
-
-
-
-
-
-
-
 

@@ -5,15 +5,14 @@ import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
-import utils.GBSubsystem;
 
-public class Elbow extends GBSubsystem {
+public class ElbowNEO implements IElbow {
 
-	private final CANSparkMax motor;
-	private static Elbow instance;
+	private CANSparkMax motor;
+	private static ElbowNEO instance;
 	private ArmFeedforward armFeedforward;
 
-	private Elbow() {
+	private ElbowNEO() {
 		this.armFeedforward = ElbowConstants.ARM_FEEDFORWARD;
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getPIDController().setP(ElbowConstants.MOTOR_P);
@@ -21,14 +20,16 @@ public class Elbow extends GBSubsystem {
 		motor.getPIDController().setD(ElbowConstants.MOTOR_D);
 	}
 
-	public static void init() {
+	public void init() {
 		if (instance == null) {
-			instance = new Elbow();
+			instance = new ElbowNEO();
 		}
 	}
 
-	public static Elbow getInstance() {
-		init();
+	public ElbowNEO getInstance() {
+		if (instance == null) {
+			instance = new ElbowNEO();
+		}
 		return instance;
 	}
 
@@ -59,13 +60,5 @@ public class Elbow extends GBSubsystem {
 		goToAngle(getPosition());
 	}
 
-
-	@Override
-	protected String getLogPath() {
-		return "";
-	}
-
-	@Override
-	protected void subsystemPeriodic() {}
 
 }
