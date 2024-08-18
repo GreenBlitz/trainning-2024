@@ -4,6 +4,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import training.commands.MoveAngularByPosition;
 import training.commands.MoveElbowByPosition;
 import training.commands.MoveLinearMotor;
+import training.commands.MoveWristByPosition;
 import training.subsystems.Module;
 import utils.DefaultRobotManager;
 import utils.joysticks.JoystickPorts;
@@ -17,8 +18,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
     public void trainingInit() {
         this.robot = new Robot();
         joystick = new SmartJoystick(JoystickPorts.MAIN);
-        joystick.A.onTrue(new MoveElbowByPosition(robot, Rotation2d.fromDegrees(90)));
-        joystick.B.onTrue(new MoveElbowByPosition(robot, Rotation2d.fromDegrees(180)));
+        joystick.A.onTrue(new MoveWristByPosition(robot, Rotation2d.fromDegrees(90)));
+        joystick.B.onTrue(new MoveWristByPosition(robot, Rotation2d.fromDegrees(180)));
     }
 
 	@Override

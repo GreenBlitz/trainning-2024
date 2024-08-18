@@ -1,6 +1,7 @@
 package training.subsystems.Arm.Wrist.SimulationWrist;
 
 import com.ctre.phoenix6.configs.ClosedLoopGeneralConfigs;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -29,10 +30,10 @@ public class SimulationWrist implements IWrist {
     }
 
     public Rotation2d getPosition() {
-        return motor.getPosition();
+        return Rotation2d.fromRotations(motor.getPosition().getValue());
     }
 
     public void stopMotor() {
-        motor.stop();
+        motor.stopMotor();
     }
 }
