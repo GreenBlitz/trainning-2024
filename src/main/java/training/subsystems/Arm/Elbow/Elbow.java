@@ -5,10 +5,10 @@ import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
-    private final IElbow elbow;
+    private final IElbow iElbow;
 
     public Elbow() {
-        elbow = ElbowFactory.create();
+        this.iElbow = ElbowFactory.create();
     }
 
     @Override
@@ -18,20 +18,20 @@ public class Elbow extends GBSubsystem {
 
     @Override
     protected void subsystemPeriodic() {
-        Logger.recordOutput("elbow position", elbow.getPosition().getDegrees());
+        Logger.recordOutput("elbow position", iElbow.getPosition().getDegrees());
     }
 
 
     public void moveToAngle(Rotation2d position) {
-        elbow.moveToAngle(position);
+        iElbow.moveToAngle(position);
     }
 
     public Rotation2d getPosition() {
-        return elbow.getPosition();
+        return iElbow.getPosition();
     }
 
     public void stopMotor() {
-        elbow.stopMotor();
+        iElbow.stopMotor();
     }
 
     public void standInPlace() {

@@ -14,11 +14,11 @@ public class NeoElbow extends GBSubsystem implements IElbow {
 
     public NeoElbow() {
         this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-        motor.getEncoder().setPositionConversionFactor(ElbowConstants.POSITION_CONVERSION_FACTOR);
-        motor.getEncoder().setVelocityConversionFactor(ElbowConstants.VELOCITY_CONVERSION_FACTOR);
-        motor.getPIDController().setP(ElbowConstants.KP_VALUE);
-        motor.getPIDController().setI(ElbowConstants.KI_VALUE);
-        motor.getPIDController().setD(ElbowConstants.KD_VALUE);
+        motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.POSITION_CONVERSION_FACTOR);
+        motor.getEncoder().setVelocityConversionFactor(NeoElbowConstants.VELOCITY_CONVERSION_FACTOR);
+        motor.getPIDController().setP(ElbowConstants.KP);
+        motor.getPIDController().setI(ElbowConstants.KI);
+        motor.getPIDController().setD(ElbowConstants.KD);
         motor.getEncoder().setPosition(ElbowConstants.STARTING_POSITION.getRotations());
     }
     @Override

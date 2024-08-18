@@ -12,6 +12,8 @@ public class Robot {
     private final Wrist wrist;
     private final Roller roller;
 
+    public static final RobotType ROBOT_TYPE = RobotType.SIMULATION;
+
     public Robot() {
         this.module = new Module();
         this.elbow = new Elbow();

@@ -28,10 +28,10 @@ public class SimulationElbow implements IElbow {
         ClosedLoopGeneralConfigs a = new ClosedLoopGeneralConfigs();
         a.ContinuousWrap = true;
         motor = new SingleJointedArmSimulation(elbowSimulation);
-        TalonFXConfiguration talonFXConfiguration = new TalonFXConfiguration()
+        final TalonFXConfiguration talonFXConfiguration = new TalonFXConfiguration()
                 .withSlot0(SimulationElbowConstants.SLOT_0_CONFIGS)
                 .withClosedLoopGeneral(a);
-        motor.applyConfiguration(talonFXConfiguration);
+        this.motor.applyConfiguration(talonFXConfiguration);
     }
 
 

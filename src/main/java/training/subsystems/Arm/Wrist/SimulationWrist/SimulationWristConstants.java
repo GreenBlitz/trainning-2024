@@ -7,7 +7,7 @@ public class SimulationWristConstants {
     public static final int NUMBER_OF_MOTORS = 1;
     public static final double GEAR_RATIO = 1;
     public static final Slot0Configs SLOT_0_CONFIGS = new Slot0Configs()
-            .withKP(WristConstants.KP_VALUE)
-            .withKI(WristConstants.KI_VALUE)
-            .withKD(WristConstants.KD_VALUE);
+            .withKP(WristConstants.KP)
+            .withKI(WristConstants.KI)
+            .withKD(WristConstants.KD);
 }
