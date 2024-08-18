@@ -18,7 +18,7 @@ public class SimulationElbowConstants {
 
 	static {
 		CONFIG.withSlot0(new Slot0Configs()
-				.withKP(0.8)
+				.withKP(0.32) // 0.32 is perfect
 				.withKD(0)
 				.withKI(0)
 				.withKG(0)

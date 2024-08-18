@@ -47,7 +47,10 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public boolean isAtAngle(Rotation2d angle) {
-		double anglesDelta = (inputs.position.getDegrees() % 360) - (angle.getDegrees() % 360);
+		double anglesDelta = (inputs.position.getDegrees() % 360) - (targetAngle.getDegrees() % 360);
+		Logger.recordOutput("Elbow/angle", angle);
+		Logger.recordOutput("Elbow/target", targetAngle);
+		Logger.recordOutput("Elbow/Delta", anglesDelta);
 		return Math.abs(anglesDelta) <= ElbowConstants.TOLERANCE.getDegrees();
 	}
 

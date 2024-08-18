@@ -21,6 +21,6 @@ public class ElbowConstants {
 
 	protected static final Rotation2d LIFTING_POSITION = Rotation2d.fromDegrees(30);
 
-	protected static final Rotation2d TOLERANCE = new Rotation2d(0);
+	protected static final Rotation2d TOLERANCE = Rotation2d.fromDegrees(3);
 
 }

@@ -17,7 +17,6 @@ public class SimulationElbow implements IElbow {
 	public SimulationElbow() {
 		this.arm = new SimpleMotorSimulation();
 		arm.applyConfiguration(SimulationElbowConstants.CONFIG);
-
 	}
 
 	@Override

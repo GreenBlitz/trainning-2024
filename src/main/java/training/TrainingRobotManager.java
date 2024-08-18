@@ -24,6 +24,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	public void teleopInit() {
 		robot.getElbow().getCommandBuilder().moveUpAndDown().schedule();
 		robot.getRoller().getCommandBuilder().noteOut().schedule();
+		robot.getElbow().getCommandBuilder().moveUpAndDown().schedule();
 	}
 
 
