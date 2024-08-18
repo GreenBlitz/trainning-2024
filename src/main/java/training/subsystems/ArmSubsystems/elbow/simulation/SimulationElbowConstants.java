@@ -12,7 +12,7 @@ public class SimulationElbowConstants {
 
 	public static final double CYCLE_TIME = 0.02;
 
-	public static final double KP = 150;
+	public static final double KP = 125.6;
 	public static final double KI = 0;
 	public static final double KD = 0;
 	public static final PIDController PID_CONTROLLER = new PIDController(KP, KI, KD);
@@ -24,6 +24,6 @@ public class SimulationElbowConstants {
 	public static final double KV = 0;
 	public static final double KA = 0;
 
-	public static final ArmFeedforward FEEDFORWARD_CONTROLLER = new ArmFeedforward(KS, KG, KV, KA);
+	public static final ArmFeedforward ARM_FEEDFORWARD_CONTROLLER = new ArmFeedforward(KS, KG, KV, KA);
 
 }

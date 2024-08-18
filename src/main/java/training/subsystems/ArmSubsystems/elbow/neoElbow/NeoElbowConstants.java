@@ -2,12 +2,13 @@ package training.subsystems.ArmSubsystems.elbow.neoElbow;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
+import utils.commands.LoggedDashboardCommand;
 
 public class NeoElbowConstants {
 
 	public static final int ID = 5;
 
-	public static final double KP = 10;
+	public static final double KP = 1;
 	public static final double KI = 0;
 	public static final double KD = 0;
 
@@ -18,6 +19,6 @@ public class NeoElbowConstants {
 	public static final double KV = 0;
 	public static final double KA = 0;
 
-	public static final ArmFeedforward FEEDFORWARD_CONTROLLER = new ArmFeedforward(KS, KG, KV, KA);
+	public static final ArmFeedforward ARM_FEEDFORWARD_CONTROLLER = new ArmFeedforward(KS, KG, KV, KA);
 
 }

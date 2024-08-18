@@ -12,7 +12,10 @@ import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
 import training.subsystems.ArmSubsystems.wrist.Wrist;
 import training.subsystems.ArmSubsystems.wrist.WristConstants;
 import utils.DefaultRobotManager;
+import utils.commands.LoggedDashboardCommand;
 import utils.joysticks.SmartJoystick;
+
+import java.util.function.Consumer;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
@@ -26,7 +29,9 @@ public class TrainingRobotManager extends DefaultRobotManager {
 		smartJoystick.A.onTrue(new MoveElbow(ElbowConstants.STARTING_POSITION, robot.getElbow()));
 
 		smartJoystick.Y.onTrue(new MoveWrist(WristConstants.CLIMBING_POSITION, robot.getWrist()));
-		smartJoystick.X.onTrue(new MoveElbow(Rotation2d.fromDegrees(20), robot.getElbow()));
+
+		Consumer<Double> KGConsumer = KG ->robot.getElbow().setVoltage(KG);  ;
+		smartJoystick.X.onTrue(new LoggedDashboardCommand("Current KG", KGConsumer, robot.getElbow()));
 
 		smartJoystick.R1.whileTrue(new RollClockwise(robot.getRoller()));
 		smartJoystick.R2.whileTrue(new RollCounterClockwise(robot.getRoller()));

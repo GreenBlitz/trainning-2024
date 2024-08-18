@@ -16,9 +16,6 @@ public class MoveWrist extends Command {
 	}
 
 	@Override
-	public void initialize() {}
-
-	@Override
 	public void execute() {
 		wrist.goToPosition(targetPosition);
 	}

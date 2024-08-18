@@ -15,7 +15,7 @@ public class ElbowStayInPlace extends Command {
 
 	@Override
 	public void execute() {
-		elbow.stayAtPosition();
+		elbow.stayInPosition();
 	}
 
 }

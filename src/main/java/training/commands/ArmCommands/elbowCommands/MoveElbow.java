@@ -17,9 +17,6 @@ public class MoveElbow extends Command {
 	}
 
 	@Override
-	public void initialize() {}
-
-	@Override
 	public void execute() {
 		elbow.goToPosition(targetPosition);
 	}

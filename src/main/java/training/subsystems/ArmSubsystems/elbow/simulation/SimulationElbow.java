@@ -29,7 +29,7 @@ public class SimulationElbow implements IElbow {
 			ElbowConstants.STARTING_POSITION.getRadians()
 		);
 		pidController = SimulationElbowConstants.PID_CONTROLLER;
-		feedForwardController = SimulationElbowConstants.FEEDFORWARD_CONTROLLER;
+		feedForwardController = SimulationElbowConstants.ARM_FEEDFORWARD_CONTROLLER;
 	}
 
 	public void setVoltage(double voltage) {
@@ -50,9 +50,9 @@ public class SimulationElbow implements IElbow {
 	}
 
 	@Override
-	public void stayAtPosition() {
+	public void stayInPosition() {
 		setVoltage(
-			SimulationElbowConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), 0)
+			SimulationElbowConstants.ARM_FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), 0)
 				+ pidController.calculate(getPosition().getRadians(), getPosition().getRadians())
 		);
 	}

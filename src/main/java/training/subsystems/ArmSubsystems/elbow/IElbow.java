@@ -12,6 +12,6 @@ public interface IElbow {
 
 	void updateInputs(ElbowInputsAutoLogged inputs);
 
-	void stayAtPosition();
+	void stayInPosition();
 
 }

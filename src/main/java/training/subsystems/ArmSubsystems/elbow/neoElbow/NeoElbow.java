@@ -52,13 +52,13 @@ public class NeoElbow implements IElbow {
 				position.getRotations(),
 				CANSparkBase.ControlType.kPosition,
 				0,
-				NeoElbowConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations())
+				NeoElbowConstants.ARM_FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations())
 			);
 	}
 
 	@Override
-	public void stayAtPosition() {
-		setVoltage(NeoElbowConstants.FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations()));
+	public void stayInPosition() {
+		setVoltage(NeoElbowConstants.ARM_FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations()));
 	}
 
 	@Override

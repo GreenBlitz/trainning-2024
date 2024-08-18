@@ -47,8 +47,8 @@ public class Elbow extends GBSubsystem {
 		Logger.recordOutput("Elbow/elbow target position:", targetPosition.getDegrees());
 	}
 
-	public void stayAtPosition() {
-		iElbow.stayAtPosition();
+	public void stayInPosition() {
+		iElbow.stayInPosition();
 	}
 
 	public void setVoltage(double voltage) {
