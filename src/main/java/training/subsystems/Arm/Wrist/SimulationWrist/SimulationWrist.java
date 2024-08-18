@@ -19,8 +19,8 @@ public class SimulationWrist implements IWrist {
         closedLoopGeneralConfigs.ContinuousWrap = true;
         TalonFXConfiguration talonFXConfiguration = new TalonFXConfiguration()
                 .withSlot0(SimulationWristConstants.SLOT_0_CONFIGS)
-                .withClosedLoopGeneral(a);
-        motor.applyConfiguration(talonFXConfiguration);
+                .withClosedLoopGeneral(closedLoopGeneralConfigs);
+        motor.getConfigurator().apply(talonFXConfiguration);
     }
 
 
