@@ -39,6 +39,7 @@ public class Roller extends GBSubsystem {
 	}
 	public void stop() {
 		motor.set(0);
+
 	}
 
 

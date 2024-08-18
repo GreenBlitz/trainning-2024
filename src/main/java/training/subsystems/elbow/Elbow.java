@@ -3,16 +3,19 @@ package training.subsystems.elbow;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
+import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-	private static CANSparkMax motor;
+	private final CANSparkMax motor;
 	private static Elbow instance;
+	private ArmFeedforward armFeedforward;
 
 	private Elbow() {
-		motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
+		this.armFeedforward = ElbowConstants.ARM_FEEDFORWARD;
+		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getPIDController().setP(ElbowConstants.MOTOR_ID_P);
 		motor.getPIDController().setI(ElbowConstants.MOTOR_ID_I);
 		motor.getPIDController().setD(ElbowConstants.MOTOR_ID_D);
@@ -27,10 +30,25 @@ public class Elbow extends GBSubsystem {
 	public static Elbow getInstance() {
 		init();
 		return instance;
+
 	}
 
-	public static void goToAngel(Rotation2d targetAngle) {
-		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition);
+	public Rotation2d getPosition() {
+		return Rotation2d.fromRotations(motor.getEncoder().getPosition());
+	}
+
+	public Rotation2d getVelocity() {
+		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+
+	}
+
+
+	public void goToAngel(Rotation2d targetAngle) {
+		motor.getPIDController().setReference(targetAngle.getDegrees(),
+				CANSparkBase.ControlType.kPosition,
+				ElbowConstants.PID_SLOT,
+				ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations()));
+
 	}
 
 	public boolean isAtAngle(Rotation2d targetAngle) {
@@ -38,7 +56,7 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public void stop() {
-		motor.set(0);
+		goToAngel(getPosition());
 	}
 
 
