@@ -1,21 +1,14 @@
-package training.subsystems.Elbow.SimulationElbow;
+package training.subsystems.Arm.Elbow.SimulationElbow;
 
-import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.configs.ClosedLoopGeneralConfigs;
-import com.ctre.phoenix6.configs.FeedbackConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.controls.ControlRequest;
 import com.ctre.phoenix6.controls.PositionVoltage;
-import com.revrobotics.CANSparkBase;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
-import training.subsystems.Elbow.ElbowConstants;
-import training.subsystems.Elbow.IElbow;
-import utils.GBSubsystem;
+import training.subsystems.Arm.Elbow.ElbowConstants;
+import training.subsystems.Arm.Elbow.IElbow;
 import utils.simulation.SingleJointedArmSimulation;
-
-import java.util.Map;
 
 public class SimulationElbow implements IElbow {
     private final SingleJointedArmSimulation motor;

@@ -1,7 +1,7 @@
-package training.subsystems.Elbow;
+package training.subsystems.Arm.Elbow;
 
-import training.subsystems.Elbow.NeoElbow.NeoElbow;
-import training.subsystems.Elbow.SimulationElbow.SimulationElbow;
+import training.subsystems.Arm.Elbow.NeoElbow.NeoElbow;
+import training.subsystems.Arm.Elbow.SimulationElbow.SimulationElbow;
 
 public class ElbowFactory {
     public static IElbow create() {

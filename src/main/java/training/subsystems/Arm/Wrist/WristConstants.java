@@ -1,10 +1,10 @@
-package training.subsystems.Elbow;
+package training.subsystems.Arm.Wrist;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.RobotType;
 
-public class ElbowConstants {
+public class WristConstants {
     public static final int MOTOR_ID = 0;
     public static final Rotation2d STARTING_POSITION = Rotation2d.fromDegrees(67);
     public static final double POSITION_CONVERSION_FACTOR = 1; //check and change

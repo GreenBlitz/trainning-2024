@@ -1,7 +1,7 @@
-package training.subsystems.Elbow.SimulationElbow;
+package training.subsystems.Arm.Elbow.SimulationElbow;
 
 import com.ctre.phoenix6.configs.Slot0Configs;
-import training.subsystems.Elbow.ElbowConstants;
+import training.subsystems.Arm.Elbow.ElbowConstants;
 
 public class SimulationElbowConstants {
     public static final int NUMBER_OF_MOTORS = 1;

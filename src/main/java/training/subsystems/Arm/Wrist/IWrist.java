@@ -1,8 +1,8 @@
-package training.subsystems.Elbow;
+package training.subsystems.Arm.Wrist;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 
-public interface IElbow {
+public interface IWrist {
 
 
     void moveToAngle(Rotation2d position);

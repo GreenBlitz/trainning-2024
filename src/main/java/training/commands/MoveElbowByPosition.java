@@ -3,9 +3,9 @@ package training.commands;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import org.littletonrobotics.junction.Logger;
-import training.subsystems.Elbow.ElbowConstants;
+import training.subsystems.Arm.Elbow.ElbowConstants;
 import training.Robot;
-import training.subsystems.Elbow.Elbow;
+import training.subsystems.Arm.Elbow.Elbow;
 
 public class MoveElbowByPosition extends Command {
     private final Elbow elbow;

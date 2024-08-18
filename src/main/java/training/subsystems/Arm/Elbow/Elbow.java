@@ -1,4 +1,4 @@
-package training.subsystems.Elbow;
+package training.subsystems.Arm.Elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import org.littletonrobotics.junction.Logger;
