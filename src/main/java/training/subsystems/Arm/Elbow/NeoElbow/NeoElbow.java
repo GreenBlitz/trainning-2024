@@ -15,10 +15,11 @@ public class NeoElbow implements IElbow {
 	public NeoElbow() {
 		this.motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getEncoder().setPositionConversionFactor(ElbowConstants.GEAR_RATIO);
+		motor.getEncoder().setVelocityConversionFactor(ElbowConstants.GEAR_RATIO);
 		motor.getPIDController().setP(NeoElbowConstants.P);
 		motor.getPIDController().setI(NeoElbowConstants.I);
 		motor.getPIDController().setD(NeoElbowConstants.D);
-		motor.getEncoder().setPosition(ElbowConstants.PresetPositions.STARTING.ANGLE.getDegrees());
+		motor.getEncoder().setPosition(ElbowConstants.PresetPositions.STARTING.ANGLE.getRotations());
 	}
 
 
@@ -26,7 +27,7 @@ public class NeoElbow implements IElbow {
 	public void moveToPosition(Rotation2d position) {
 		motor.getPIDController()
 			.setReference(
-				position.getDegrees(),
+				position.getRotations(),
 				CANSparkBase.ControlType.kPosition,
 				NeoElbowConstants.PID_SLOT,
 				NeoElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())

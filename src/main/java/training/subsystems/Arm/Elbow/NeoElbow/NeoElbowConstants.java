@@ -11,7 +11,7 @@ public class NeoElbowConstants {
 
 	protected static final double KS = 0;
 
-	protected static final double KG = 0.12;
+	protected static final double KG = 0;
 
 	protected static final double KV = 0;
 
@@ -21,7 +21,7 @@ public class NeoElbowConstants {
 
 	protected static final int PID_SLOT = 0;
 
-	protected static final double P = 40;
+	protected static final double P = 1;
 
 	protected static final double I = 0;
 

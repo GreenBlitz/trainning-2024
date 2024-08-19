@@ -8,7 +8,6 @@ import training.subsystems.Arm.Elbow.Elbow;
 public class MoveElbow extends Command {
 
 	private final Elbow elbow;
-
 	private final Rotation2d targetPosition;
 
 	public MoveElbow(Elbow elbow, Rotation2d targetPosition) {
