@@ -7,7 +7,7 @@ import training.subsystems.Arm.Elbow.SimulationElbow.SimulationElbow;
 public class ElbowFactory {
 
 	public static IElbow create() {
-		return switch (Robot.ROBOT_TYPE) {
+		return switch (Robot.SIMULATION) {
 			case REAL -> new NeoElbow();
 			case SIMULATION -> new SimulationElbow();
 		};
