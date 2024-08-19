@@ -1,6 +1,6 @@
 package training;
 
-import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import training.commands.ArmCommands.elbowCommands.ElbowStayInPlace;
 import training.commands.ArmCommands.elbowCommands.MoveElbow;
 import training.commands.ArmCommands.wristCommands.MoveWrist;
@@ -30,7 +30,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 		smartJoystick.Y.onTrue(new MoveWrist(WristConstants.CLIMBING_POSITION, robot.getWrist()));
 
-		Consumer<Double> KGConsumer = KG ->robot.getElbow().setVoltage(KG);  ;
+		Consumer<Double> KGConsumer = KG -> robot.getElbow().setVoltage(KG);
+		;
 		smartJoystick.X.onTrue(new LoggedDashboardCommand("Current KG", KGConsumer, robot.getElbow()));
 
 		smartJoystick.R1.whileTrue(new RollClockwise(robot.getRoller()));
@@ -45,11 +46,12 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
-		//configJoystick(robot);
-		//configDefaultCommands(robot.getElbow(), robot.getWrist());
-		Consumer<Double> KGConsumer = KG ->robot.getElbow().setVoltage(KG);  ;
-		smartJoystick.A.onTrue(new LoggedDashboardCommand("Current KG", KGConsumer, robot.getElbow()));
-
+		// configJoystick(robot);
+		// configDefaultCommands(robot.getElbow(), robot.getWrist());
+		Consumer<Double> KGConsumer = KG -> robot.getElbow().setVoltage(KG);
+		;
+		smartJoystick.A.whileTrue(new LoggedDashboardCommand("Current KG", KGConsumer, robot.getElbow()));
+		smartJoystick.B.whileTrue(new InstantCommand(() -> robot.getElbow().setPower(0.5), robot.getElbow()));
 	}
 
 	@Override
