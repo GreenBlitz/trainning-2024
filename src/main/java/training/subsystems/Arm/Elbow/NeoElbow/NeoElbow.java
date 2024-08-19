@@ -15,10 +15,7 @@ public class NeoElbow implements IElbow {
 	private final ControlType controlType = CANSparkBase.ControlType.kPosition;
 	private final int pidSlot = NeoElbowConstants.PID_SLOT;
 	private final double feedForward_Calculation = NeoElbowConstants.FEEDFORWARD
-			.calculate(
-					getPosition().getRadians(),
-					getVelocity().getRotations()
-			);
+		.calculate(getPosition().getRadians(), getVelocity().getRotations());
 
 	public NeoElbow() {
 		this.motor = new CANSparkMax(NeoElbowConstants.ID, CANSparkLowLevel.MotorType.kBrushless);
@@ -46,13 +43,7 @@ public class NeoElbow implements IElbow {
 
 	@Override
 	public void moveToPosition(Rotation2d position) {
-		motor.getPIDController()
-				.setReference(
-						position.getRotations(),
-						controlType,
-						pidSlot,
-						feedForward_Calculation
-				);
+		motor.getPIDController().setReference(position.getRotations(), controlType, pidSlot, feedForward_Calculation);
 	}
 
 	@Override

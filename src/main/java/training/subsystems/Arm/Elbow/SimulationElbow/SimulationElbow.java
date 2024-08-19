@@ -3,11 +3,9 @@ package training.subsystems.Arm.Elbow.SimulationElbow;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
-import org.littletonrobotics.junction.Logger;
 import training.subsystems.Arm.Elbow.ElbowConstants;
 import training.subsystems.Arm.Elbow.ElbowInputsAutoLogged;
 import training.subsystems.Arm.Elbow.IElbow;
@@ -21,7 +19,7 @@ public class SimulationElbow implements IElbow {
 	private VoltageOut voltageOut = new VoltageOut(0);
 
 	public SimulationElbow() {
-		 SingleJointedArmSim armSimulation = new SingleJointedArmSim(
+		SingleJointedArmSim armSimulation = new SingleJointedArmSim(
 			DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
 			SimulationElbowConstants.GEAR_RATIO,
 			SingleJointedArmSim.estimateMOI(ElbowConstants.ARM_LENGTH, ElbowConstants.ARM_MASS_KG),

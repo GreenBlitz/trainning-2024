@@ -1,7 +1,5 @@
 package training.subsystems.Arm.Elbow.SimulationElbow;
 
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import edu.wpi.first.math.geometry.Rotation2d;
 
 public class SimulationElbowConstants {
 
