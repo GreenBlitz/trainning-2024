@@ -45,8 +45,11 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
-		configJoystick(robot);
-		configDefaultCommands(robot.getElbow(), robot.getWrist());
+		//configJoystick(robot);
+		//configDefaultCommands(robot.getElbow(), robot.getWrist());
+		Consumer<Double> KGConsumer = KG ->robot.getElbow().setVoltage(KG);  ;
+		smartJoystick.A.onTrue(new LoggedDashboardCommand("Current KG", KGConsumer, robot.getElbow()));
+
 	}
 
 	@Override
