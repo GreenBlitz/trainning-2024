@@ -6,11 +6,12 @@ import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-	private IElbow iElbow;
-	private ElbowInputsAutoLogged inputs = new ElbowInputsAutoLogged();
+	private final IElbow iElbow;
+	private ElbowInputsAutoLogged inputs;
 
-	public Elbow() {
-		this.iElbow = ElbowFactory.create();
+	public Elbow(IElbow elbow) {
+		this.iElbow = elbow;
+		inputs = new ElbowInputsAutoLogged();
 	}
 
 	@Override
@@ -21,7 +22,7 @@ public class Elbow extends GBSubsystem {
 	@Override
 	protected void subsystemPeriodic() {
 		iElbow.updateInputs(inputs);
-		Logger.processInputs("Elbow inputs", inputs);
+		Logger.processInputs(getLogPath(), inputs);
 	}
 
 	public void setPower(double power) {
@@ -29,7 +30,7 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public boolean isAtPosition(Rotation2d target) {
-		return Math.abs(iElbow.getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE;
+		return Math.abs(iElbow.getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE.getDegrees();
 	}
 
 	public void moveToPosition(Rotation2d targetPosition) {
@@ -41,8 +42,8 @@ public class Elbow extends GBSubsystem {
 	}
 
 
-	public double getPosition() {
-		return iElbow.getPosition().getDegrees();
+	public Rotation2d getPosition() {
+		return iElbow.getPosition();
 	}
 
 }

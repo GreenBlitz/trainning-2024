@@ -7,8 +7,8 @@ public class RollCounterClockwise extends Command {
 
 	private final Roller roller;
 
-	public RollCounterClockwise() {
-		this.roller = Roller.getInstance();
+	public RollCounterClockwise(Roller roller) {
+		this.roller = roller;
 	}
 
 	@Override

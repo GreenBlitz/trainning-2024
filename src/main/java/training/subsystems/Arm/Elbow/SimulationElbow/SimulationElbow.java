@@ -16,28 +16,26 @@ import utils.simulation.SingleJointedArmSimulation;
 public class SimulationElbow implements IElbow {
 
 	private final SingleJointedArmSimulation elbowSimulation;
-	private final PIDController controller;
 	private final TalonFXConfiguration config;
-	private PositionVoltage positionVoltage = new PositionVoltage(ElbowConstants.PresetPositions.STARTING.ANGLE.getRotations());
-
+	private PositionVoltage positionVoltage = new PositionVoltage(ElbowConstants.PresetPositions.STARTING.angle.getRotations());
+	private VoltageOut voltageOut = new VoltageOut(0);
 
 	public SimulationElbow() {
-		final SingleJointedArmSim armSimulation = new SingleJointedArmSim(
+		 SingleJointedArmSim armSimulation = new SingleJointedArmSim(
 			DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
 			SimulationElbowConstants.GEAR_RATIO,
-			SingleJointedArmSim.estimateMOI(SimulationElbowConstants.ARM_LENGTH, SimulationElbowConstants.ARM_MASS_KG),
-			SimulationElbowConstants.ARM_LENGTH,
-			SimulationElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
-			SimulationElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
+			SingleJointedArmSim.estimateMOI(ElbowConstants.ARM_LENGTH, ElbowConstants.ARM_MASS_KG),
+			ElbowConstants.ARM_LENGTH,
+			ElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians(),
+			ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
 			false,
-			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
+			ElbowConstants.PresetPositions.STARTING.angle.getRadians()
 		);
-		this.controller = new PIDController(SimulationElbowConstants.P, SimulationElbowConstants.I, SimulationElbowConstants.D);
 		this.elbowSimulation = new SingleJointedArmSimulation(armSimulation);
 		this.config = new TalonFXConfiguration();
-		config.Slot0.kP = controller.getP();
-		config.Slot0.kI = controller.getI();
-		config.Slot0.kD = controller.getD();
+		config.Slot0.kP = SimulationElbowConstants.P;
+		config.Slot0.kI = SimulationElbowConstants.I;
+		config.Slot0.kD = SimulationElbowConstants.D;
 		elbowSimulation.applyConfiguration(config);
 	}
 
@@ -45,25 +43,15 @@ public class SimulationElbow implements IElbow {
 	@Override
 	public void setPower(double power) {
 		elbowSimulation.setPower(power);
-		Logger.recordOutput(SimulationElbowConstants.notMagic, "Power is now" + elbowSimulation.getCurrent());
 	}
 
 	public void setVoltage(double voltage) {
-		VoltageOut voltageOut = new VoltageOut(voltage);
-		elbowSimulation.setControl(voltageOut);
-		Logger.recordOutput(SimulationElbowConstants.notMagic, "Voltage is not" + elbowSimulation.getVoltage());
+		elbowSimulation.setControl(voltageOut.withOutput(voltage));
 	}
 
 	@Override
 	public void moveToPosition(Rotation2d targetPosition) {
 		elbowSimulation.setControl(positionVoltage.withPosition(targetPosition.getRotations()));
-		Logger.recordOutput(SimulationElbowConstants.notMagic, "Moved to" + getPosition());
-	}
-
-	@Override
-	public void stayAtPosition() {
-		moveToPosition(getPosition());
-		Logger.recordOutput(SimulationElbowConstants.notMagic, "At position" + getPosition());
 	}
 
 	@Override
@@ -77,7 +65,6 @@ public class SimulationElbow implements IElbow {
 		inputs.position = elbowSimulation.getPosition();
 		inputs.velocity = elbowSimulation.getVelocity().getRotations();
 		inputs.voltage = elbowSimulation.getVoltage();
-		inputs.positionReference = Rotation2d.fromDegrees(55);
 	}
 
 }

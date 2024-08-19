@@ -20,8 +20,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
-		joystick.A.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.SCORE.ANGLE));
-		joystick.B.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.INTAKE.ANGLE));
+		joystick.A.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.SCORE.angle));
+		joystick.B.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.INTAKE.angle));
 	}
 
 

@@ -8,8 +8,6 @@ public interface IElbow {
 
 	void moveToPosition(Rotation2d position);
 
-	void stayAtPosition();
-
 	Rotation2d getPosition();
 
 	void updateInputs(ElbowInputsAutoLogged inputs);

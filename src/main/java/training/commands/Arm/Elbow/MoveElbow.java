@@ -18,7 +18,6 @@ public class MoveElbow extends Command {
 	@Override
 	public void initialize() {
 		elbow.moveToPosition(targetPosition);
-		Logger.recordOutput("MoveEloSta", "at position" + elbow.getPosition());
 	}
 
 	@Override
@@ -29,7 +28,6 @@ public class MoveElbow extends Command {
 	@Override
 	public void end(boolean interrupted) {
 		elbow.stayAtPosition();
-		Logger.recordOutput("MoveEloEnd", "at position" + elbow.getPosition());
 	}
 
 }
