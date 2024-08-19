@@ -21,11 +21,11 @@ public class NeoElbowConstants {
 
 	protected static final int PID_SLOT = 0;
 
-	protected static final double P = 89;
+	protected static final double P = 40;
 
-	protected static final double I = 76;
+	protected static final double I = 0;
 
-	protected static final double D = 45;
+	protected static final double D = 0;
 
 
 }
