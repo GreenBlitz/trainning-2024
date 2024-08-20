@@ -1,10 +1,9 @@
 package training.subsystems;
 
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
+
 public class SwerveModule extends GBSubsystem {
 
     private static SwerveModule instance;
@@ -13,24 +12,25 @@ public class SwerveModule extends GBSubsystem {
 
     private TalonFX angularMotor;
 
-    public void stop(){
+    public void stop() {
         linearMotor.set(0);
         angularMotor.set(0);
     }
-    public Rotation2d getAngle(){
+
+    public Rotation2d getAngle() {
         return Rotation2d.fromRotations(angularMotor.getPosition().getValue());
     }
 
-    public boolean isItAtAngle(Rotation2d angle){
-        return  (Math.abs (getAngle().getDegrees() - angle.getDegrees() ) <= 1);
+    public boolean isItAtAngle(Rotation2d angle) {
+        return Math.abs(getAngle().getDegrees() - angle.getDegrees()) <= 1;
     }
 
-    private SwerveModule(){
+    private SwerveModule() {
         linearMotor = new TalonFX(0);
         angularMotor = new TalonFX(1);
     }
 
-    public static void init(){
+    public static void init() {
         if (instance == null) {
             instance = new SwerveModule();
         }

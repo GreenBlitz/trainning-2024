@@ -15,12 +15,12 @@ public class TrainingRobotManager extends DefaultRobotManager {
     public void trainingInit() {
         robot = new Robot();
         joystick = new SmartJoystick(RobotConstants.ID_OF_FIRST_JOYSTICK);
+        joystick.A.whileTrue(new MoveAngularMotorByVoltage(1));
     }
 
     @Override
     public void trainingPeriodic() {
         // add stuff...
-        joystick.A.whileTrue(new MoveAngularMotorByVoltage(1));
     }
 
     @Override

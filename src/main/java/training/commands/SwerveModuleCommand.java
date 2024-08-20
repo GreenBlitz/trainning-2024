@@ -7,7 +7,7 @@ public abstract class SwerveModuleCommand extends GBCommand {
 
     SwerveModule swerveModule;
 
-    public SwerveModuleCommand(){
+    public SwerveModuleCommand() {
         swerveModule = SwerveModule.getInstance();
         require(swerveModule);
     }
