@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 
-public class ElbowNEO implements IElbow {
+public class ElbowNEO {
 
 	private CANSparkMax motor;
 	private static ElbowNEO instance;
@@ -15,9 +15,9 @@ public class ElbowNEO implements IElbow {
 	private ElbowNEO() {
 		this.armFeedforward = ElbowConstants.ARM_FEEDFORWARD;
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getPIDController().setP(ElbowConstants.MOTOR_P);
-		motor.getPIDController().setI(ElbowConstants.MOTOR_I);
-		motor.getPIDController().setD(ElbowConstants.MOTOR_D);
+		motor.getPIDController().setP(ElbowConstants.P);
+		motor.getPIDController().setI(ElbowConstants.I);
+		motor.getPIDController().setD(ElbowConstants.D);
 	}
 
 	public void init() {
@@ -56,9 +56,8 @@ public class ElbowNEO implements IElbow {
 		return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosition()) == 0;
 	}
 
-	public void stop() {
+	public void stayAtPosition() {
 		goToAngle(getPosition());
 	}
-
 
 }

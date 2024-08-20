@@ -9,16 +9,16 @@ import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-	private final CANSparkMax motor;
 	private static Elbow instance;
-	private ArmFeedforward armFeedforward;
+	private final CANSparkMax motor;
+	private final ArmFeedforward armFeedforward;
 
 	private Elbow() {
 		this.armFeedforward = ElbowConstants.ARM_FEEDFORWARD;
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getPIDController().setP(ElbowConstants.MOTOR_P);
-		motor.getPIDController().setI(ElbowConstants.MOTOR_I);
-		motor.getPIDController().setD(ElbowConstants.MOTOR_D);
+		motor.getPIDController().setP(ElbowConstants.P);
+		motor.getPIDController().setI(ElbowConstants.I);
+		motor.getPIDController().setD(ElbowConstants.D);
 	}
 
 	public static void init() {
@@ -40,7 +40,6 @@ public class Elbow extends GBSubsystem {
 		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
 	}
 
-
 	public void goToAngle(Rotation2d targetAngle) {
 		motor.getPIDController()
 			.setReference(
@@ -55,17 +54,17 @@ public class Elbow extends GBSubsystem {
 		return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosition()) == 0;
 	}
 
-	public void stop() {
+	public void stayAtPosition() {
 		goToAngle(getPosition());
 	}
 
-
 	@Override
 	protected String getLogPath() {
-		return "";
+		return "Elbow/";
 	}
 
 	@Override
-	protected void subsystemPeriodic() {}
+	protected void subsystemPeriodic() {
+	}
 
 }

@@ -6,11 +6,7 @@ public interface IWrist {
 
 	void init();
 
-	void goToAngel(Rotation2d targetAngle);
-
-	boolean isAtAngle(Rotation2d targetAngle);
-
-	Wrist getInstance();
+	void goToAngle(Rotation2d targetAngle);
 
 	void stop();
 

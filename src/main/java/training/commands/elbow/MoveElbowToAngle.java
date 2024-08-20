@@ -8,21 +8,25 @@ public class MoveElbowToAngle extends Command {
 
 	private Rotation2d targetAngle;
 
+	public Elbow getInstance() {
+		return Elbow.getInstance();
+	}
+
 	public MoveElbowToAngle(Rotation2d targetAngle) {
 		this.targetAngle = targetAngle;
 	}
 
 	@Override
 	public void initialize() {
-		Elbow.getInstance().goToAngle(targetAngle);
+		getInstance().goToAngle(targetAngle);
 	}
 
 	public boolean isFinished() {
-		return Elbow.getInstance().isAtAngle(targetAngle);
+		return getInstance().isAtAngle(targetAngle);
 	}
 
 	public void end(boolean interrupted) {
-		Elbow.getInstance().stop();
+		getInstance().stayAtPosition();
 	}
 
 }

@@ -7,14 +7,14 @@ import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
 
-	private static CANSparkMax motor;
 	private static Roller instance;
+	private final CANSparkMax motor;
 
 	private Roller() {
 		motor = new CANSparkMax(RollerConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getPIDController().setP(RollerConstants.MOTOR_P);
-		motor.getPIDController().setI(RollerConstants.MOTOR_I);
-		motor.getPIDController().setD(RollerConstants.MOTOR_D);
+		motor.getPIDController().setP(RollerConstants.P);
+		motor.getPIDController().setI(RollerConstants.I);
+		motor.getPIDController().setD(RollerConstants.D);
 	}
 
 
@@ -41,14 +41,13 @@ public class Roller extends GBSubsystem {
 		motor.set(0);
 	}
 
-
 	@Override
 	protected String getLogPath() {
-		return "";
+		return "Roller/";
 	}
 
 	@Override
-	protected void subsystemPeriodic() {}
+	protected void subsystemPeriodic() {
+	}
 
 }
-

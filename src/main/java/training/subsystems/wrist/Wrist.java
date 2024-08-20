@@ -8,14 +8,14 @@ import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
 
-	private static CANSparkMax motor;
 	private static Wrist instance;
+	private final CANSparkMax motor;
 
 	private Wrist() {
 		motor = new CANSparkMax(WristConstant.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getPIDController().setP(WristConstant.MOTOR_P);
-		motor.getPIDController().setI(WristConstant.MOTOR_I);
-		motor.getPIDController().setD(WristConstant.MOTOR_D);
+		motor.getPIDController().setP(WristConstant.P);
+		motor.getPIDController().setI(WristConstant.I);
+		motor.getPIDController().setD(WristConstant.D);
 	}
 
 	public static Wrist getInstance() {
@@ -29,7 +29,7 @@ public class Wrist extends GBSubsystem {
 		}
 	}
 
-	public static void goToAngle(Rotation2d targetAngle) {
+	public void goToAngle(Rotation2d targetAngle) {
 		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition);
 	}
 
@@ -41,14 +41,13 @@ public class Wrist extends GBSubsystem {
 		motor.set(0);
 	}
 
-
 	@Override
 	protected String getLogPath() {
-		return "Wrist";
+		return "Wrist/";
 	}
 
 	@Override
-	protected void subsystemPeriodic() {}
+	protected void subsystemPeriodic() {
+	}
 
 }
-
