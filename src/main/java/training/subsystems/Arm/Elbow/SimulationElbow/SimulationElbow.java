@@ -15,7 +15,7 @@ public class SimulationElbow implements IElbow {
 
 	private final SingleJointedArmSimulation elbowSimulation;
 	private final TalonFXConfiguration config;
-	private PositionVoltage positionVoltage = new PositionVoltage(ElbowConstants.PresetPositions.STARTING.angle.getRotations());
+	private PositionVoltage positionVoltage;
 	private VoltageOut voltageOut = new VoltageOut(0);
 
 	public SimulationElbow() {
