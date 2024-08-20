@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 
-public class ElbowNEO {
+public class ElbowNEO implements IElbow{
 
 	private CANSparkMax motor;
 	private static ElbowNEO instance;
@@ -27,9 +27,7 @@ public class ElbowNEO {
 	}
 
 	public ElbowNEO getInstance() {
-		if (instance == null) {
-			instance = new ElbowNEO();
-		}
+		init();
 		return instance;
 	}
 

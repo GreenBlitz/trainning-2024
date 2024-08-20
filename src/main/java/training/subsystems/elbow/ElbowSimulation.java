@@ -14,7 +14,7 @@ public class ElbowSimulation implements IElbow {
 	private SingleJointedArmSimulation elbowSimulation;
 	private ArmFeedforward armFeedforward;
 	private PIDController controller;
-	private PositionVoltage pos;
+	private PositionVoltage positionVoltage;
 
 	private ElbowSimulation() {
 		SingleJointedArmSim armSim = new SingleJointedArmSim(
@@ -37,8 +37,7 @@ public class ElbowSimulation implements IElbow {
 	}
 
 	public void goToAngle(Rotation2d targetAngle) {
-		pos = new PositionVoltage(targetAngle.getRotations());
-		elbowSimulation.setControl(pos);
+		elbowSimulation.setControl(positionVoltage.withPosition(targetAngle.getRotations()));
 	}
 
 	public Rotation2d getPosition() {

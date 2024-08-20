@@ -40,5 +40,5 @@ public class ElbowConstants {
 	public static final double ARM_MASS_KG = 0.44;
 	public static final Rotation2d BACKWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(-81);
 	public static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(90);
-
+	public static final Rotation2d TOLERANCE = Rotation2d.fromDegrees(3);
 }
