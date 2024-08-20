@@ -16,7 +16,6 @@ public class NeoElbowConstants {
 
 	protected static final double KA = 0;
 
-	protected static final ArmFeedforward FEEDFORWARD = new ArmFeedforward(KS, KG, KV, KA);
 
 	protected static final int PID_SLOT = 0;
 

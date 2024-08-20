@@ -4,17 +4,21 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
+import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.subsystems.Arm.Elbow.ElbowConstants;
 import training.subsystems.Arm.Elbow.ElbowInputsAutoLogged;
 import training.subsystems.Arm.Elbow.IElbow;
 
+import static training.subsystems.Arm.Elbow.NeoElbow.NeoElbowConstants.*;
+
 public class NeoElbow implements IElbow {
 
 	private final CANSparkMax motor;
+	protected final ArmFeedforward feedforward = new ArmFeedforward(KS, KG, KV, KA);
 	private final ControlType controlType = CANSparkBase.ControlType.kPosition;
 	private final int pidSlot = NeoElbowConstants.PID_SLOT;
-	private final double feedForward_Calculation = NeoElbowConstants.FEEDFORWARD
+	private final double feedForward_Calculation = feedforward
 		.calculate(getPosition().getRadians(), getVelocity().getRotations());
 
 	public NeoElbow() {
