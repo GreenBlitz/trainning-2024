@@ -19,6 +19,11 @@ public class NeoElbow implements IElbow {
 
 	public NeoElbow() {
 		this.motor = new CANSparkMax(NeoElbowConstants.ID, CANSparkLowLevel.MotorType.kBrushless);
+		configMotor();
+		motor.burnFlash();
+	}
+
+	public void configMotor(){
 		motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.GEAR_RATIO);
 		motor.getEncoder().setVelocityConversionFactor(NeoElbowConstants.GEAR_RATIO);
 		motor.getPIDController().setP(NeoElbowConstants.P);
