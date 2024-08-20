@@ -14,7 +14,6 @@ import utils.simulation.SingleJointedArmSimulation;
 public class SimulationElbow implements IElbow {
 
 	private final SingleJointedArmSimulation elbowSimulation;
-	private final TalonFXConfiguration config;
 	private PositionVoltage positionVoltage;
 	private VoltageOut voltageOut = new VoltageOut(0);
 
@@ -30,11 +29,7 @@ public class SimulationElbow implements IElbow {
 			ElbowConstants.PresetPositions.STARTING.angle.getRadians()
 		);
 		this.elbowSimulation = new SingleJointedArmSimulation(armSimulation);
-		this.config = new TalonFXConfiguration();
-		config.Slot0.kP = SimulationElbowConstants.P;
-		config.Slot0.kI = SimulationElbowConstants.I;
-		config.Slot0.kD = SimulationElbowConstants.D;
-		elbowSimulation.applyConfiguration(config);
+		elbowSimulation.applyConfiguration(SimulationElbowConstants.CONFIG);
 	}
 
 
