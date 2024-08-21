@@ -24,13 +24,11 @@ public class Module extends GBSubsystem {
 	
 	}
 	public Module(){
-		this.linearMotor = new TalonFX(0);
-		this.angularMotor = new TalonFX(1);
+		this.linearMotor = new TalonFX(ModuleConstants.LINEAR_MOTOR_ID);
+		this.angularMotor = new TalonFX(ModuleConstants.ANGULAR_MOTOR_ID);
 		angularMotor.setPosition(0);
-		angularMotor.getConfigurator().apply(new FeedbackConfigs().withSensorToMechanismRatio(150/7));
+		angularMotor.getConfigurator().apply(new FeedbackConfigs().withSensorToMechanismRatio(ModuleConstants.GEAR_RATIO));
 		angularMotor.getConfigurator().apply(ModuleConstants.PIDConfiguration);
-		
-		
 	}
 
 	public void setAngularMotorByPosition(Rotation2d position){

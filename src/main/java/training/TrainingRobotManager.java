@@ -8,15 +8,15 @@ import utils.joysticks.SmartJoystick;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
-    private SmartJoystick joystick;
+    private Robot robot;
     @Override
     public void trainingInit() {
+        robot = new Robot();
         setupJoystickControls();
     }
 
     private void setupJoystickControls() {
-        Robot robot = new Robot();
-        joystick = new SmartJoystick(JoystickPorts.MAIN);
+        SmartJoystick joystick = new SmartJoystick(JoystickPorts.MAIN);
         joystick.A.onTrue(new MoveWristByPosition(robot, Rotation2d.fromDegrees(90)));
         joystick.B.onTrue(new MoveWristByPosition(robot, Rotation2d.fromDegrees(180)));
     }

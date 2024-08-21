@@ -30,7 +30,6 @@ public class NeoElbow extends GBSubsystem implements IElbow {
     protected void subsystemPeriodic() {
     }
 
-
     public void moveToAngle(Rotation2d position) {
         motor.getPIDController().setReference(
                 position.getRotations(),

@@ -13,4 +13,8 @@ public class ModuleConstants {
             .withKD(0);
 
     public static double LINEAR_MOTOR_POWER_MULTIPLIER = 0.8;
+
+    public static int LINEAR_MOTOR_ID = 0;
+    public static int ANGULAR_MOTOR_ID = 1;
+    public static double GEAR_RATIO = 150.0 / 7;
 }

@@ -14,7 +14,6 @@ public class MoveRollerByVelocity extends Command {
         this.velocity = velocity;
     }
 
-
     @Override
     public void execute() {
         roller.setVelocity(velocity);
