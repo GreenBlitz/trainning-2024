@@ -3,14 +3,13 @@ package training.subsystems.elbow;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 
-public class ElbowNEO implements IElbow{
+public class NeoElbow implements IElbow{
 
 	private CANSparkMax motor;
 
-	public ElbowNEO() {
+	public NeoElbow() {
 
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getPIDController().setP(ElbowConstants.P);

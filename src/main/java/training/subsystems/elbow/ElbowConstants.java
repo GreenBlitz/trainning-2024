@@ -33,7 +33,7 @@ public class ElbowConstants {
 	public static final int KA = 0;
 	public static final int KG = 0;
 	public static final int KV = 0;
-	public static final ArmFeedforward ARM_FEEDFORWARD = new ArmFeedforward(0, 0, 0, 0);
+
 	public static final double GEAR_RATIO = 1 / (28.0 * (60.0 / 16.0));
 	public static final double ARM_LENGTH = 0.44;
 	public static final double ARM_MASS_KG = 0.44;

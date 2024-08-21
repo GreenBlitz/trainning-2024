@@ -9,7 +9,7 @@ public class MoveToSpeedRoller extends Command {
 	private double targetSpeed;
 	private Roller roller;
 
-	public void MoveToSpeedSpeed(double targetSpeed) {
+	public void MoveToSpeedRoller(double targetSpeed) {
 		this.targetSpeed = targetSpeed;
 	}
 
