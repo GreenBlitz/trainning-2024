@@ -49,7 +49,6 @@ public class TrainingRobotManager extends DefaultRobotManager {
 		// configJoystick(robot);
 		// configDefaultCommands(robot.getElbow(), robot.getWrist());
 		Consumer<Double> KGConsumer = KG -> robot.getElbow().setVoltage(KG);
-		;
 		smartJoystick.A.whileTrue(new LoggedDashboardCommand("Current KG", KGConsumer, robot.getElbow()));
 		smartJoystick.B.whileTrue(new InstantCommand(() -> robot.getElbow().setPower(0.5), robot.getElbow()));
 	}
