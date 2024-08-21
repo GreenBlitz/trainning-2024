@@ -1,8 +1,8 @@
 package utils;
 
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import org.littletonrobotics.junction.LoggedRobot;
 import utils.logger.LoggerFactory;
+import org.littletonrobotics.junction.LoggedRobot;
 import utils.simulation.SimulationManager;
 
 public abstract class DefaultRobotManager extends LoggedRobot {

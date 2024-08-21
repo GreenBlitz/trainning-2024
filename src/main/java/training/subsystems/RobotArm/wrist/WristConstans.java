@@ -1,4 +1,4 @@
-package training.subsystems.RobotArm;
+package training.subsystems.RobotArm.wrist;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
