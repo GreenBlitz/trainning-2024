@@ -8,17 +8,21 @@ import utils.simulation.SimpleMotorSimulation;
 
 public class SimulationElbow implements IElbow {
 
-//	private final SingleJointedArmSimulation arm;
 	private final SimpleMotorSimulation arm;
+	private final PositionVoltage control;
 
 	public SimulationElbow() {
+		this.control = new PositionVoltage(0);
 		this.arm = new SimpleMotorSimulation();
+
+		control.EnableFOC = true;
 		arm.applyConfiguration(SimulationElbowConstants.CONFIG);
 	}
 
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
-		arm.setControl(new PositionVoltage(targetAngle.getRotations()));
+		control.Position = targetAngle.getRotations();
+		arm.setControl(control);
 	}
 
 	@Override

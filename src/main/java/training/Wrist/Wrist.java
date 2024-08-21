@@ -14,7 +14,7 @@ public class Wrist extends GBSubsystem {
 	private Rotation2d targetAngle;
 
 	public Wrist() {
-		this.iWrist = new WristFactory().create();
+		this.iWrist = WristFactory.create();
 		this.commandBuilder = new WristCommandBuilder(this);
 		this.inputs = new WristInputsAutoLogged();
 		this.targetAngle = LOWER_POSITION;
@@ -42,7 +42,7 @@ public class Wrist extends GBSubsystem {
 	protected void subsystemPeriodic() {
 		iWrist.moveToAngle(targetAngle);
 		iWrist.updateInputs(inputs);
-		Logger.processInputs("RealOutputs/Wrist/inputs", inputs);
+		Logger.processInputs("Wrist/inputs", inputs);
 	}
 
 }

@@ -18,8 +18,8 @@ public class NeoElbowConstants {
 
 	protected static final double ELBOW_GEAR_RATIO = (double) 250 / 7;
 
-	protected static final double UPPER_POWER_LIMIT = 0.9;
-	protected static final double LOWER_POWER_LIMIT = -0.9;
+	protected static final double MAXIMUM_POWER_LIMIT = 0.9;
+	protected static final double MINIMUM_POWER_LIMIT = -0.9;
 
 
 	protected static final int POSITION_PID_SLOT = 0;

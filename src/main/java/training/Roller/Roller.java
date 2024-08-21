@@ -16,7 +16,7 @@ public class Roller extends GBSubsystem {
 
 	public Roller() {
 		this.commandBuilder = new RollerCommandBuilder(this);
-		this.iRoller = new RollerFactory().create();
+		this.iRoller = RollerFactory.create();
 		this.targetVelocity = Rotation2d.fromRotations(0);
 		this.inputs = new RollerInputsAutoLogged();
 	}
@@ -63,7 +63,7 @@ public class Roller extends GBSubsystem {
 	protected void subsystemPeriodic() {
 		iRoller.updateVelocity(targetVelocity);
 		iRoller.updateInputs(inputs);
-		Logger.processInputs("RealOutputs/Roller/inputs: ", inputs);
+		Logger.processInputs("Roller/inputs: ", inputs);
 	}
 
 }
