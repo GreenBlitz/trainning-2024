@@ -1,6 +1,7 @@
 package training;
 
 import training.subsystems.Arm.Elbow.Elbow;
+import training.subsystems.Arm.Elbow.ElbowFactory;
 
 public class Robot {
 
@@ -12,18 +13,19 @@ public class Robot {
 		REAL
 	}
 
-	public static final RobotType ROBOT_TYPE = RobotType.SIMULATION;
+	public static final RobotType REAL = RobotType.REAL;
+	public static final RobotType SIMULATION = RobotType.SIMULATION;
 
 	public Robot() {
 		// Boot your subsystems...
-		this.elbow = new Elbow();
+		this.elbow = new Elbow(ElbowFactory.create());
 	}
-
 
 
 	// Add your subsystems getters...
-	public Elbow getElbow(){
+	public Elbow getElbow() {
 		return elbow;
 	}
+
 }
 
