@@ -51,7 +51,7 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public boolean isAtAngle(Rotation2d targetAngle) {
-		return Math.abs(targetAngle.getRotations() - motor.getEncoder().getPosition()) <= ElbowConstants.TOLERANCE.getRotations();
+		return Math.abs(targetAngle.getRotations() - motor.getPosition()) <= ElbowConstants.TOLERANCE.getRotations();
 	}
 
 	public void stayAtPosition() {
