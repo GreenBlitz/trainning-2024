@@ -9,8 +9,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 public class ElbowNEO implements IElbow{
 
 	private CANSparkMax motor;
-	private static ElbowNEO instance;
-	private ArmFeedforward armFeedforward;
 
 	public ElbowNEO() {
 

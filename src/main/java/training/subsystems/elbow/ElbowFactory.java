@@ -7,10 +7,9 @@ public class ElbowFactory {
 
     public static IElbow create() {
 
-        if (TrainingRobotManager.ROBOT_TYPE == RobotTypes.SIMULATION) {
-            return new ElbowSimulation();
-        } else {
-            return new ElbowNEO();
-        }
+        return switch (TrainingRobotManager.ROBOT_TYPE) {
+            case SIMULATION -> new ElbowSimulation();
+            case SYNKOPA -> new ElbowNEO();
+        };
     }
 }
