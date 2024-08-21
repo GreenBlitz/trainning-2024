@@ -10,12 +10,10 @@ import utils.GBSubsystem;
 public class Elbow extends GBSubsystem {
 
 	private static Elbow instance;
-	private final ArmFeedforward armFeedforward;
 
 	private final IElbow current;
 
 	private Elbow() {
-		this.armFeedforward = ElbowConstants.ARM_FEEDFORWARD;
 		this.current = ElbowFactory.create();
 
 	}

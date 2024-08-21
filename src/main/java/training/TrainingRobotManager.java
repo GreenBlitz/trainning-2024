@@ -7,7 +7,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 	private Robot robot;
 
-	public static final RobotTypes robotType= RobotTypes.SIMULATION;
+	public static final RobotTypes ROBOT_TYPE= RobotTypes.SIMULATION;
 
 	@Override
 	public void trainingInit() {

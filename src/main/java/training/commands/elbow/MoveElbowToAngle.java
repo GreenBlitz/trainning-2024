@@ -7,10 +7,7 @@ import training.subsystems.elbow.Elbow;
 public class MoveElbowToAngle extends Command {
 
 	private Rotation2d targetAngle;
-
-	public Elbow getInstance() {
-		return Elbow.getInstance();
-	}
+	private Elbow elbow;
 
 	public MoveElbowToAngle(Rotation2d targetAngle) {
 		this.targetAngle = targetAngle;
@@ -18,15 +15,15 @@ public class MoveElbowToAngle extends Command {
 
 	@Override
 	public void initialize() {
-		getInstance().goToAngle(targetAngle);
+		elbow.goToAngle(targetAngle);
 	}
 
 	public boolean isFinished() {
-		return getInstance().isAtAngle(targetAngle);
+		return elbow.isAtAngle(targetAngle);
 	}
 
 	public void end(boolean interrupted) {
-		getInstance().stayAtPosition();
+		elbow.stayAtPosition();
 	}
 
 }

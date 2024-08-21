@@ -13,7 +13,7 @@ public class ElbowNEO implements IElbow{
 	private ArmFeedforward armFeedforward;
 
 	public ElbowNEO() {
-		this.armFeedforward = ElbowConstants.ARM_FEEDFORWARD;
+
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getPIDController().setP(ElbowConstants.P);
 		motor.getPIDController().setI(ElbowConstants.I);

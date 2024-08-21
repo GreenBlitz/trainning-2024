@@ -7,21 +7,18 @@ import training.subsystems.roller.Roller;
 public class MoveToSpeedRoller extends Command {
 
 	private double targetSpeed;
-
-	public Roller getInstance() {
-		return Roller.getInstance();
-	}
+	private Roller roller;
 
 	public void MoveToSpeedSpeed(double targetSpeed) {
 		this.targetSpeed = targetSpeed;
 	}
 
 	public boolean isFinished() {
-		return getInstance().isAtVelocity(Rotation2d.fromRotations(targetSpeed));
+		return roller.isAtVelocity(Rotation2d.fromRotations(targetSpeed));
 	}
 
 	public void end(boolean interrupted) {
-		getInstance().stop();
+		roller.stop();
 	}
 
 }

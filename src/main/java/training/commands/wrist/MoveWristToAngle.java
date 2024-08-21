@@ -8,10 +8,7 @@ import training.subsystems.wrist.Wrist;
 public class MoveWristToAngle extends Command {
 
 	private Rotation2d targetAngle;
-
-	public Wrist getInstance() {
-		return Wrist.getInstance();
-	}
+	private Wrist wrist;
 
 	public MoveWristToAngle(Rotation2d targetAngle) {
 		this.targetAngle = targetAngle;
@@ -19,15 +16,15 @@ public class MoveWristToAngle extends Command {
 
 	@Override
 	public void initialize() {
-		getInstance().goToAngle(targetAngle);
+		wrist.goToAngle(targetAngle);
 	}
 
 	public boolean isFinished() {
-		return getInstance().isAtAngle(targetAngle);
+		return wrist.isAtAngle(targetAngle);
 	}
 
 	public void end(boolean interrupted) {
-		getInstance().stop();
+		wrist.stop();
 	}
 
 }
