@@ -42,7 +42,9 @@ public class Wrist extends GBSubsystem {
 	protected void subsystemPeriodic() {
 		iWrist.moveToAngle(targetAngle);
 		iWrist.updateInputs(inputs);
-		Logger.processInputs("Wrist/inputs", inputs);
+
+		Logger.recordOutput(getLogPath() + "targetAngle", targetAngle);
+		Logger.processInputs(getLogPath() + "inputs", inputs);
 	}
 
 }

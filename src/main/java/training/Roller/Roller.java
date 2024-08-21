@@ -63,7 +63,7 @@ public class Roller extends GBSubsystem {
 	protected void subsystemPeriodic() {
 		iRoller.updateVelocity(targetVelocity);
 		iRoller.updateInputs(inputs);
-		Logger.processInputs("Roller/inputs: ", inputs);
+		Logger.processInputs(getLogPath() + "inputs: ", inputs);
 	}
 
 }

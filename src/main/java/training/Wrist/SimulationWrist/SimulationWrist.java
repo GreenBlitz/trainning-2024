@@ -38,7 +38,6 @@ public class SimulationWrist implements IWrist {
 
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
-		Logger.recordOutput("Wrist/targetAngle: ", targetAngle);
 
 		motor.setInputVoltage(
 			SimulationWristConstants.CONTROLLER.calculate(motor.getAngularPositionRotations(), targetAngle.getRotations())
