@@ -27,17 +27,11 @@ public class NeoElbow implements IElbow{
 
 
 	public void goToAngle(Rotation2d targetAngle) {
-		motor.getPIDController()
-			.setReference(
-				targetAngle.getDegrees(),
-				CANSparkBase.ControlType.kPosition,
-				ElbowConstants.PID_SLOT,
-				ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
-			);
+		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition, ElbowConstants.PID_SLOT, ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations()));
 	}
 
 	public boolean isAtAngle(Rotation2d targetAngle) {
-		return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosition()) == 0;
+		return Math.abs(targetAngle.getRotations() - getPosition().getRotations()) <= ElbowConstants.TOLERANCE.getRotations();
 	}
 
 	public void stayAtPosition() {

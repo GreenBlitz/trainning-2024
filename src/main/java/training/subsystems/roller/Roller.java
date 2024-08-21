@@ -18,11 +18,15 @@ public class Roller extends GBSubsystem {
 		motor.getPIDController().setD(RollerConstants.D);
 	}
 
-
 	public static void init() {
 		if (instance == null) {
 			instance = new Roller();
 		}
+	}
+
+	public static Roller getInstance() {
+		init();
+		return instance;
 	}
 
 	public Rotation2d getVelocity() {
@@ -35,11 +39,6 @@ public class Roller extends GBSubsystem {
 
 	public void goToSpeed(double targetSpeed) {
 		motor.getPIDController().setReference(targetSpeed, CANSparkBase.ControlType.kVelocity);
-	}
-
-	public static Roller getInstance() {
-		init();
-		return instance;
 	}
 
 	public void stop() {

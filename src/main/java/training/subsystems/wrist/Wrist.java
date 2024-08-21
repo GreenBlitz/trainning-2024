@@ -6,6 +6,8 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
+import static edu.wpi.first.hal.simulation.PWMDataJNI.getPosition;
+
 public class Wrist extends GBSubsystem {
 
 	private static Wrist instance;
@@ -29,6 +31,10 @@ public class Wrist extends GBSubsystem {
 		}
 	}
 
+	public Rotation2d getPosition() {
+		return Rotation2d.fromRadians(motor.getEncoder().getPosition());
+	}
+
 	public void goToAngle(Rotation2d targetAngle) {
 		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition);
 	}
@@ -37,8 +43,8 @@ public class Wrist extends GBSubsystem {
 		return Math.abs(targetAngle.getRotations() - motor.getEncoder().getPosition()) <= WristConstant.TOLERANCE.getRotations();
 	}
 
-	public void stop() {
-		motor.set(0);
+	public void stayAtPosition() {
+		goToAngle(getPosition());
 	}
 
 	@Override

@@ -1,9 +1,5 @@
 package training.subsystems.elbow;
 
-import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkLowLevel;
-import com.revrobotics.CANSparkMax;
-import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
@@ -11,11 +7,10 @@ public class Elbow extends GBSubsystem {
 
 	private static Elbow instance;
 
-	private final IElbow current;
+	private final IElbow elbow;
 
 	private Elbow() {
-		this.current = ElbowFactory.create();
-
+		this.elbow = ElbowFactory.create();
 	}
 
 	public static void init() {
@@ -30,19 +25,19 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public Rotation2d getPosition() {
-		return current.getPosition();
+		return elbow.getPosition();
 	}
 
 	public Rotation2d getVelocity() {
-		return current.getVelocity();
+		return elbow.getVelocity();
 	}
 
 	public void goToAngle(Rotation2d targetAngle) {
-		current.goToAngle(targetAngle);
+		elbow.goToAngle(targetAngle);
 	}
 
 	public boolean isAtAngle(Rotation2d targetAngle) {
-		return Math.abs(targetAngle.getRotations() - current.getPosition().getRotations()) <= ElbowConstants.TOLERANCE.getRotations();
+		return Math.abs(targetAngle.getRotations() - elbow.getPosition().getRotations()) <= ElbowConstants.TOLERANCE.getRotations();
 	}
 
 	public void stayAtPosition() {

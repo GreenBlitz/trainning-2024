@@ -8,7 +8,7 @@ public class ElbowFactory {
 
         return switch (TrainingRobotManager.ROBOT_TYPE) {
             case SIMULATION -> new ElbowSimulation();
-            case SYNKOPA -> new NeoElbow();
+            case SYNCOPA -> new NeoElbow();
         };
     }
 }

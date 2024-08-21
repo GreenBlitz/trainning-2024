@@ -24,7 +24,7 @@ public class MoveWristToAngle extends Command {
 	}
 
 	public void end(boolean interrupted) {
-		wrist.stop();
+		wrist.stayAtPosition();
 	}
 
 }
