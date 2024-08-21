@@ -50,5 +50,9 @@ public class ElbowNEO implements IElbow {
 	public boolean isAtPosition(Rotation2d position) {
 		return (getPosition() == position);
 	}
+	@Override
+	public void stayInPlace(Rotation2d position){
+		goToAngle(position);
+	}
 
 }

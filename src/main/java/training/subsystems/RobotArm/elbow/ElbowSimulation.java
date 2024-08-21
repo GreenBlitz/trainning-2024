@@ -62,4 +62,8 @@ public class ElbowSimulation implements IElbow {
 		return (getPosition() == position);
 	}
 
+	@Override
+	public void stayInPlace(Rotation2d position){
+		goToAngle(position);
+	}
 }
