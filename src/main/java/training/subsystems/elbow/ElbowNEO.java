@@ -12,23 +12,12 @@ public class ElbowNEO implements IElbow{
 	private static ElbowNEO instance;
 	private ArmFeedforward armFeedforward;
 
-	private ElbowNEO() {
+	public ElbowNEO() {
 		this.armFeedforward = ElbowConstants.ARM_FEEDFORWARD;
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getPIDController().setP(ElbowConstants.P);
 		motor.getPIDController().setI(ElbowConstants.I);
 		motor.getPIDController().setD(ElbowConstants.D);
-	}
-
-	public void init() {
-		if (instance == null) {
-			instance = new ElbowNEO();
-		}
-	}
-
-	public ElbowNEO getInstance() {
-		init();
-		return instance;
 	}
 
 	public Rotation2d getPosition() {

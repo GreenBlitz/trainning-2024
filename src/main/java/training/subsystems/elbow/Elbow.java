@@ -10,15 +10,14 @@ import utils.GBSubsystem;
 public class Elbow extends GBSubsystem {
 
 	private static Elbow instance;
-	private final CANSparkMax motor;
 	private final ArmFeedforward armFeedforward;
+
+	private final IElbow current;
 
 	private Elbow() {
 		this.armFeedforward = ElbowConstants.ARM_FEEDFORWARD;
-		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		motor.getPIDController().setP(ElbowConstants.P);
-		motor.getPIDController().setI(ElbowConstants.I);
-		motor.getPIDController().setD(ElbowConstants.D);
+		this.current = ElbowFactory.create();
+
 	}
 
 	public static void init() {
@@ -33,25 +32,19 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public Rotation2d getPosition() {
-		return Rotation2d.fromRotations(motor.getEncoder().getPosition());
+		return current.getPosition();
 	}
 
 	public Rotation2d getVelocity() {
-		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+		return current.getVelocity();
 	}
 
 	public void goToAngle(Rotation2d targetAngle) {
-		motor.getPIDController()
-			.setReference(
-				targetAngle.getDegrees(),
-				CANSparkBase.ControlType.kPosition,
-				ElbowConstants.PID_SLOT,
-				ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
-			);
+		current.goToAngle(targetAngle);
 	}
 
 	public boolean isAtAngle(Rotation2d targetAngle) {
-		return Math.abs(targetAngle.getRotations() - motor.getPosition()) <= ElbowConstants.TOLERANCE.getRotations();
+		return Math.abs(targetAngle.getRotations() - current.getPosition().getRotations()) <= ElbowConstants.TOLERANCE.getRotations();
 	}
 
 	public void stayAtPosition() {

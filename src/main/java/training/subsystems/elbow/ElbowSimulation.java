@@ -16,7 +16,7 @@ public class ElbowSimulation implements IElbow {
 	private PIDController controller;
 	private PositionVoltage positionVoltage;
 
-	private ElbowSimulation() {
+	public ElbowSimulation() {
 		SingleJointedArmSim armSim = new SingleJointedArmSim(
 			DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
 			SimulationElbowConstants.GEAR_RATIO,
