@@ -1,13 +1,9 @@
 package training.subsystems.RobotArm.elbow;
 
-import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkLowLevel;
-import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
-
 
     private Rotation2d position;
     private static Elbow instance;
@@ -39,7 +35,7 @@ public class Elbow extends GBSubsystem {
 
 
     public boolean isAtPosition(Rotation2d position) {
-        return (getPosition() == position);
+        return (Math.abs(getPosition().minus(position).getDegrees())  <= ElbowConstants.TOLERANCE.getDegrees());
     }
 
     public void stayInPlace() {
