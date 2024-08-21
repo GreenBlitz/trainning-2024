@@ -30,7 +30,7 @@ public class Elbow extends GBSubsystem {
     }
 
     public Rotation2d getPosition() {
-        current.getPosition();
+        return current.getPosition();
     }
 
     public Rotation2d getVelocity() {
