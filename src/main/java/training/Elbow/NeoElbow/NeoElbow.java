@@ -24,6 +24,9 @@ public class NeoElbow implements IElbow {
 		motor.getPIDController().setPositionPIDWrappingMinInput(0);
 		motor.getPIDController().getPositionPIDWrappingEnabled();
 		motor.burnFlash();
+
+		motor.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, (float) NeoElbowConstants.BACKWARD_ANGLE_LIMIT.getRadians());
+		motor.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, (float) NeoElbowConstants.FORWARD_ANGLE_LIMIT.getRadians());
 	}
 
 	public Rotation2d getCurrentVelocity() {
