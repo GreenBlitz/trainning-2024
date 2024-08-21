@@ -9,5 +9,6 @@ public interface IElbow {
 	Rotation2d getVelocity();
 
 	boolean isAtPosition(Rotation2d position);
+
 	void goToAngle(Rotation2d position);
 }

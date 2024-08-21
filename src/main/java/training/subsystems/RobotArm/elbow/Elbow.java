@@ -8,54 +8,48 @@ import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-	private final CANSparkMax motor;
-	private Rotation2d position;
-	private static Elbow instance;
 
-	private Elbow() {
-		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		this.position = new Rotation2d(ElbowConstants.BIGINNING_POSITION);
-		motor.getPIDController().setP(ElbowConstants.KP);
-		motor.getPIDController().setI(ElbowConstants.KI);
-		motor.getPIDController().setD(ElbowConstants.KD);
-	}
+    private Rotation2d position;
+    private static Elbow instance;
+    private final IElbow current;
+
+    private Elbow() {
+        this.current = ElbowFactory.create();
+        this.position = new Rotation2d(ElbowConstants.BIGINNING_POSITION);
+    }
 
 
-	public static Elbow getInstance() {
-		if (instance != null)
-			instance = new Elbow();
-		return instance;
-	}
+    public static Elbow getInstance() {
+        if (instance != null)
+            instance = new Elbow();
+        return instance;
+    }
+
+    public void goToAngle(Rotation2d position) {
+        current.goToAngle(position);
+    }
+
+    public Rotation2d getPosition() {
+        current.getPosition();
+    }
+
+    public Rotation2d getVelocity() {
+        return current.getVelocity();
+    }
 
 
-	public void goToPosition(Rotation2d position) {
-		motor.getPIDController()
-			.setReference(
-				position.getDegrees(),
-				CANSparkBase.ControlType.kPosition,
-				ElbowConstants.PID_SLOT,
-				ElbowConstants.ARM_FEED_FORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
-			);
-	}public Rotation2d getPosition() {
-		return Rotation2d.fromDegrees(motor.getEncoder().getPosition());
-	}
+    public boolean isAtPosition(Rotation2d position) {
+        return (getPosition() == position);
+    }
 
-	public void stayInPlace(){
-		goToPosition(getPosition());
-	}
+    @Override
+    protected String getLogPath() {
+        return "Elbow/";
+    }
 
-	public Rotation2d getVelocity() {
-		return Rotation2d.fromDegrees(motor.getEncoder().getVelocity());
-	}
-	public boolean isAtPosition(Rotation2d position) {
-		return (getPosition() == position);
-	}
-	@Override
-	protected String getLogPath() {
-		return "Elbow/";
-	}
-	@Override
-	protected void subsystemPeriodic() {}
+    @Override
+    protected void subsystemPeriodic() {
+    }
 
 }
 

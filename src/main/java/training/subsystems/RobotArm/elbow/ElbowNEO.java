@@ -11,7 +11,7 @@ public class ElbowNEO implements IElbow {
 	private Rotation2d position;
 	private static ElbowNEO instance;
 
-	private ElbowNEO() {
+	public ElbowNEO() {
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		this.position = new Rotation2d(ElbowConstants.BIGINNING_POSITION);
 		motor.getPIDController().setP(ElbowConstants.KP);

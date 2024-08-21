@@ -13,7 +13,7 @@ private Roller roller;
 	}
 
 	public void initialize() {
-		Roller.getInstance().moveAtSpeed(velocity);
+		Roller.getInstance().moveAtSpeed(velocity.getDegrees());
 	}
 
 	public boolean isFinished() {
@@ -21,7 +21,7 @@ private Roller roller;
 	}
 
 	public void end(boolean interrupted) {
- 		roller.moveAtSpeed(Rotation2d.fromDegrees(0));
+ 		roller.moveAtSpeed(0);
 	}
 
 }

@@ -2,12 +2,12 @@ package training.subsystems.RobotArm.elbow;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
+import training.RobotTypes;
 
 public class ElbowConstants {
 
 	public static final double BIGINNING_POSITION = 0, KP = 20, KI = 0, KD = 0, KS = 0, KA = 0, KV = 0, KG = 0,
 		ARE_FEED_FORWARDS = 0;
-
 
 	public enum PresetPositions {
 
