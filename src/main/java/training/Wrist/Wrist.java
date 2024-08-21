@@ -24,11 +24,6 @@ public class Wrist extends GBSubsystem {
 		return commandBuilder;
 	}
 
-	protected void stop() {
-		targetAngle = new Rotation2d(0);
-		iWrist.setPower(0);
-	}
-
 	protected void rotate(WristDirection direction) {
 		targetAngle = direction.gotLeft() ? UPPER_POSITION : LOWER_POSITION;
 	}

@@ -11,9 +11,9 @@ public class ElbowConstants {
 
 	public static final Rotation2d DEFAULT_POSITION = Rotation2d.fromDegrees(-10);
 
-	public static final Rotation2d SCORE_POSITION = new Rotation2d(0, 0);
+	public static final Rotation2d SCORE_POSITION = Rotation2d.fromDegrees(0);
 
-	public static final Rotation2d PICKUP_POSITION = new Rotation2d(0, 0);
+	public static final Rotation2d PICKUP_POSITION = Rotation2d.fromDegrees(0);
 
 
 	protected static final double DEFAULT_TIME_IN_AIR_SECONDS = 1;

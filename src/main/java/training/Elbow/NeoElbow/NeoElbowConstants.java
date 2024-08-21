@@ -21,14 +21,14 @@ public class NeoElbowConstants {
 
 	protected static final double MAXIMUM_POWER_LIMIT = 0.9;
 
-	protected static final double MINIMUM_POWER_LIMIT = -0.9;
+	protected static final double MINIMUM_POWER_LIMIT = -MAXIMUM_POWER_LIMIT;
 
 
 	protected static final int POSITION_PID_SLOT = 0;
 
 
-	protected static final Rotation2d BACKWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(-81);
+	protected static final Rotation2d BACKWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(-70);
 
-	protected static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(90);
+	protected static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(70);
 
 }

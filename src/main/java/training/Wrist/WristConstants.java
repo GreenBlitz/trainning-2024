@@ -8,8 +8,8 @@ public class WristConstants {
 
 	protected static final String LOG_PATH = "Wrist/";
 
-	protected static final Rotation2d UPPER_POSITION = new Rotation2d(0);
+	protected static final Rotation2d UPPER_POSITION = Rotation2d.fromDegrees(0);
 
-	protected static final Rotation2d LOWER_POSITION = new Rotation2d(0);
+	protected static final Rotation2d LOWER_POSITION = Rotation2d.fromDegrees(0);
 
 }
