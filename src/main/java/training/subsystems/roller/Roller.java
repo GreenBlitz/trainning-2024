@@ -3,6 +3,7 @@ package training.subsystems.roller;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
+import edu.wpi.first.math.geometry.Rotation2d;
 import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
@@ -24,8 +25,8 @@ public class Roller extends GBSubsystem {
 		}
 	}
 
-	public boolean isAtVelocity(double targetVelocity) {
-		return Math.abs(targetVelocity - motor.getEncoder().getVelocity()) <= RollerConstants.TOLERANCE.getRadians();
+	public boolean isAtVelocity(Rotation2d targetVelocity) {
+		return Math.abs(targetVelocity.getRotations() - motor.getEncoder().getVelocity()) <= RollerConstants.TOLERANCE.getRotations();
 	}
 
 	public void goToSpeed(double targetSpeed) {

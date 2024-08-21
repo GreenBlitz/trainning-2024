@@ -34,7 +34,7 @@ public class Wrist extends GBSubsystem {
 	}
 
 	public boolean isAtAngle(Rotation2d targetAngle) {
-		return Math.abs(targetAngle.getDegrees() - motor.getEncoder().getPosition()) == WristConstant.TOLERANCE.getRadians();
+		return Math.abs(targetAngle.getRotations() - motor.getEncoder().getPosition()) <= WristConstant.TOLERANCE.getRotations();
 	}
 
 	public void stop() {
