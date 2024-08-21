@@ -72,7 +72,7 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public void setG(double newG) {
-		iElbow.updatePID(-1, -1, newG);
+		iElbow.updateFF(-1, newG, -1, -1);
 	}
 
 
