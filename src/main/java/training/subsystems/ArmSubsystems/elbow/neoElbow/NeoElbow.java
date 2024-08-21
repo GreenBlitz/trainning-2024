@@ -36,13 +36,19 @@ public class NeoElbow implements IElbow {
 		motor.getEncoder().setPosition(ElbowConstants.STARTING_POSITION.getRotations());
 	}
 
+	@Override
+	public void setPosition(Rotation2d position) {
+		motor.getEncoder().setPosition(position.getRotations());
+
+	}
+
 	public void setPower(double power) {
 		motor.set(power);
 	}
 
 	public void setVoltage(double voltage) {
 		double appliedVoltage = MathUtil
-			.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
+			.clamp(voltage, -GlobalConstants.DEFAULT_BATTERY_VOLTAGE, GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
 		motor.setVoltage(appliedVoltage);
 	}
 

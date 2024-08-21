@@ -14,4 +14,5 @@ public interface IElbow {
 
 	void stayInPosition();
 
+	void setPosition(Rotation2d position);
 }

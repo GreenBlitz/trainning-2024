@@ -34,12 +34,16 @@ public class SimulationElbow implements IElbow {
 
 	public void setVoltage(double voltage) {
 		double appliedVoltage = MathUtil
-			.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
+			.clamp(voltage, -GlobalConstants.DEFAULT_BATTERY_VOLTAGE, GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
 		motor.setInputVoltage(appliedVoltage);
 	}
 
+	public void setPosition(Rotation2d position){
+		motor.setState(position.getRadians(), 0);
+	}
+
 	public void setPower(double power) {
-		setVoltage(power * GlobalConstants.MAX_BATTERY_VOLTAGE);
+		setVoltage(power * GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {

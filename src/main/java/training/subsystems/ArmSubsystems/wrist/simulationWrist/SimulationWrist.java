@@ -47,8 +47,8 @@ public class SimulationWrist implements IWrist {
 	@Override
 	public void setVoltage(double voltage) {
 		double clampedVoltage = MathUtil
-			.clamp(voltage, -GlobalConstants.MAX_BATTERY_VOLTAGE, GlobalConstants.MAX_BATTERY_VOLTAGE);
-		double appliedPower = clampedVoltage / GlobalConstants.MAX_BATTERY_VOLTAGE;
+			.clamp(voltage, -GlobalConstants.DEFAULT_BATTERY_VOLTAGE, GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
+		double appliedPower = clampedVoltage / GlobalConstants.DEFAULT_BATTERY_VOLTAGE;
 		motor.setPower(appliedPower);
 	}
 

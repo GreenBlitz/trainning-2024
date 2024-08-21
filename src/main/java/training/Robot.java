@@ -8,7 +8,7 @@ public class Robot {
 
 	// Enter your subsystems...
 
-	public static final Robot.robotType ROBOT_TYPE = Robot.robotType.SIMULATION;
+	public static final Robot.robotType ROBOT_TYPE = robotType.SYNCOPA;
 	private final Elbow elbow;
 	private final Wrist wrist;
 	private final Roller roller;

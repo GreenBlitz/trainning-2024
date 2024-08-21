@@ -1,6 +1,6 @@
 package training;
 
-import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import training.commands.ArmCommands.elbowCommands.ElbowStayInPlace;
 import training.commands.ArmCommands.elbowCommands.MoveElbow;
 import training.commands.ArmCommands.wristCommands.MoveWrist;
@@ -23,7 +23,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	private SmartJoystick smartJoystick;
 
 	public void configJoystick(Robot robot) {
-		this.smartJoystick = new SmartJoystick(GlobalConstants.ID_OF_SMART_JOYSTICK);
+		this.smartJoystick = new SmartJoystick(GlobalConstants.MAIN_JOYSTICK_PORT);
 
 		smartJoystick.B.onTrue(new MoveElbow(ElbowConstants.CLIMBING_POSITION, robot.getElbow()));
 		smartJoystick.A.onTrue(new MoveElbow(ElbowConstants.STARTING_POSITION, robot.getElbow()));
@@ -45,8 +45,13 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
-		configJoystick(robot);
-		configDefaultCommands(robot.getElbow(), robot.getWrist());
+		this.smartJoystick = new SmartJoystick(GlobalConstants.MAIN_JOYSTICK_PORT);
+		//configJoystick(robot);
+		//configDefaultCommands(robot.getElbow(), robot.getWrist());
+		smartJoystick.A.whileTrue(new MoveElbow( ElbowConstants.SAFE_POSITION, robot.getElbow()));
+		smartJoystick.B.whileTrue(new MoveElbow( ElbowConstants.SCORE_POSITION, robot.getElbow()));
+		smartJoystick.X.whileTrue(new InstantCommand(()->robot.getElbow().setPosition(ElbowConstants.STARTING_POSITION), robot.getElbow()));
+
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class TalonWrist implements IWrist {
 
 	@Override
 	public void setVoltage(double voltage) {
-		motor.set(ControlMode.PercentOutput, voltage / GlobalConstants.MAX_BATTERY_VOLTAGE);
+		motor.set(ControlMode.PercentOutput, voltage / GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
 	}
 
 	@Override

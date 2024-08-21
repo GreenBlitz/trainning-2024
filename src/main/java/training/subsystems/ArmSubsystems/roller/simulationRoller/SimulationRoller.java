@@ -21,7 +21,7 @@ public class SimulationRoller implements IRoller {
 	}
 
 	public void setPower(double power) {
-		setVoltage(power * GlobalConstants.MAX_BATTERY_VOLTAGE);
+		setVoltage(power * GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
 	}
 
 	public void setVoltage(double voltage) {

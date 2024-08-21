@@ -15,7 +15,7 @@ public class NeoElbowConstants {
 	public static final Rotation2d GEAR_RATIO = Rotation2d.fromDegrees(1 / (28.0 * (60.0 / 16.0)));
 
 	public static final double KS = 0;
-	public static final double KG = 0;
+	public static final double KG = 0.3;
 	public static final double KV = 0;
 	public static final double KA = 0;
 

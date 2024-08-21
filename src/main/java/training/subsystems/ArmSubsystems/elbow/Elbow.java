@@ -59,6 +59,10 @@ public class Elbow extends GBSubsystem {
 		iElbow.setPower(power);
 	}
 
+	public void setPosition(Rotation2d position){
+		iElbow.setPosition(position);
+	}
+
 	public Rotation2d getVelocity() {
 		return inputs.velocity;
 	}
