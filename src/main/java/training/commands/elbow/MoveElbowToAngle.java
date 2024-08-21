@@ -17,7 +17,7 @@ public class MoveElbowToAngle extends Command {
 
     @Override
     public void initialize() {
-        elbow.goToPosition(position);
+        elbow.goToAngle(position);
     }
 
     @Override

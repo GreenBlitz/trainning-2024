@@ -42,6 +42,10 @@ public class Elbow extends GBSubsystem {
         return (getPosition() == position);
     }
 
+    public void stayInPlace() {
+
+    }
+
     @Override
     protected String getLogPath() {
         return "Elbow/";
@@ -50,6 +54,7 @@ public class Elbow extends GBSubsystem {
     @Override
     protected void subsystemPeriodic() {
     }
+
 
 }
 
