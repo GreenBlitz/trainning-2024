@@ -8,7 +8,7 @@ import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
 
-	private CANSparkMax motor;
+	private final CANSparkMax motor;
 	private Rotation2d position;
 	private static Elbow instance;
 
@@ -36,11 +36,14 @@ public class Elbow extends GBSubsystem {
 				ElbowConstants.PID_SLOT,
 				ElbowConstants.ARM_FEED_FORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
 			);
-	}
-
-	public Rotation2d getPosition() {
+	}public Rotation2d getPosition() {
 		return Rotation2d.fromDegrees(motor.getEncoder().getPosition());
 	}
+
+	public void stayInPlace(){
+		goToPosition(getPosition());
+	}
+
 	public Rotation2d getVelocity() {
 		return Rotation2d.fromDegrees(motor.getEncoder().getVelocity());
 	}

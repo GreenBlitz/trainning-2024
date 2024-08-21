@@ -7,7 +7,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public class ElbowNEO implements IElbow {
 
-	private CANSparkMax motor;
+	private final CANSparkMax motor;
 	private Rotation2d position;
 	private static ElbowNEO instance;
 
@@ -28,7 +28,7 @@ public class ElbowNEO implements IElbow {
 
 
 	@Override
-	public void goToPosition(Rotation2d position) {
+	public void goToAngle(Rotation2d position) {
 		motor.getPIDController()
 			.setReference(
 				position.getDegrees(),

@@ -3,29 +3,33 @@ package training.commands.elbow;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.RobotArm.elbow.Elbow;
+import training.subsystems.RobotArm.elbow.IElbow;
 
 public class MoveElbowToAngle extends Command {
 
-	private Rotation2d position;
+    private Rotation2d position;
+    private Elbow elbow;
 
-	public MoveElbowToAngle(Rotation2d position) {
-		this.position = position;
-	}
+    public MoveElbowToAngle(Rotation2d position, Elbow elbow) {
+        this.position = position;
+        this.elbow = elbow;
+    }
 
-	@Override
-	public void execute() {
-		Elbow.getInstance().goToPosition(position);
-	}
+    @Override
+    public void initialize() {
+        elbow.goToPosition(position);
+    }
 
-	@Override
-	public boolean isFinished() {
-		return false;
-	}
+    @Override
+    public boolean isFinished() {
+        return (position == elbow.getPosition());
+    }
 
-	@Override
-	public void end(boolean interrupted) {
-		super.end(interrupted);
-	}
+    @Override
+    public void end(boolean interrupted) {
+        elbow.stayInPlace();
+
+    }
 
 }
 

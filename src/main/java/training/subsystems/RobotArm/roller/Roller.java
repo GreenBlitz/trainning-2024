@@ -24,7 +24,7 @@ public class Roller extends GBSubsystem {
 		return instance;
 	}
 
-	public void moveAtSpeed(double velocity) {
+	public void moveAtSpeed(Rotation2d velocity) {
 		motor.getPIDController().setReference(velocity, CANSparkBase.ControlType.kVelocity, RollerConstants.PID_SLOT);
 	}
 
