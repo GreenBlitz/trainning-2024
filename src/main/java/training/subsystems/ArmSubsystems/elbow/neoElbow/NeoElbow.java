@@ -64,7 +64,9 @@ public class NeoElbow implements IElbow {
 
 	@Override
 	public void stayInPosition() {
-		setVoltage(NeoElbowConstants.ARM_FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations()));
+		setVoltage(
+			NeoElbowConstants.ARM_FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations())
+		);
 	}
 
 	@Override

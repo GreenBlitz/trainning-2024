@@ -30,7 +30,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 		smartJoystick.Y.onTrue(new MoveWrist(WristConstants.CLIMBING_POSITION, robot.getWrist()));
 
-		Consumer<Double> KGConsumer = KG ->robot.getElbow().setVoltage(KG);  ;
+		Consumer<Double> KGConsumer = KG -> robot.getElbow().setVoltage(KG);
+		;
 		smartJoystick.X.onTrue(new LoggedDashboardCommand("Current KG", KGConsumer, robot.getElbow()));
 
 		smartJoystick.R1.whileTrue(new RollClockwise(robot.getRoller()));
@@ -45,13 +46,13 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
+
 		this.smartJoystick = new SmartJoystick(GlobalConstants.MAIN_JOYSTICK_PORT);
 		//configJoystick(robot);
 		//configDefaultCommands(robot.getElbow(), robot.getWrist());
 		smartJoystick.A.whileTrue(new MoveElbow( ElbowConstants.SAFE_POSITION, robot.getElbow()));
 		smartJoystick.B.whileTrue(new MoveElbow( ElbowConstants.SCORE_POSITION, robot.getElbow()));
 		smartJoystick.X.whileTrue(new InstantCommand(()->robot.getElbow().setPosition(ElbowConstants.STARTING_POSITION), robot.getElbow()));
-
 	}
 
 	@Override

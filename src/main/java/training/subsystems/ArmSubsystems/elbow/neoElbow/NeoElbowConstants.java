@@ -2,7 +2,6 @@ package training.subsystems.ArmSubsystems.elbow.neoElbow;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
-import utils.commands.LoggedDashboardCommand;
 
 public class NeoElbowConstants {
 
