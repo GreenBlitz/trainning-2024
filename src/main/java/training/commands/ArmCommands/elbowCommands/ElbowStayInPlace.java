@@ -13,7 +13,7 @@ public class ElbowStayInPlace extends Command {
 	public ElbowStayInPlace(Elbow elbow) {
 		this.elbow = elbow;
 		addRequirements(elbow);
-		targetPositon=elbow.getPosition();
+		targetPositon = elbow.getPosition();
 	}
 
 	@Override

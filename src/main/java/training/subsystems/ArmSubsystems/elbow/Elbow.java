@@ -22,7 +22,7 @@ public class Elbow extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
-		// iElbow.updateInputs(inputs);
+		iElbow.updateInputs(inputs);
 		Logger.recordOutput("Elbow/Elbow position", getPosition().getDegrees());
 		Logger.recordOutput("Elbow/Forward limit", ElbowConstants.FORWARD_ANGLE_LIMIT.getDegrees());
 		Logger.recordOutput("Elbow/Backward limit", ElbowConstants.BACKWARD_ANGLE_LIMIT.getDegrees());

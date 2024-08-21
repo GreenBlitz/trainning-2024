@@ -54,8 +54,7 @@ public class SimulationElbow implements IElbow {
 	}
 
 
-
-	 @Override
+	@Override
 	public void updateInputs(ElbowInputsAutoLogged inputs) {
 		inputs.position = Rotation2d.fromRadians(motor.getAngleRads());
 		inputs.velocity = Rotation2d.fromRadians(motor.getVelocityRadPerSec());

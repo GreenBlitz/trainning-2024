@@ -12,7 +12,6 @@ public interface IElbow {
 
 	void updateInputs(ElbowInputsAutoLogged inputs);
 
-
 	void setPosition(Rotation2d position);
 
 }

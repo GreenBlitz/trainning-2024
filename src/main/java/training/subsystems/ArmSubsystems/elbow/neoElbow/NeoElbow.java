@@ -4,8 +4,8 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import training.GlobalConstants;
 import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
 import training.subsystems.ArmSubsystems.elbow.ElbowInputsAutoLogged;
@@ -57,7 +57,7 @@ public class NeoElbow implements IElbow {
 	public void goToPosition(Rotation2d targetPosition) {
 		motor.getPIDController()
 			.setReference(
-					targetPosition.getRotations(),
+				targetPosition.getRotations(),
 				CANSparkBase.ControlType.kPosition,
 				0,
 				NeoElbowConstants.ARM_FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations())
