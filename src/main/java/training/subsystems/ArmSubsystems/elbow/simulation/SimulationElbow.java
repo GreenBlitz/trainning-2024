@@ -38,7 +38,7 @@ public class SimulationElbow implements IElbow {
 		motor.setInputVoltage(appliedVoltage);
 	}
 
-	public void setPosition(Rotation2d position){
+	public void setPosition(Rotation2d position) {
 		motor.setState(position.getRadians(), 0);
 	}
 
@@ -53,21 +53,15 @@ public class SimulationElbow implements IElbow {
 		);
 	}
 
-	@Override
-	public void stayInPosition() {
-		setVoltage(
-			SimulationElbowConstants.ARM_FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), 0)
-				+ pidController.calculate(getPosition().getRadians(), getPosition().getRadians())
-		);
-	}
 
-	@Override
+
+	 @Override
 	public void updateInputs(ElbowInputsAutoLogged inputs) {
 		inputs.position = Rotation2d.fromRadians(motor.getAngleRads());
 		inputs.velocity = Rotation2d.fromRadians(motor.getVelocityRadPerSec());
 		inputs.current = motor.getCurrentDrawAmps();
 		inputs.voltage = motor.getOutput(0);
-		motor.update(SimulationElbowConstants.CYCLE_TIME);
+		motor.update(GlobalConstants.CYCLE_TIME);
 	}
 
 	public Rotation2d getPosition() {
