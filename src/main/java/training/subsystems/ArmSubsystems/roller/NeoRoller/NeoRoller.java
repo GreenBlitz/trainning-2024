@@ -10,7 +10,6 @@ public class NeoRoller implements IRoller {
 
 	private final CANSparkMax motor;
 
-
 	public NeoRoller() {
 		this.motor = new CANSparkMax(NeoRollerConstants.ID, CANSparkLowLevel.MotorType.kBrushless);
 	}

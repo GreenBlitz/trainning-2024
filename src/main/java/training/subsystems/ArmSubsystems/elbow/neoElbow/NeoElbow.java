@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.GlobalConstants;
 import training.subsystems.ArmSubsystems.elbow.ElbowConstants;
@@ -17,10 +18,10 @@ public class NeoElbow implements IElbow {
 
 	public NeoElbow() {
 		this.motor = new CANSparkMax(NeoElbowConstants.ID, CANSparkLowLevel.MotorType.kBrushless);
-		motorConfig();
+		configMotor();
 	}
 
-	private void motorConfig() {
+	private void configMotor() {
 		motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.GEAR_RATIO.getRotations());
 		motor.getEncoder().setVelocityConversionFactor(NeoElbowConstants.GEAR_RATIO.getRotations());
 
@@ -34,12 +35,13 @@ public class NeoElbow implements IElbow {
 		motor.getPIDController().setI(NeoElbowConstants.KI);
 		motor.getPIDController().setD(NeoElbowConstants.KD);
 		motor.getEncoder().setPosition(ElbowConstants.STARTING_POSITION.getRotations());
+
+		motor.burnFlash();
 	}
 
 	@Override
 	public void setPosition(Rotation2d position) {
 		motor.getEncoder().setPosition(position.getRotations());
-
 	}
 
 	public void setPower(double power) {
@@ -52,10 +54,10 @@ public class NeoElbow implements IElbow {
 		motor.setVoltage(appliedVoltage);
 	}
 
-	public void goToPosition(Rotation2d position) {
+	public void goToPosition(Rotation2d targetPosition) {
 		motor.getPIDController()
 			.setReference(
-				position.getRotations(),
+					targetPosition.getRotations(),
 				CANSparkBase.ControlType.kPosition,
 				0,
 				NeoElbowConstants.ARM_FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations())
@@ -63,16 +65,9 @@ public class NeoElbow implements IElbow {
 	}
 
 	@Override
-	public void stayInPosition() {
-		setVoltage(
-			NeoElbowConstants.ARM_FEEDFORWARD_CONTROLLER.calculate(getPosition().getRadians(), getVelocity().getRotations())
-		);
-	}
-
-	@Override
 	public void updateInputs(ElbowInputsAutoLogged inputs) {
-		inputs.position = Rotation2d.fromRotations(motor.getEncoder().getPosition());
-		inputs.velocity = Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+		inputs.position = getPosition();
+		inputs.velocity = getVelocity();
 		inputs.current = motor.getOutputCurrent();
 		inputs.voltage = motor.getBusVoltage() * motor.getAppliedOutput();
 	}

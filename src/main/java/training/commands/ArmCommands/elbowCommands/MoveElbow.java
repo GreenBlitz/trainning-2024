@@ -23,7 +23,7 @@ public class MoveElbow extends Command {
 
 	@Override
 	public boolean isFinished() {
-		return elbow.isAtTargetPosition() && elbow.isAtTargetVelocity();
+		return elbow.isAtTargetPosition() && elbow.isStill();
 	}
 
 

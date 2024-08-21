@@ -4,7 +4,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public class WristConstants {
 
-
 	public static final Rotation2d STARTING_POSITION = Rotation2d.fromDegrees(90);
 	public static final Rotation2d CLIMBING_POSITION = Rotation2d.fromDegrees(390);
 

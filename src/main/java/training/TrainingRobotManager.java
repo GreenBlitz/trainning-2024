@@ -48,11 +48,13 @@ public class TrainingRobotManager extends DefaultRobotManager {
 		this.robot = new Robot();
 
 		this.smartJoystick = new SmartJoystick(GlobalConstants.MAIN_JOYSTICK_PORT);
-		//configJoystick(robot);
-		//configDefaultCommands(robot.getElbow(), robot.getWrist());
-		smartJoystick.A.whileTrue(new MoveElbow( ElbowConstants.SAFE_POSITION, robot.getElbow()));
-		smartJoystick.B.whileTrue(new MoveElbow( ElbowConstants.SCORE_POSITION, robot.getElbow()));
-		smartJoystick.X.whileTrue(new InstantCommand(()->robot.getElbow().setPosition(ElbowConstants.STARTING_POSITION), robot.getElbow()));
+		// configJoystick(robot);
+		// configDefaultCommands(robot.getElbow(), robot.getWrist());
+		smartJoystick.A.whileTrue(new MoveElbow(ElbowConstants.SAFE_POSITION, robot.getElbow()));
+		smartJoystick.B.whileTrue(new MoveElbow(ElbowConstants.SCORE_POSITION, robot.getElbow()));
+		smartJoystick.X.whileTrue(
+			new InstantCommand(() -> robot.getElbow().setPosition(ElbowConstants.STARTING_POSITION), robot.getElbow())
+		);
 	}
 
 	@Override

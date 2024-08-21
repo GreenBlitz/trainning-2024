@@ -30,7 +30,7 @@ public class Wrist extends GBSubsystem {
 
 	public void goToPosition(Rotation2d targetPosition) {
 		iWrist.goToPosition(targetPosition);
-		Logger.recordOutput("Wrist/wrist target position:", targetPosition);
+		Logger.recordOutput("Wrist/targetPosition:", targetPosition);
 	}
 
 	public void updateInputs() {

@@ -10,8 +10,6 @@ public class SimulationElbowConstants {
 
 	public static final int NUMBER_OF_MOTORS = 1;
 
-	public static final double CYCLE_TIME = 0.02;
-
 	public static final double KP = 125.6;
 	public static final double KI = 0;
 	public static final double KD = 0;
