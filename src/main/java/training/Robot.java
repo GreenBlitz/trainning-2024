@@ -13,8 +13,7 @@ public class Robot {
 		REAL
 	}
 
-	public static final RobotType REAL = RobotType.REAL;
-	public static final RobotType SIMULATION = RobotType.SIMULATION;
+	public static final RobotType ROBOT_TYPE = RobotType.REAL;
 
 	public Robot() {
 		// Boot your subsystems...

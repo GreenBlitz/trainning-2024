@@ -33,6 +33,13 @@ public class NeoElbow implements IElbow {
 	public void configMotor() {
 		motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.GEAR_RATIO);
 		motor.getEncoder().setVelocityConversionFactor(NeoElbowConstants.GEAR_RATIO);
+
+		motor.setSoftLimit(CANSparkBase.SoftLimitDirection.kForward, (float) ElbowConstants.FORWARD_ANGLE_LIMIT.getRotations());
+		motor.enableSoftLimit(CANSparkBase.SoftLimitDirection.kForward, true);
+
+		motor.setSoftLimit(CANSparkBase.SoftLimitDirection.kReverse, (float) ElbowConstants.BACKWARD_ANGLE_LIMIT.getRotations());
+		motor.enableSoftLimit(CANSparkBase.SoftLimitDirection.kReverse, true);
+
 		motor.getPIDController().setP(NeoElbowConstants.P);
 		motor.getPIDController().setI(NeoElbowConstants.I);
 		motor.getPIDController().setD(NeoElbowConstants.D);

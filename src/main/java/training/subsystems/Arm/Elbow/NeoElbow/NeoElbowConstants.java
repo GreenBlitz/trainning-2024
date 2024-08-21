@@ -9,7 +9,7 @@ public class NeoElbowConstants {
 
 	protected static final double KS = 0;
 
-	protected static final double KG = 0;
+	protected static final double KG = 0.3;
 
 	protected static final double KV = 0;
 

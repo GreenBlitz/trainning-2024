@@ -1,5 +1,7 @@
 package training;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import training.commands.Arm.Elbow.MoveElbow;
 import training.subsystems.Arm.Elbow.Elbow;
 import training.subsystems.Arm.Elbow.ElbowConstants;
@@ -22,13 +24,17 @@ public class TrainingRobotManager extends DefaultRobotManager {
 		this.joystick = new SmartJoystick(GlobalConstants.JOYSTICK_PORT);
 	}
 
+
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
 //		joystick.A.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.SCORE.angle));
 //		joystick.B.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.INTAKE.angle));
-		Consumer<Double> youGay = kg -> robot.getElbow().setVoltage(kg);
-		joystick.A.whileTrue(new LoggedDashboardCommand("KG", youGay, robot.getElbow()));
+		Consumer<Double> configKG = kg -> robot.getElbow().setVoltage(kg);
+		joystick.A.whileTrue(new LoggedDashboardCommand("KG", configKG, robot.getElbow()));
+		joystick.X.whileTrue(new MoveElbow(robot.getElbow(), Rotation2d.fromDegrees(45)));
+		joystick.B.whileTrue(new MoveElbow(robot.getElbow(), Rotation2d.fromDegrees(-45)));
+		joystick.Y.whileTrue(new InstantCommand(() -> robot.getElbow().setVoltage(0.1), robot.getElbow()));
 	}
 
 
