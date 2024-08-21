@@ -14,8 +14,8 @@ public class NeoElbow extends GBSubsystem implements IElbow {
 
     public NeoElbow() {
         this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-        motor.getEncoder().setPositionConversionFactor(NeoElbowConstants.POSITION_CONVERSION_FACTOR);
-        motor.getEncoder().setVelocityConversionFactor(NeoElbowConstants.VELOCITY_CONVERSION_FACTOR);
+        motor.getEncoder().setPositionConversionFactor(ElbowConstants.GEAR_RATIO);
+        motor.getEncoder().setVelocityConversionFactor(ElbowConstants.GEAR_RATIO);
         motor.getPIDController().setP(ElbowConstants.KP);
         motor.getPIDController().setI(ElbowConstants.KI);
         motor.getPIDController().setD(ElbowConstants.KD);

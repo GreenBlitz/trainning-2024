@@ -12,4 +12,5 @@ public class ModuleConstants {
             .withKI(0)
             .withKD(0);
 
+    public static double LINEAR_MOTOR_POWER_MULTIPLIER = 0.8;
 }

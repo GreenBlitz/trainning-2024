@@ -14,7 +14,7 @@ public class Robot {
 
     public static final RobotType ROBOT_TYPE = RobotType.SIMULATION;
 
-    public static final double BATTERY_VOLTAGE = 12;
+    public static final double SIMULATION_BATTERY_VOLTAGE = 12;
 
     public Robot() {
         this.module = new Module();

@@ -17,7 +17,7 @@ public class SimulationElbow implements IElbow {
     public SimulationElbow() {
         SingleJointedArmSim elbowSimulation = new SingleJointedArmSim(
                 DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
-                SimulationElbowConstants.GEAR_RATIO,
+                ElbowConstants.GEAR_RATIO,
                 SingleJointedArmSim.estimateMOI(
                         ElbowConstants.ARM_LENGTH,
                         ElbowConstants.ARM_MASS_KG

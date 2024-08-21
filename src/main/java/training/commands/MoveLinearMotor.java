@@ -1,6 +1,7 @@
 package training.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import training.ModuleConstants;
 import training.Robot;
 import training.subsystems.Module;
 import utils.joysticks.Axis;
@@ -20,7 +21,7 @@ public class MoveLinearMotor extends Command {
 
     @Override
     public void execute() {
-        module.moveLinearMotor(joystick.getAxisValue(Axis.LEFT_X) * 0.8);
+        module.moveLinearMotor(joystick.getAxisValue(Axis.LEFT_X) * ModuleConstants.LINEAR_MOTOR_POWER_MULTIPLIER);
     }
 
     @Override

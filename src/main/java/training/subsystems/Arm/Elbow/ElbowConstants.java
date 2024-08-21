@@ -6,6 +6,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 public class ElbowConstants {
     public static final int MOTOR_ID = 0;
     public static final Rotation2d STARTING_POSITION = Rotation2d.fromDegrees(67);
+    public static final double GEAR_RATIO = 1 / (28.0 * (60.0 / 16.0));
 
     public static final double KP = 0.4;
     public static final double KI = 0;
