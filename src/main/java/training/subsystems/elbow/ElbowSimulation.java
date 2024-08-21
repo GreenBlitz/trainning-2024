@@ -28,7 +28,7 @@ public class ElbowSimulation implements IElbow {
 			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
 		elbowSimulation = new SingleJointedArmSimulation(armSim);
-		controller = new PIDController(SimulationElbowConstants.P, SimulationElbowConstants.I, SimulationElbowConstants.D);
+		controller = SimulationElbowConstants.PID;
 		TalonFXConfiguration config = new TalonFXConfiguration();
 		config.Slot0.kP = controller.getP();
 		config.Slot0.kI = controller.getI();

@@ -2,6 +2,7 @@ package training.subsystems.elbow;
 
 
 import edu.wpi.first.math.controller.ArmFeedforward;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 
 public class ElbowConstants {
@@ -27,9 +28,7 @@ public class ElbowConstants {
 	public static final int P = 1;
 	public static final int I = 0;
 	public static final int D = 0;
-
 	public static final int PID_SLOT = 0;
-
 	public static final int KS = 0;
 	public static final int KA = 0;
 	public static final int KG = 0;
