@@ -30,7 +30,8 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public boolean isAtPosition(Rotation2d target) {
-		return Math.abs(iElbow.getPosition().getDegrees() - target.getDegrees()) <= ElbowConstants.TOLERANCE.getDegrees();
+		return Math.abs(inputs.position.getDegrees() - target.getDegrees())
+				<= ElbowConstants.TOLERANCE.getDegrees();
 	}
 
 	public void moveToPosition(Rotation2d targetPosition) {
@@ -41,9 +42,12 @@ public class Elbow extends GBSubsystem {
 		moveToPosition(inputs.position);
 	}
 
-
 	public Rotation2d getPosition() {
 		return iElbow.getPosition();
+	}
+
+	public void setVoltage(double voltage){
+		iElbow.setVoltage(voltage);
 	}
 
 }

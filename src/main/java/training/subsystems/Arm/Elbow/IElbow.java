@@ -12,4 +12,5 @@ public interface IElbow {
 
 	void updateInputs(ElbowInputsAutoLogged inputs);
 
+	void setVoltage(double voltage);
 }

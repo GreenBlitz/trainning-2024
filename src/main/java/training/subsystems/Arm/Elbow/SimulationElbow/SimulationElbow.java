@@ -1,6 +1,5 @@
 package training.subsystems.Arm.Elbow.SimulationElbow;
 
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -38,6 +37,7 @@ public class SimulationElbow implements IElbow {
 		elbowSimulation.setPower(power);
 	}
 
+	@Override
 	public void setVoltage(double voltage) {
 		elbowSimulation.setControl(voltageOut.withOutput(voltage));
 	}

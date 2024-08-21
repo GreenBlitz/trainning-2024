@@ -1,10 +1,15 @@
 package training;
 
 import training.commands.Arm.Elbow.MoveElbow;
+import training.subsystems.Arm.Elbow.Elbow;
 import training.subsystems.Arm.Elbow.ElbowConstants;
+import training.subsystems.Arm.Elbow.NeoElbow.NeoElbow;
 import utils.KeyboardController;
 import utils.SmartJoystick;
 import utils.DefaultRobotManager;
+import utils.commands.LoggedDashboardCommand;
+
+import java.util.function.Consumer;
 
 
 public class TrainingRobotManager extends DefaultRobotManager {
@@ -20,8 +25,10 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
-		joystick.A.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.SCORE.angle));
-		joystick.B.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.INTAKE.angle));
+//		joystick.A.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.SCORE.angle));
+//		joystick.B.onTrue(new MoveElbow(robot.getElbow(), ElbowConstants.PresetPositions.INTAKE.angle));
+		Consumer<Double> youGay = kg -> robot.getElbow().setVoltage(kg);
+		joystick.A.whileTrue(new LoggedDashboardCommand("KG", youGay, robot.getElbow()));
 	}
 
 
