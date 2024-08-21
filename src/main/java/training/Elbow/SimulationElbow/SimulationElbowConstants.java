@@ -1,7 +1,6 @@
 package training.Elbow.SimulationElbow;
 
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
-import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 
 public class SimulationElbowConstants {
