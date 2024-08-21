@@ -2,12 +2,12 @@ package training;
 
 public class Robot {
 
-	public static final RobotType ROBOT_TYPE = RobotType.Simulation;
+	public static final RobotType ROBOT_TYPE = RobotType.SIMULATION;
 
 	// Enter your subsystems...
 	public enum RobotType {
-		Simulation,
-		Real,
+		SIMULATION,
+		REAL,
 	}
 
 	public Robot() {

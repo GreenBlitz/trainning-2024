@@ -1,7 +1,7 @@
 package training;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.arm.elbow.Elbow;
+import training.subsystems.Arm.Elbow.Elbow;
 import utils.DefaultRobotManager;
 import utils.KeyboardController;
 
@@ -9,7 +9,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 	private Robot robot;
 	private KeyboardController keyboardController;
-	private Elbow elbow;
+	private  Elbow elbow;
 
 	@Override
 	public void trainingInit() {
@@ -21,8 +21,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 		keyboardController.D.onTrue(elbow.getCommmands().moveToPosition(Rotation2d.fromDegrees(20)));
 		keyboardController.S.onTrue(elbow.getCommmands().moveToPosition(Rotation2d.fromDegrees(80)));
 	}
-
-
+	
 	@Override
 	public void trainingPeriodic() {
 		// add stuff...

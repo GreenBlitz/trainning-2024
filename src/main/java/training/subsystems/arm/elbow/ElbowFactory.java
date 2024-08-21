@@ -6,9 +6,10 @@ public class ElbowFactory {
 
 	public static IElbow create() {
 		return switch (Robot.ROBOT_TYPE) {
-			case Real -> new NEOElbow();
-			case Simulation -> new SimulationElbow();
+			case REAL -> new NeoElbow();
+			case SIMULATION -> new SimulationElbow();
 		};
 	}
-
+	
+ 
 }
