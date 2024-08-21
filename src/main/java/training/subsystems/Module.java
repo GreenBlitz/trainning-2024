@@ -4,12 +4,15 @@ import com.ctre.phoenix6.configs.FeedbackConfigs;
 import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
+import edu.wpi.first.math.geometry.Rotation2d;
 import training.ModuleConstants;
 import utils.GBSubsystem;
 
 public class Module extends GBSubsystem {
+
 	private TalonFX linearMotor;
 	private TalonFX angularMotor;
+
 	@Override
 	protected String getLogPath() {
 		return "";
@@ -25,30 +28,41 @@ public class Module extends GBSubsystem {
 		this.angularMotor = new TalonFX(1);
 		angularMotor.setPosition(0);
 		angularMotor.getConfigurator().apply(new FeedbackConfigs().withSensorToMechanismRatio(150/7));
-		angularMotor.getConfigurator().apply(ModuleConstants.ASS);
+		angularMotor.getConfigurator().apply(ModuleConstants.PIDConfiguration);
 		
 		
 	}
-	public void setAngularMotorByPosition(double position){
-		angularMotor.setControl(new PositionVoltage(position));
+
+	public void setAngularMotorByPosition(Rotation2d position){
+		angularMotor.setControl(new PositionVoltage(position.getRotations()));
 	}
+
 	public void moveLinearMotor(double power){
 		linearMotor.set(power);
 	}
+
 	public void moveAngularMotor(double power){
 		angularMotor.set(power);
 	}
+
 	public void stopAngularMotor(){
 		angularMotor.set(0);
 	}
+
 	public void stopLinearMotor(){
 		linearMotor.set(0);
 	}
+
 	public void stopBothMotor(){
 		linearMotor.set(0);
 		angularMotor.set(0);
 	}
-	public double getAngularPosition() {
-		return angularMotor.getPosition().getValue();
+
+	public Rotation2d getAngularPosition() {
+		return Rotation2d.fromRotations(angularMotor.getPosition().getValue());
+	}
+
+	public boolean isAtPosition(Rotation2d position) {
+		return Math.abs(getAngularPosition().getRotations() - position.getRotations()) <= ModuleConstants.ANGULAR_TOLERANCE.getRotations();
 	}
 }

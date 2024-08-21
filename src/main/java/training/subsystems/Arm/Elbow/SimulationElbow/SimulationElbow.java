@@ -11,7 +11,9 @@ import training.subsystems.Arm.Elbow.IElbow;
 import utils.simulation.SingleJointedArmSimulation;
 
 public class SimulationElbow implements IElbow {
+
     private final SingleJointedArmSimulation motor;
+
     public SimulationElbow() {
         SingleJointedArmSim elbowSimulation = new SingleJointedArmSim(
                 DCMotor.getFalcon500(SimulationElbowConstants.NUMBER_OF_MOTORS),
@@ -25,12 +27,13 @@ public class SimulationElbow implements IElbow {
                 ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
                 false,
                 ElbowConstants.STARTING_POSITION.getRadians());
-        ClosedLoopGeneralConfigs a = new ClosedLoopGeneralConfigs();
-        a.ContinuousWrap = true;
+        ClosedLoopGeneralConfigs closedLoopGeneralConfigs = new ClosedLoopGeneralConfigs();
+        closedLoopGeneralConfigs.ContinuousWrap = true;
+
         motor = new SingleJointedArmSimulation(elbowSimulation);
-        final TalonFXConfiguration talonFXConfiguration = new TalonFXConfiguration()
+        TalonFXConfiguration talonFXConfiguration = new TalonFXConfiguration()
                 .withSlot0(SimulationElbowConstants.SLOT_0_CONFIGS)
-                .withClosedLoopGeneral(a);
+                .withClosedLoopGeneral(closedLoopGeneralConfigs);
         this.motor.applyConfiguration(talonFXConfiguration);
     }
 

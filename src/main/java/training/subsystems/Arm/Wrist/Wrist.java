@@ -2,9 +2,11 @@ package training.subsystems.Arm.Wrist;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import org.littletonrobotics.junction.Logger;
+import training.subsystems.Arm.Elbow.ElbowConstants;
 import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
+
     private final IWrist wrist;
 
     public Wrist() {
@@ -36,6 +38,10 @@ public class Wrist extends GBSubsystem {
 
     public void standInPlace() {
         moveToAngle(getPosition());
+    }
+
+    public boolean isAtAngle(Rotation2d angle) {
+        return Math.abs(getPosition().getRotations() - angle.getRotations()) % 1 <= WristConstants.ANGULAR_TOLERANCE.getRotations();
     }
 
 }

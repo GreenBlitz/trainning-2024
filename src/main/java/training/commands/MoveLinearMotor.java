@@ -7,32 +7,30 @@ import utils.joysticks.Axis;
 import utils.joysticks.SmartJoystick;
 
 public class MoveLinearMotor extends Command {
-	private Module module;
-	private SmartJoystick joystick;
-	public MoveLinearMotor(Robot robot, SmartJoystick joystick){
-		this.module = robot.getModule();
-		addRequirements(module);
-		this.joystick = joystick;
-		
-	}
-	@Override
-	public void initialize() {
 
-	}
-	
-	@Override
-	public void execute() {
-		module.moveLinearMotor(joystick.getAxisValue(Axis.LEFT_X)*0.8);
-	}
-	
-	@Override
-	public boolean isFinished() {
-		return false;
-	}
-	
-	@Override
-	public void end(boolean interrupted) {
-		module.stopLinearMotor();
-		
-	}
+    private Module module;
+    private SmartJoystick joystick;
+
+    public MoveLinearMotor(Robot robot, SmartJoystick joystick) {
+        this.module = robot.getModule();
+        this.joystick = joystick;
+        addRequirements(module);
+    }
+
+
+    @Override
+    public void execute() {
+        module.moveLinearMotor(joystick.getAxisValue(Axis.LEFT_X) * 0.8);
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        module.stopLinearMotor();
+
+    }
 }

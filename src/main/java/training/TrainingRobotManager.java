@@ -17,6 +17,10 @@ public class TrainingRobotManager extends DefaultRobotManager {
     @Override
     public void trainingInit() {
         this.robot = new Robot();
+        SetupJoystickControls();
+    }
+
+    private void SetupJoystickControls() {
         joystick = new SmartJoystick(JoystickPorts.MAIN);
         joystick.A.onTrue(new MoveWristByPosition(robot, Rotation2d.fromDegrees(90)));
         joystick.B.onTrue(new MoveWristByPosition(robot, Rotation2d.fromDegrees(180)));

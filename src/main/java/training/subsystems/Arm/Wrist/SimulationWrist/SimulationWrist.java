@@ -15,7 +15,9 @@ import training.subsystems.Arm.Wrist.IWrist;
 import utils.simulation.SingleJointedArmSimulation;
 
 public class SimulationWrist implements IWrist {
+
     private final SingleJointedArmSimulation motor;
+
     public SimulationWrist() {
         SingleJointedArmSim elbowSimulation = new SingleJointedArmSim(
                 DCMotor.getCIM(SimulationElbowConstants.NUMBER_OF_MOTORS),
@@ -29,12 +31,12 @@ public class SimulationWrist implements IWrist {
                 ElbowConstants.FORWARD_ANGLE_LIMIT.getRadians(),
                 false,
                 ElbowConstants.STARTING_POSITION.getRadians());
-        ClosedLoopGeneralConfigs a = new ClosedLoopGeneralConfigs();
-        a.ContinuousWrap = true;
+        ClosedLoopGeneralConfigs closedLoopGeneralConfigs = new ClosedLoopGeneralConfigs();
+        closedLoopGeneralConfigs.ContinuousWrap = true;
         motor = new SingleJointedArmSimulation(elbowSimulation);
         TalonFXConfiguration talonFXConfiguration = new TalonFXConfiguration()
                 .withSlot0(SimulationElbowConstants.SLOT_0_CONFIGS)
-                .withClosedLoopGeneral(a);
+                .withClosedLoopGeneral(closedLoopGeneralConfigs);
         motor.applyConfiguration(talonFXConfiguration);
     }
 
