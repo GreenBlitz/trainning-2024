@@ -10,6 +10,7 @@ import utils.GBSubsystem;
 
 public class NeoRoller implements IRoller {
 
+
     private final CANSparkMax motor;
 
     public NeoRoller() {
