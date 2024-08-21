@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
+import utils.commands.LoggedDashboardCommand;
+
+import java.util.function.Consumer;
 
 
 public class ElbowCommandBuilder {
@@ -45,6 +48,15 @@ public class ElbowCommandBuilder {
 
 	public Command moveDown() {
 		return moveToAngle(ElbowConstants.DEFAULT_POSITION);
+	}
+
+	public Command updateGravityConstant(double newG) {
+		return new InstantCommand(() -> elbow.setG(newG));
+	}
+
+	public Command updateGravityConstantViaDashboard() {
+		Consumer<Double> methodToRun = this::updateGravityConstant;
+		return new LoggedDashboardCommand(.0, "kG", methodToRun, elbow);
 	}
 
 }

@@ -71,4 +71,9 @@ public class Elbow extends GBSubsystem {
 		Logger.processInputs(getLogPath() + "inputs: ", inputs);
 	}
 
+	public void setG(double newG) {
+		iElbow.updatePID(-1, -1, newG);
+	}
+
+
 }
