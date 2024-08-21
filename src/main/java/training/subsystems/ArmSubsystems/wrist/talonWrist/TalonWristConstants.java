@@ -11,6 +11,9 @@ public class TalonWristConstants {
 	public static final int PID_SLOT = 0;
 
 	public static final double GEAR_RATIO = 1 / WristConstants.CONVERSION_FACTOR;
+	public static final double MAG_ENCODER_CONVERSION_FACTOR = 8192; //mag * versa
+	public static final double HUNDRED_MILLISECONDS_TO_SECONDS = 10; //mag * versa
+
 
 	protected static final double KP = 0.4;
 	protected static final double KI = 0;

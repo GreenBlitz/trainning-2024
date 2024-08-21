@@ -24,13 +24,13 @@ public class Wrist extends GBSubsystem {
 	protected void subsystemPeriodic() {
 		iWrist.updateInputs(inputs);
 		Logger.processInputs("Wrist/wrist inputs:", inputs);
-		Logger.recordOutput("Wrist/Wrist position: ", inputs.position);
+		Logger.recordOutput("Wrist/Wrist position: ", inputs.position.getDegrees());
 		updateInputs();
 	}
 
 	public void goToPosition(Rotation2d targetPosition) {
 		iWrist.goToPosition(targetPosition);
-		Logger.recordOutput("Wrist/wrist target position:", targetPosition);
+		Logger.recordOutput("Wrist/wrist target position:", targetPosition.getDegrees());
 	}
 
 	public void updateInputs() {
