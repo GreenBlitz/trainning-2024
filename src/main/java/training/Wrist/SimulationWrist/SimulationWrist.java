@@ -5,7 +5,6 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.littletonrobotics.junction.Logger;
 import training.Wrist.IWrist;
 import training.Wrist.WristInputsAutoLogged;
 
@@ -38,7 +37,6 @@ public class SimulationWrist implements IWrist {
 
 	@Override
 	public void moveToAngle(Rotation2d targetAngle) {
-
 		motor.setInputVoltage(
 			SimulationWristConstants.CONTROLLER.calculate(motor.getAngularPositionRotations(), targetAngle.getRotations())
 		);
