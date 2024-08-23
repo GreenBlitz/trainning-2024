@@ -13,14 +13,12 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 	private Robot robot;
 
-	private SmartJoystick smartJoystick;
-
 	public static final RobotTypes ROBOT_TYPE= RobotTypes.SIMULATION;
 
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
-		this.smartJoystick = new SmartJoystick(JoystickPorts.MAIN);
+		SmartJoystick smartJoystick = new SmartJoystick(JoystickPorts.MAIN);
 		smartJoystick.A.whileTrue(new MoveRollerToSpeed(10));
 		smartJoystick.B.whileTrue(new MoveRollerToSpeed(5));
 	}

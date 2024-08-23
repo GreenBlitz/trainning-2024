@@ -52,6 +52,6 @@ public class Elbow extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
-		Logger.recordOutput("Elbow position",getPosition().getDegrees());
+		Logger.recordOutput("Elbow/Position",getPosition().getDegrees());
 	}
 }

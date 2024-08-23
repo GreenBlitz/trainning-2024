@@ -55,7 +55,7 @@ public class Wrist extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
-		Logger.recordOutput("Wrist position", getPosition().getDegrees());
+		Logger.recordOutput("Wrist/Position", getPosition().getDegrees());
 	}
 
 }

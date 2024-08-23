@@ -57,7 +57,7 @@ public class Roller extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
-		Logger.recordOutput("Roller speed", getVelocity().getRotations());
+		Logger.recordOutput("Roller/Speed", getVelocity().getRotations());
 	}
 
 }
