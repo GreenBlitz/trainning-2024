@@ -40,12 +40,6 @@ public class ElbowSimulation implements IElbow {
 		elbowSimulation.setControl(positionVoltage.withPosition(targetAngle.getRotations()));
 	}
 
-	@Override
-	public void updateInputs(ElbowInputsAutoLogged inputs) {
-		inputs.position = getPosition();
-		inputs.velocity = getVelocity();
-	}
-
 	public Rotation2d getPosition() {
 		return elbowSimulation.getPosition();
 	}
@@ -56,6 +50,12 @@ public class ElbowSimulation implements IElbow {
 
 	public void stayAtPosition() {
 		goToAngle(getPosition());
+	}
+
+	@Override
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.position = getPosition();
+		inputs.velocity = getVelocity();
 	}
 
 }

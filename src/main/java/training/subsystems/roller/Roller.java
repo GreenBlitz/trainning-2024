@@ -35,7 +35,8 @@ public class Roller extends GBSubsystem {
 	}
 
 	public boolean isAtVelocity(Rotation2d targetVelocity) {
-		return Math.abs(targetVelocity.getRotations() - motor.getEncoder().getVelocity()) <= RollerConstants.TOLERANCE.getRotations();
+		return Math.abs(targetVelocity.getRotations() - motor.getEncoder().getVelocity())
+			<= RollerConstants.TOLERANCE.getRotations();
 	}
 
 	public void goToSpeed(double targetSpeed) {

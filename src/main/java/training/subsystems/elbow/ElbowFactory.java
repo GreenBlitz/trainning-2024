@@ -4,11 +4,11 @@ import training.TrainingRobotManager;
 
 public class ElbowFactory {
 
-    public static IElbow create() {
+	public static IElbow create() {
+		return switch (TrainingRobotManager.ROBOT_TYPE) {
+			case SIMULATION -> new ElbowSimulation();
+			case SYNCOPA -> new NeoElbow();
+		};
+	}
 
-        return switch (TrainingRobotManager.ROBOT_TYPE) {
-            case SIMULATION -> new ElbowSimulation();
-            case SYNCOPA -> new NeoElbow();
-        };
-    }
 }

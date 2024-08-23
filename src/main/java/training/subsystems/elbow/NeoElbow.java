@@ -5,12 +5,11 @@ import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 
-public class NeoElbow implements IElbow{
+public class NeoElbow implements IElbow {
 
 	private CANSparkMax motor;
 
 	public NeoElbow() {
-
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getPIDController().setP(ElbowConstants.P);
 		motor.getPIDController().setI(ElbowConstants.I);
@@ -27,11 +26,21 @@ public class NeoElbow implements IElbow{
 
 
 	public void goToAngle(Rotation2d targetAngle) {
-		motor.getPIDController().setReference(targetAngle.getDegrees(), CANSparkBase.ControlType.kPosition, ElbowConstants.PID_SLOT, ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations()));
+		motor.getPIDController()
+			.setReference(
+				targetAngle.getDegrees(),
+				CANSparkBase.ControlType.kPosition,
+				ElbowConstants.PID_SLOT,
+				ElbowConstants.ARM_FEEDFORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
+			);
 	}
 
 	public boolean isAtAngle(Rotation2d targetAngle) {
 		return Math.abs(targetAngle.getRotations() - getPosition().getRotations()) <= ElbowConstants.TOLERANCE.getRotations();
+	}
+
+	public void stayAtPosition() {
+		goToAngle(getPosition());
 	}
 
 	@Override
@@ -40,7 +49,4 @@ public class NeoElbow implements IElbow{
 		inputs.velocity = getVelocity();
 	}
 
-	public void stayAtPosition() {
-		goToAngle(getPosition());
-	}
 }

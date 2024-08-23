@@ -1,6 +1,5 @@
 package training.subsystems.elbow;
 
-import edu.wpi.first.math.controller.PIDController;
 
 public class SimulationElbowConstants {
 
