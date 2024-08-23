@@ -12,6 +12,7 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
+
 	}
 
 	@Override
