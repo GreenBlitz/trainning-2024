@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 import static edu.wpi.first.hal.simulation.PWMDataJNI.getPosition;
@@ -54,6 +55,7 @@ public class Wrist extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
+		Logger.recordOutput("Wrist position", getPosition().getDegrees());
 	}
 
 }

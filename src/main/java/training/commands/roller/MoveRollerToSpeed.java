@@ -9,16 +9,15 @@ public class MoveRollerToSpeed extends Command {
 	private double targetSpeed;
 	private Roller roller;
 
-	public void MoveRollerToSpeed(double targetSpeed) {
+	public MoveRollerToSpeed(double targetSpeed) {
 		this.targetSpeed = targetSpeed;
+		this.roller = Roller.getInstance();
 	}
 
-	public boolean isFinished() {
-		return roller.isAtVelocity(Rotation2d.fromRotations(targetSpeed));
+	@Override
+	public void execute() {
+		roller.goToSpeed(targetSpeed);
 	}
 
-	public void end(boolean interrupted) {
-		roller.stop();
-	}
-	
+
 }

@@ -10,4 +10,6 @@ public interface IRoller {
 
 	void stayAtPosition();
 
+	Rotation2d getPosition();
+
 }

@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
@@ -41,6 +42,10 @@ public class Roller extends GBSubsystem {
 		motor.getPIDController().setReference(targetSpeed, CANSparkBase.ControlType.kVelocity);
 	}
 
+	public Rotation2d getPosition() {
+		return getInstance().getPosition();
+	}
+
 	public void stop() {
 		motor.set(0);
 	}
@@ -52,6 +57,7 @@ public class Roller extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
+		Logger.recordOutput("Roller speed", getVelocity().getRotations());
 	}
 
 }
