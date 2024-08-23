@@ -3,9 +3,13 @@ package training.Roller.SimulationRoller;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
+import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import org.littletonrobotics.junction.Logger;
+import training.RobotConstants;
 import training.Roller.IRoller;
 import training.Roller.RollerInputsAutoLogged;
+import utils.DefaultRobotManager;
+import utils.simulation.SingleJointedArmSimulation;
 
 public class SimulationRoller implements IRoller {
 
@@ -28,12 +32,14 @@ public class SimulationRoller implements IRoller {
 	@Override
 	public void updateVelocity(Rotation2d targetVelocity) {
 		Logger.recordOutput("Roller/targetVelocity: ", targetVelocity);
-		pidOutput = SimulationRollerConstants.CONTROLLER.calculate(motor.getAngularPositionRad(), targetVelocity.getRadians());
-		motor.setInputVoltage(pidOutput);
+		pidOutput = SimulationRollerConstants.CONTROLLER.calculate(motor.getAngularVelocityRadPerSec(), targetVelocity.getRadians());
+		Logger.recordOutput("Roller/pidOutput: ", pidOutput);
+		setPower(pidOutput);
 	}
 
 	@Override
 	public void updateInputs(RollerInputsAutoLogged inputs) {
+		motor.update(DefaultRobotManager.defaultPeriodSecs);
 		inputs.outputCurrent = motor.getCurrentDrawAmps();
 		inputs.position = Rotation2d.fromRadians(motor.getAngularPositionRad());
 		inputs.velocity = Rotation2d.fromRadians(motor.getAngularVelocityRadPerSec());
