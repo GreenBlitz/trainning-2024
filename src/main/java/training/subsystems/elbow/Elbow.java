@@ -1,6 +1,7 @@
 package training.subsystems.elbow;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 public class Elbow extends GBSubsystem {
@@ -51,6 +52,6 @@ public class Elbow extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
+		Logger.recordOutput("Elbow position",getPosition().getDegrees());
 	}
-
 }

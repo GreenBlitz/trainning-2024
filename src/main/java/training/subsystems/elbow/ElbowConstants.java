@@ -23,11 +23,11 @@ public class ElbowConstants {
 
 	}
 	public static final int MOTOR_ID = 5;
-	public static final int P = 1;
+	public static final int P = 10;
 
-	public static final int I = 0;
+	public static final int I = 1;
 
-	public static final int D = 0;
+	public static final int D = 1;
 
 	public static final int PID_SLOT = 0;
 

@@ -33,6 +33,7 @@ public class ElbowSimulation implements IElbow {
 		config.Slot0.kI = ElbowConstants.I;
 		config.Slot0.kD = ElbowConstants.D;
 		elbowSimulation.applyConfiguration(config);
+		this.positionVoltage = new PositionVoltage(0);
 	}
 
 	public void goToAngle(Rotation2d targetAngle) {
