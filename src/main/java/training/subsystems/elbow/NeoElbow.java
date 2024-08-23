@@ -37,5 +37,4 @@ public class NeoElbow implements IElbow{
 	public void stayAtPosition() {
 		goToAngle(getPosition());
 	}
-
 }

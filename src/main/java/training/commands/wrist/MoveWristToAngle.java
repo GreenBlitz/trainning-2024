@@ -19,12 +19,4 @@ public class MoveWristToAngle extends Command {
 		wrist.goToAngle(targetAngle);
 	}
 
-	public boolean isFinished() {
-		return wrist.isAtAngle(targetAngle);
-	}
-
-	public void end(boolean interrupted) {
-		wrist.stayAtPosition();
-	}
-
 }
