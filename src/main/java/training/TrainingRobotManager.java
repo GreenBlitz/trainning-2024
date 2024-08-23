@@ -19,8 +19,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	public void trainingInit() {
 		this.robot = new Robot();
 		SmartJoystick smartJoystick = new SmartJoystick(JoystickPorts.MAIN);
-		smartJoystick.A.whileTrue(new MoveRollerToSpeed(10));
-		smartJoystick.B.whileTrue(new MoveRollerToSpeed(5));
+		smartJoystick.A.whileTrue(new MoveElbowToAngle(Rotation2d.fromDegrees(45)));
+		smartJoystick.B.whileTrue(new MoveElbowToAngle(Rotation2d.fromDegrees(90)));
 	}
 
 	@Override

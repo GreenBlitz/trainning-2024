@@ -10,8 +10,11 @@ public class Elbow extends GBSubsystem {
 
 	private final IElbow elbow;
 
+	private ElbowInputsAutoLogged inputs;
+
 	private Elbow() {
 		this.elbow = ElbowFactory.create();
+		this.inputs = new ElbowInputsAutoLogged();
 	}
 
 	public static void init() {
@@ -26,11 +29,11 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public Rotation2d getPosition() {
-		return elbow.getPosition();
+		return inputs.position;
 	}
 
 	public Rotation2d getVelocity() {
-		return elbow.getVelocity();
+		return inputs.velocity;
 	}
 
 	public void goToAngle(Rotation2d targetAngle) {
@@ -38,7 +41,7 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public boolean isAtAngle(Rotation2d targetAngle) {
-		return Math.abs(targetAngle.getRotations() - elbow.getPosition().getRotations()) <= ElbowConstants.TOLERANCE.getRotations();
+		return Math.abs(targetAngle.getRotations() - inputs.position.getRotations()) <= ElbowConstants.TOLERANCE.getRotations();
 	}
 
 	public void stayAtPosition() {
@@ -52,6 +55,8 @@ public class Elbow extends GBSubsystem {
 
 	@Override
 	protected void subsystemPeriodic() {
+		elbow.updateInputs(inputs);
+		Logger.processInputs("Elbow/", inputs);
 		Logger.recordOutput("Elbow/Position",getPosition().getDegrees());
 	}
 }

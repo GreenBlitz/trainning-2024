@@ -34,6 +34,12 @@ public class NeoElbow implements IElbow{
 		return Math.abs(targetAngle.getRotations() - getPosition().getRotations()) <= ElbowConstants.TOLERANCE.getRotations();
 	}
 
+	@Override
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.position = getPosition();
+		inputs.velocity = getVelocity();
+	}
+
 	public void stayAtPosition() {
 		goToAngle(getPosition());
 	}
