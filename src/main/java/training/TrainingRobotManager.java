@@ -1,14 +1,28 @@
 package training;
 
+import edu.wpi.first.math.geometry.Rotation2d;
+import training.commands.elbow.MoveElbowToAngle;
+import training.subsystems.elbow.RobotTypes;
 import utils.DefaultRobotManager;
+import utils.joysticks.JoystickPorts;
+import utils.joysticks.SmartJoystick;
 
 public class TrainingRobotManager extends DefaultRobotManager {
 
 	private Robot robot;
 
+	public static final RobotTypes ROBOT_TYPE = RobotTypes.SIMULATION;
+
 	@Override
 	public void trainingInit() {
 		this.robot = new Robot();
+		configureBindings();
+	}
+
+	public void configureBindings() {
+		SmartJoystick smartJoystick = new SmartJoystick(JoystickPorts.MAIN);
+		smartJoystick.A.whileTrue(new MoveElbowToAngle(Rotation2d.fromDegrees(45)));
+		smartJoystick.B.whileTrue(new MoveElbowToAngle(Rotation2d.fromDegrees(90)));
 	}
 
 	@Override
