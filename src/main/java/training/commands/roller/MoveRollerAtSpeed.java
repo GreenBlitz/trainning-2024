@@ -17,7 +17,7 @@ private Roller roller;
 	}
 
 	public boolean isFinished() {
-		return (velocity == roller.getPower());
+		return (roller.isAtSpeed(velocity));
 	}
 
 	public void end(boolean interrupted) {

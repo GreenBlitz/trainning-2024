@@ -35,11 +35,11 @@ public class Elbow extends GBSubsystem {
 
 
     public boolean isAtPosition(Rotation2d position) {
-        return (Math.abs(getPosition().minus(position).getDegrees())  <= ElbowConstants.TOLERANCE.getDegrees());
+        return current.isAtPosition(position);
     }
 
-    public void stayInPlace() {
-
+    public void stayInPlace(Rotation2d position) {
+        current.stayInPlace(position);
     }
 
     @Override

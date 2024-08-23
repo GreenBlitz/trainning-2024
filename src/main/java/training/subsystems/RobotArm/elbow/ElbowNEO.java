@@ -34,7 +34,7 @@ public class ElbowNEO implements IElbow {
 				position.getDegrees(),
 				CANSparkBase.ControlType.kPosition,
 				ElbowConstants.PID_SLOT,
-				ElbowConstants.ARM_FEED_FORWARD.calculate(getPosition().getRadians(), getVelocity().getRotations())
+				ElbowConstants.ARM_FEED_FORWARD.calculate(getPosition().getDegrees(), getVelocity().getDegrees())
 			);
 	}
 
@@ -48,7 +48,7 @@ public class ElbowNEO implements IElbow {
 
 	@Override
 	public boolean isAtPosition(Rotation2d position) {
-		return (getPosition() == position);
+		return (Math.abs(getPosition().minus(position).getDegrees())  <= ElbowConstants.TOLERANCE.getDegrees());
 	}
 	@Override
 	public void stayInPlace(Rotation2d position){

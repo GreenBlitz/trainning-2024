@@ -16,19 +16,19 @@ public class MoveElbowToAngle extends Command {
     }
 
     @Override
-    public void initialize() {
+    public void execute() {
         elbow.goToAngle(position);
     }
 
+
     @Override
     public boolean isFinished() {
-        return (position == elbow.getPosition());
+        return elbow.isAtPosition(position);
     }
 
     @Override
     public void end(boolean interrupted) {
-        elbow.stayInPlace();
-
+        elbow.stayInPlace(position);
     }
 
 }

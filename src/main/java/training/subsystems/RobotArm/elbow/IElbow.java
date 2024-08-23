@@ -11,5 +11,6 @@ public interface IElbow {
 	boolean isAtPosition(Rotation2d position);
 
 	void goToAngle(Rotation2d position);
+
 	void stayInPlace(Rotation2d position);
 }

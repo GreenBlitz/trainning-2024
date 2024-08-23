@@ -29,7 +29,6 @@ public class ElbowSimulation implements IElbow {
 
 		};
 		this.motor = new SingleJointedArmSimulation(armSim);
-		controller = new PIDController(ElbowSimulationConstants.P, ElbowSimulationConstants.I, ElbowSimulationConstants.D);
 		TalonFXConfiguration config = new TalonFXConfiguration();
 		config.Slot0.kP = controller.getP();
 		config.Slot0.kI = controller.getI();
@@ -59,7 +58,7 @@ public class ElbowSimulation implements IElbow {
 
 	@Override
 	public boolean isAtPosition(Rotation2d position) {
-		return (getPosition() == position);
+		return (Math.abs(getPosition().minus(position).getDegrees())  <= ElbowConstants.TOLERANCE.getDegrees());
 	}
 
 	@Override

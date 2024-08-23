@@ -29,19 +29,17 @@ public class Roller extends GBSubsystem {
 	}
 
 
-	public Rotation2d getPower() {
-		return Rotation2d.fromDegrees(motor.getEncoder().getPosition());
+	public Rotation2d getVelocity() {
+		return Rotation2d.fromDegrees(motor.getEncoder().getVelocity());
 	}
 
 	public boolean isAtSpeed(Rotation2d velocity) {
-		return (getPower() == velocity);
+		return (Math.abs(getVelocity().minus(velocity).getDegrees()) <=RollerConstants.TOLERANCE.getDegrees());
 	}
 
 	protected String getLogPath() {
 		return "Roller/";
 	}
 
-
 	protected void subsystemPeriodic() {}
-
 }
