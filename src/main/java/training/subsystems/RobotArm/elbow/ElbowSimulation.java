@@ -6,6 +6,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
+import org.littletonrobotics.junction.Logger;
 import utils.simulation.SingleJointedArmSimulation;
 
 public class ElbowSimulation implements IElbow {
@@ -30,9 +31,9 @@ public class ElbowSimulation implements IElbow {
 		};
 		this.motor = new SingleJointedArmSimulation(armSim);
 		TalonFXConfiguration config = new TalonFXConfiguration();
-		config.Slot0.kP = controller.getP();
-		config.Slot0.kI = controller.getI();
-		config.Slot0.kD = controller.getD();
+		config.Slot0.kP = ElbowConstants.KP;
+		config.Slot0.kI = ElbowConstants.KI;
+		config.Slot0.kD = ElbowConstants.KD;
 		motor.applyConfiguration(config);
 	}
 
@@ -49,6 +50,7 @@ public class ElbowSimulation implements IElbow {
 	public void goToAngle(Rotation2d targetAngle) {
 		PositionVoltage pos = new PositionVoltage(targetAngle.getRotations());
 		motor.setControl(pos);
+		Logger.recordOutput("elbow position", getPosition());
 	}
 
 	public void stop() {

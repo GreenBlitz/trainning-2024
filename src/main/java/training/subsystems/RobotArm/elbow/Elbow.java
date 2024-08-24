@@ -16,7 +16,7 @@ public class Elbow extends GBSubsystem {
 
 
     public static Elbow getInstance() {
-        if (instance != null)
+        if (instance == null)
             instance = new Elbow();
         return instance;
     }

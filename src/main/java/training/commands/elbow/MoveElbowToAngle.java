@@ -21,10 +21,10 @@ public class MoveElbowToAngle extends Command {
     }
 
 
-    @Override
-    public boolean isFinished() {
-        return elbow.isAtPosition(position);
-    }
+//    @Override
+//    public boolean isFinished() {
+//        return elbow.isAtPosition(position);
+//    }
 
     @Override
     public void end(boolean interrupted) {

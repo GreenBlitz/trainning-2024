@@ -7,9 +7,9 @@ import training.RobotTypes;
 public class ElbowConstants {
 
 	public static final double BIGINNING_POSITION = 0,
-			KP = 20,
+			KP = 40,
 			KI = 0,
-			KD = 0,
+			KD = 5,
 			KS = 0,
 			KA = 0,
 			KV = 0,
