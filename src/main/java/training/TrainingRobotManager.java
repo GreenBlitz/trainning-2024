@@ -2,10 +2,8 @@ package training;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import training.commands.elbow.MoveElbowToAngle;
-import training.commands.wrist.MoveWristToAngle;
 import training.subsystems.RobotArm.elbow.Elbow;
 import utils.DefaultRobotManager;
-import utils.KeyboardController;
 import utils.joysticks.JoystickPorts;
 import utils.joysticks.SmartJoystick;
 
@@ -36,7 +34,6 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 
 	@Override
-	public void teleopExit() {
-	}
+	public void teleopExit() {}
 
 }

@@ -3,9 +3,10 @@ package training.commands.roller;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import training.subsystems.RobotArm.roller.Roller;
-import utils.joysticks.SmartJoystick;
+
 public class MoveRollerAtSpeed extends Command {
-private Roller roller;
+
+	private Roller roller;
 	private Rotation2d velocity;
 
 	public MoveRollerAtSpeed(Rotation2d velocity) {
@@ -21,7 +22,7 @@ private Roller roller;
 	}
 
 	public void end(boolean interrupted) {
- 		roller.moveAtSpeed(0);
+		roller.moveAtSpeed(0);
 	}
 
 }

@@ -34,7 +34,7 @@ public class Roller extends GBSubsystem {
 	}
 
 	public boolean isAtSpeed(Rotation2d velocity) {
-		return (Math.abs(getVelocity().minus(velocity).getDegrees()) <=RollerConstants.TOLERANCE.getDegrees());
+		return (Math.abs(getVelocity().minus(velocity).getDegrees()) <= RollerConstants.TOLERANCE.getDegrees());
 	}
 
 	protected String getLogPath() {
@@ -42,4 +42,5 @@ public class Roller extends GBSubsystem {
 	}
 
 	protected void subsystemPeriodic() {}
+
 }

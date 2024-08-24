@@ -48,11 +48,18 @@ public class ElbowNEO implements IElbow {
 
 	@Override
 	public boolean isAtPosition(Rotation2d position) {
-		return (Math.abs(getPosition().minus(position).getDegrees())  <= ElbowConstants.TOLERANCE.getDegrees());
+		return (Math.abs(getPosition().minus(position).getDegrees()) <= ElbowConstants.TOLERANCE.getDegrees());
 	}
+
 	@Override
-	public void stayInPlace(Rotation2d position){
+	public void stayInPlace(Rotation2d position) {
 		goToAngle(position);
+	}
+
+	@Override
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.position = getPosition();
+		inputs.velocity = getVelocity();
 	}
 
 }

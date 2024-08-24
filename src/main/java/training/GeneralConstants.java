@@ -1,5 +1,7 @@
 package training;
 
 public class GeneralConstants {
-    public static RobotTypes robotTypes = RobotTypes.SIMULATION;
+
+	public static RobotTypes robotTypes = RobotTypes.SIMULATION;
+
 }
