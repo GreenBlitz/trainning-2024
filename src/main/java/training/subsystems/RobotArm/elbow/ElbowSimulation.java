@@ -50,6 +50,7 @@ public class ElbowSimulation implements IElbow {
 	public void goToAngle(Rotation2d targetAngle) {
 		PositionVoltage pos = new PositionVoltage(targetAngle.getRotations());
 		motor.setControl(pos);
+		Logger.recordOutput("elbow pos dif",targetAngle.minus(getPosition()));
 		Logger.recordOutput("elbow position", getPosition());
 	}
 
@@ -64,8 +65,8 @@ public class ElbowSimulation implements IElbow {
 	}
 
 	@Override
-	public void stayInPlace(Rotation2d position) {
-		goToAngle(position);
+	public void stayInPlace() {
+		goToAngle(getPosition());
 	}
 
 	@Override

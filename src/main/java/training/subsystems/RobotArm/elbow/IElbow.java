@@ -12,7 +12,7 @@ public interface IElbow {
 
 	void goToAngle(Rotation2d position);
 
-	void stayInPlace(Rotation2d position);
+	void stayInPlace();
 
 	void updateInputs(ElbowInputsAutoLogged inputs);
 

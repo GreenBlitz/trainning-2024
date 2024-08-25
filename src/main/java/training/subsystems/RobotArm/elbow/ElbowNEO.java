@@ -52,7 +52,7 @@ public class ElbowNEO implements IElbow {
 	}
 
 	@Override
-	public void stayInPlace(Rotation2d position) {
+	public void stayInPlace() {
 		goToAngle(position);
 	}
 

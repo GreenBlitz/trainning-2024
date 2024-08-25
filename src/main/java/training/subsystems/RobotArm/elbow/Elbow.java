@@ -41,7 +41,7 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public void stayInPlace(Rotation2d position) {
-		current.stayInPlace(position);
+		current.stayInPlace();
 	}
 
 	@Override
