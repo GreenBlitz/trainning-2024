@@ -18,7 +18,7 @@ public class MoveRollerAtSpeed extends Command {
 	}
 
 	public boolean isFinished() {
-		return (roller.isAtSpeed(velocity));
+		return roller.isAtSpeed(velocity);
 	}
 
 	public void end(boolean interrupted) {

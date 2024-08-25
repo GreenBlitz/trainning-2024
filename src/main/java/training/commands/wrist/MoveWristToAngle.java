@@ -15,9 +15,6 @@ public class MoveWristToAngle extends Command {
 	}
 
 	@Override
-	public void initialize() {}
-
-	@Override
 	public void execute() {
 		wristSubsystem.goToPosition(wantedAngle);
 	}
