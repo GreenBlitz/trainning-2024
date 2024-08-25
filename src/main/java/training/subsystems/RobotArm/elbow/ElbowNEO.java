@@ -37,8 +37,6 @@ public class ElbowNEO implements IElbow {
 		return Rotation2d.fromDegrees(motor.getEncoder().getVelocity());
 	}
 
-
-
 	@Override
 	public void stayInPlace() {
 		goToAngle(position);

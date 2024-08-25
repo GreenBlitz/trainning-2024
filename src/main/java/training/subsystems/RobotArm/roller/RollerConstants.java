@@ -8,5 +8,4 @@ public class RollerConstants {
 	public static final int MOTOR_ID = 0, PID_SLOT = 0;
 	public static final Rotation2d TOLERANCE = Rotation2d.fromDegrees(3);
 
-
 }

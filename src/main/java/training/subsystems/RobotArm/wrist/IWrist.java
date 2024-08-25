@@ -6,5 +6,4 @@ public interface IWrist {
 
 	void goToPosition(Rotation2d velocity);
 
-
 }

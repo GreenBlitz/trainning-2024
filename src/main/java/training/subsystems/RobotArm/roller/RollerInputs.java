@@ -6,8 +6,8 @@ import org.littletonrobotics.junction.AutoLog;
 @AutoLog
 public class RollerInputs {
 
-    public Rotation2d position;
+	public Rotation2d position;
 
-    public Rotation2d velocity;
+	public Rotation2d velocity;
 
 }

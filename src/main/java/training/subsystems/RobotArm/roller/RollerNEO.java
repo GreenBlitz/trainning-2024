@@ -4,9 +4,9 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.RobotArm.elbow.ElbowInputsAutoLogged;
 
 public class RollerNEO implements IRoller {
+
 	private CANSparkMax motor;
 	private static RollerNEO instance;
 
@@ -39,7 +39,6 @@ public class RollerNEO implements IRoller {
 	protected String getLogPath() {
 		return "Roller/";
 	}
-
 
 	protected void subsystemPeriodic() {}
 

@@ -4,8 +4,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public interface IElbow {
 
-	Rotation2d getPosition();
-
 	void goToAngle(Rotation2d position);
 
 	void stayInPlace();

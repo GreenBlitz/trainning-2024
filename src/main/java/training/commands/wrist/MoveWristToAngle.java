@@ -9,7 +9,7 @@ public class MoveWristToAngle extends Command {
 	private Wrist wristSubsystem;
 	private Rotation2d wantedAngle;
 
-	public MoveWristToAngle(Rotation2d wantedAngle,Wrist wristSubsystem) {
+	public MoveWristToAngle(Rotation2d wantedAngle, Wrist wristSubsystem) {
 		this.wantedAngle = wantedAngle;
 		this.wristSubsystem = wristSubsystem;
 	}

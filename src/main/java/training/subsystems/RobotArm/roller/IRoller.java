@@ -1,7 +1,6 @@
 package training.subsystems.RobotArm.roller;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.RobotArm.elbow.ElbowInputsAutoLogged;
 
 public interface IRoller {
 
@@ -12,4 +11,5 @@ public interface IRoller {
 	void moveAtSpeed(double velocity);
 
 	void updateInputs(RollerInputsAutoLogged inputs);
+
 }

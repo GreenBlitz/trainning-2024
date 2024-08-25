@@ -34,6 +34,8 @@ public class TrainingRobotManager extends DefaultRobotManager {
 
 
 	@Override
-	public void teleopExit() {}
+	public void teleopExit() {
+		// cancel your command...
+	}
 
 }

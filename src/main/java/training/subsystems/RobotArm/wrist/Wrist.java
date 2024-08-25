@@ -13,7 +13,7 @@ public class Wrist extends GBSubsystem {
 	private static Wrist instance;
 
 	public Wrist() {
-		this.Wrist= new TalonSRX(WristConstans.MOTOR_ID);
+		this.Wrist = new TalonSRX(WristConstans.MOTOR_ID);
 		this.position = new Rotation2d();
 		Wrist.configAllSettings(WristConstans.TALON_SRX_CONFIGURATION);
 		Wrist.configSelectedFeedbackSensor(
@@ -22,6 +22,7 @@ public class Wrist extends GBSubsystem {
 			WristConstans.TIME_OUT_FOR_CONFIGS_SET
 		);
 	}
+
 	public Rotation2d getPosition() {
 		return Rotation2d.fromDegrees(Wrist.getSelectedSensorPosition());
 	}
@@ -30,11 +31,12 @@ public class Wrist extends GBSubsystem {
 		Wrist.selectProfileSlot(WristConstans.PID_SLOT, 0);
 		Wrist.set(ControlMode.Position, position.getRotations() * WristConstans.MAG_ENCODER_CONVERSION_FACTOR);
 	}
-	public boolean isAtPosition(Rotation2d position){
+
+	public boolean isAtPosition(Rotation2d position) {
 		return (position == getPosition());
 	}
 
-	public void stayInPlace(){
+	public void stayInPlace() {
 		goToPosition(getPosition());
 	}
 

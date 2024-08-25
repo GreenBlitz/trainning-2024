@@ -5,8 +5,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public class ElbowConstants {
 
-	public static final double KP = 30, KI = 0, KD = 15, KS = 0, KA = 0, KV = 0, KG = 0,
-		ARE_FEED_FORWARDS = 0;
+	public static final double KP = 30, KI = 0, KD = 15, KS = 0, KA = 0, KV = 0, KG = 0, ARE_FEED_FORWARDS = 0;
 	public static final Rotation2d TOLERANCE = Rotation2d.fromDegrees(3);
 	public static final double BEGINNING_POSITION = 0;
 

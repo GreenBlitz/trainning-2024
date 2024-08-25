@@ -4,12 +4,10 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import training.subsystems.RobotArm.elbow.ElbowConstants;
-import training.subsystems.RobotArm.elbow.ElbowInputsAutoLogged;
-import training.subsystems.RobotArm.wrist.WristConstans;
 import utils.GBSubsystem;
 
 public class Roller extends GBSubsystem {
+
 	private RollerInputsAutoLogged inputs;
 	private CANSparkMax motor;
 	private static Roller instance;
