@@ -2,7 +2,13 @@ package subsystems.elbow.neoElbow;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 
-public class NeoElbowConstants {
+class NeoElbowConstants {
+
+	public static final double KP = 0;
+
+	public static final double KI = 0;
+
+	public static final double KD = 0;
 
 	protected static final ArmFeedforward FEED_FORWARD = new ArmFeedforward(0, 0, 0); // TODO replace with useful FF values
 

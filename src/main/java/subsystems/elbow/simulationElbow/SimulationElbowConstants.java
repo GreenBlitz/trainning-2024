@@ -4,6 +4,13 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public class SimulationElbowConstants {
 
+	public static final double KP = 0;
+
+	public static final double KI = 0;
+
+	public static final double KD = 0;
+
+
 	public static final int NUMBER_OF_MOTORS = 1;
 
 	public static final double GEAR_RATIO = 28.0 * (60.0 / 16.0);

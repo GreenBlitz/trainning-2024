@@ -4,13 +4,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public class ElbowConstants {
 
-	public static final double KP = 0;
-
-	public static final double KI = 0;
-
-	public static final double KD = 0;
-
-
 	public enum PresetPositions {
 
 		SAFE(Rotation2d.fromDegrees(-67)),

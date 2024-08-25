@@ -24,7 +24,7 @@ public class SimulationElbow implements IElbow {
 			false,
 			ElbowConstants.PresetPositions.STARTING.ANGLE.getRadians()
 		);
-		this.controller = new PIDController(ElbowConstants.KP, ElbowConstants.KI, ElbowConstants.KD);
+		this.controller = new PIDController(SimulationElbowConstants.KP, SimulationElbowConstants.KI, SimulationElbowConstants.KD);
 	}
 
 	@Override

@@ -2,20 +2,19 @@ package subsystems.elbow.neoElbow;
 
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import subsystems.RobotConstants;
+import subsystems.RevConstants;
 import subsystems.elbow.ElbowConstants;
 import subsystems.elbow.IElbow;
-import utils.GBSubsystem;
 
-public class NeoElbow extends GBSubsystem implements IElbow {
+public class NeoElbow implements IElbow {
 
 	private static CANSparkMax motor;
 
 	public NeoElbow() {
-		motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, RobotConstants.MOTOR_BRUSHLESS_TYPE);
-		motor.getPIDController().setP(ElbowConstants.KP);
-		motor.getPIDController().setI(ElbowConstants.KI);
-		motor.getPIDController().setD(ElbowConstants.KD);
+		motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, RevConstants.MOTOR_BRUSHLESS_TYPE);
+		motor.getPIDController().setP(NeoElbowConstants.KP);
+		motor.getPIDController().setI(NeoElbowConstants.KI);
+		motor.getPIDController().setD(NeoElbowConstants.KD);
 	}
 
 	public Rotation2d getAngle() {
@@ -39,18 +38,10 @@ public class NeoElbow extends GBSubsystem implements IElbow {
 		motor.getPIDController()
 			.setReference(
 				position.getRadians(),
-				RobotConstants.PID_POSITION_CONTROL_TYPE,
+				RevConstants.PID_POSITION_CONTROL_TYPE,
 				NeoElbowConstants.PID_SLOT,
 				calculateFeedForward()
 			);
 	}
-
-	@Override
-	protected String getLogPath() {
-		return "";
-	}
-
-	@Override
-	protected void subsystemPeriodic() {}
 
 }
