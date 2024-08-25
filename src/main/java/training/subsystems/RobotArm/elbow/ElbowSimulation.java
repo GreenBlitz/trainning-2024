@@ -13,7 +13,6 @@ public class ElbowSimulation implements IElbow {
 
 	private SingleJointedArmSimulation motor;
 	private Rotation2d position;
-	private static ElbowSimulation instance;
 	private PIDController controller;
 
 	public ElbowSimulation() {
@@ -42,26 +41,15 @@ public class ElbowSimulation implements IElbow {
 		return motor.getPosition();
 	}
 
-	public Rotation2d getVelocity() {
-		return motor.getVelocity();
-	}
-
 
 	public void goToAngle(Rotation2d targetAngle) {
 		PositionVoltage pos = new PositionVoltage(targetAngle.getRotations());
 		motor.setControl(pos);
 		Logger.recordOutput("elbow pos dif",targetAngle.minus(getPosition()));
-		Logger.recordOutput("elbow position", getPosition());
 	}
 
 	public void stop() {
 		goToAngle(getPosition());
-	}
-
-
-	@Override
-	public boolean isAtPosition(Rotation2d position) {
-		return (Math.abs(getPosition().minus(position).getDegrees()) <= ElbowConstants.TOLERANCE.getDegrees());
 	}
 
 	@Override
@@ -72,7 +60,6 @@ public class ElbowSimulation implements IElbow {
 	@Override
 	public void updateInputs(ElbowInputsAutoLogged inputs) {
 		inputs.position = getPosition();
-		inputs.velocity = getVelocity();
 	}
 
 }

@@ -1,6 +1,6 @@
 package training;
 
-public enum RobotTypes {
+public enum RobotType {
 
 	SIMULATION,
 	SYNCOPA;

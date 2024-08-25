@@ -1,18 +1,18 @@
 package training.subsystems.RobotArm.elbow;
 
 import training.GeneralConstants;
-import training.RobotTypes;
+import training.RobotType;
 
 public class ElbowFactory {
 
 	public static IElbow create() {
-		if (GeneralConstants.robotTypes == RobotTypes.SIMULATION) {
-			return new ElbowSimulation();
-		}
+		return switch (GeneralConstants.robotTypes){
+			case SYNCOPA -> new ElbowNEO();
 
-		else {
-			return new ElbowNEO();
-		}
+			case SIMULATION ->  new ElbowSimulation();
+
+		};
+
 	}
 
 }

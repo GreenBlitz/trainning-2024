@@ -6,11 +6,12 @@ import training.subsystems.RobotArm.wrist.Wrist;
 
 public class MoveWristToAngle extends Command {
 
-	Wrist wristSubsystem = new Wrist();
+	private Wrist wristSubsystem;
 	private Rotation2d wantedAngle;
 
-	public MoveWristToAngle(Rotation2d wantedAngle) {
+	public MoveWristToAngle(Rotation2d wantedAngle,Wrist wristSubsystem) {
 		this.wantedAngle = wantedAngle;
+		this.wristSubsystem = wristSubsystem;
 	}
 
 	@Override
@@ -23,10 +24,12 @@ public class MoveWristToAngle extends Command {
 
 	@Override
 	public boolean isFinished() {
-		return false;
+		return wristSubsystem.isAtPosition(wantedAngle);
 	}
 
 	@Override
-	public void end(boolean interrupted) {}
+	public void end(boolean interrupted) {
+		wristSubsystem.stayInPlace();
+	}
 
 }

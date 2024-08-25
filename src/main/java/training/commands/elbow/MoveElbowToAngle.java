@@ -22,6 +22,7 @@ public class MoveElbowToAngle extends Command {
 
 	@Override
 	public boolean isFinished() {
+
 		return elbow.isAtPosition(position);
 	}
 

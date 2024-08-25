@@ -4,9 +4,9 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
+import training.subsystems.RobotArm.elbow.ElbowInputsAutoLogged;
 
 public class RollerNEO implements IRoller {
-
 	private CANSparkMax motor;
 	private static RollerNEO instance;
 
@@ -31,8 +31,9 @@ public class RollerNEO implements IRoller {
 		return Rotation2d.fromDegrees(motor.getEncoder().getVelocity());
 	}
 
-	public boolean isAtSpeed(Rotation2d velocity) {
-		return (getVelocity() == velocity);
+	@Override
+	public void updateInputs(RollerInputsAutoLogged inputs) {
+		inputs.position = getPosition();
 	}
 
 	protected String getLogPath() {

@@ -9,23 +9,14 @@ public class ElbowNEO implements IElbow {
 
 	private final CANSparkMax motor;
 	private Rotation2d position;
-	private static ElbowNEO instance;
 
 	public ElbowNEO() {
 		this.motor = new CANSparkMax(ElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
-		this.position = new Rotation2d(ElbowConstants.BIGINNING_POSITION);
+		this.position = new Rotation2d(ElbowConstants.BEGINNING_POSITION);
 		motor.getPIDController().setP(ElbowConstants.KP);
 		motor.getPIDController().setI(ElbowConstants.KI);
 		motor.getPIDController().setD(ElbowConstants.KD);
 	}
-
-
-	public ElbowNEO getInstance() {
-		if (instance != null)
-			instance = new ElbowNEO();
-		return instance;
-	}
-
 
 	@Override
 	public void goToAngle(Rotation2d position) {
@@ -46,10 +37,7 @@ public class ElbowNEO implements IElbow {
 		return Rotation2d.fromDegrees(motor.getEncoder().getVelocity());
 	}
 
-	@Override
-	public boolean isAtPosition(Rotation2d position) {
-		return (Math.abs(getPosition().minus(position).getDegrees()) <= ElbowConstants.TOLERANCE.getDegrees());
-	}
+
 
 	@Override
 	public void stayInPlace() {
@@ -59,7 +47,6 @@ public class ElbowNEO implements IElbow {
 	@Override
 	public void updateInputs(ElbowInputsAutoLogged inputs) {
 		inputs.position = getPosition();
-		inputs.velocity = getVelocity();
 	}
 
 }
