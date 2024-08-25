@@ -6,7 +6,7 @@ public interface IElbow {
 
 	public Rotation2d getAngle();
 
-	public double getRPMVelocity();
+	public Rotation2d getVelocity();
 
 	public void setPower(double power);
 

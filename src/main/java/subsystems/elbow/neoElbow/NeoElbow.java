@@ -22,8 +22,8 @@ public class NeoElbow extends GBSubsystem implements IElbow {
 		return Rotation2d.fromRotations(motor.getEncoder().getPosition() % 1);
 	}
 
-	public double getRPMVelocity() {
-		return motor.getEncoder().getVelocity();
+	public Rotation2d getVelocity() {
+		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class NeoElbow extends GBSubsystem implements IElbow {
 	}
 
 	private double calculateFeedForward() {
-		return NeoElbowConstants.FEED_FORWARD.calculate(getAngle().getRadians(), getRPMVelocity());
+		return NeoElbowConstants.FEED_FORWARD.calculate(getAngle().getRadians(), getVelocity().getRotations());
 	}
 
 	public void goToPosition(Rotation2d position) {

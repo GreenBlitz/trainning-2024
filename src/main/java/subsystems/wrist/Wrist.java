@@ -21,10 +21,7 @@ public class Wrist extends GBSubsystem {
 	}
 
 	public void GoToPosition(Rotation2d position) {
-		motor.set(
-			WristConstants.PID_CONTROL_MODE,
-			position.getRotations() % WristConstants.SINGLE_ROTATION * WristConstants.FULL_CIRCLE_ENCODER_TICKS
-		);
+		motor.set(WristConstants.PID_CONTROL_MODE, position.getRotations() % 1 * WristConstants.FULL_CIRCLE_ENCODER_TICKS);
 	}
 
 	@Override

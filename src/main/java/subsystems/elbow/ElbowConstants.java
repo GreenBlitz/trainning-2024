@@ -27,6 +27,6 @@ public class ElbowConstants {
 
 	}
 
-	public static final double ANGLE_RAD_TOLERANCE = 0.05;
+	public static final Rotation2d ANGLE_TOLERANCE = Rotation2d.fromRotations(0.05);
 
 }

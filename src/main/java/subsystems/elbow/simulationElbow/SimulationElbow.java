@@ -4,7 +4,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
-import subsystems.SimulationConstants;
+import subsystems.GlobalConstants;
 import subsystems.elbow.ElbowConstants;
 import subsystems.elbow.IElbow;
 
@@ -33,18 +33,18 @@ public class SimulationElbow implements IElbow {
 	}
 
 	@Override
-	public double getRPMVelocity() {
-		return motor.getVelocityRadPerSec() / SimulationElbowConstants.FULL_CIRCLE_RAD;
+	public Rotation2d getVelocity() {
+		return Rotation2d.fromRadians(motor.getVelocityRadPerSec() / SimulationElbowConstants.FULL_CIRCLE.getRadians());
 	}
 
 	@Override
 	public void setPower(double power) {
-		setVoltage(power * SimulationConstants.BATTERY_VOLTAGE);
+		setVoltage(power * GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
 	}
 
 	private void setVoltage(double voltage) {
 		double limited_voltage = Math
-			.min((Math.max(voltage, -SimulationConstants.BATTERY_VOLTAGE)), SimulationConstants.BATTERY_VOLTAGE);
+			.min((Math.max(voltage, -GlobalConstants.DEFAULT_BATTERY_VOLTAGE)), GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
 		motor.setInputVoltage(limited_voltage);
 	}
 

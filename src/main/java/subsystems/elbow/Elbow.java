@@ -10,7 +10,7 @@ public class Elbow extends GBSubsystem {
 	private IElbow iElbow;
 
 	private Elbow() {
-		this.iElbow = Factory.create();
+		this.iElbow = ElbowFactory.create();
 	}
 
 	public static Elbow getInstance() {
@@ -25,12 +25,12 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public boolean isAtAngle(Rotation2d angle) {
-		return Math.abs(iElbow.getAngle().getRadians() - angle.getRadians()) <= ElbowConstants.ANGLE_RAD_TOLERANCE;
+		return Math.abs(iElbow.getAngle().getRadians() - angle.getRadians()) <= ElbowConstants.ANGLE_TOLERANCE.getRadians();
 	}
 
 	@Override
 	protected String getLogPath() {
-		return "";
+		return "ELBOW/";
 	}
 
 	@Override

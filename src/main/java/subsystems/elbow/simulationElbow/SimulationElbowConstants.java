@@ -16,6 +16,6 @@ public class SimulationElbowConstants {
 
 	public static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(90);
 
-	public static final double FULL_CIRCLE_RAD = 2 * Math.PI;
+	public static final Rotation2d FULL_CIRCLE = Rotation2d.fromRotations(1);
 
 }

@@ -4,7 +4,7 @@ import subsystems.elbow.neoElbow.NeoElbow;
 import subsystems.elbow.simulationElbow.SimulationElbow;
 import training.Robot;
 
-public class Factory {
+public class ElbowFactory {
 
 	public static IElbow create() {
 		return switch (Robot.ROBOT_TYPE) {
