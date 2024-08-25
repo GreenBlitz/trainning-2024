@@ -3,7 +3,6 @@ package subsystems.elbow.neoElbow;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import subsystems.RevConstants;
-import subsystems.elbow.ElbowConstants;
 import subsystems.elbow.IElbow;
 
 public class NeoElbow implements IElbow {
