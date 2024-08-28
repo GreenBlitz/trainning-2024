@@ -14,7 +14,6 @@ public class TalonWrist implements IWrist {
 	public TalonWrist() {
 		this.motor = new TalonSRX(TalonWristConstants.ID);
 		motor.configAllSettings(TalonWristConstants.TALON_SRX_CONFIG);
-		motor.get
 	}
 
 	@Override
