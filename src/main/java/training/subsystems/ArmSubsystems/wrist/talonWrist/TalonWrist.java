@@ -38,10 +38,14 @@ public class TalonWrist implements IWrist {
 		return  Rotation2d.fromRotations(motor.getSelectedSensorPosition()*TalonWristConstants.MAG_ENCODER_CONVERSION_FACTOR);
 	}
 
+	public Rotation2d getVelocity(){
+		return  Rotation2d.fromRotations(motor.getSelectedSensorPosition()*TalonWristConstants.HUNDRED_MILLISECONDS_TO_SECONDS);
+	}
+
 	@Override
 	public void updateInputs(WristInputsAutoLogged inputs) {
 		inputs.position = getPosition();
-		inputs.velocity = Rotation2d.fromRotations(motor.getSelectedSensorVelocity());
+		inputs.velocity = getVelocity();
 		inputs.voltage = motor.getMotorOutputVoltage();
 		;
 	}
