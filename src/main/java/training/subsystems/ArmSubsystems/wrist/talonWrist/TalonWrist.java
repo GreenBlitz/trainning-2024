@@ -19,7 +19,7 @@ public class TalonWrist implements IWrist {
 	@Override
 	public void goToPosition(Rotation2d targetPosition) {
 		setVoltage(
-			TalonWristConstants.PID_CONTROLLER.calculate(motor.getSelectedSensorPosition(), targetPosition.getRotations())
+			TalonWristConstants.PID_CONTROLLER.calculate(getPosition().getRotations(), targetPosition.getRotations())
 		);
 	}
 
@@ -34,7 +34,7 @@ public class TalonWrist implements IWrist {
 	}
 
 	public Rotation2d getPosition(){
-		return  Rotation2d.fromRotations(motor.getSelectedSensorPosition()*TalonWristConstants.MAG_ENCODER_CONVERSION_FACTOR);
+		return  Rotation2d.fromRotations(motor.getSelectedSensorPosition()*TalonWristConstants.MAG_ENCODER_UNITS_TO_ROTATIONS);
 	}
 
 	public Rotation2d getVelocity(){
