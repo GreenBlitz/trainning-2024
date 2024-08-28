@@ -28,6 +28,8 @@ public class TalonWristConstants {
 
 	protected static final TalonSRXConfiguration TALON_SRX_CONFIG = new TalonSRXConfiguration();
 
+	public static final double MAG_ENCODER_CONVERSION_FACTOR = 8192;
+
 	static {
 		TALON_SRX_CONFIG.slot0.kP = KP;
 		TALON_SRX_CONFIG.slot0.kI = KI;

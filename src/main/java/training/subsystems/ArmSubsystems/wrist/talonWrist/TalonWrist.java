@@ -14,7 +14,7 @@ public class TalonWrist implements IWrist {
 	public TalonWrist() {
 		this.motor = new TalonSRX(TalonWristConstants.ID);
 		motor.configAllSettings(TalonWristConstants.TALON_SRX_CONFIG);
-		motor.setSelectedSensorPosition(0);
+		motor.get
 	}
 
 	@Override
@@ -35,17 +35,13 @@ public class TalonWrist implements IWrist {
 	}
 
 	public Rotation2d getPosition(){
-		return Rotation2d.fromRotations(motor.getSelectedSensorPosition() / TalonWristConstants.MAG_ENCODER_CONVERSION_FACTOR);
-	}
-
-	public Rotation2d getVelocity(){
-		return Rotation2d.fromRotations(motor.getSelectedSensorVelocity() / TalonWristConstants.MAG_ENCODER_CONVERSION_FACTOR*TalonWristConstants.HUNDRED_MILLISECONDS_TO_SECONDS);
+		return  Rotation2d.fromRotations(motor.getSelectedSensorPosition()*TalonWristConstants.MAG_ENCODER_CONVERSION_FACTOR);
 	}
 
 	@Override
 	public void updateInputs(WristInputsAutoLogged inputs) {
 		inputs.position = getPosition();
-		inputs.velocity = getVelocity();
+		inputs.velocity = Rotation2d.fromRotations(motor.getSelectedSensorVelocity());
 		inputs.voltage = motor.getMotorOutputVoltage();
 		;
 	}
