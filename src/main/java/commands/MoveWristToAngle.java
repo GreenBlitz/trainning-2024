@@ -10,10 +10,10 @@ public class MoveWristToAngle extends Command {
 	private final Wrist wrist;
 
 	public MoveWristToAngle(Rotation2d angle) {
-		wrist = Wrist.getInstance();
-		addRequirements(wrist);
-
+		this.wrist = Wrist.getInstance();
 		this.angle = angle;
+
+		addRequirements(wrist);
 	}
 
 	@Override

@@ -1,8 +1,9 @@
 package subsystems.elbow.neoElbow;
 
+import com.revrobotics.CANSparkBase;
+import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
-import subsystems.RevConstants;
 import subsystems.elbow.ElbowInputsAutoLogged;
 import subsystems.elbow.IElbow;
 
@@ -11,7 +12,7 @@ public class NeoElbow implements IElbow {
 	private static CANSparkMax motor;
 
 	public NeoElbow() {
-		motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, RevConstants.MOTOR_BRUSHLESS_TYPE);
+		motor = new CANSparkMax(NeoElbowConstants.MOTOR_ID, CANSparkLowLevel.MotorType.kBrushless);
 		motor.getPIDController().setP(NeoElbowConstants.KP);
 		motor.getPIDController().setI(NeoElbowConstants.KI);
 		motor.getPIDController().setD(NeoElbowConstants.KD);
@@ -44,7 +45,7 @@ public class NeoElbow implements IElbow {
 		motor.getPIDController()
 			.setReference(
 				position.getRadians(),
-				RevConstants.PID_POSITION_CONTROL_TYPE,
+				CANSparkBase.ControlType.kPosition,
 				NeoElbowConstants.PID_SLOT,
 				calculateFeedForward()
 			);

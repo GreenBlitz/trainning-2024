@@ -42,12 +42,12 @@ public class SimulationElbow implements IElbow {
 
 	@Override
 	public void setPower(double power) {
-		setVoltage(power * GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
+		setVoltage(power * GlobalConstants.SIMULATION_BATTERY_VOLTAGE);
 	}
 
 	private void setVoltage(double voltage) {
 		double limited_voltage = Math
-			.min((Math.max(voltage, -GlobalConstants.DEFAULT_BATTERY_VOLTAGE)), GlobalConstants.DEFAULT_BATTERY_VOLTAGE);
+			.min((Math.max(voltage, -GlobalConstants.SIMULATION_BATTERY_VOLTAGE)), GlobalConstants.SIMULATION_BATTERY_VOLTAGE);
 		motor.setInputVoltage(limited_voltage);
 	}
 

@@ -10,9 +10,9 @@ public class RotateRollerBySpeed extends Command {
 
 	public RotateRollerBySpeed(double speed) {
 		this.roller = Roller.getInstance();
-		addRequirements(roller);
-
 		this.rotationalSpeed = speed;
+
+		addRequirements(roller);
 	}
 
 	@Override

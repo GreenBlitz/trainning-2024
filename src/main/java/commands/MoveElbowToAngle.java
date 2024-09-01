@@ -10,10 +10,10 @@ public class MoveElbowToAngle extends Command {
 	private final Elbow elbow;
 
 	public MoveElbowToAngle(Rotation2d angle) {
-		elbow = Elbow.getInstance();
-		addRequirements(elbow);
-
+		this.elbow = Elbow.getInstance();
 		this.angle = angle;
+
+		addRequirements(elbow);
 	}
 
 	@Override
