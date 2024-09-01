@@ -6,6 +6,8 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import subsystems.GlobalConstants;
 import subsystems.elbow.ElbowConstants;
+import subsystems.elbow.ElbowInputs;
+import subsystems.elbow.ElbowInputsAutoLogged;
 import subsystems.elbow.IElbow;
 
 public class SimulationElbow implements IElbow {
@@ -32,13 +34,11 @@ public class SimulationElbow implements IElbow {
 	}
 
 	@Override
-	public Rotation2d getAngle() {
-		return Rotation2d.fromRadians(motor.getAngleRads());
-	}
-
-	@Override
-	public Rotation2d getVelocity() {
-		return Rotation2d.fromRadians(motor.getVelocityRadPerSec() / SimulationElbowConstants.FULL_CIRCLE.getRadians());
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.angle = Rotation2d.fromRadians(motor.getAngleRads());
+		inputs.velocity = Rotation2d
+			.fromRadians(motor.getVelocityRadPerSec() / SimulationElbowConstants.FULL_CIRCLE.getRadians());
+		motor.update(SimulationElbowConstants.MOTOR_UPDATE_PERIOD);
 	}
 
 	@Override

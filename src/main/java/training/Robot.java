@@ -11,7 +11,7 @@ public class Robot {
 		REAL
 	}
 
-	public static final RobotType ROBOT_TYPE = RobotType.REAL;
+	public static final RobotType ROBOT_TYPE = RobotType.SIMULATION;
 
 
 	// Enter your subsystems...

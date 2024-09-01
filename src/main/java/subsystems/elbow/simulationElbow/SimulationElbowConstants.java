@@ -4,12 +4,11 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 public class SimulationElbowConstants {
 
-	public static final double KP = 0;
+	public static final double KP = 100;
 
-	public static final double KI = 0;
+	public static final double KI = 1000;
 
-	public static final double KD = 0;
-
+	public static final double KD = 0.5;
 
 	public static final int NUMBER_OF_MOTORS = 1;
 
@@ -24,5 +23,7 @@ public class SimulationElbowConstants {
 	public static final Rotation2d FORWARD_ANGLE_LIMIT = Rotation2d.fromDegrees(90);
 
 	public static final Rotation2d FULL_CIRCLE = Rotation2d.fromRotations(1);
+
+	public static final double MOTOR_UPDATE_PERIOD = 0.02;
 
 }

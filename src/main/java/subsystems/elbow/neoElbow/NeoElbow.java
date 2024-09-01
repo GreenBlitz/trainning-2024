@@ -3,6 +3,8 @@ package subsystems.elbow.neoElbow;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.math.geometry.Rotation2d;
 import subsystems.RevConstants;
+import subsystems.elbow.ElbowInputs;
+import subsystems.elbow.ElbowInputsAutoLogged;
 import subsystems.elbow.IElbow;
 
 public class NeoElbow implements IElbow {
@@ -22,6 +24,12 @@ public class NeoElbow implements IElbow {
 
 	public Rotation2d getVelocity() {
 		return Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+	}
+
+	@Override
+	public void updateInputs(ElbowInputsAutoLogged inputs) {
+		inputs.velocity = Rotation2d.fromRotations(motor.getEncoder().getVelocity());
+		inputs.angle = Rotation2d.fromRotations(motor.getEncoder().getPosition() % 1);
 	}
 
 	@Override
