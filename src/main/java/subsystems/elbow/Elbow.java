@@ -13,9 +13,9 @@ public class Elbow extends GBSubsystem {
 	private Rotation2d targetAngle;
 
 	private Elbow() {
-		this.targetAngle =ElbowConstants.PresetPositions.STARTING.ANGLE;
+		this.targetAngle = ElbowConstants.PresetPositions.STARTING.ANGLE;
 		this.iElbow = ElbowFactory.create();
-		this.inputs=new ElbowInputsAutoLogged();
+		this.inputs = new ElbowInputsAutoLogged();
 		this.iElbow.updateInputs(inputs);
 	}
 
@@ -26,12 +26,12 @@ public class Elbow extends GBSubsystem {
 		return instance;
 	}
 
-	public void setPower(double power){
+	public void setPower(double power) {
 		iElbow.setPower(power);
 	}
 
-	public void goToPosition(Rotation2d angle){
-		this.targetAngle=angle;
+	public void goToPosition(Rotation2d angle) {
+		this.targetAngle = angle;
 	}
 
 	public boolean isAtAngle(Rotation2d angle) {
@@ -39,9 +39,9 @@ public class Elbow extends GBSubsystem {
 	}
 
 	public ElbowInputs getInputs() {
-		ElbowInputs clonesInputs=new ElbowInputs();
-		clonesInputs.angle=inputs.angle;
-		clonesInputs.velocity=inputs.velocity;
+		ElbowInputs clonesInputs = new ElbowInputs();
+		clonesInputs.angle = inputs.angle;
+		clonesInputs.velocity = inputs.velocity;
 		return clonesInputs;
 	}
 

@@ -6,7 +6,6 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import subsystems.GlobalConstants;
 import subsystems.elbow.ElbowConstants;
-import subsystems.elbow.ElbowInputs;
 import subsystems.elbow.ElbowInputsAutoLogged;
 import subsystems.elbow.IElbow;
 
