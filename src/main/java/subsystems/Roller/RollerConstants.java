@@ -1,6 +1,5 @@
 package subsystems.Roller;
 
-import com.revrobotics.CANSparkBase;
 
 public class RollerConstants {
 
