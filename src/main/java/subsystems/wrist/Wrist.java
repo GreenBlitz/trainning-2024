@@ -1,16 +1,21 @@
 package subsystems.wrist;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.math.geometry.Rotation2d;
+import org.littletonrobotics.junction.Logger;
 import utils.GBSubsystem;
 
 public class Wrist extends GBSubsystem {
 
 	private static Wrist instance;
-	private static TalonSRX motor;
+	private IWrist iWrist;
+	private WristInputsAutoLogged inputs;
+	private Rotation2d targetAngle;
 
 	private Wrist() {
-		this.motor = new TalonSRX(WristConstants.MOTOR_ID);
+		this.iWrist = WristFactory.create();
+		this.inputs = new WristInputsAutoLogged();
+		this.targetAngle = WristConstants.PresetPositions.STARTING.ANGLE;
+		this.iWrist.updateInputs(inputs);
 	}
 
 	public static Wrist getInstance() {
@@ -20,16 +25,24 @@ public class Wrist extends GBSubsystem {
 		return instance;
 	}
 
-	public void GoToPosition(Rotation2d position) {
-		motor.set(WristConstants.PID_CONTROL_MODE, position.getRotations() % 1 * WristConstants.FULL_CIRCLE_ENCODER_TICKS);
+	public void goToPosition(Rotation2d position) {
+		this.targetAngle = position;
+	}
+
+	public boolean isAtAngle(Rotation2d angle) {
+		return Math.abs(inputs.angle.getRadians() - angle.getRadians()) <= WristConstants.ANGLE_TOLERANCE.getRadians();
 	}
 
 	@Override
 	protected String getLogPath() {
-		return "";
+		return "WRIST/";
 	}
 
 	@Override
-	protected void subsystemPeriodic() {}
+	protected void subsystemPeriodic() {
+		iWrist.goToPosition(targetAngle);
+		iWrist.updateInputs(inputs);
+		Logger.processInputs("wrist", inputs);
+	}
 
 }

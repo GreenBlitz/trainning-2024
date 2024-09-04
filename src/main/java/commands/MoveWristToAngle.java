@@ -18,7 +18,12 @@ public class MoveWristToAngle extends Command {
 
 	@Override
 	public void execute() {
-		wrist.GoToPosition(angle);
+		wrist.goToPosition(angle);
+	}
+
+	@Override
+	public boolean isFinished() {
+		return wrist.isAtAngle(angle);
 	}
 
 }
