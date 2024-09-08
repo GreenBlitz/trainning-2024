@@ -7,7 +7,7 @@ public class NeoElbowConstants {
 
 	public static final int ID = 5;
 
-	public static final double KP = 5;
+	public static final double KP = 5.5;
 	public static final double KI = 0;
 	public static final double KD = 0;
 

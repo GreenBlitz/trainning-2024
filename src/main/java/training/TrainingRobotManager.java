@@ -23,19 +23,11 @@ public class TrainingRobotManager extends DefaultRobotManager {
 	private SmartJoystick smartJoystick;
 
 	public void configJoystick(Robot robot) {
-		this.smartJoystick = new SmartJoystick(GlobalConstants.MAIN_JOYSTICK_PORT);
-
-		smartJoystick.B.onTrue(new MoveElbow(ElbowConstants.CLIMBING_POSITION, robot.getElbow()));
-		smartJoystick.A.onTrue(new MoveElbow(ElbowConstants.STARTING_POSITION, robot.getElbow()));
-
-		smartJoystick.Y.onTrue(new MoveWrist(WristConstants.CLIMBING_POSITION, robot.getWrist()));
-
-		Consumer<Double> KGConsumer = KG -> robot.getElbow().setVoltage(KG);
-		;
-		smartJoystick.X.onTrue(new LoggedDashboardCommand("Current KG", KGConsumer, robot.getElbow()));
+		smartJoystick.B.onTrue(new MoveElbow(ElbowConstants.SCORE_POSITION, robot.getElbow()));
+		smartJoystick.A.onTrue(new MoveElbow(ElbowConstants.SAFE_POSITION, robot.getElbow()));
 
 		smartJoystick.R1.whileTrue(new RollClockwise(robot.getRoller()));
-		smartJoystick.R2.whileTrue(new RollCounterClockwise(robot.getRoller()));
+		smartJoystick.L2.whileTrue(new RollCounterClockwise(robot.getRoller()));
 	}
 
 	public void configDefaultCommands(Elbow elbow, Wrist wrist) {
@@ -48,12 +40,9 @@ public class TrainingRobotManager extends DefaultRobotManager {
 		this.robot = new Robot();
 
 		this.smartJoystick = new SmartJoystick(GlobalConstants.MAIN_JOYSTICK_PORT);
-		// configJoystick(robot);
-		// configDefaultCommands(robot.getElbow(), robot.getWrist());
-		smartJoystick.A.whileTrue(new MoveElbow(ElbowConstants.SAFE_POSITION, robot.getElbow()));
-		smartJoystick.B.whileTrue(new MoveElbow(ElbowConstants.SCORE_POSITION, robot.getElbow()));
-		smartJoystick.X.whileTrue(new MoveWrist(WristConstants.STARTING_POSITION, robot.getWrist()));
-		smartJoystick.Y.whileTrue(new MoveWrist(WristConstants.CLIMBING_POSITION, robot.getWrist()));
+		 configJoystick(robot);
+		 configDefaultCommands(robot.getElbow(), robot.getWrist());
+
 	}
 
 	@Override
