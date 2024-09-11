@@ -24,4 +24,5 @@ public class RotateRollerBySpeed extends Command {
 	public void end(boolean interrupted) {
 		roller.setRotationalSpeed(0);
 	}
+
 }
