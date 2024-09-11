@@ -20,4 +20,8 @@ public class RotateRollerBySpeed extends Command {
 		roller.setRotationalSpeed(rotationalSpeed);
 	}
 
+	@Override
+	public void end(boolean interrupted) {
+		roller.setRotationalSpeed(0);
+	}
 }
