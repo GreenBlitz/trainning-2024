@@ -4,16 +4,22 @@
 ### C++ ###
 # Prerequisites
 *.d
-
+*.py
 # Compiled Object files
 *.slo
-*.lo
+*/.pyc
 *.o
 *.obj
 
 # Precompiled Headers
 *.gch
 *.pch
+*.pyc
+networktables.json
+simgui-ds.json
+simgui-window.json
+simgui.json
+
 
 # Compiled Dynamic libraries
 *.so
